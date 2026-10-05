@@ -37,10 +37,10 @@ AtlantidaFIAPChallenge/
 ├── assets/                  # Recursos estáticos da aplicação
 │   ├── css/                 # Estilos e temas da aplicação
 │   │   └── style.css        # Estilo principal com CSS Variables
-│   ├── docs/                # Documentação técnica e arquivos de apoio
-│   │   └── .gitkeep
 │   ├── js/                  # Scripts e lógica client-side
 │   │   └── main.js          # Arquivo JavaScript principal
+│   ├── docs/                # Documentação técnica e arquivos de apoio
+│   │   └── .gitkeep
 │   └── media/               # Imagens, ícones, vídeos e mídias
 │       └── .gitkeep
 ├── index.html               # Página inicial (HTML5 semântico)
