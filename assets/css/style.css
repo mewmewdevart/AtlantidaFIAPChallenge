@@ -1,0 +1,40 @@
+/* ==========================================================================
+   Portal Web - Atlântida | VR Code Arena - NEXT FIAP/2026
+   Estilo Principal e Sistema de Design
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Variáveis Globais (Design Tokens)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Cores Principais - Tema Subaquático / Atlântida */
+  
+  /* Cores de Texto */
+
+  /* Tipografia */
+
+  /* Modificadores e Bordas */
+  
+  /* Sombras e Brilho */
+
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset e Estilos Base
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  
+}
