@@ -33,6 +33,11 @@ const i18n = {
                 "nav.lang_atlantida": "Atlantida",
                 "hero.cover_title": "ATLÂNTIDA - TLALOC",
                 "hero.cover_subtitle": "ARENA TLATOANI — NEXT FIAP",
+                "hero.livro_titulo_linha1": "Ixtlamati",
+                "hero.livro_titulo_linha2": "Atlântida.",
+                "hero.livro_descricao": "Tlazocamati atl altepetl, ximomachti ihuan xitlachia yancuic tlalpan ameyalli.",
+                "hero.btn_explorar": "Xitlachia Atlântida",
+                "hero.btn_saiba_mais": "Miac tlamatiliztli",
                 "footer.copyright": "© 2026 Calpulli Ctrl + People — NEXT FIAP / VR Code Arena."
             };
         }
@@ -42,6 +47,11 @@ const i18n = {
             "nav.lang_atlantida": "Atlantida",
             "hero.cover_title": "ATLÂNTIDA",
             "hero.cover_subtitle": "VR CODE ARENA — NEXT FIAP",
+            "hero.livro_titulo_linha1": "Explore",
+            "hero.livro_titulo_linha2": "Atlântida.",
+            "hero.livro_descricao": "Conecte-se à cidade submarina, descubra seus espaços e explore um novo mundo abaixo da superfície.",
+            "hero.btn_explorar": "Explorar Atlântida",
+            "hero.btn_saiba_mais": "Saiba mais",
             "footer.copyright": "© 2026 Grupo Ctrl + People — NEXT FIAP / VR Code Arena."
         };
     },

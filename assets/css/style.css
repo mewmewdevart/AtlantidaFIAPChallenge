@@ -1,82 +1,88 @@
+/* ==========================================================================
+   PORTAL WEB ATLÂNTIDA — VR CODE ARENA (NEXT FIAP 2026)
+   ESTILOS PRINCIPAIS — METODOLOGIA BEM EM PORTUGUÊS (PT-BR)
+   ========================================================================== */
+
 :root {
-  /* =========================================================
-     ÁGUA // FUNDOS
-     ========================================================= */
+  /* ========================================================================
+     1. PALETA DE CORES: ÁGUA & PROFUNDEZAS (FUNDOS E SUPERFÍCIES)
+     ======================================================================== */
   --cor-abismo: rgb(0, 3, 5);
-  /* #000305 - Fundo mais profundo */
+  /* #000305 - Fundo mais escuro do oceano */
   --cor-agua-profunda: rgb(0, 10, 16);
-  /* #000A10 - Fundo final do degradê */
+  /* #000A10 - Fundo final do degradê abissal */
   --cor-fundo: rgb(0, 35, 41);
-  /* #002329 - Background principal */
+  /* #002329 - Tom esmeralda submarino principal */
   --cor-painel: rgb(0, 46, 50);
-  /* #002E32 - Cards e painéis */
+  /* #002E32 - Cards, capas e painéis submersos */
   --cor-casco: rgb(1, 56, 60);
-  /* #01383C - Muted / superfícies */
+  /* #01383C - Superfícies metálicas e sub-bordas */
   --cor-jade: rgb(16, 84, 79);
-  /* #10544F - Secundária / hover */
+  /* #10544F - Verde jade secundário e hover */
 
-  /* =========================================================
-     INTERFACE // TEXTO
-     ========================================================= */
+  /* ========================================================================
+     2. PALETA DE CORES: INTERFACE & TIPOGRAFIA
+     ======================================================================== */
   --cor-menta-neon: rgb(15, 244, 204);
-  /* #0FF4CC - Primária, links, terminal */
+  /* #0FF4CC - Primária bioluminescente, terminal, links */
   --cor-espuma: rgb(238, 246, 245);
-  /* #EEF6F5 - Texto principal */
+  /* #EEF6F5 - Texto claro principal e destaques */
   --cor-nevoa: rgb(169, 192, 190);
-  /* #A9C0BE - Texto secundário */
+  /* #A9C0BE - Texto secundário suavizado */
   --cor-sinal: rgb(22, 104, 99);
-  /* #166863 - Bordas dos campos */
-
-  /* =========================================================
-     FERRUGEM // ALERTAS
-     ========================================================= */
-  --cor-ferrugem: rgb(193, 75, 44);
-  /* #C14B2C - Accent, destaques */
-  --cor-terracota: rgb(206, 77, 44);
-  /* #CE4D2C - Carimbos, sombras */
-  --cor-ambar: rgb(224, 144, 40);
-  /* #E09028 - Estado ativo, metal */
-  --cor-magenta: rgb(251, 57, 157);
-  /* #FB399D - Alerta, seleção */
-  --cor-alerta-vermelho: rgb(247, 43, 111);
-  /* #F72B6F - Destrutivo / perigo */
-
-  /* =========================================================
-     PAPEL // MURAL
-     ========================================================= */
-  --cor-bilhete: rgb(239, 220, 181);
-  /* #EFDCB5 - Cartão de nota */
-  --cor-bilhete-2: rgb(235, 207, 173);
-  /* #EBCFAD - Cartão alternado */
-  --cor-tinta: rgb(50, 27, 11);
-  /* #321B0B - Texto no papel */
-  --cor-tinta-suave: rgb(100, 73, 56);
-  /* #644938 - Texto secundário no papel */
-
-  /* =========================================================
-     TEXTO ACESSÍVEL // AJUSTES SUGERIDOS
-     ========================================================= */
-  --cor-ferrugem-clara: rgb(235, 121, 85);
-  /* #EB7955 - Texto pequeno sobre fundo escuro */
-  --cor-terracota-clara: rgb(236, 120, 89);
-  /* #EC7859 - Carimbos e textos pequenos */
-  --cor-texto-no-alerta: rgb(22, 6, 8);
-  /* #160608 - Sobre o vermelho */
+  /* #166863 - Bordas e contornos tecnológicos */
   --cor-sinal-claro: rgb(62, 144, 137);
-  /* #3E9089 - Borda de input (10:1) */
+  /* #3E9089 - Borda de alto contraste */
 
-  /* =========================================================
-     VARIÁVEIS DO LIVRO (INTEGRADAS À PALETA DE :ROOT)
-     ========================================================= */
-  --unit: clamp(28px, 3.6vw, 50px);
-  --book-base-w: 18.5;
-  --book-base-h: 12.5;
-  --cover-color: var(--cor-painel);
-  --cover-gold: var(--cor-ambar);
-  --page-bg: var(--cor-bilhete);
-  --text-color: var(--cor-tinta);
+  /* ========================================================================
+     3. PALETA DE CORES: METAIS, CARIMBOS & DESTAQUES
+     ======================================================================== */
+  --cor-ambar: rgb(224, 144, 40);
+  /* #E09028 - Dourado antigo, metal ativo, carimbos */
+  --cor-ferrugem: rgb(193, 75, 44);
+  /* #C14B2C - Acentos avermelhados de corrosão */
+  --cor-terracota: rgb(206, 77, 44);
+  /* #CE4D2C - Sombras quentes e detalhes */
+
+  /* ========================================================================
+     4. PALETA DE CORES: PAPEL & PERGAMINHO DO LIVRO
+     ======================================================================== */
+  --cor-pergaminho: rgb(239, 220, 181);
+  /* #EFDCB5 - Tom base de folha envelhecida */
+  --cor-pergaminho-borda: rgb(235, 207, 173);
+  /* #EBCFAD - Tom de borda sombreada */
+  --cor-tinta: rgb(50, 27, 11);
+  /* #321B0B - Tinta escura caligráfica */
+  --cor-tinta-suave: rgb(100, 73, 56);
+  /* #644938 - Tinta secundária para legendas */
+
+  /* ========================================================================
+     5. BOTÕES E AÇÕES NO PERGAMINHO
+     ======================================================================== */
+  --cor-oceano: rgb(27, 155, 149);
+  /* #1B9B95 - Ação primária no papel */
+  --cor-oceano-hover: rgb(21, 133, 128);
+  /* #158580 - Hover do botão primário */
+  --cor-oceano-sombra: rgba(27, 155, 149, 0.35);
+
+  /* ========================================================================
+     6. MEDIDAS E ESCALAS DO LIVRO 3D
+     ======================================================================== */
+  --livro-unidade: clamp(28px, 3.6vw, 50px);
+  --livro-largura-base: 18.5;
+  --livro-altura-base: 12.5;
+
+  /* ========================================================================
+     7. FONTES
+     ======================================================================== */
+  --fonte-titulo: "EB Garamond", Georgia, serif;
+  --fonte-texto: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --fonte-emblema: "Cinzel", Georgia, serif;
 }
 
+/* ==========================================================================
+   RESET E CONFIGURAÇÃO GLOBAL
+   ========================================================================== */
 *,
 *::before,
 *::after {
@@ -86,29 +92,31 @@
 }
 
 body {
-  /* background-color: var(--cor-abismo); */
   background-image: linear-gradient(to bottom, var(--cor-jade) 80%, var(--cor-abismo) 100%);
   min-height: 100vh;
   margin: 0;
   display: flex;
   color: var(--cor-espuma);
+  font-family: var(--fonte-texto);
   overflow: hidden;
 }
 
 /* ==========================================================================
-   Bloco: Menu de Navegação (.menu-navegacao)
+   BLOCO: MENU DE NAVEGAÇÃO FLUTUANTE (.menu-navegacao)
    ========================================================================== */
 .menu-navegacao {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  left: auto;
   width: 80px;
   height: 80px;
   z-index: 9999;
   border-radius: 50px;
+  background-color: rgba(0, 46, 50, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--cor-sinal);
   color: var(--cor-espuma);
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -118,16 +126,17 @@ body {
   cursor: pointer;
   transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1),
     border-radius 0.4s ease,
+    border-color 0.3s ease,
     background-color 0.3s ease,
-    border-color 0.3s ease;
+    box-shadow 0.3s ease;
 }
 
 .menu-navegacao:hover,
 .menu-navegacao--expandido {
   width: 380px;
   justify-content: space-between;
-  border-radius: 50px;
   border-color: var(--cor-menta-neon);
+  box-shadow: 0 10px 30px rgba(15, 244, 204, 0.15);
 }
 
 .menu-navegacao__gatilho {
@@ -141,7 +150,7 @@ body {
   flex-shrink: 0;
 }
 
-/* Ícone de Hambúrguer (Estilo Kaonavi Universe - Animação Limpa) */
+/* Ícone Hambúrguer com 3 Linhas Animadas */
 .menu-navegacao__hamburguer {
   width: 26px;
   height: 18px;
@@ -152,7 +161,7 @@ body {
   position: relative;
 }
 
-.menu-navegacao__hamburguer .linha {
+.menu-navegacao__linha {
   display: block;
   width: 100%;
   height: 2.5px;
@@ -164,20 +173,20 @@ body {
     width 0.3s ease;
 }
 
-/* Animação Suave para o estado Aberto/Hover (Forma 'X' limpo) */
-.menu-navegacao:hover .menu-navegacao__hamburguer .i0,
-.menu-navegacao--expandido .menu-navegacao__hamburguer .i0 {
+/* Animação para Cruz/X no Hover ou Estado Expandido */
+.menu-navegacao:hover .menu-navegacao__linha--superior,
+.menu-navegacao--expandido .menu-navegacao__linha--superior {
   transform: translateY(7.75px) rotate(45deg);
 }
 
-.menu-navegacao:hover .menu-navegacao__hamburguer .i1,
-.menu-navegacao--expandido .menu-navegacao__hamburguer .i1 {
+.menu-navegacao:hover .menu-navegacao__linha--meio,
+.menu-navegacao--expandido .menu-navegacao__linha--meio {
   opacity: 0;
   transform: scaleX(0);
 }
 
-.menu-navegacao:hover .menu-navegacao__hamburguer .i2,
-.menu-navegacao--expandido .menu-navegacao__hamburguer .i2 {
+.menu-navegacao:hover .menu-navegacao__linha--inferior,
+.menu-navegacao--expandido .menu-navegacao__linha--inferior {
   transform: translateY(-7.75px) rotate(-45deg);
 }
 
@@ -210,7 +219,7 @@ body {
 }
 
 /* ==========================================================================
-   Bloco: Seletor de Idioma (.seletor-idioma)
+   BLOCO: SELETOR DE IDIOMA (.seletor-idioma)
    ========================================================================== */
 .seletor-idioma {
   display: flex;
@@ -232,6 +241,7 @@ body {
   text-shadow: 0 0 10px rgba(15, 244, 204, 0.5);
 }
 
+.seletor-idioma__rotulo--atlantida.seletor-idioma__rotulo--ativo,
 .seletor-idioma__rotulo--asteca.seletor-idioma__rotulo--ativo {
   color: var(--cor-ambar);
   text-shadow: 0 0 10px rgba(224, 144, 40, 0.5);
@@ -289,40 +299,44 @@ body {
 }
 
 /* ==========================================================================
-   Bloco: Hero & Livro 3D
+   BLOCO: SEÇÃO DE APRESENTAÇÃO HERO (.secao-apresentacao)
    ========================================================================== */
-
-.hero-section {
+.secao-apresentacao {
   width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  perspective: calc(160 * var(--unit));
+  perspective: calc(160 * var(--livro-unidade));
 }
 
-.hero-section::before {
+.secao-apresentacao::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 35, 41, 0.5);
+  background-color: rgba(0, 35, 41, 0.45);
+  pointer-events: none;
 }
 
-.book {
+/* ==========================================================================
+   BLOCO: LIVRO 3D INTERATIVO (.livro-3d)
+   ========================================================================== */
+.livro-3d {
   position: relative;
-  width: calc(var(--book-base-w) * var(--unit));
-  height: calc(var(--book-base-h) * var(--unit));
+  width: calc(var(--livro-largura-base) * var(--livro-unidade));
+  height: calc(var(--livro-altura-base) * var(--livro-unidade));
   transform-style: preserve-3d;
   filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.55));
   rotate: 2deg;
 }
 
-.cover,
-.page {
+/* Estrutura Base de Capas e Folhas */
+.livro-3d__capa,
+.livro-3d__folha {
   position: absolute;
   top: 0;
   box-sizing: border-box;
@@ -330,29 +344,155 @@ body {
   will-change: transform;
 }
 
-.cover.base-cover {
-  left: calc(9.25 * var(--unit));
-  width: calc(9.25 * var(--unit));
-  height: calc(12.5 * var(--unit));
-  background-color: var(--cover-color);
+/* --------------------------------------------------------------------------
+   CAMADA 1: CONTRACAPA / BASE RÍGIDA (.livro-3d__capa--base)
+   -------------------------------------------------------------------------- */
+.livro-3d__capa--base {
+  left: calc(9.25 * var(--livro-unidade));
+  width: calc(9.25 * var(--livro-unidade));
+  height: calc(12.5 * var(--livro-unidade));
+  background-color: var(--cor-painel);
   background-image: linear-gradient(135deg, var(--cor-casco) 0%, var(--cor-agua-profunda) 100%);
-  border: 2px solid var(--cover-gold);
+  border: 2px solid var(--cor-ambar);
   border-left: none;
-  border-radius: 0 calc(0.35 * var(--unit)) calc(0.35 * var(--unit)) 0;
+  border-radius: 0 calc(0.35 * var(--livro-unidade)) calc(0.35 * var(--livro-unidade)) 0;
   transform: translateZ(-2px);
   z-index: 1;
 }
 
-.cover.front-cover {
-  left: calc(9.25 * var(--unit));
-  width: calc(9.25 * var(--unit));
-  height: calc(12.5 * var(--unit));
+/* --------------------------------------------------------------------------
+   CAMADA 2: FOLHA DA DIREITA COM ILUSTRAÇÃO (.livro-3d__folha--direita)
+   -------------------------------------------------------------------------- */
+.livro-3d__folha--direita {
+  position: absolute;
+  top: calc(0.25 * var(--livro-unidade));
+  left: calc(9.25 * var(--livro-unidade));
+  width: calc(9 * var(--livro-unidade));
+  height: calc(12 * var(--livro-unidade));
+  transform-origin: left center;
+  z-index: 5;
+  transform: translateZ(0);
+}
+
+.livro-3d__face--ilustracao {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  border-radius: 0 calc(0.3 * var(--livro-unidade)) calc(0.3 * var(--livro-unidade)) 0;
+  z-index: 10;
+}
+
+.livro-3d__imagem-ilustracao {
+  position: absolute;
+  /* width: calc(18 * var(--livro-unidade));
+  max-width: none;
+  height: 100%; */
+  width: 140%;
+  object-fit: cover;
+  object-position: center right;
+  background-repeat: no-repeat;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999 !important;
+}
+
+/* --------------------------------------------------------------------------
+   CAMADA 3: FOLHA GIRATÓRIA / PÁGINA 2 DE CONTEÚDO (.livro-3d__folha--esquerda)
+   -------------------------------------------------------------------------- */
+.livro-3d__folha--esquerda {
+  top: calc(0.25 * var(--livro-unidade));
+  left: calc(9.25 * var(--livro-unidade));
+  width: calc(9 * var(--livro-unidade));
+  height: calc(12 * var(--livro-unidade));
+  transform-origin: left center;
+  z-index: 20;
+  transform: rotateY(0deg) translateZ(2px);
+}
+
+.livro-3d__face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  padding: calc(0.9 * var(--livro-unidade));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  line-height: 1.6;
+}
+
+.livro-3d__face--frente {
+  background-color: var(--cor-pergaminho);
+  background-image: linear-gradient(to right, var(--cor-pergaminho-borda) 0%, var(--cor-pergaminho) 90%, var(--cor-pergaminho-borda) 100%);
+  border-radius: 0 calc(0.3 * var(--livro-unidade)) calc(0.3 * var(--livro-unidade)) 0;
+  box-shadow: inset -2px 0 8px rgba(0, 0, 0, 0.08);
+}
+
+/* PÁGINA 2: O Verso que se torna a página esquerda aberta
+   Nível 1 de Profundidade Interna: Fundo de Pergaminho (z-index: 1)
+*/
+.livro-3d__face--verso {
+  transform: rotateY(180deg);
+  background-color: var(--cor-pergaminho);
+  background-image: linear-gradient(to left, var(--cor-pergaminho-borda) 0%, var(--cor-pergaminho) 90%, var(--cor-pergaminho-borda) 100%);
+  border-radius: calc(0.3 * var(--livro-unidade)) 0 0 calc(0.3 * var(--livro-unidade));
+  box-shadow: inset 2px 0 8px rgba(0, 0, 0, 0.08);
+  justify-content: center;
+  align-items: flex-start;
+  padding: calc(1.1 * var(--livro-unidade)) calc(0.95 * var(--livro-unidade));
+  overflow: hidden;
+  z-index: 1;
+  /* PÁGINA 2: Camada base de fundo */
+}
+
+/* Nível 2 de Profundidade Interna: Ilustração sobrepondo a Página 2 (z-index: 2)
+   -> MAIOR que a Página 2, porém MENOR que o Texto
+*/
+.livro-3d__imagem-ilustracao--sobreposicao {
+  position: absolute;
+  right: calc(-9 * var(--livro-unidade));
+  /* Perfeitamente ancorada à folha direita */
+  bottom: 0;
+  width: 140%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center right;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+  /* ILUSTRAÇÃO: z-index maior do que a Página 2 */
+}
+
+/* Nível 3 de Profundidade Interna: Conteúdo Textual (z-index: 3)
+   -> MAIOR que a Ilustração, mantendo leitura 100% nítida e botões interativos
+*/
+.livro-3d__conteudo-texto {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  z-index: 3;
+  /* TEXTO: z-index maior do que a Ilustração */
+}
+
+/* --------------------------------------------------------------------------
+   CAMADA 4: CAPA FRONTAL GIRATÓRIA (.livro-3d__capa--frontal)
+   -------------------------------------------------------------------------- */
+.livro-3d__capa--frontal {
+  left: calc(9.25 * var(--livro-unidade));
+  width: calc(9.25 * var(--livro-unidade));
+  height: calc(12.5 * var(--livro-unidade));
   transform-origin: left center;
   transform: rotateY(0deg) translateZ(4px);
   z-index: 30;
 }
 
-.cover-face {
+.livro-3d__face-capa {
   position: absolute;
   inset: 0;
   backface-visibility: hidden;
@@ -361,194 +501,182 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: calc(1.2 * var(--unit));
+  padding: calc(1.2 * var(--livro-unidade));
 }
 
-.cover-face.front {
-  background-color: var(--cover-color);
+.livro-3d__face-capa--frente {
+  background-color: var(--cor-painel);
   background-image: linear-gradient(135deg, var(--cor-casco) 0%, var(--cor-agua-profunda) 100%);
-  border: 2px solid var(--cover-gold);
+  border: 2px solid var(--cor-ambar);
   border-left: none;
-  border-radius: 0 calc(0.35 * var(--unit)) calc(0.35 * var(--unit)) 0;
-  color: var(--cover-gold);
+  border-radius: 0 calc(0.35 * var(--livro-unidade)) calc(0.35 * var(--livro-unidade)) 0;
+  color: var(--cor-ambar);
   box-shadow: inset -4px 0 20px rgba(0, 0, 0, 0.4);
 }
 
-.cover-emblem {
-  font-size: calc(1.5 * var(--unit));
-  margin-bottom: calc(0.3 * var(--unit));
-  filter: drop-shadow(0 2px 4px rgba(224, 144, 40, 0.4));
-}
-
-.cover-title {
-  font-size: calc(1.15 * var(--unit));
-  letter-spacing: 4px;
-  margin: 0;
-  border-top: 1px solid var(--cover-gold);
-  border-bottom: 1px solid var(--cover-gold);
-  padding: calc(0.35 * var(--unit)) calc(0.6 * var(--unit));
-  color: var(--cover-gold);
-}
-
-.cover-subtitle {
-  font-size: calc(0.55 * var(--unit));
-  letter-spacing: 2px;
-  margin-top: calc(0.4 * var(--unit));
-  color: var(--cor-bilhete);
-}
-
-.cover-face.back {
+.livro-3d__face-capa--verso {
   transform: rotateY(180deg);
   background-color: var(--cor-agua-profunda);
   background-image: linear-gradient(135deg, var(--cor-painel) 0%, var(--cor-abismo) 100%);
-  border: 2px solid var(--cover-gold);
+  border: 2px solid var(--cor-ambar);
   border-right: none;
-  border-radius: calc(0.35 * var(--unit)) 0 0 calc(0.35 * var(--unit));
-  color: var(--cover-gold);
+  border-radius: calc(0.35 * var(--livro-unidade)) 0 0 calc(0.35 * var(--livro-unidade));
+  color: var(--cor-ambar);
   box-shadow: inset 4px 0 15px rgba(0, 0, 0, 0.35);
 }
 
-.page {
-  top: calc(0.25 * var(--unit));
-  left: calc(9.25 * var(--unit));
-  width: calc(9 * var(--unit));
-  height: calc(12 * var(--unit));
-  transform-origin: left center;
-  color: var(--text-color);
+.livro-3d__emblema {
+  font-size: calc(1.5 * var(--livro-unidade));
+  margin-bottom: calc(0.3 * var(--livro-unidade));
+  filter: drop-shadow(0 2px 4px rgba(224, 144, 40, 0.4));
 }
 
-.page.leaf-2 {
-  z-index: 5;
-  transform: translateZ(0);
-}
-
-.leaf-2 img {
-  position: absolute;
-  width: 140%;
-  opacity: 0;
-  z-index: 999;
-  rotate: 0deg;
-  border-radius: 0 calc(0.35 * var(--unit)) calc(0.35 * var(--unit)) 0;
-  right: 0;
-  bottom: 0;
-}
-
-.page.leaf-1 {
-  z-index: 20;
-  transform: rotateY(0deg) translateZ(2px);
-}
-
-.page-face {
-  position: absolute;
-  inset: 0;
-  backface-visibility: hidden;
-  padding: calc(0.9 * var(--unit));
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  font-size: calc(0.45 * var(--unit));
-  line-height: 1.6;
-}
-
-.page-face.front {
-  background-color: var(--page-bg);
-  background-image: linear-gradient(to right, var(--cor-bilhete-2) 0%, var(--cor-bilhete) 90%, var(--cor-bilhete-2) 100%);
-  border-radius: 0 calc(0.3 * var(--unit)) calc(0.3 * var(--unit)) 0;
-  box-shadow: inset -2px 0 8px rgba(0, 0, 0, 0.08);
-}
-
-.page-face.back {
-  transform: rotateY(180deg);
-  background-color: var(--page-bg);
-  background-image: linear-gradient(to left, var(--cor-bilhete-2) 0%, var(--cor-bilhete) 90%, var(--cor-bilhete-2) 100%);
-  border-radius: calc(0.3 * var(--unit)) 0 0 calc(0.3 * var(--unit));
-  box-shadow: inset 2px 0 8px rgba(0, 0, 0, 0.08);
-}
-
-.page-header {
-  text-align: center;
-  margin-bottom: calc(0.2 * var(--unit));
-}
-
-.page-title {
-  font-size: calc(0.75 * var(--unit));
-  letter-spacing: 2px;
-  color: var(--cor-tinta);
-  margin-bottom: calc(0.1 * var(--unit));
-}
-
-.page-subtitle {
-  font-style: italic;
-  font-size: calc(0.45 * var(--unit));
-  color: var(--cor-tinta-suave);
-}
-
-.divider-dashed {
-  border-top: 1px dashed var(--cor-tinta-suave);
-  opacity: 0.4;
-  margin: calc(0.25 * var(--unit)) 0;
-}
-
-.page-content {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: calc(0.35 * var(--unit));
-}
-
-.page-text {
-  text-align: justify;
+.livro-3d__titulo-capa {
+  font-family: var(--fonte-emblema);
+  font-size: calc(1.15 * var(--livro-unidade));
+  letter-spacing: 4px;
   margin: 0;
-  color: var(--cor-tinta);
+  border-top: 1px solid var(--cor-ambar);
+  border-bottom: 1px solid var(--cor-ambar);
+  padding: calc(0.35 * var(--livro-unidade)) calc(0.6 * var(--livro-unidade));
+  color: var(--cor-ambar);
 }
 
-.archival-sign {
-  text-align: center;
-  font-size: calc(0.4 * var(--unit));
-  color: var(--cor-terracota);
-  margin-top: auto;
-  padding-top: calc(0.3 * var(--unit));
-}
-
-.page-num {
-  font-size: calc(0.4 * var(--unit));
-  font-weight: 600;
-  color: var(--cor-tinta-suave);
-}
-
-.page-face.front .page-num {
-  align-self: flex-end;
-}
-
-.page-face.back .page-num {
-  align-self: flex-start;
+.livro-3d__subtitulo-capa {
+  font-family: var(--fonte-texto);
+  font-size: calc(0.55 * var(--livro-unidade));
+  letter-spacing: 2px;
+  margin-top: calc(0.4 * var(--livro-unidade));
+  color: var(--cor-pergaminho);
 }
 
 /* ==========================================================================
-   Bloco: Rodapé Principal (.rodape-principal)
+   CONTEÚDO DA PÁGINA ESQUERDA: TIPOGRAFIA, STATUS E AÇÕES (.livro-3d__conteudo-texto)
    ========================================================================== */
-.rodape-principal {
-  position: absolute;
-  bottom: 12px;
-  left: 0;
+.livro-3d__titulo-principal {
+  font-family: var(--fonte-titulo);
+  font-size: calc(1.28 * var(--livro-unidade));
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: var(--cor-fundo);
+  margin-bottom: calc(0.35 * var(--livro-unidade));
+  text-transform: none;
+}
+
+.livro-3d__titulo-linha {
+  display: block;
+}
+
+.livro-3d__descricao {
+  font-family: var(--fonte-texto);
+  font-size: calc(0.32 * var(--livro-unidade));
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--cor-casco);
+  max-width: calc(7.2 * var(--livro-unidade));
+  margin-bottom: calc(0.45 * var(--livro-unidade));
+  text-transform: none;
+}
+
+/* Painel de Status / Telemetria */
+.livro-3d__painel-status {
+  display: flex;
+  align-items: center;
+  gap: calc(0.55 * var(--livro-unidade));
+  margin-bottom: calc(0.55 * var(--livro-unidade));
+  padding: calc(0.22 * var(--livro-unidade)) 0;
+  border-top: 1px dashed rgba(1, 56, 60, 0.25);
+  border-bottom: 1px dashed rgba(1, 56, 60, 0.25);
   width: 100%;
-  text-align: center;
+  max-width: calc(7.2 * var(--livro-unidade));
 }
 
-.rodape-principal__texto {
-  font-size: 0.75rem;
-  color: var(--cor-nevoa);
-  opacity: 0.6;
-  pointer-events: none;
+.livro-3d__status-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-
-  .book,
-  .cover,
-  .page {
-    transition: none !important;
-    animation: none !important;
-  }
+.livro-3d__status-valor {
+  font-family: var(--fonte-texto);
+  font-size: calc(0.36 * var(--livro-unidade));
+  font-weight: 700;
+  color: var(--cor-jade);
+  letter-spacing: 0.5px;
 }
+
+.livro-3d__status-rotulo {
+  font-family: var(--fonte-texto);
+  font-size: calc(0.23 * var(--livro-unidade));
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--cor-tinta-suave);
+  letter-spacing: 0.5px;
+}
+
+/* Ações e Botões */
+.livro-3d__acoes {
+  display: flex;
+  gap: calc(0.28 * var(--livro-unidade));
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.livro-3d__botao {
+  font-family: var(--fonte-texto);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(0.24 * var(--livro-unidade)) calc(0.48 * var(--livro-unidade));
+  border-radius: 8px;
+  font-size: calc(0.31 * var(--livro-unidade));
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1.5px solid transparent;
+  transition: transform 0.2s ease, background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.livro-3d__botao:hover {
+  transform: translateY(-2px);
+}
+
+.livro-3d__botao:active {
+  transform: translateY(0);
+}
+
+.livro-3d__botao:focus-visible {
+  outline: 2px solid var(--cor-sinal);
+  outline-offset: 2px;
+}
+
+.livro-3d__botao--primario {
+  background-color: var(--cor-oceano);
+  color: var(--cor-espuma);
+  border-color: var(--cor-oceano);
+  box-shadow: 0 4px 14px var(--cor-oceano-sombra);
+}
+
+.livro-3d__botao--primario:hover {
+  background-color: var(--cor-oceano-hover);
+  border-color: var(--cor-oceano-hover);
+  box-shadow: 0 6px 18px var(--cor-oceano-sombra);
+}
+
+.livro-3d__botao--secundario {
+  background-color: transparent;
+  color: var(--cor-sinal);
+  border-color: var(--cor-oceano);
+  box-shadow: none;
+}
+
+.livro-3d__botao--secundario:hover {
+  background-color: rgba(27, 155, 149, 0.08);
+  color: var(--cor-oceano-hover);
+  border-color: var(--cor-oceano-hover);
+}
+
+/* ==========================================================================
+   ACESSIBILIDADE: REDUÇÃO DE MOVIMENTO
+   ========================================================================== */
