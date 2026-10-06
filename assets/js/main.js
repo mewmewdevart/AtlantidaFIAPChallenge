@@ -1,39 +1,35 @@
-// Interatividade do Menu Expansivo e Switch de Idiomas
 document.addEventListener('DOMContentLoaded', () => {
-    const nav = document.querySelector('nav');
-    const langSwitch = document.getElementById('langSwitch');
-    const langPt = document.querySelector('.lang-text.lang-pt');
-    const langAsteca = document.querySelector('.lang-text.lang-asteca');
+    const menuNavegacao = document.getElementById('menuNavegacao');
+    const seletorIdiomaSwitch = document.getElementById('seletorIdiomaSwitch');
+    const rotuloPt = document.querySelector('.seletor-idioma__rotulo--pt');
+    const rotuloAsteca = document.querySelector('.seletor-idioma__rotulo--asteca');
 
-    if (nav) {
-        nav.addEventListener('click', (event) => {
-            // Se clicar dentro do wrapper do switch de idioma, previne que o menu feche
-            if (event.target.closest('.lang-switch-wrapper')) {
+    if (menuNavegacao) {
+        menuNavegacao.addEventListener('click', (event) => {
+            if (event.target.closest('.seletor-idioma')) {
                 event.stopPropagation();
                 return;
             }
-            nav.classList.toggle('expanded');
+            menuNavegacao.classList.toggle('menu-navegacao--expandido');
         });
 
-        // Fechar se clicar fora do menu
         document.addEventListener('click', (event) => {
-            if (!nav.contains(event.target)) {
-                nav.classList.remove('expanded');
+            if (!menuNavegacao.contains(event.target)) {
+                menuNavegacao.classList.remove('menu-navegacao--expandido');
             }
         });
     }
 
-    // Lógica do Switch de Idiomas via JSON (i18n)
-    if (langSwitch) {
-        langSwitch.addEventListener('change', () => {
-            if (langSwitch.checked) {
-                langPt?.classList.remove('active');
-                langAsteca?.classList.add('active');
+    if (seletorIdiomaSwitch) {
+        seletorIdiomaSwitch.addEventListener('change', () => {
+            if (seletorIdiomaSwitch.checked) {
+                rotuloPt?.classList.remove('seletor-idioma__rotulo--ativo');
+                rotuloAsteca?.classList.add('seletor-idioma__rotulo--ativo');
                 document.body.setAttribute('data-lang', 'asteca');
                 window.i18n?.changeLanguage('ptBrAtlantida');
             } else {
-                langAsteca?.classList.remove('active');
-                langPt?.classList.add('active');
+                rotuloAsteca?.classList.remove('seletor-idioma__rotulo--ativo');
+                rotuloPt?.classList.add('seletor-idioma__rotulo--ativo');
                 document.body.setAttribute('data-lang', 'pt-br');
                 window.i18n?.changeLanguage('ptBr');
             }

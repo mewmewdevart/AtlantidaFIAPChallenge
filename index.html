@@ -24,29 +24,34 @@
 
 <body>
 
-    <nav>
-        <div class="nav-expanded-content">
-            <div class="lang-switch-wrapper">
-                <span class="lang-text lang-pt active" data-i18n="nav.lang_pt">PT-BR</span>
-                <label class="switch-toggle" for="langSwitch" aria-label="Alternar Idioma para Atlântida">
-                    <input type="checkbox" id="langSwitch">
-                    <span class="switch-slider">
-                        <i class="fa-solid fa-feather-pointed switch-icon"></i>
+    <nav class="menu-navegacao" id="menuNavegacao">
+        <div class="menu-navegacao__conteudo">
+            <div class="seletor-idioma">
+                <span class="seletor-idioma__rotulo seletor-idioma__rotulo--pt seletor-idioma__rotulo--ativo"
+                    data-i18n="nav.lang_pt">PT-BR</span>
+                <label class="seletor-idioma__interruptor" for="seletorIdiomaSwitch"
+                    aria-label="Alternar Idioma para Atlântida">
+                    <input type="checkbox" class="seletor-idioma__campo" id="seletorIdiomaSwitch">
+                    <span class="seletor-idioma__trilho">
+                        <i class="fa-solid fa-feather-pointed seletor-idioma__icone-deslizante"></i>
                     </span>
                 </label>
-                <span class="lang-text lang-asteca" data-i18n="nav.lang_atlantida">Atlantida</span>
+                <span class="seletor-idioma__rotulo seletor-idioma__rotulo--asteca"
+                    data-i18n="nav.lang_atlantida">Atlantida</span>
             </div>
         </div>
-        <div class="nav-trigger">
-            <i class="fa-solid fa-bars"></i>
-            <span class="nav-label" data-i18n="nav.menu">MENU</span>
+        <div class="menu-navegacao__gatilho">
+            <div class="menu-navegacao__hamburguer" aria-hidden="true">
+                <span class="linha i0"></span>
+                <span class="linha i1"></span>
+                <span class="linha i2"></span>
+            </div>
+            <span class="menu-navegacao__rotulo" data-i18n="nav.menu">MENU</span>
         </div>
     </nav>
 
-    <!-- Seção 01 - Hero Section -->
     <section class="hero-section">
         <div class="hero-container">
-            <!-- SVG Filter para o efeito Gooey -->
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display: block; height: 0; width: 0;">
                 <defs>
                     <filter id="goo">
@@ -58,11 +63,14 @@
                 </defs>
             </svg>
         </div>
+
         <div class="book" id="book" role="img" aria-label="Livro de Atlântida abrindo nas páginas 2 e 3">
             <div class="cover base-cover"></div>
 
             <div class="page leaf-2" id="leaf-2">
-                <div class="page-face front"></div>
+                <div class="page-face front">
+                    <img src="./assets/media/image-hero-section.png" alt="">
+                </div>
             </div>
 
             <div class="page turn leaf-1" id="leaf-1">
@@ -81,9 +89,9 @@
         </div>
     </section>
 
-    <!-- Rodapé -->
-    <footer class="main-footer">
-        <p data-i18n="footer.copyright">&copy; 2026 Grupo Ctrl + People — NEXT FIAP / VR Code Arena.</p>
+    <footer class="rodape-principal">
+        <p class="rodape-principal__texto" data-i18n="footer.copyright">&copy; 2026 Grupo Ctrl + People — NEXT FIAP / VR
+            Code Arena.</p>
     </footer>
 </body>
 

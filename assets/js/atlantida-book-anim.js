@@ -60,6 +60,8 @@ function runBookIntro() {
     const book = document.getElementById("book");
     const frontCover = document.getElementById("front-cover");
     const leaf1 = document.getElementById("leaf-1");
+    const leaf2 = document.getElementById("leaf-2");
+    const leaf2Img = document.querySelector(".leaf-2 img");
 
     if (!book || !frontCover || !leaf1 || typeof gsap === "undefined") return;
 
@@ -69,12 +71,15 @@ function runBookIntro() {
         gsap.set(book, { xPercent: 0, opacity: 1 });
         gsap.set(frontCover, { rotateY: -180, zIndex: 2 });
         gsap.set(leaf1, { rotateY: -180, zIndex: 10 });
+        if (leaf2) gsap.set(leaf2, { zIndex: 30 });
+        if (leaf2Img) gsap.set(leaf2Img, { opacity: 1 });
         return;
     }
 
     gsap.set(book, { xPercent: -25, opacity: 0 });
     gsap.set(frontCover, { rotateY: 0, zIndex: 30 });
     gsap.set(leaf1, { rotateY: 0, zIndex: 20 });
+    if (leaf2Img) gsap.set(leaf2Img, { opacity: 0 });
 
     const tl = gsap.timeline({
         defaults: { ease: "sine.inOut" }
@@ -102,6 +107,18 @@ function runBookIntro() {
             onUpdate() {
                 const rot = gsap.getProperty(leaf1, "rotateY");
                 leaf1.style.zIndex = rot < -90 ? 10 : 20;
+            },
+            onComplete() {
+                if (leaf2) {
+                    gsap.set(leaf2, { zIndex: 30 });
+                }
+                if (leaf2Img) {
+                    gsap.to(leaf2Img, {
+                        opacity: 1,
+                        duration: 1,
+                        ease: "sine.inOut"
+                    });
+                }
             }
         }, 1.1);
 }

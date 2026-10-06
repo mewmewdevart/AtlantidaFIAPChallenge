@@ -1,8 +1,3 @@
-/* ==========================================================================
-   Design do Livro 3D - Atlântida | VR Code Arena 2026
-   Todas as diretrizes visuais e estruturais residem aqui.
-   ========================================================================== */
-
 :root {
   /* =========================================================
      ÁGUA // FUNDOS
@@ -91,8 +86,8 @@
 }
 
 body {
-  background-color: var(--cor-abismo);
-  background-image: linear-gradient(to bottom, var(--cor-jade) 0%, var(--cor-abismo) 100%);
+  /* background-color: var(--cor-abismo); */
+  background-image: linear-gradient(to bottom, var(--cor-jade) 80%, var(--cor-abismo) 100%);
   min-height: 100vh;
   margin: 0;
   display: flex;
@@ -100,19 +95,20 @@ body {
   overflow: hidden;
 }
 
-nav {
+/* ==========================================================================
+   Bloco: Menu de Navegação (.menu-navegacao)
+   ========================================================================== */
+.menu-navegacao {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  /* Posicionado no canto superior direito */
   left: auto;
   width: 80px;
   height: 80px;
   z-index: 9999;
   border-radius: 50px;
   color: var(--cor-espuma);
-  background-color: var(--cor-painel);
-  border: 1px solid var(--cor-sinal-claro);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -126,35 +122,66 @@ nav {
     border-color 0.3s ease;
 }
 
-/* Estado Expansivo: Expande +300px para a esquerda */
-nav:hover,
-nav.expanded {
+.menu-navegacao:hover,
+.menu-navegacao--expandido {
   width: 380px;
-  /* 80px + 300px = 380px ocupados para a esquerda */
   justify-content: space-between;
   border-radius: 50px;
   border-color: var(--cor-menta-neon);
 }
 
-/* Container do Ícone + Texto MENU logo abaixo (Centralizado no círculo de 80px) */
-.nav-trigger {
+.menu-navegacao__gatilho {
   width: 80px;
   height: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2px;
+  gap: 5px;
   flex-shrink: 0;
 }
 
-.nav-trigger i {
-  font-size: 1.2rem;
-  color: var(--cor-menta-neon);
-  transition: transform 0.3s ease;
+/* Ícone de Hambúrguer (Estilo Kaonavi Universe - Animação Limpa) */
+.menu-navegacao__hamburguer {
+  width: 26px;
+  height: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
 }
 
-.nav-trigger .nav-label {
+.menu-navegacao__hamburguer .linha {
+  display: block;
+  width: 100%;
+  height: 2.5px;
+  background-color: var(--cor-menta-neon);
+  border-radius: 3px;
+  transform-origin: center;
+  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+    opacity 0.3s ease,
+    width 0.3s ease;
+}
+
+/* Animação Suave para o estado Aberto/Hover (Forma 'X' limpo) */
+.menu-navegacao:hover .menu-navegacao__hamburguer .i0,
+.menu-navegacao--expandido .menu-navegacao__hamburguer .i0 {
+  transform: translateY(7.75px) rotate(45deg);
+}
+
+.menu-navegacao:hover .menu-navegacao__hamburguer .i1,
+.menu-navegacao--expandido .menu-navegacao__hamburguer .i1 {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.menu-navegacao:hover .menu-navegacao__hamburguer .i2,
+.menu-navegacao--expandido .menu-navegacao__hamburguer .i2 {
+  transform: translateY(-7.75px) rotate(-45deg);
+}
+
+.menu-navegacao__rotulo {
   font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 1px;
@@ -162,13 +189,7 @@ nav.expanded {
   text-transform: uppercase;
 }
 
-nav:hover .nav-trigger i,
-nav.expanded .nav-trigger i {
-  transform: scale(1.1);
-}
-
-/* Conteúdo Exibido ao Expandir */
-nav .nav-expanded-content {
+.menu-navegacao__conteudo {
   opacity: 0;
   visibility: hidden;
   width: 0;
@@ -179,8 +200,8 @@ nav .nav-expanded-content {
   align-items: center;
 }
 
-nav:hover .nav-expanded-content,
-nav.expanded .nav-expanded-content {
+.menu-navegacao:hover .menu-navegacao__conteudo,
+.menu-navegacao--expandido .menu-navegacao__conteudo {
   opacity: 1;
   visibility: visible;
   width: auto;
@@ -188,16 +209,17 @@ nav.expanded .nav-expanded-content {
   transform: translateX(0);
 }
 
-/* Switch de Idiomas */
-.lang-switch-wrapper {
+/* ==========================================================================
+   Bloco: Seletor de Idioma (.seletor-idioma)
+   ========================================================================== */
+.seletor-idioma {
   display: flex;
   align-items: center;
   gap: 0.6rem;
   user-select: none;
-  font-family: system-ui, -apple-system, sans-serif;
 }
 
-.lang-text {
+.seletor-idioma__rotulo {
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -205,18 +227,17 @@ nav.expanded .nav-expanded-content {
   transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.2s ease;
 }
 
-.lang-text.active {
+.seletor-idioma__rotulo--ativo {
   color: var(--cor-menta-neon);
   text-shadow: 0 0 10px rgba(15, 244, 204, 0.5);
 }
 
-.lang-text.lang-asteca.active {
+.seletor-idioma__rotulo--asteca.seletor-idioma__rotulo--ativo {
   color: var(--cor-ambar);
   text-shadow: 0 0 10px rgba(224, 144, 40, 0.5);
 }
 
-/* O Botão Toggle Switch */
-.switch-toggle {
+.seletor-idioma__interruptor {
   position: relative;
   display: inline-block;
   width: 46px;
@@ -224,13 +245,13 @@ nav.expanded .nav-expanded-content {
   cursor: pointer;
 }
 
-.switch-toggle input {
+.seletor-idioma__campo {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-.switch-slider {
+.seletor-idioma__trilho {
   position: absolute;
   inset: 0;
   background-color: var(--cor-casco);
@@ -242,7 +263,7 @@ nav.expanded .nav-expanded-content {
   padding: 2px;
 }
 
-.switch-slider .switch-icon {
+.seletor-idioma__icone-deslizante {
   width: 18px;
   height: 18px;
   background-color: var(--cor-menta-neon);
@@ -256,19 +277,20 @@ nav.expanded .nav-expanded-content {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 }
 
-/* Estado Marcado (PT-BR Asteca) */
-.switch-toggle input:checked + .switch-slider {
+.seletor-idioma__campo:checked+.seletor-idioma__trilho {
   background-color: var(--cor-jade);
   border-color: var(--cor-ambar);
 }
 
-.switch-toggle input:checked + .switch-slider .switch-icon {
+.seletor-idioma__campo:checked+.seletor-idioma__trilho .seletor-idioma__icone-deslizante {
   transform: translateX(22px) rotate(45deg);
   background-color: var(--cor-ambar);
   color: var(--cor-tinta);
 }
 
-
+/* ==========================================================================
+   Bloco: Hero & Livro 3D
+   ========================================================================== */
 
 .hero-section {
   width: 100vw;
@@ -277,7 +299,6 @@ nav.expanded .nav-expanded-content {
   align-items: center;
   justify-content: center;
   position: relative;
-  /* Perspectiva plana e distante para eliminar aberrações e tontura */
   perspective: calc(160 * var(--unit));
 }
 
@@ -291,9 +312,6 @@ nav.expanded .nav-expanded-content {
   background-color: rgba(0, 35, 41, 0.5);
 }
 
-/* --------------------------------------------------------------------------
-   Estrutura Central do Livro
-   -------------------------------------------------------------------------- */
 .book {
   position: relative;
   width: calc(var(--book-base-w) * var(--unit));
@@ -312,9 +330,6 @@ nav.expanded .nav-expanded-content {
   will-change: transform;
 }
 
-/* --------------------------------------------------------------------------
-   Capas
-   -------------------------------------------------------------------------- */
 .cover.base-cover {
   left: calc(9.25 * var(--unit));
   width: calc(9.25 * var(--unit));
@@ -393,26 +408,6 @@ nav.expanded .nav-expanded-content {
   box-shadow: inset 4px 0 15px rgba(0, 0, 0, 0.35);
 }
 
-.inside-lining {
-  text-align: center;
-}
-
-.lining-ornament {
-  font-size: calc(1 * var(--unit));
-  display: block;
-  margin-bottom: calc(0.3 * var(--unit));
-  color: var(--cor-ambar);
-}
-
-.lining-text {
-  font-size: calc(0.5 * var(--unit));
-  letter-spacing: 2px;
-  color: var(--cor-espuma);
-}
-
-/* --------------------------------------------------------------------------
-   Folhas e Páginas
-   -------------------------------------------------------------------------- */
 .page {
   top: calc(0.25 * var(--unit));
   left: calc(9.25 * var(--unit));
@@ -425,6 +420,17 @@ nav.expanded .nav-expanded-content {
 .page.leaf-2 {
   z-index: 5;
   transform: translateZ(0);
+}
+
+.leaf-2 img {
+  position: absolute;
+  width: 140%;
+  opacity: 0;
+  z-index: 999;
+  rotate: 0deg;
+  border-radius: 0 calc(0.35 * var(--unit)) calc(0.35 * var(--unit)) 0;
+  right: 0;
+  bottom: 0;
 }
 
 .page.leaf-1 {
@@ -459,9 +465,6 @@ nav.expanded .nav-expanded-content {
   box-shadow: inset 2px 0 8px rgba(0, 0, 0, 0.08);
 }
 
-/* --------------------------------------------------------------------------
-   Estilos Tipográficos e Componentes de Conteúdo das Páginas
-   -------------------------------------------------------------------------- */
 .page-header {
   text-align: center;
   margin-bottom: calc(0.2 * var(--unit));
@@ -522,20 +525,24 @@ nav.expanded .nav-expanded-content {
   align-self: flex-start;
 }
 
-/* Rodapé */
-.main-footer {
+/* ==========================================================================
+   Bloco: Rodapé Principal (.rodape-principal)
+   ========================================================================== */
+.rodape-principal {
   position: absolute;
   bottom: 12px;
   left: 0;
   width: 100%;
   text-align: center;
+}
+
+.rodape-principal__texto {
   font-size: 0.75rem;
   color: var(--cor-nevoa);
   opacity: 0.6;
   pointer-events: none;
 }
 
-/* Acessibilidade: Movimento Reduzido (WCAG 2.2) */
 @media (prefers-reduced-motion: reduce) {
 
   .book,
@@ -544,23 +551,4 @@ nav.expanded .nav-expanded-content {
     transition: none !important;
     animation: none !important;
   }
-}
-
-.hero-container {
-  width: 50%;
-  position: absolute;
-  z-index: 100;
-}
-
-.hero-container h1 {
-  font-size: 4rem;
-  text-transform: uppercase;
-  font-weight: bold;
-}
-
-.hero-btn-container {
-  display: flex;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-  align-items: center;
 }
