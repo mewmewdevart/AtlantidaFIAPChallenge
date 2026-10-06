@@ -4,26 +4,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Portal Web Atlântida - Conectando a cidade subaquática entre cúpulas e túneis pressurizados. Projeto VR Code Arena NEXT FIAP 2026.">
-    <title>Portal Web — Atlântida | VR Code Arena - NEXT FIAP</title>
+    <meta name="description" content="Portal Web Atlântida - VR Code Arena NEXT FIAP 2026.">
+    <title>Portal Web — Atlântida | VR Code Arena</title>
 
-    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap"
+        rel="stylesheet">
 
-    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <!-- Scripts JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="assets/js/atlantida-book-anim.js" defer></script>
     <script src="assets/js/main.js" defer></script>
 </head>
 
 <body>
 
+    <nav>
+        <span class="nav-expanded-content">
+            switch de troca de idiomas pt-br e pt-br com girias asteca
+        </span>
+        <div class="nav-trigger">
+            <i class="fa-solid fa-bars"></i>
+            <span class="nav-label">MENU</span>
+        </div>
+    </nav>
+
+    <!-- Seção 01 - Hero Section -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <!-- <h1 class="hero-title">
+                <span>Atlantida</span>
+                <br>
+                O berço de ferro
+            </h1>
+            <p class="hero-subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <div class="hero-btn-container">
+                <button class="c-button c-button--gooey">
+                    Iniciar descida
+                    <div class="c-button__blobs">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </button>
+                <button class="c-button c-button--gooey">
+                    Pedir ajuda
+                    <div class="c-button__blobs">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </button>
+            </div> -->
+
+            <!-- SVG Filter para o efeito Gooey -->
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display: block; height: 0; width: 0;">
+                <defs>
+                    <filter id="goo">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
+                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
+                            result="goo"></feColorMatrix>
+                        <feBlend in="SourceGraphic" in2="goo"></feBlend>
+                    </filter>
+                </defs>
+            </svg>
+        </div>
+        <div class="book" id="book" role="img" aria-label="Livro de Atlântida abrindo nas páginas 2 e 3">
+            <div class="cover base-cover"></div>
+
+            <div class="page leaf-2" id="leaf-2">
+                <div class="page-face front">
+                    <!-- <div class="page-header">
+                        <h2 class="page-title">Registros</h2>
+                    </div>
+                    <div class="divider-dashed"></div>
+                    <div class="page-content">
+                        <p class="page-text">Tecnologia e sabedoria sem iguais sob as águas.</p>
+                        <p class="page-text">Templos de oricalco que erguiam-se nos abismos oceânicos, guardando
+                            mistérios que desafiam o tempo.</p>
+                        <p class="archival-sign">✦ Registros Atlantes ✦</p>
+                    </div>
+                    <span class="page-num">3</span> -->
+                </div>
+            </div>
+
+            <div class="page turn leaf-1" id="leaf-1">
+                <div class="page-face front">
+                    <!-- <div class="page-header">
+                        <h2 class="page-title">Atlântida</h2>
+                        <p class="page-subtitle">O Continente Perdido</p>
+                    </div>
+                    <div class="divider-dashed"></div>
+                    <div class="page-content">
+                        <p class="page-text">As lendas contam sobre uma civilização grandiosa sob as águas, fundada
+                            pelos guardiões dos abismos.</p>
+                    </div>
+                    <span class="page-num">1</span> -->
+                </div>
+
+                <div class="page-face back" id="page-2-container"></div>
+            </div>
+
+            <div class="cover turn front-cover" id="front-cover">
+                <div class="cover-face front">
+                    <div class="cover-emblem">🔱</div>
+                    <h1 class="cover-title">ATLÂNTIDA</h1>
+                    <p class="cover-subtitle">VR CODE ARENA — NEXT FIAP</p>
+                </div>
+                <div class="cover-face back">
+                    <!-- <div class="inside-lining">
+                        <span class="lining-ornament">❖</span>
+                        <p class="lining-text">Crônicas de Atlântida</p>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 02 - O mundo -->
+    <!-- Seção 03 - Os habitantes -->
+    <!-- Seção 04 - Mural da comunidade -->
+    <!-- Seção 05 - Formulário de Contato -->
+
     <!-- Rodapé -->
     <footer class="main-footer">
-        <div class="container">
-            <p>&copy; 2026 Grupo Ctrl + People — NEXT FIAP / VR Code Arena. Todos os direitos reservados.</p>
-        </div>
+        <p>&copy; 2026 Grupo Ctrl + People — NEXT FIAP / VR Code Arena.</p>
     </footer>
 </body>
 

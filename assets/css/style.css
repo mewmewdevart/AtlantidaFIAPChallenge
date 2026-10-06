@@ -1,27 +1,87 @@
 /* ==========================================================================
-   Portal Web - Atlântida | VR Code Arena - NEXT FIAP/2026
-   Estilo Principal e Sistema de Design
+   Design do Livro 3D - Atlântida | VR Code Arena 2026
+   Todas as diretrizes visuais e estruturais residem aqui.
    ========================================================================== */
 
-/* --------------------------------------------------------------------------
-   1. Variáveis Globais (Design Tokens)
-   -------------------------------------------------------------------------- */
 :root {
-  /* Cores Principais - Tema Subaquático / Atlântida */
-  
-  /* Cores de Texto */
+  /* =========================================================
+     ÁGUA // FUNDOS
+     ========================================================= */
+  --cor-abismo: rgb(0, 3, 5);
+  /* #000305 - Fundo mais profundo */
+  --cor-agua-profunda: rgb(0, 10, 16);
+  /* #000A10 - Fundo final do degradê */
+  --cor-fundo: rgb(0, 35, 41);
+  /* #002329 - Background principal */
+  --cor-painel: rgb(0, 46, 50);
+  /* #002E32 - Cards e painéis */
+  --cor-casco: rgb(1, 56, 60);
+  /* #01383C - Muted / superfícies */
+  --cor-jade: rgb(16, 84, 79);
+  /* #10544F - Secundária / hover */
 
-  /* Tipografia */
+  /* =========================================================
+     INTERFACE // TEXTO
+     ========================================================= */
+  --cor-menta-neon: rgb(15, 244, 204);
+  /* #0FF4CC - Primária, links, terminal */
+  --cor-espuma: rgb(238, 246, 245);
+  /* #EEF6F5 - Texto principal */
+  --cor-nevoa: rgb(169, 192, 190);
+  /* #A9C0BE - Texto secundário */
+  --cor-sinal: rgb(22, 104, 99);
+  /* #166863 - Bordas dos campos */
 
-  /* Modificadores e Bordas */
-  
-  /* Sombras e Brilho */
+  /* =========================================================
+     FERRUGEM // ALERTAS
+     ========================================================= */
+  --cor-ferrugem: rgb(193, 75, 44);
+  /* #C14B2C - Accent, destaques */
+  --cor-terracota: rgb(206, 77, 44);
+  /* #CE4D2C - Carimbos, sombras */
+  --cor-ambar: rgb(224, 144, 40);
+  /* #E09028 - Estado ativo, metal */
+  --cor-magenta: rgb(251, 57, 157);
+  /* #FB399D - Alerta, seleção */
+  --cor-alerta-vermelho: rgb(247, 43, 111);
+  /* #F72B6F - Destrutivo / perigo */
 
+  /* =========================================================
+     PAPEL // MURAL
+     ========================================================= */
+  --cor-bilhete: rgb(239, 220, 181);
+  /* #EFDCB5 - Cartão de nota */
+  --cor-bilhete-2: rgb(235, 207, 173);
+  /* #EBCFAD - Cartão alternado */
+  --cor-tinta: rgb(50, 27, 11);
+  /* #321B0B - Texto no papel */
+  --cor-tinta-suave: rgb(100, 73, 56);
+  /* #644938 - Texto secundário no papel */
+
+  /* =========================================================
+     TEXTO ACESSÍVEL // AJUSTES SUGERIDOS
+     ========================================================= */
+  --cor-ferrugem-clara: rgb(235, 121, 85);
+  /* #EB7955 - Texto pequeno sobre fundo escuro */
+  --cor-terracota-clara: rgb(236, 120, 89);
+  /* #EC7859 - Carimbos e textos pequenos */
+  --cor-texto-no-alerta: rgb(22, 6, 8);
+  /* #160608 - Sobre o vermelho */
+  --cor-sinal-claro: rgb(62, 144, 137);
+  /* #3E9089 - Borda de input (10:1) */
+
+  /* =========================================================
+     VARIÁVEIS DO LIVRO (INTEGRADAS À PALETA DE :ROOT)
+     ========================================================= */
+  --unit: clamp(28px, 3.6vw, 50px);
+  --book-base-w: 18.5;
+  --book-base-h: 12.5;
+  --cover-color: var(--cor-painel);
+  --cover-gold: var(--cor-ambar);
+  --page-bg: var(--cor-bilhete);
+  --text-color: var(--cor-tinta);
 }
 
-/* --------------------------------------------------------------------------
-   2. Reset e Estilos Base
-   -------------------------------------------------------------------------- */
 *,
 *::before,
 *::after {
@@ -30,11 +90,399 @@
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-  font-size: 16px;
+body {
+  background-color: var(--cor-abismo);
+  background-image: linear-gradient(to bottom, var(--cor-jade) 0%, var(--cor-abismo) 100%);
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  color: var(--cor-espuma);
+  overflow: hidden;
 }
 
-body {
-  
+nav {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  /* Posicionado no canto superior direito */
+  left: auto;
+  width: 80px;
+  height: 80px;
+  z-index: 9999;
+  border-radius: 50px;
+  color: var(--cor-espuma);
+  background-color: var(--cor-painel);
+  border: 1px solid var(--cor-sinal-claro);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    border-radius 0.4s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Estado Expansivo: Expande +300px para a esquerda */
+nav:hover,
+nav.expanded {
+  width: 380px;
+  /* 80px + 300px = 380px ocupados para a esquerda */
+  justify-content: space-between;
+  border-radius: 50px;
+  border-color: var(--cor-menta-neon);
+}
+
+/* Container do Ícone + Texto MENU logo abaixo (Centralizado no círculo de 80px) */
+.nav-trigger {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.nav-trigger i {
+  font-size: 1.2rem;
+  color: var(--cor-menta-neon);
+  transition: transform 0.3s ease;
+}
+
+.nav-trigger .nav-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--cor-espuma);
+  text-transform: uppercase;
+}
+
+nav:hover .nav-trigger i,
+nav.expanded .nav-trigger i {
+  transform: scale(1.1);
+}
+
+/* Texto Logo exibido à esquerda ao expandir */
+nav .nav-expanded-content {
+  opacity: 0;
+  visibility: hidden;
+  width: 0;
+  overflow: hidden;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--cor-espuma);
+  transform: translateX(20px);
+  transition: opacity 0.3s ease 0.05s, transform 0.3s ease 0.05s, visibility 0.3s ease, width 0.3s ease;
+}
+
+nav:hover .nav-expanded-content,
+nav.expanded .nav-expanded-content {
+  opacity: 1;
+  visibility: visible;
+  width: auto;
+  padding-left: 2rem;
+  transform: translateX(0);
+}
+
+
+
+.hero-section {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  /* Perspectiva plana e distante para eliminar aberrações e tontura */
+  perspective: calc(160 * var(--unit));
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 35, 41, 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   Estrutura Central do Livro
+   -------------------------------------------------------------------------- */
+.book {
+  position: relative;
+  width: calc(var(--book-base-w) * var(--unit));
+  height: calc(var(--book-base-h) * var(--unit));
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.55));
+  rotate: 2deg;
+}
+
+.cover,
+.page {
+  position: absolute;
+  top: 0;
+  box-sizing: border-box;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* --------------------------------------------------------------------------
+   Capas
+   -------------------------------------------------------------------------- */
+.cover.base-cover {
+  left: calc(9.25 * var(--unit));
+  width: calc(9.25 * var(--unit));
+  height: calc(12.5 * var(--unit));
+  background-color: var(--cover-color);
+  background-image: linear-gradient(135deg, var(--cor-casco) 0%, var(--cor-agua-profunda) 100%);
+  border: 2px solid var(--cover-gold);
+  border-left: none;
+  border-radius: 0 calc(0.35 * var(--unit)) calc(0.35 * var(--unit)) 0;
+  transform: translateZ(-2px);
+  z-index: 1;
+}
+
+.cover.front-cover {
+  left: calc(9.25 * var(--unit));
+  width: calc(9.25 * var(--unit));
+  height: calc(12.5 * var(--unit));
+  transform-origin: left center;
+  transform: rotateY(0deg) translateZ(4px);
+  z-index: 30;
+}
+
+.cover-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: calc(1.2 * var(--unit));
+}
+
+.cover-face.front {
+  background-color: var(--cover-color);
+  background-image: linear-gradient(135deg, var(--cor-casco) 0%, var(--cor-agua-profunda) 100%);
+  border: 2px solid var(--cover-gold);
+  border-left: none;
+  border-radius: 0 calc(0.35 * var(--unit)) calc(0.35 * var(--unit)) 0;
+  color: var(--cover-gold);
+  box-shadow: inset -4px 0 20px rgba(0, 0, 0, 0.4);
+}
+
+.cover-emblem {
+  font-size: calc(1.5 * var(--unit));
+  margin-bottom: calc(0.3 * var(--unit));
+  filter: drop-shadow(0 2px 4px rgba(224, 144, 40, 0.4));
+}
+
+.cover-title {
+  font-size: calc(1.15 * var(--unit));
+  letter-spacing: 4px;
+  margin: 0;
+  border-top: 1px solid var(--cover-gold);
+  border-bottom: 1px solid var(--cover-gold);
+  padding: calc(0.35 * var(--unit)) calc(0.6 * var(--unit));
+  color: var(--cover-gold);
+}
+
+.cover-subtitle {
+  font-size: calc(0.55 * var(--unit));
+  letter-spacing: 2px;
+  margin-top: calc(0.4 * var(--unit));
+  color: var(--cor-bilhete);
+}
+
+.cover-face.back {
+  transform: rotateY(180deg);
+  background-color: var(--cor-agua-profunda);
+  background-image: linear-gradient(135deg, var(--cor-painel) 0%, var(--cor-abismo) 100%);
+  border: 2px solid var(--cover-gold);
+  border-right: none;
+  border-radius: calc(0.35 * var(--unit)) 0 0 calc(0.35 * var(--unit));
+  color: var(--cover-gold);
+  box-shadow: inset 4px 0 15px rgba(0, 0, 0, 0.35);
+}
+
+.inside-lining {
+  text-align: center;
+}
+
+.lining-ornament {
+  font-size: calc(1 * var(--unit));
+  display: block;
+  margin-bottom: calc(0.3 * var(--unit));
+  color: var(--cor-ambar);
+}
+
+.lining-text {
+  font-size: calc(0.5 * var(--unit));
+  letter-spacing: 2px;
+  color: var(--cor-espuma);
+}
+
+/* --------------------------------------------------------------------------
+   Folhas e Páginas
+   -------------------------------------------------------------------------- */
+.page {
+  top: calc(0.25 * var(--unit));
+  left: calc(9.25 * var(--unit));
+  width: calc(9 * var(--unit));
+  height: calc(12 * var(--unit));
+  transform-origin: left center;
+  color: var(--text-color);
+}
+
+.page.leaf-2 {
+  z-index: 5;
+  transform: translateZ(0);
+}
+
+.page.leaf-1 {
+  z-index: 20;
+  transform: rotateY(0deg) translateZ(2px);
+}
+
+.page-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  padding: calc(0.9 * var(--unit));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: calc(0.45 * var(--unit));
+  line-height: 1.6;
+}
+
+.page-face.front {
+  background-color: var(--page-bg);
+  background-image: linear-gradient(to right, var(--cor-bilhete-2) 0%, var(--cor-bilhete) 90%, var(--cor-bilhete-2) 100%);
+  border-radius: 0 calc(0.3 * var(--unit)) calc(0.3 * var(--unit)) 0;
+  box-shadow: inset -2px 0 8px rgba(0, 0, 0, 0.08);
+}
+
+.page-face.back {
+  transform: rotateY(180deg);
+  background-color: var(--page-bg);
+  background-image: linear-gradient(to left, var(--cor-bilhete-2) 0%, var(--cor-bilhete) 90%, var(--cor-bilhete-2) 100%);
+  border-radius: calc(0.3 * var(--unit)) 0 0 calc(0.3 * var(--unit));
+  box-shadow: inset 2px 0 8px rgba(0, 0, 0, 0.08);
+}
+
+/* --------------------------------------------------------------------------
+   Estilos Tipográficos e Componentes de Conteúdo das Páginas
+   -------------------------------------------------------------------------- */
+.page-header {
+  text-align: center;
+  margin-bottom: calc(0.2 * var(--unit));
+}
+
+.page-title {
+  font-size: calc(0.75 * var(--unit));
+  letter-spacing: 2px;
+  color: var(--cor-tinta);
+  margin-bottom: calc(0.1 * var(--unit));
+}
+
+.page-subtitle {
+  font-style: italic;
+  font-size: calc(0.45 * var(--unit));
+  color: var(--cor-tinta-suave);
+}
+
+.divider-dashed {
+  border-top: 1px dashed var(--cor-tinta-suave);
+  opacity: 0.4;
+  margin: calc(0.25 * var(--unit)) 0;
+}
+
+.page-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: calc(0.35 * var(--unit));
+}
+
+.page-text {
+  text-align: justify;
+  margin: 0;
+  color: var(--cor-tinta);
+}
+
+.archival-sign {
+  text-align: center;
+  font-size: calc(0.4 * var(--unit));
+  color: var(--cor-terracota);
+  margin-top: auto;
+  padding-top: calc(0.3 * var(--unit));
+}
+
+.page-num {
+  font-size: calc(0.4 * var(--unit));
+  font-weight: 600;
+  color: var(--cor-tinta-suave);
+}
+
+.page-face.front .page-num {
+  align-self: flex-end;
+}
+
+.page-face.back .page-num {
+  align-self: flex-start;
+}
+
+/* Rodapé */
+.main-footer {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--cor-nevoa);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Acessibilidade: Movimento Reduzido (WCAG 2.2) */
+@media (prefers-reduced-motion: reduce) {
+
+  .book,
+  .cover,
+  .page {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+.hero-container {
+  width: 50%;
+  position: absolute;
+  z-index: 100;
+}
+
+.hero-container h1 {
+  font-size: 4rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.hero-btn-container {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  align-items: center;
 }

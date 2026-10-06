@@ -38,7 +38,8 @@ AtlantidaFIAPChallenge/
 │   ├── css/                 # Estilos e temas da aplicação
 │   │   └── style.css        # Estilo principal com CSS Variables
 │   ├── js/                  # Scripts e lógica client-side
-│   │   └── main.js          # Arquivo JavaScript principal
+│   │   ├── atlantida-book-anim.js # Animação e renderização do livro interativo
+│   │   └── main.js          # Script principal
 │   ├── docs/                # Documentação técnica e arquivos de apoio
 │   │   └── .gitkeep
 │   └── media/               # Imagens, ícones, vídeos e mídias
