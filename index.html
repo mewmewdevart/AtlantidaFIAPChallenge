@@ -2,158 +2,190 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portal Web Atlântida - VR Code Arena NEXT FIAP 2026.">
-    <title>Portal Web — Atlântida | VR Code Arena</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portal Web Atlântida - VR Code Arena NEXT FIAP 2026.">
+  <title>Portal Web — Atlântida | VR Code Arena</title>
 
-    <!-- Fontes do Google -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Outfit:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+  <!-- Tipografia & Ícones -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Outfit:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- Ícones Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Estilos -->
+  <link rel="stylesheet" href="assets/css/style.css">
 
-    <!-- Folha de Estilos Principal -->
-    <link rel="stylesheet" href="assets/css/style.css">
-
-    <!-- Scripts da Aplicação -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script>window.gsap || document.write('<script src="./assets/js/gsap.min.js"><\/script>');</script>
-    <script src="./assets/js/atlantida-book-anim.js" defer></script>
-    <script src="./assets/js/i18n.js" defer></script>
-    <script src="./assets/js/main.js" defer></script>
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>window.gsap || document.write('<script src="./assets/js/gsap.min.js"><\/script>');</script>
+  <script src="./assets/js/atlantida-book-anim.js" defer></script>
+  <script src="./assets/js/cursor-submarino.js" defer></script>
+  <script src="./assets/js/i18n.js" defer></script>
+  <script src="./assets/js/main.js" defer></script>
 </head>
 
-<body>
-    <!-- ====================================================================
-         CABEÇALHO & MENU DE NAVEGAÇÃO FLUTUANTE
-         ==================================================================== -->
-    <nav class="menu-navegacao" id="menuNavegacao" aria-label="Menu principal">
-        <div class="menu-navegacao__conteudo">
-            <!-- Seletor de Idioma (BEM: seletor-idioma) -->
-            <div class="seletor-idioma">
-                <span class="seletor-idioma__rotulo seletor-idioma__rotulo--pt seletor-idioma__rotulo--ativo"
-                    data-i18n="nav.lang_pt">PT-BR</span>
-                <label class="seletor-idioma__interruptor" for="seletorIdiomaSwitch"
-                    aria-label="Alternar idioma para Atlântida">
-                    <input type="checkbox" class="seletor-idioma__campo" id="seletorIdiomaSwitch">
-                    <span class="seletor-idioma__trilho">
-                        <i class="fa-solid fa-feather-pointed seletor-idioma__icone-deslizante" aria-hidden="true"></i>
-                    </span>
-                </label>
-                <span class="seletor-idioma__rotulo seletor-idioma__rotulo--atlantida"
-                    data-i18n="nav.lang_atlantida">Atlantida</span>
-            </div>
+<body class="ocean">
+  <div>
+    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+      viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+      </defs>
+      <g class="parallax">
+        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(62, 144, 137, 0.7)" />
+        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(62, 144, 137, 0.5)" />
+        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(62, 144, 137, 0.3)" />
+        <use xlink:href="#gentle-wave" x="48" y="7" fill="rgb(16, 84, 79)" />
+      </g>
+    </svg>
+  </div>
+
+  <nav class="menu-navegacao" id="menuNavegacao" aria-label="Menu principal">
+    <div class="menu-navegacao__conteudo">
+      <div class="seletor-idioma">
+        <span class="seletor-idioma__rotulo seletor-idioma__rotulo--pt seletor-idioma__rotulo--ativo"
+          data-i18n="nav.lang_pt">PT-BR</span>
+        <label class="seletor-idioma__interruptor" for="seletorIdiomaSwitch"
+          aria-label="Alternar idioma para Atlântida">
+          <input type="checkbox" class="seletor-idioma__campo" id="seletorIdiomaSwitch">
+          <span class="seletor-idioma__trilho">
+            <i class="fa-solid fa-feather-pointed seletor-idioma__icone-deslizante" aria-hidden="true"></i>
+          </span>
+        </label>
+        <span class="seletor-idioma__rotulo seletor-idioma__rotulo--atlantida"
+          data-i18n="nav.lang_atlantida">Atlantida</span>
+      </div>
+    </div>
+
+    <div class="menu-navegacao__gatilho" role="button" tabindex="0" aria-label="Abrir ou fechar menu">
+      <div class="menu-navegacao__hamburguer" aria-hidden="true">
+        <span class="menu-navegacao__linha menu-navegacao__linha--superior"></span>
+        <span class="menu-navegacao__linha menu-navegacao__linha--meio"></span>
+        <span class="menu-navegacao__linha menu-navegacao__linha--inferior"></span>
+      </div>
+      <span class="menu-navegacao__rotulo" data-i18n="nav.menu">MENU</span>
+    </div>
+  </nav>
+
+  <main class="secao-apresentacao">
+    <button class="secao-scroll-btn" type="button" aria-label="Rolar para baixo">
+      <img src="./assets/media/submarino-scroll.png" alt="Submarino">
+      <span>scroll</span>
+    </button>
+
+    <div class="secao-apresentacao__filtro-svg" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display: block; height: 0; width: 0;">
+        <defs>
+          <filter id="efeito-agua-goo">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo">
+            </feColorMatrix>
+            <feBlend in="SourceGraphic" in2="goo"></feBlend>
+          </filter>
+        </defs>
+      </svg>
+    </div>
+
+    <div class="livro-3d" id="livro3D" role="region" aria-label="Livro interativo de Atlântida">
+      <div class="livro-3d__capa livro-3d__capa--base" id="capaBase" aria-hidden="true"></div>
+
+      <div class="livro-3d__folha livro-3d__folha--direita" id="folhaDireita">
+        <div class="livro-3d__face livro-3d__face--frente livro-3d__face--ilustracao">
+          <img class="livro-3d__imagem-ilustracao" src="./assets/media/image-hero-section.png"
+            alt="Ilustração do submarino explorando a cidade submersa de Atlântida">
         </div>
+      </div>
 
-        <!-- Botão Gatilho do Menu (Ícone Hambúrguer + Rótulo) -->
-        <div class="menu-navegacao__gatilho" role="button" tabindex="0" aria-label="Abrir ou fechar menu">
-            <div class="menu-navegacao__hamburguer" aria-hidden="true">
-                <span class="menu-navegacao__linha menu-navegacao__linha--superior"></span>
-                <span class="menu-navegacao__linha menu-navegacao__linha--meio"></span>
-                <span class="menu-navegacao__linha menu-navegacao__linha--inferior"></span>
+      <div class="livro-3d__folha livro-3d__folha--giratoria livro-3d__folha--esquerda" id="folhaEsquerda">
+        <div class="livro-3d__face livro-3d__face--frente" aria-hidden="true"></div>
+
+        <div class="livro-3d__face livro-3d__face--verso" id="paginaConteudoContainer">
+          <div class="livro-3d__conteudo-texto">
+            <h1 class="livro-3d__titulo-principal">
+              <span class="livro-3d__titulo-linha" data-i18n="hero.livro_titulo_linha1">Explore</span>
+              <span class="livro-3d__titulo-linha" data-i18n="hero.livro_titulo_linha2">Atlântida.</span>
+            </h1>
+
+            <p class="livro-3d__descricao" data-i18n="hero.livro_descricao">
+              Conecte-se à cidade submarina, descubra seus espaços e explore um novo mundo abaixo da superfície.
+            </p>
+
+            <div class="livro-3d__painel-status">
+              <div class="livro-3d__status-item">
+                <span class="livro-3d__status-valor">ANO 2189</span>
+                <span class="livro-3d__status-rotulo">Ciclo Atual</span>
+              </div>
+              <div class="livro-3d__status-item">
+                <span class="livro-3d__status-valor">04:17</span>
+                <span class="livro-3d__status-rotulo">Hora Abissal</span>
+              </div>
+              <div class="livro-3d__status-item">
+                <span class="livro-3d__status-valor">93%</span>
+                <span class="livro-3d__status-rotulo">Oxigênio</span>
+              </div>
             </div>
-            <span class="menu-navegacao__rotulo" data-i18n="nav.menu">MENU</span>
+
+            <div class="livro-3d__acoes">
+              <button class="livro-3d__botao livro-3d__botao--primario" data-i18n="hero.btn_explorar">Explorar
+                Atlântida</button>
+              <button class="livro-3d__botao livro-3d__botao--secundario" data-i18n="hero.btn_saiba_mais">Saiba
+                mais</button>
+            </div>
+          </div>
         </div>
-    </nav>
+      </div>
 
-    <!-- ====================================================================
-         SEÇÃO PRINCIPAL / HERO: CENÁRIO E LIVRO 3D
-         ==================================================================== -->
-    <main class="secao-apresentacao">
-        <div class="secao-apresentacao__filtro-svg" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display: block; height: 0; width: 0;">
-                <defs>
-                    <filter id="efeito-agua-goo">
-                        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
-                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
-                            result="goo"></feColorMatrix>
-                        <feBlend in="SourceGraphic" in2="goo"></feBlend>
-                    </filter>
-                </defs>
-            </svg>
+      <div class="livro-3d__capa livro-3d__capa--giratoria livro-3d__capa--frontal" id="capaFrontal">
+        <div class="livro-3d__face-capa livro-3d__face-capa--frente">
+          <div class="livro-3d__emblema" aria-hidden="true">🔱</div>
+          <h2 class="livro-3d__titulo-capa" data-i18n="hero.cover_title">ATLÂNTIDA</h2>
+          <p class="livro-3d__subtitulo-capa" data-i18n="hero.cover_subtitle">VR CODE ARENA — NEXT FIAP</p>
         </div>
+        <div class="livro-3d__face-capa livro-3d__face-capa--verso" aria-hidden="true"></div>
+      </div>
+    </div>
+  </main>
 
-        <!-- Bloco Principal do Livro Interativo -->
-        <div class="livro-3d" id="livro3D" role="region" aria-label="Livro interativo de Atlântida">
+  <!-- Seção 1 - O Mundo -->
+  <div class="risco">
+    <hr>
+    <p>0-200 M // Zona Fótica </p>
+    <hr>
+  </div>
+  <section></section>
 
-            <!-- PROFUNDIDADE 1: Contracapa / Fundo Rígido da Base Direita -->
-            <div class="livro-3d__capa livro-3d__capa--base" id="capaBase" aria-hidden="true"></div>
+  <!-- Seção 2 - Os Habitantes -->
+  <div class="risco">
+    <hr>
+    <p>200-1000 M // Zona Crepusculo </p>
+    <hr>
+  </div>
+  <section></section>
 
-            <!-- PROFUNDIDADE 2: Folha da Direita (Ilustração Submarina Fixa) -->
-            <div class="livro-3d__folha livro-3d__folha--direita" id="folhaDireita">
-                <div class="livro-3d__face livro-3d__face--frente livro-3d__face--ilustracao">
-                    <img class="livro-3d__imagem-ilustracao" src="./assets/media/image-hero-section.png"
-                        alt="Ilustração do submarino explorando a cidade submersa de Atlântida">
-                </div>
-            </div>
+  <!-- Seção 3 - O Mural  -->
+  <div class="risco">
+    <hr>
+    <p>200-1000 M // Zona da Meia-Noite </p>
+    <hr>
+  </div>
+  <section></section>
 
-            <!-- PROFUNDIDADE 3: Folha Giratória (Verso torna-se a Página 2 de Conteúdo Esquerda) -->
-            <div class="livro-3d__folha livro-3d__folha--giratoria livro-3d__folha--esquerda" id="folhaEsquerda">
-                <!-- Face anterior (voltada para dentro quando fechado) -->
-                <div class="livro-3d__face livro-3d__face--frente" aria-hidden="true"></div>
+  <!-- Seção 4 - Contato  -->
+  <div class="risco">
+    <hr>
+    <p>200-1000 M // Zona do Abismo </p>
+    <hr>
+  </div>
+  <section></section>
 
-                <div class="livro-3d__face livro-3d__face--verso" id="paginaConteudoContainer">
-                    <!-- Ilustração com z-index maior que a Página 2 e menor que o Texto -->
-                    <!-- <img class="livro-3d__imagem-ilustracao livro-3d__imagem-ilustracao--sobreposicao"
-                        src="./assets/media/image-hero-section.png" alt="" aria-hidden="true"> -->
-
-                    <!-- Conteúdo textual com z-index superior, garantindo leitura perfeita -->
-                    <div class="livro-3d__conteudo-texto">
-                        <h1 class="livro-3d__titulo-principal">
-                            <span class="livro-3d__titulo-linha" data-i18n="hero.livro_titulo_linha1">Explore</span>
-                            <span class="livro-3d__titulo-linha" data-i18n="hero.livro_titulo_linha2">Atlântida.</span>
-                        </h1>
-
-                        <p class="livro-3d__descricao" data-i18n="hero.livro_descricao">
-                            Conecte-se à cidade submarina, descubra seus espaços e explore um novo mundo abaixo da
-                            superfície.
-                        </p>
-
-                        <!-- Indicadores de Status e Telemetria -->
-                        <div class="livro-3d__painel-status">
-                            <div class="livro-3d__status-item">
-                                <span class="livro-3d__status-valor">ANO 2189</span>
-                                <span class="livro-3d__status-rotulo">Ciclo Atual</span>
-                            </div>
-                            <div class="livro-3d__status-item">
-                                <span class="livro-3d__status-valor">04:17</span>
-                                <span class="livro-3d__status-rotulo">Hora Abissal</span>
-                            </div>
-                            <div class="livro-3d__status-item">
-                                <span class="livro-3d__status-valor">93%</span>
-                                <span class="livro-3d__status-rotulo">Oxigênio</span>
-                            </div>
-                        </div>
-
-                        <!-- Botões de Ação -->
-                        <div class="livro-3d__acoes">
-                            <button class="livro-3d__botao livro-3d__botao--primario"
-                                data-i18n="hero.btn_explorar">Explorar Atlântida</button>
-                            <button class="livro-3d__botao livro-3d__botao--secundario"
-                                data-i18n="hero.btn_saiba_mais">Saiba mais</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PROFUNDIDADE 4: Capa Frontal Giratória (Frente do Livro Fechado) -->
-            <div class="livro-3d__capa livro-3d__capa--giratoria livro-3d__capa--frontal" id="capaFrontal">
-                <!-- Face externa frontal da capa -->
-                <div class="livro-3d__face-capa livro-3d__face-capa--frente">
-                    <div class="livro-3d__emblema" aria-hidden="true">🔱</div>
-                    <h2 class="livro-3d__titulo-capa" data-i18n="hero.cover_title">ATLÂNTIDA</h2>
-                    <p class="livro-3d__subtitulo-capa" data-i18n="hero.cover_subtitle">VR CODE ARENA — NEXT FIAP</p>
-                </div>
-                <!-- Face interna da capa quando aberta -->
-                <div class="livro-3d__face-capa livro-3d__face-capa--verso" aria-hidden="true"></div>
-            </div>
-        </div>
-    </main>
+  <div class="risco">
+    <hr>
+    <p>200-1000 M // Zona do Oceânicas </p>
+    <hr>
+  </div>
 </body>
 
 </html>

@@ -1,0 +1,43 @@
+:root {
+  /* Cores: Água & Profundezas */
+  --cor-abismo: rgb(0, 3, 5);
+  --cor-agua-profunda: rgb(0, 10, 16);
+  --cor-fundo: rgb(0, 35, 41);
+  --cor-painel: rgb(0, 46, 50);
+  --cor-casco: rgb(1, 56, 60);
+  --cor-jade: rgb(16, 84, 79);
+  --cor-jade-claro: rgb(99, 182, 175);
+
+  /* Cores: Interface & Tipografia */
+  --cor-menta-neon: rgb(15, 244, 204);
+  --cor-espuma: rgb(238, 246, 245);
+  --cor-nevoa: rgb(169, 192, 190);
+  --cor-sinal: rgb(22, 104, 99);
+  --cor-sinal-claro: rgb(62, 144, 137);
+
+  /* Cores: Metais, Carimbos & Destaques */
+  --cor-ambar: rgb(224, 144, 40);
+  --cor-ferrugem: rgb(193, 75, 44);
+  --cor-terracota: rgb(206, 77, 44);
+
+  /* Cores: Livro & Pergaminho */
+  --cor-pergaminho: rgb(239, 220, 181);
+  --cor-pergaminho-borda: rgb(235, 207, 173);
+  --cor-tinta: rgb(50, 27, 11);
+  --cor-tinta-suave: rgb(100, 73, 56);
+
+  /* Cores: Botões & Ações */
+  --cor-oceano: rgb(27, 155, 149);
+  --cor-oceano-hover: rgb(21, 133, 128);
+  --cor-oceano-sombra: rgba(27, 155, 149, 0.35);
+
+  /* Medidas & Escalas: Livro 3D */
+  --livro-unidade: clamp(28px, 3.6vw, 50px);
+  --livro-largura-base: 18.5;
+  --livro-altura-base: 12.5;
+
+  /* Tipografia */
+  --fonte-titulo: "EB Garamond", Georgia, serif;
+  --fonte-texto: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --fonte-emblema: "Cinzel", Georgia, serif;
+}
