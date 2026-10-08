@@ -1,8 +1,8 @@
+/* Folha de estilos principal - inclui variáveis e estilos de componentes */
 @import url("variables.css");
 
-/* ==========================================================================
-   RESET E CONFIGURAÇÕES GLOBAIS
-   ========================================================================== */
+
+/* ==== Reset e estilos globais ==== */
 *,
 *::before,
 *::after {
@@ -26,9 +26,8 @@ body {
   background-image: linear-gradient(0deg, var(--cor-abismo), var(--cor-jade));
 }
 
-/* ==========================================================================
-   ONDULAÇÕES FLUIDAS (WAVES)
-   ========================================================================== */
+
+/* ==== Ondulações fluidas (waves) ==== */
 .waves {
   position: absolute;
   width: 100%;
@@ -73,9 +72,8 @@ body {
   }
 }
 
-/* ==========================================================================
-   MENU DE NAVEGAÇÃO FLUTUANTE
-   ========================================================================== */
+
+/* ==== Menu de navegação flutuante ==== */
 .menu-navegacao {
   position: absolute;
   top: 1rem;
@@ -127,7 +125,7 @@ body {
   transform: translateX(0);
 }
 
-/* Seletor de Idioma */
+
 .seletor-idioma {
   display: flex;
   align-items: center;
@@ -205,7 +203,7 @@ body {
   transform: translateX(22px) rotate(45deg);
 }
 
-/* Gatilho e Ícone Hambúrguer */
+
 .menu-navegacao__gatilho {
   display: flex;
   flex-direction: column;
@@ -255,9 +253,7 @@ body {
   transform: translateY(-7.75px) rotate(-45deg);
 }
 
-/* ==========================================================================
-   MENU DE NAVEGAÇÃO VERTICAL LATERAL (FIXO À DIREITA)
-   ========================================================================== */
+
 .menu-lateral {
   position: fixed;
   top: 50%;
@@ -280,7 +276,7 @@ body {
   color: var(--cor-abismo);
 }
 
-/* Quando ativado pelo primeiro scroll */
+
 .menu-lateral--visivel {
   opacity: 1;
   visibility: visible;
@@ -288,9 +284,7 @@ body {
   transform: translateY(-50%) translateX(0);
 }
 
-/* ==========================================================================
-   INDICADOR DE PROFUNDIDADE: SUBMARINO & RÉGUA
-   ========================================================================== */
+
 .menu-lateral__indicador-submarino {
   position: absolute;
   right: calc(100% + 12px);
@@ -361,7 +355,7 @@ body {
   transition: transform 0.2s ease, color 0.2s ease;
 }
 
-/* Hover no item */
+
 .menu-lateral__link:hover {
   color: var(--cor-espuma);
   font-weight: bold;
@@ -370,7 +364,7 @@ body {
 }
 
 
-/* Estado visual de destaque (seção ativa) */
+
 .menu-lateral__link--ativo {
   color: var(--cor-espuma);
   font-weight: 700;
@@ -394,9 +388,8 @@ body {
   opacity: 0.6;
 }
 
-/* ==========================================================================
-   SEÇÃO HERO (APRESENTAÇÃO)
-   ========================================================================== */
+
+/* ==== Seção hero (apresentação) ==== */
 .secao-apresentacao {
   position: relative;
   display: flex;
@@ -456,9 +449,8 @@ body {
   transform: scale(1.05);
 }
 
-/* ==========================================================================
-   LIVRO 3D INTERATIVO
-   ========================================================================== */
+
+/* ==== Livro 3D interativo ==== */
 .livro-3d {
   position: relative;
   width: calc(var(--livro-largura-base) * var(--livro-unidade));
@@ -477,7 +469,7 @@ body {
   will-change: transform;
 }
 
-/* Camada 1: Contracapa / Base Rígida */
+
 .livro-3d__capa--base {
   left: calc(9.25 * var(--livro-unidade));
   z-index: 1;
@@ -491,7 +483,7 @@ body {
   transform: translateZ(-2px);
 }
 
-/* Camada 2: Folha da Direita (Ilustração) */
+
 .livro-3d__folha--direita {
   position: absolute;
   top: calc(0.25 * var(--livro-unidade));
@@ -524,7 +516,7 @@ body {
   opacity: 0;
 }
 
-/* Camada 3: Folha Esquerda (Página Giratória e Conteúdo) */
+
 .livro-3d__folha--esquerda {
   top: calc(0.25 * var(--livro-unidade));
   left: calc(9.25 * var(--livro-unidade));
@@ -713,7 +705,7 @@ body {
   border-color: var(--cor-oceano-hover);
 }
 
-/* Camada 4: Capa Frontal Giratória */
+
 .livro-3d__capa--frontal {
   left: calc(9.25 * var(--livro-unidade));
   z-index: 30;
@@ -781,9 +773,7 @@ body {
   color: var(--cor-pergaminho);
 }
 
-/* ==========================================================================
-   SEÇÕES DE PROFUNDIDADE OCEÂNICA
-   ========================================================================== */
+
 .risco {
   display: flex;
   flex-direction: row;
@@ -808,9 +798,7 @@ section {
   min-height: 100vh;
 }
 
-/* ==========================================================================
-   CURSOR PERSONALIZADO (SUBMARINO)
-   ========================================================================== */
+
 .cursor-submarino {
   position: fixed;
   top: 0;
@@ -828,9 +816,7 @@ section {
   will-change: transform, left, top, background-image;
 }
 
-/* ==========================================================================
-   RESPONSIVIDADE & ACESSIBILIDADE
-   ========================================================================== */
+
 @media (max-width: 768px) {
   .waves {
     height: 40px;
@@ -861,7 +847,7 @@ section {
     height: 9px;
   }
 
-  /* Oculta submarino e régua no mobile */
+  
   .menu-lateral__indicador-submarino {
     display: none !important;
   }

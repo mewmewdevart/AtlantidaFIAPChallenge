@@ -1,6 +1,6 @@
-/**
- * Script Principal - Interações da Interface (Menu e Alternância de Idioma)
- */
+/* Controla a lógica principal da página, incluindo menu de navegação, troca de idioma e inicialização de animações */
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const menuNavegacao = document.getElementById("menuNavegacao");
@@ -40,16 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Inicialização do menu vertical lateral
+  
   inicializarMenuLateral();
 });
 
-/**
- * Menu Lateral Fixo com Indicador de Profundidade Temático (Submarino & Régua).
- * - Sincronização contínua com as seções via GSAP e interpolação de scroll.
- * - Animação de propulsão (hélice girando) e flutuação hidrodinâmica (idle bobbing).
- * - Régua de profundidade náutica com marcações pontilhadas e cotas das seções.
- */
+
 function inicializarMenuLateral() {
   const menuLateral = document.getElementById("menuLateral");
   if (!menuLateral) return;
@@ -58,7 +53,7 @@ function inicializarMenuLateral() {
   const btnScrollHero = document.querySelector(".secao-scroll-btn");
   const submarinoWrapper = document.getElementById("submarinoWrapper");
   const submarinoImg = document.getElementById("submarinoImg");
-  // const reguaMarcas = document.getElementById("reguaMarcas");
+  
 
   const secoes = [
     document.getElementById("inicio"),
@@ -78,22 +73,22 @@ function inicializarMenuLateral() {
 
   const prefereMovimentoReduzido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // 1. Criação das marcas da régua de profundidade
-  // if (reguaMarcas) {
-  //   reguaMarcas.innerHTML = "";
-  //   profundidades.forEach((item) => {
-  //     const marca = document.createElement("div");
-  //     marca.className = "menu-lateral__regua-marca";
-  //     marca.dataset.secao = item.id;
-  //     marca.innerHTML = `
-  //       <span class="menu-lateral__regua-texto">${item.label}</span>
-  //       <span class="menu-lateral__regua-traco"></span>
-  //     `;
-  //     reguaMarcas.appendChild(marca);
-  //   });
-  // }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
-  // 2. Animação de propulsão (hélice do submarino alternando frames)
+  
   const framesSubmarino = [
     "./assets/media/submarino-dir-1.png",
     "./assets/media/submarino-dir-2.png"
@@ -112,7 +107,7 @@ function inicializarMenuLateral() {
     }, 740);
   }
 
-  // 3. Flutuação hidrodinâmica (idle bobbing) no sprite interno
+  
   if (submarinoImg && typeof gsap !== "undefined" && !prefereMovimentoReduzido) {
     gsap.to(submarinoImg, {
       y: 3,
@@ -124,9 +119,9 @@ function inicializarMenuLateral() {
     });
   }
 
-  // 4. Cálculo geométrico das posições dos itens em relação ao container
+  
   function calcularPosicoesItens() {
-    // const marcas = reguaMarcas ? reguaMarcas.querySelectorAll(".menu-lateral__regua-marca") : [];
+    
     const posicoes = [];
     const submarinoHeight = submarinoWrapper ? submarinoWrapper.offsetHeight : 44;
 
@@ -144,15 +139,15 @@ function inicializarMenuLateral() {
         targetY
       });
 
-      // if (marcas[idx]) {
-      //   marcas[idx].style.top = `${centerY}px`;
-      // }
+      
+      
+      
     });
 
     return posicoes;
   }
 
-  // 5. Atualização contínua de estado e posição conforme o scroll da página
+  
   function atualizarEstadoMenu() {
     const scrollY = window.scrollY || window.pageYOffset;
     const secaoMundo = document.getElementById("o-mundo");
@@ -160,7 +155,7 @@ function inicializarMenuLateral() {
       ? (secaoMundo.offsetTop - (window.innerHeight * 0.4))
       : (window.innerHeight * 0.6);
 
-    // O menu só deve aparecer da segunda seção em diante (oculto na apresentação)
+    
     if (scrollY >= limiarSegundaSecao) {
       menuLateral.classList.add("menu-lateral--visivel");
       menuLateral.setAttribute("aria-hidden", "false");
@@ -175,7 +170,7 @@ function inicializarMenuLateral() {
     let targetSubmarinoY = posicoes[0].targetY;
     let secaoAtivaId = posicoes[0].id;
 
-    // Interpolação linear do progresso entre as seções
+    
     for (let i = 0; i < secoes.length; i++) {
       const secaoAtual = secoes[i];
       const proximaSecao = secoes[i + 1];
@@ -199,13 +194,13 @@ function inicializarMenuLateral() {
       }
     }
 
-    // Se estiver no final da página, alinha com a última seção
+    
     if (window.innerHeight + scrollY >= document.documentElement.scrollHeight - 60) {
       targetSubmarinoY = posicoes[posicoes.length - 1].targetY;
       secaoAtivaId = posicoes[posicoes.length - 1].id;
     }
 
-    // Animação fluida do submarino no eixo Y mirando o item ativo
+    
     if (submarinoWrapper) {
       if (typeof gsap !== "undefined" && !prefereMovimentoReduzido) {
         gsap.to(submarinoWrapper, {
@@ -219,7 +214,7 @@ function inicializarMenuLateral() {
       }
     }
 
-    // Atualiza destaque visual dos links
+    
     links.forEach((link) => {
       const alvoId = link.getAttribute("href")?.replace("#", "");
       if (alvoId === secaoAtivaId) {
@@ -231,20 +226,20 @@ function inicializarMenuLateral() {
       }
     });
 
-    // Atualiza destaque da régua de profundidade
-    // if (reguaMarcas) {
-    //   const marcas = reguaMarcas.querySelectorAll(".menu-lateral__regua-marca");
-    //   marcas.forEach((marca) => {
-    //     if (marca.dataset.secao === secaoAtivaId) {
-    //       marca.classList.add("menu-lateral__regua-marca--ativa");
-    //     } else {
-    //       marca.classList.remove("menu-lateral__regua-marca--ativa");
-    //     }
-    //   });
-    // }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
   }
 
-  // 6. Rolagem suave ao clicar nas opções do menu lateral
+  
   links.forEach((link) => {
     link.addEventListener("click", (evento) => {
       evento.preventDefault();
@@ -256,7 +251,7 @@ function inicializarMenuLateral() {
     });
   });
 
-  // 7. Botão submarino de scroll da primeira seção
+  
   if (btnScrollHero) {
     btnScrollHero.addEventListener("click", () => {
       const secaoMundo = document.getElementById("o-mundo");
@@ -276,9 +271,10 @@ function inicializarMenuLateral() {
     atualizarEstadoMenu();
   });
 
-  // Execução inicial
+  
   calcularPosicoesItens();
   atualizarEstadoMenu();
 }
+
 
 

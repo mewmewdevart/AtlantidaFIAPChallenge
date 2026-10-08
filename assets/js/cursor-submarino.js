@@ -1,11 +1,10 @@
-/**
- * Cursor Interativo Submarino - Atlântida
- */
+/* Implementa o cursor interativo em forma de submarino, trocando sprites conforme movimento do mouse */
 
-const deepCursorRight = "url(https://drive.google.com/thumbnail?id=14ZwyOC0zZQLJwVVwNjAo-m4F7E44-bV5&sz=w96) 48 48, auto";
-const deepCursorLeft = "url(https://drive.google.com/thumbnail?id=10YhiKqpHFCt7N84wPOdLOGF4emd6JP6l&sz=w96) 48 48, auto";
-const speciesCursorRight = "url(https://drive.google.com/thumbnail?id=1zg6mXLnh_Tm472WTTp7wk3hTDQKV9UF8&sz=w96) 48 48, auto";
-const speciesCursorLeft = "url(https://drive.google.com/thumbnail?id=10xq6gcbC3EjEYwEOzqcTPqgQXq9ifEfV&sz=w96) 48 48, auto";
+
+const deepCursorRight = "url(./assets/media/submarino-dir-1.png) 48 48, auto";
+const deepCursorLeft = "url(./assets/media/submarino-dir-2.png) 48 48, auto";
+const speciesCursorRight = "url(./assets/media/submarino-esq-1.png) 48 48, auto";
+const speciesCursorLeft = "url(./assets/media/submarino-esq-2.png) 48 48, auto";
 
 function extrairUrl(cursorStr) {
   const match = cursorStr.match(/url\((['"]?)(.*?)\1\)/);

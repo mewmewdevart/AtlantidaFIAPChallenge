@@ -1,6 +1,6 @@
-/**
- * i18n - Sistema de Troca Dinâmica de Idiomas (ptBr.json e ptBrAtlantida.json)
- */
+
+
+/* Gerencia internacionalização carregando dicionários de idioma e fornecendo fallback quando necessário */
 
 const i18n = {
   dictionaries: {},
@@ -80,3 +80,4 @@ const i18n = {
 };
 
 window.i18n = i18n;
+
