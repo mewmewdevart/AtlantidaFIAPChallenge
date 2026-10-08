@@ -1,6 +1,5 @@
 /* Implementa o cursor interativo em forma de submarino, trocando sprites conforme movimento do mouse */
 
-
 const deepCursorRight = "url(./assets/media/submarino-dir-1.png) 48 48, auto";
 const deepCursorLeft = "url(./assets/media/submarino-dir-2.png) 48 48, auto";
 const speciesCursorRight = "url(./assets/media/submarino-esq-1.png) 48 48, auto";

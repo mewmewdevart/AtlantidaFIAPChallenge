@@ -1,7 +1,5 @@
 /* Anima a abertura do livro 3D ao carregar a página, usando GSAP para rotacionar capas e revelar conteúdo */
 
-
-
 function executarAnimacaoAberturaLivro() {
   const livro = document.getElementById("livro3D");
   const capaFrontal = document.getElementById("capaFrontal");

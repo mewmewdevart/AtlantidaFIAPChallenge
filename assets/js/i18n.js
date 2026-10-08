@@ -1,5 +1,3 @@
-
-
 /* Gerencia internacionalização carregando dicionários de idioma e fornecendo fallback quando necessário */
 
 const i18n = {

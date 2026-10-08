@@ -1,7 +1,5 @@
 /* Controla a lógica principal da página, incluindo menu de navegação, troca de idioma e inicialização de animações */
 
-
-
 document.addEventListener("DOMContentLoaded", () => {
   const menuNavegacao = document.getElementById("menuNavegacao");
   const seletorIdiomaSwitch = document.getElementById("seletorIdiomaSwitch");
