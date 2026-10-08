@@ -22,7 +22,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script>window.gsap || document.write('<script src="./assets/js/gsap.min.js"><\/script>');</script>
   <script src="./assets/js/atlantida-book-anim.js" defer></script>
-  <script src="./assets/js/cursor-submarino.js" defer></script>
+  <!-- <script src="./assets/js/cursor-submarino.js" defer></script> -->
   <script src="./assets/js/i18n.js" defer></script>
   <script src="./assets/js/main.js" defer></script>
 </head>
@@ -70,7 +70,51 @@
     </div>
   </nav>
 
-  <main class="secao-apresentacao">
+  <!-- Menu de Navegação Vertical Lateral (Fixo à Direita) -->
+  <nav class="menu-lateral" id="menuLateral" aria-label="Navegação rápida pelas seções" aria-hidden="true">
+    <!-- Indicador de Rolagem Temático: Submarino Marcador de Profundidade -->
+    <div class="menu-lateral__indicador-submarino" id="indicadorSubmarino" aria-hidden="true">
+      <!-- <div class="menu-lateral__regua-trilha">
+        <div class="menu-lateral__regua-linha"></div>
+        <div class="menu-lateral__regua-marcas" id="reguaMarcas"></div>
+      </div> -->
+      <div class="menu-lateral__submarino-wrapper" id="submarinoWrapper">
+        <div class="menu-lateral__submarino-luz" aria-hidden="true"></div>
+        <img src="./assets/media/submarino-dir-1.png" alt="" class="menu-lateral__submarino-img" id="submarinoImg"
+          draggable="false" />
+      </div>
+    </div>
+
+    <ul class="menu-lateral__lista">
+      <li class="menu-lateral__item">
+        <a href="#inicio" class="menu-lateral__link" data-secao="inicio" title="Início">
+          <span class="menu-lateral__rotulo" data-i18n="nav_lateral.inicio">Início</span>
+        </a>
+      </li>
+      <li class="menu-lateral__item">
+        <a href="#o-mundo" class="menu-lateral__link" data-secao="o-mundo" title="O Mundo">
+          <span class="menu-lateral__rotulo" data-i18n="nav_lateral.mundo">O Mundo</span>
+        </a>
+      </li>
+      <li class="menu-lateral__item">
+        <a href="#habitantes" class="menu-lateral__link" data-secao="habitantes" title="Habitantes">
+          <span class="menu-lateral__rotulo" data-i18n="nav_lateral.habitantes">Habitantes</span>
+        </a>
+      </li>
+      <li class="menu-lateral__item">
+        <a href="#mural" class="menu-lateral__link" data-secao="mural" title="Mural">
+          <span class="menu-lateral__rotulo" data-i18n="nav_lateral.mural">Mural</span>
+        </a>
+      </li>
+      <li class="menu-lateral__item">
+        <a href="#contato" class="menu-lateral__link" data-secao="contato" title="Contato">
+          <span class="menu-lateral__rotulo" data-i18n="nav_lateral.contato">Contato</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <main class="secao-apresentacao" id="inicio">
     <button class="secao-scroll-btn" type="button" aria-label="Rolar para baixo">
       <img src="./assets/media/submarino-scroll.png" alt="Submarino">
       <span>scroll</span>
@@ -150,36 +194,40 @@
   </main>
 
   <!-- Seção 1 - O Mundo -->
-  <div class="risco">
-    <hr>
-    <p>0-200 M // Zona Fótica </p>
-    <hr>
-  </div>
-  <section></section>
+  <section id="o-mundo" class="secao-oceano" aria-label="O Mundo">
+    <div class="risco">
+      <hr>
+      <p>0-200 M // Zona Fótica </p>
+      <hr>
+    </div>
+  </section>
 
   <!-- Seção 2 - Os Habitantes -->
-  <div class="risco">
-    <hr>
-    <p>200-1000 M // Zona Crepusculo </p>
-    <hr>
-  </div>
-  <section></section>
+  <section id="habitantes" class="secao-oceano" aria-label="Habitantes">
+    <div class="risco">
+      <hr>
+      <p>200-1000 M // Zona Crepusculo </p>
+      <hr>
+    </div>
+  </section>
 
   <!-- Seção 3 - O Mural  -->
-  <div class="risco">
-    <hr>
-    <p>200-1000 M // Zona da Meia-Noite </p>
-    <hr>
-  </div>
-  <section></section>
+  <section id="mural" class="secao-oceano" aria-label="Mural">
+    <div class="risco">
+      <hr>
+      <p>200-1000 M // Zona da Meia-Noite </p>
+      <hr>
+    </div>
+  </section>
 
   <!-- Seção 4 - Contato  -->
-  <div class="risco">
-    <hr>
-    <p>200-1000 M // Zona do Abismo </p>
-    <hr>
-  </div>
-  <section></section>
+  <section id="contato" class="secao-oceano" aria-label="Contato">
+    <div class="risco">
+      <hr>
+      <p>200-1000 M // Zona do Abismo </p>
+      <hr>
+    </div>
+  </section>
 
   <div class="risco">
     <hr>

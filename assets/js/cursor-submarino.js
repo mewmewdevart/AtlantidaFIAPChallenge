@@ -26,12 +26,12 @@ function inicializarCursorSubmarino() {
 
   const fallbackLocal = {
     direita: [
-      "./assets/media/cursor-submarino-dir-1.png",
-      "./assets/media/cursor-submarino-dir-2.png"
+      "./assets/media/submarino-dir-1.png",
+      "./assets/media/submarino-dir-2.png"
     ],
     esquerda: [
-      "./assets/media/cursor-submarino-esq-1.png",
-      "./assets/media/cursor-submarino-esq-2.png"
+      "./assets/media/submarino-esq-1.png",
+      "./assets/media/submarino-esq-2.png"
     ]
   };
 
