@@ -22,7 +22,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script>window.gsap || document.write('<script src="./assets/js/gsap.min.js"><\/script>');</script>
   <script src="./assets/js/atlantida-book-anim.js" defer></script>
-  <!-- <script src="./assets/js/cursor-submarino.js" defer></script> -->
   <script src="./assets/js/i18n.js" defer></script>
   <script src="./assets/js/main.js" defer></script>
 </head>
@@ -173,10 +172,12 @@
             </div>
 
             <div class="livro-3d__acoes">
-              <button class="livro-3d__botao livro-3d__botao--primario" data-i18n="hero.btn_explorar">Explorar
-                Atlântida</button>
-              <button class="livro-3d__botao livro-3d__botao--secundario" data-i18n="hero.btn_saiba_mais">Saiba
-                mais</button>
+              <button class="botao botao--primario" data-i18n="hero.btn_explorar">
+                Explorar Atlântida
+              </button>
+              <button class="botao botao--secundario" data-i18n="hero.btn_saiba_mais">
+                Saiba mais
+              </button>
             </div>
           </div>
         </div>
@@ -195,7 +196,7 @@
 
   <!-- Seção 1 - O Mundo -->
   <section id="o-mundo" class="secao-oceano" aria-label="O Mundo">
-    <div class="risco">
+    <div class="linha-divisoria">
       <hr>
       <p>0-200 M // Zona Fótica </p>
       <hr>
@@ -204,7 +205,10 @@
 
   <!-- Seção 2 - Os Habitantes -->
   <section id="habitantes" class="secao-oceano" aria-label="Habitantes">
-    <div class="risco">
+    <img src="./assets/media/montanha-1.svg" alt="" class="montanha-front">
+    <img src="./assets/media/montanha-2.svg" alt="" class="montanha-back">
+    <div class="continuidade-montanha-front"></div>
+    <div class="linha-divisoria">
       <hr>
       <p>200-1000 M // Zona Crepusculo </p>
       <hr>
@@ -213,7 +217,7 @@
 
   <!-- Seção 3 - O Mural  -->
   <section id="mural" class="secao-oceano" aria-label="Mural">
-    <div class="risco">
+    <div class="linha-divisoria">
       <hr>
       <p>200-1000 M // Zona da Meia-Noite </p>
       <hr>
@@ -222,18 +226,24 @@
 
   <!-- Seção 4 - Contato  -->
   <section id="contato" class="secao-oceano" aria-label="Contato">
-    <div class="risco">
+    <div class="linha-divisoria">
       <hr>
       <p>200-1000 M // Zona do Abismo </p>
       <hr>
     </div>
+
+    <img src="./assets/media/montanha-1.svg" alt="" class="montanha-front-rodape">
   </section>
 
-  <div class="risco">
+  <div class="linha-divisoria">
     <hr>
     <p>200-1000 M // Zona do Oceânicas </p>
     <hr>
   </div>
+
+  <footer id="rodape" class="rodape">
+
+  </footer>
 </body>
 
 </html>

@@ -25,7 +25,6 @@ body {
   background-image: linear-gradient(0deg, var(--cor-abismo), var(--cor-jade));
 }
 
-
 /* ==== Ondulações fluidas (waves) ==== */
 .waves {
   position: absolute;
@@ -70,7 +69,6 @@ body {
     transform: translate3d(85px, 0, 0);
   }
 }
-
 
 /* ==== Menu de navegação flutuante ==== */
 .menu-navegacao {
@@ -198,7 +196,6 @@ body {
   transform: translateX(22px) rotate(45deg);
 }
 
-
 .menu-navegacao__gatilho {
   display: flex;
   flex-direction: column;
@@ -271,14 +268,12 @@ body {
   color: var(--cor-abismo);
 }
 
-
 .menu-lateral--visivel {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
   transform: translateY(-50%) translateX(0);
 }
-
 
 .menu-lateral__indicador-submarino {
   position: absolute;
@@ -382,7 +377,6 @@ body {
   border: 1px solid var(--cor-menta-neon);
   opacity: 0.6;
 }
-
 
 /* ==== Seção hero (apresentação) ==== */
 .secao-apresentacao {
@@ -646,13 +640,14 @@ body {
   align-items: center;
 }
 
-.livro-3d__botao {
+/* ==== Botões Genéricos e Reutilizáveis ==== */
+.botao {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: calc(0.24 * var(--livro-unidade)) calc(0.48 * var(--livro-unidade));
+  padding: 0.7rem 1.4rem;
   font-family: var(--fonte-texto);
-  font-size: calc(0.31 * var(--livro-unidade));
+  font-size: 0.95rem;
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
@@ -661,43 +656,51 @@ body {
   transition: transform 0.2s ease, background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.livro-3d__botao:hover {
+.botao:hover {
   transform: translateY(-2px);
 }
 
-.livro-3d__botao:active {
+.botao:active {
   transform: translateY(0);
 }
 
-.livro-3d__botao:focus-visible {
+.botao:focus-visible {
   outline: 2px solid var(--cor-sinal);
   outline-offset: 2px;
 }
 
-.livro-3d__botao--primario {
+/* Modificador Primário */
+.botao--primario {
   color: var(--cor-espuma);
   background-color: var(--cor-oceano);
   border-color: var(--cor-oceano);
   box-shadow: 0 4px 14px var(--cor-oceano-sombra);
 }
 
-.livro-3d__botao--primario:hover {
+.botao--primario:hover {
   background-color: var(--cor-oceano-hover);
   border-color: var(--cor-oceano-hover);
   box-shadow: 0 6px 18px var(--cor-oceano-sombra);
 }
 
-.livro-3d__botao--secundario {
+/* Modificador Secundário */
+.botao--secundario {
   color: var(--cor-sinal);
   background-color: transparent;
   border-color: var(--cor-oceano);
   box-shadow: none;
 }
 
-.livro-3d__botao--secundario:hover {
+.botao--secundario:hover {
   color: var(--cor-oceano-hover);
   background-color: rgba(27, 155, 149, 0.08);
   border-color: var(--cor-oceano-hover);
+}
+
+/* Ajuste proporcional específico para a diagramação interna do Livro 3D */
+.livro-3d__acoes .botao {
+  padding: calc(0.24 * var(--livro-unidade)) calc(0.48 * var(--livro-unidade));
+  font-size: calc(0.31 * var(--livro-unidade));
 }
 
 
@@ -768,50 +771,95 @@ body {
   color: var(--cor-pergaminho);
 }
 
-
-.risco {
+.linha-divisoria {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   font-family: var(--fonte-texto);
   font-size: 1rem;
-  color: var(--cor-jade);
+  color: var(--cor-sinal-claro);
+  z-index: 10;
 }
 
-.risco p {
+.linha-divisoria p {
   padding: 0 1rem;
   text-align: center;
 }
 
 hr {
   width: 40%;
-  border: 0.1px solid var(--cor-jade);
+  border: 0.1px solid var(--cor-sinal-claro);
 }
 
 section {
   min-height: 100vh;
 }
 
+/* ---------------------------- Seção 1 - O Mundo ---------------------------- */
 
-.cursor-submarino {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 999999;
-  width: 48px;
-  height: 48px;
-  pointer-events: none;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  opacity: 0;
-  transform: translate(20%, 14px);
-  transition: opacity 0.25s ease, transform 0.06s ease-out;
-  will-change: transform, left, top, background-image;
+/* ---------------------------- Seção 2 - Os Habitantes ---------------------------- */
+.montanha-front {
+  position: absolute;
+  z-index: 1;
+  top: 50px;
+  width: 100%;
 }
 
+.montanha-back {
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+}
 
+.continuidade-montanha-front {
+  /* background-image: linear-gradient(0deg, var(--cor-jade), var(--cor-abismo)); */
+  background-color: var(--cor-abismo);
+  position: absolute;
+  bottom: -1px;
+  height: 50%;
+  width: 100%;
+  z-index: 2;
+}
+
+#habitantes {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ---------------------------- Seção 3 - O Mural ---------------------------- */
+#mural {
+  background-image: linear-gradient(0deg, var(--cor-jade), var(--cor-abismo));
+}
+
+/* ---------------------------- Seção 4 - Contato ---------------------------- */
+#contato {
+  position: relative;
+  background-image: linear-gradient(0deg,
+      var(--cor-abismo) 0%,
+      var(--cor-jade) 100%);
+}
+
+.montanha-front-rodape {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: top center;
+  z-index: 20;
+}
+
+/* ---------------------------- Rodapé ---------------------------- */
+#rodape {
+  position: relative;
+  background-color: var(--cor-abismo);
+  height: 300px;
+  overflow: hidden;
+}
+
+/* ---------------------------- Media Queries (Responsividade) ---------------------------- */
 @media (max-width: 768px) {
   .waves {
     height: 40px;
@@ -841,7 +889,6 @@ section {
     width: 9px;
     height: 9px;
   }
-
 
   .menu-lateral__indicador-submarino {
     display: none !important;

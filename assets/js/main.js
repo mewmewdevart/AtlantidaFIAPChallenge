@@ -51,7 +51,6 @@ function inicializarMenuLateral() {
   const btnScrollHero = document.querySelector(".secao-scroll-btn");
   const submarinoWrapper = document.getElementById("submarinoWrapper");
   const submarinoImg = document.getElementById("submarinoImg");
-  
 
   const secoes = [
     document.getElementById("inicio"),
@@ -71,22 +70,6 @@ function inicializarMenuLateral() {
 
   const prefereMovimentoReduzido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-  
   const framesSubmarino = [
     "./assets/media/submarino-dir-1.png",
     "./assets/media/submarino-dir-2.png"
@@ -105,7 +88,6 @@ function inicializarMenuLateral() {
     }, 740);
   }
 
-  
   if (submarinoImg && typeof gsap !== "undefined" && !prefereMovimentoReduzido) {
     gsap.to(submarinoImg, {
       y: 3,
@@ -117,7 +99,6 @@ function inicializarMenuLateral() {
     });
   }
 
-  
   function calcularPosicoesItens() {
     
     const posicoes = [];
@@ -135,17 +116,11 @@ function inicializarMenuLateral() {
         id: alvoId,
         centerY,
         targetY
-      });
-
-      
-      
-      
+      });  
     });
-
     return posicoes;
   }
 
-  
   function atualizarEstadoMenu() {
     const scrollY = window.scrollY || window.pageYOffset;
     const secaoMundo = document.getElementById("o-mundo");
@@ -192,13 +167,11 @@ function inicializarMenuLateral() {
       }
     }
 
-    
     if (window.innerHeight + scrollY >= document.documentElement.scrollHeight - 60) {
       targetSubmarinoY = posicoes[posicoes.length - 1].targetY;
       secaoAtivaId = posicoes[posicoes.length - 1].id;
     }
 
-    
     if (submarinoWrapper) {
       if (typeof gsap !== "undefined" && !prefereMovimentoReduzido) {
         gsap.to(submarinoWrapper, {
@@ -212,7 +185,6 @@ function inicializarMenuLateral() {
       }
     }
 
-    
     links.forEach((link) => {
       const alvoId = link.getAttribute("href")?.replace("#", "");
       if (alvoId === secaoAtivaId) {
@@ -223,20 +195,7 @@ function inicializarMenuLateral() {
         link.removeAttribute("aria-current");
       }
     });
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
   }
-
   
   links.forEach((link) => {
     link.addEventListener("click", (evento) => {
@@ -248,7 +207,6 @@ function inicializarMenuLateral() {
       }
     });
   });
-
   
   if (btnScrollHero) {
     btnScrollHero.addEventListener("click", () => {
@@ -268,11 +226,6 @@ function inicializarMenuLateral() {
     calcularPosicoesItens();
     atualizarEstadoMenu();
   });
-
-  
   calcularPosicoesItens();
   atualizarEstadoMenu();
 }
-
-
-
