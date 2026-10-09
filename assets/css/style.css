@@ -1,4 +1,5 @@
 /* Folha de estilos principal - inclui variáveis e estilos de componentes */
+
 @import url("variables.css");
 
 /* ==== Reset e estilos globais ==== */
@@ -87,17 +88,17 @@ body {
   white-space: nowrap;
   cursor: pointer;
   background-color: var(--cor-jade);
-  border-radius: 50px;
+  border-radius: 100%;
   transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1),
     border-radius 0.4s ease,
-    background-color 0.3s ease,
-    box-shadow 0.3s ease;
+    background-color 0.3s ease;
 }
 
 .menu-navegacao:hover,
 .menu-navegacao--expandido {
   justify-content: space-between;
   width: 380px;
+  border-radius: 1rem;
 }
 
 .menu-navegacao__conteudo {
@@ -119,7 +120,6 @@ body {
   visibility: visible;
   transform: translateX(0);
 }
-
 
 .seletor-idioma {
   display: flex;
@@ -167,7 +167,7 @@ body {
   padding: 2px;
   background-color: var(--cor-casco);
   border: 1px solid var(--cor-sinal-claro);
-  border-radius: 24px;
+  border-radius: 1rem;
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
@@ -205,6 +205,9 @@ body {
   justify-content: center;
   width: 80px;
   height: 80px;
+  background-color: transparent;
+  border-radius: inherit;
+  transition: border-radius 0.4s ease;
 }
 
 .menu-navegacao__hamburguer {
@@ -245,7 +248,6 @@ body {
   transform: translateY(-7.75px) rotate(-45deg);
 }
 
-
 .menu-lateral {
   position: fixed;
   top: 50%;
@@ -255,7 +257,7 @@ body {
   flex-direction: column;
   padding: 0.85rem 0.65rem;
   background-color: var(--cor-pergaminho);
-  border-radius: 20px;
+  border-radius: 1rem;
   overflow: visible;
   opacity: 0;
   visibility: hidden;
@@ -378,7 +380,7 @@ body {
   opacity: 0.6;
 }
 
-/* ==== Seção hero (apresentação) ==== */
+/* ---------------------------- Seção 00 - Hero Section ---------------------------- */
 .secao-apresentacao {
   position: relative;
   display: flex;
@@ -439,6 +441,62 @@ body {
 }
 
 
+/* ==== Botões Genéricos e Reutilizáveis ==== */
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.4rem;
+  font-family: var(--fonte-texto);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: transform 0.2s ease, background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.botao:hover {
+  transform: translateY(-2px);
+}
+
+.botao:active {
+  transform: translateY(0);
+}
+
+.botao:focus-visible {
+  outline: 2px solid var(--cor-sinal);
+  outline-offset: 2px;
+}
+
+/* Modificador Primário */
+.botao--primario {
+  color: var(--cor-espuma);
+  background-color: var(--cor-oceano);
+  border-color: var(--cor-oceano);
+  box-shadow: 0 4px 14px var(--cor-oceano-sombra);
+}
+
+.botao--primario:hover {
+  background-color: var(--cor-oceano-hover);
+  border-color: var(--cor-oceano-hover);
+  box-shadow: 0 6px 18px var(--cor-oceano-sombra);
+}
+
+/* Modificador Secundário */
+.botao--secundario {
+  color: var(--cor-sinal);
+  background-color: transparent;
+  border-color: var(--cor-oceano);
+  box-shadow: none;
+}
+
+.botao--secundario:hover {
+  color: var(--cor-oceano-hover);
+  background-color: rgba(27, 155, 149, 0.08);
+  border-color: var(--cor-oceano-hover);
+}
+
 /* ==== Livro 3D interativo ==== */
 .livro-3d {
   position: relative;
@@ -458,7 +516,6 @@ body {
   will-change: transform;
 }
 
-
 .livro-3d__capa--base {
   left: calc(9.25 * var(--livro-unidade));
   z-index: 1;
@@ -471,7 +528,6 @@ body {
   border-radius: 0 calc(0.35 * var(--livro-unidade)) calc(0.35 * var(--livro-unidade)) 0;
   transform: translateZ(-2px);
 }
-
 
 .livro-3d__folha--direita {
   position: absolute;
@@ -638,63 +694,6 @@ body {
   flex-wrap: wrap;
   gap: calc(0.28 * var(--livro-unidade));
   align-items: center;
-}
-
-/* ==== Botões Genéricos e Reutilizáveis ==== */
-.botao {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.7rem 1.4rem;
-  font-family: var(--fonte-texto);
-  font-size: 0.95rem;
-  font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-  border: 1.5px solid transparent;
-  border-radius: 8px;
-  transition: transform 0.2s ease, background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
-}
-
-.botao:hover {
-  transform: translateY(-2px);
-}
-
-.botao:active {
-  transform: translateY(0);
-}
-
-.botao:focus-visible {
-  outline: 2px solid var(--cor-sinal);
-  outline-offset: 2px;
-}
-
-/* Modificador Primário */
-.botao--primario {
-  color: var(--cor-espuma);
-  background-color: var(--cor-oceano);
-  border-color: var(--cor-oceano);
-  box-shadow: 0 4px 14px var(--cor-oceano-sombra);
-}
-
-.botao--primario:hover {
-  background-color: var(--cor-oceano-hover);
-  border-color: var(--cor-oceano-hover);
-  box-shadow: 0 6px 18px var(--cor-oceano-sombra);
-}
-
-/* Modificador Secundário */
-.botao--secundario {
-  color: var(--cor-sinal);
-  background-color: transparent;
-  border-color: var(--cor-oceano);
-  box-shadow: none;
-}
-
-.botao--secundario:hover {
-  color: var(--cor-oceano-hover);
-  background-color: rgba(27, 155, 149, 0.08);
-  border-color: var(--cor-oceano-hover);
 }
 
 /* Ajuste proporcional específico para a diagramação interna do Livro 3D */
