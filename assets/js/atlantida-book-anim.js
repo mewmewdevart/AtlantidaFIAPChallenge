@@ -1,5 +1,7 @@
 /* Anima a abertura do livro 3D ao carregar a página, usando GSAP para rotacionar capas e revelar conteúdo */
 
+let timelineLivro = null;
+
 function executarAnimacaoAberturaLivro() {
   const livro = document.getElementById("livro3D");
   const capaFrontal = document.getElementById("capaFrontal");
@@ -8,6 +10,18 @@ function executarAnimacaoAberturaLivro() {
   const imagensIlustracao = document.querySelectorAll(".livro-3d__imagem-ilustracao");
 
   if (!livro || !capaFrontal || !folhaEsquerda || typeof gsap === "undefined") {
+    return;
+  }
+
+  const ehResolucaoMenor820 = window.matchMedia("(max-width: 820px)").matches;
+
+  if (ehResolucaoMenor820) {
+    if (timelineLivro) {
+      timelineLivro.kill();
+      timelineLivro = null;
+    }
+    gsap.killTweensOf([livro, capaFrontal, folhaEsquerda, folhaDireita, imagensIlustracao]);
+    gsap.set([livro, capaFrontal, folhaEsquerda, folhaDireita, imagensIlustracao], { clearProps: "all" });
     return;
   }
 
@@ -28,11 +42,11 @@ function executarAnimacaoAberturaLivro() {
   if (folhaDireita) gsap.set(folhaDireita, { zIndex: 10 });
   if (imagensIlustracao.length > 0) gsap.set(imagensIlustracao, { opacity: 0 });
 
-  const linhaDoTempo = gsap.timeline({
+  timelineLivro = gsap.timeline({
     defaults: { ease: "sine.inOut" }
   });
 
-  linhaDoTempo
+  timelineLivro
     .to(livro, {
       opacity: 1,
       duration: 0.4
@@ -70,6 +84,11 @@ function executarAnimacaoAberturaLivro() {
       }
     }, 1.1);
 }
+
+const mediaQueryResolucao820 = window.matchMedia("(max-width: 820px)");
+mediaQueryResolucao820.addEventListener("change", () => {
+  executarAnimacaoAberturaLivro();
+});
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", executarAnimacaoAberturaLivro);
