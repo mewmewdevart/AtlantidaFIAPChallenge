@@ -33,7 +33,6 @@ body {
   height: 15vh;
   min-height: 100px;
   max-height: 150px;
-  margin-bottom: -7px;
   background-color: var(--cor-jade-claro);
 }
 
@@ -133,7 +132,7 @@ body {
   font-weight: 700;
   letter-spacing: 0.5px;
   color: var(--cor-nevoa);
-  transition: color 0.3s ease, , transform 0.2s ease;
+  transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .seletor-idioma__rotulo--ativo {
@@ -856,11 +855,12 @@ section {
 
 /* ---------------------------- Media Queries (Responsividade) ---------------------------- */
 @media (max-width: 820px) {
+
   /* Remove o livro 3D e a ilustração */
   .livro-3d__capa--base,
   .livro-3d__capa--frontal,
   .livro-3d__folha--direita,
-  .livro-3d__folha--esquerda > .livro-3d__face--frente,
+  .livro-3d__folha--esquerda>.livro-3d__face--frente,
   .livro-3d__imagem-ilustracao {
     display: none !important;
   }
