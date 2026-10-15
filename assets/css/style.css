@@ -828,15 +828,558 @@ section {
 
 /* ---------------------------- Seção 3 - O Mural ---------------------------- */
 #mural {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(4rem, 8vh, 7rem) clamp(1.5rem, 7vw, 7rem) clamp(4rem, 8vh, 7rem) 1.5rem;
   background-image: linear-gradient(0deg, var(--cor-jade), var(--cor-abismo));
+}
+
+.mural__conteudo {
+  width: min(100%, 1160px);
+  margin: 0 auto;
+  font-family: var(--fonte-texto);
+}
+
+.mural__citacao {
+  margin: 0 auto clamp(4rem, 11vh, 8rem);
+  text-align: center;
+}
+
+.mural__citacao > span,
+.mural__sobretitulo {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--cor-menta-neon);
+}
+
+.mural__citacao p {
+  margin-top: 0.55rem;
+  font-size: clamp(0.92rem, 2vw, 1.3rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--cor-espuma);
+}
+
+.mural__cabecalho {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.mural__numero {
+  display: grid;
+  min-width: 5rem;
+  min-height: 4rem;
+  place-items: center;
+  padding-left: 0.6rem;
+  font-size: clamp(2.8rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--cor-oceano);
+  border-left: 2px solid var(--cor-oceano);
+}
+
+.mural__titulo-grupo {
+  min-width: 0;
+}
+
+.mural__sobretitulo {
+  margin-bottom: 0.15rem;
+  font-size: 0.62rem;
+}
+
+.mural__titulo-grupo h2 {
+  font-size: clamp(1.65rem, 4.2vw, 3rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--cor-espuma);
+}
+
+.mural__subtitulo {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--cor-ferrugem);
+}
+
+.mural__sinal {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  margin-left: auto;
+  color: var(--cor-menta-neon);
+  border: 2px solid var(--cor-oceano);
+  border-radius: 50%;
+}
+
+.mural__chapa {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  padding: clamp(1.2rem, 2.6vw, 1.9rem);
+  background-color: rgba(16, 84, 79, 0.23);
+  background-image: repeating-linear-gradient(125deg,
+      transparent 0,
+      transparent 15px,
+      rgba(62, 144, 137, 0.08) 16px,
+      transparent 17px);
+  border: 2px solid var(--cor-sinal);
+  box-shadow: 0 0 0 1px rgba(15, 244, 204, 0.08), inset 0 0 28px rgba(0, 3, 5, 0.28);
+}
+
+.mural__mensagem {
+  position: relative;
+  min-height: 10rem;
+  padding: 1.4rem 1.35rem 1rem;
+  cursor: pointer;
+  color: var(--cor-tinta);
+  background-color: var(--cor-pergaminho);
+  box-shadow: 0 4px 8px rgba(0, 3, 5, 0.22);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.mural__mensagem--troca {
+  background-color: var(--cor-pergaminho-borda);
+}
+
+.mural__mensagem--urgente {
+  grid-column: 1 / -1;
+}
+
+.mural__mensagem:hover {
+  z-index: 1;
+  outline: 2px solid var(--cor-ambar);
+  outline-offset: 2px;
+  filter: brightness(1.03);
+  box-shadow: 0 14px 24px rgba(0, 3, 5, 0.34);
+  transform: translateY(-6px) rotate(-0.5deg);
+}
+
+.mural__mensagem--troca:hover,
+.mural__mensagem--colheita:hover {
+  transform: translateY(-6px) rotate(0.5deg);
+}
+
+.mural__fita {
+  position: absolute;
+  top: -0.42rem;
+  left: 50%;
+  width: 3rem;
+  height: 0.8rem;
+  background-color: rgba(15, 244, 204, 0.76);
+  transform: translateX(-50%) rotate(-2deg);
+}
+
+.mural__mensagem-cabecalho {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.7rem;
+}
+
+.mural__mensagem-cabecalho h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--cor-tinta);
+}
+
+.mural__transmissao {
+  margin-top: 0.18rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.04em;
+  color: var(--cor-tinta-suave);
+}
+
+.mural__categoria {
+  flex: 0 0 auto;
+  padding: 0.2rem 0.36rem;
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--cor-ferrugem);
+  border: 1px solid currentColor;
+  transform: rotate(3deg);
+}
+
+.mural__categoria--urgente {
+  color: var(--cor-terracota);
+}
+
+.mural__texto {
+  margin-top: 1.25rem;
+  font-family: var(--fonte-titulo);
+  font-size: 1.05rem;
+  line-height: 1.4;
+  color: var(--cor-tinta-suave);
+}
+
+.mural__expiracao {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--cor-tinta-suave);
+}
+
+.mural__mensagem--urgente .mural__expiracao {
+  color: var(--cor-terracota);
+}
+
+.mural__rodape {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.55rem 1rem;
+  padding-top: 0.8rem;
+  margin-top: 0.8rem;
+  font-size: 0.59rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--cor-nevoa);
+  border-top: 1px solid rgba(62, 144, 137, 0.22);
+}
+
+.mural__vazio {
+  grid-column: 1 / -1;
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--cor-nevoa);
+}
+
+.mural__proxima,
+.mural__preservadas,
+.mural__periodo {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.mural__proxima,
+.mural__quantidade {
+  color: var(--cor-menta-neon);
+}
+
+.mural__periodo {
+  color: var(--cor-nevoa);
 }
 
 /* ---------------------------- Seção 4 - Contato ---------------------------- */
 #contato {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: clamp(4rem, 8vh, 7rem) clamp(1.5rem, 7vw, 7rem) clamp(4rem, 8vh, 7rem) 1.5rem;
   background-image: linear-gradient(0deg,
       var(--cor-abismo) 0%,
       var(--cor-jade) 100%);
+}
+
+.contato__conteudo {
+  position: relative;
+  z-index: 21;
+  width: min(100%, 1160px);
+  margin: 0 auto;
+  font-family: var(--fonte-texto);
+}
+
+.contato__citacao {
+  margin: 0 auto clamp(3.5rem, 9vh, 6rem);
+  text-align: center;
+}
+
+.contato__citacao > span,
+.contato__sobretitulo {
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--cor-menta-neon);
+}
+
+.contato__citacao p {
+  margin-top: 0.55rem;
+  font-size: clamp(0.95rem, 2vw, 1.3rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--cor-espuma);
+}
+
+.contato__cabecalho {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.contato__numero {
+  display: grid;
+  min-width: 5rem;
+  min-height: 4rem;
+  place-items: center;
+  padding-left: 0.6rem;
+  font-size: clamp(2.8rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--cor-oceano);
+  border-left: 2px solid var(--cor-oceano);
+}
+
+.contato__titulo-grupo {
+  min-width: 0;
+}
+
+.contato__sobretitulo {
+  margin-bottom: 0.15rem;
+  font-size: 0.62rem;
+}
+
+.contato__titulo-grupo h2 {
+  font-size: clamp(1.65rem, 4.2vw, 3rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--cor-espuma);
+}
+
+.contato__subtitulo {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--cor-ferrugem);
+}
+
+.contato__formulario {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(1.1rem, 2.6vw, 2rem);
+  color: var(--cor-menta-neon);
+  background-color: rgba(0, 10, 16, 0.9);
+  border: 2px solid var(--cor-sinal);
+  box-shadow: 8px 8px 0 var(--cor-terracota), 0 0 0 1px rgba(15, 244, 204, 0.08);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contato__formulario > * {
+  position: relative;
+  z-index: 1;
+}
+
+.contato__formulario:focus-within {
+  border-color: var(--cor-menta-neon);
+  box-shadow: 8px 8px 0 var(--cor-terracota), 0 0 28px rgba(15, 244, 204, 0.18);
+}
+
+.contato__terminal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.8rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid rgba(62, 144, 137, 0.35);
+}
+
+.contato__terminal-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+
+.contato__terminal-status i {
+  font-size: 0.45rem;
+  color: var(--cor-menta-neon);
+  animation: contato-pulso 2s ease-in-out infinite;
+}
+
+.contato__orientacao {
+  max-width: 52rem;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--cor-nevoa);
+}
+
+.contato__obrigatorios {
+  margin-top: 0.65rem;
+  font-size: 0.7rem;
+  color: var(--cor-nevoa);
+}
+
+.contato__campos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.1rem 1rem;
+  margin-top: 1.25rem;
+}
+
+.contato__campo {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.contato__campo--retorno,
+.contato__campo--mensagem {
+  grid-column: 1 / -1;
+}
+
+.contato__campo label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--cor-menta-neon);
+}
+
+.contato__campo label > span:last-child {
+  color: var(--cor-ambar);
+}
+
+.contato__campo input,
+.contato__campo select,
+.contato__campo textarea {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.7rem 0.8rem;
+  font: 400 0.88rem/1.4 var(--fonte-texto);
+  color: var(--cor-espuma);
+  background-color: rgba(0, 3, 5, 0.62);
+  border: 1px solid var(--cor-sinal);
+  border-radius: 0;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contato__campo textarea {
+  min-height: 7rem;
+  resize: vertical;
+}
+
+.contato__campo input::placeholder,
+.contato__campo textarea::placeholder {
+  color: rgba(169, 192, 190, 0.72);
+}
+
+.contato__campo input:hover,
+.contato__campo select:hover,
+.contato__campo textarea:hover {
+  border-color: var(--cor-sinal-claro);
+}
+
+.contato__campo select:invalid {
+  color: var(--cor-nevoa);
+}
+
+.contato__campo option {
+  color: var(--cor-espuma);
+  background-color: var(--cor-agua-profunda);
+}
+
+.contato__campo input:focus-visible,
+.contato__campo select:focus-visible,
+.contato__campo textarea:focus-visible {
+  border-color: var(--cor-menta-neon);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(15, 244, 204, 0.16);
+}
+
+.contato__campo [aria-invalid="true"] {
+  border-color: var(--cor-terracota);
+}
+
+.contato__erro {
+  font-size: 0.75rem;
+  line-height: 1.35;
+  color: var(--cor-terracota);
+}
+
+.contato__acoes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1rem;
+  margin-top: 1.1rem;
+  border-top: 1px solid rgba(62, 144, 137, 0.28);
+}
+
+.contato__aviso {
+  max-width: 32rem;
+  font-size: 0.7rem;
+  line-height: 1.4;
+  color: var(--cor-nevoa);
+}
+
+.contato__enviar {
+  display: inline-flex;
+  min-height: 2.9rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.75rem 1.15rem;
+  font: 700 0.75rem/1.2 var(--fonte-texto);
+  letter-spacing: 0.05em;
+  color: var(--cor-abismo);
+  cursor: pointer;
+  background-color: var(--cor-menta-neon);
+  border: 1px solid var(--cor-menta-neon);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.contato__enviar:hover {
+  background-color: var(--cor-jade-claro);
+  border-color: var(--cor-jade-claro);
+  box-shadow: 0 0 18px rgba(15, 244, 204, 0.28);
+  transform: translateY(-2px);
+}
+
+.contato__enviar:hover i {
+  animation: contato-sinal 0.8s ease-in-out infinite alternate;
+}
+
+.contato__enviar:focus-visible {
+  outline: 2px solid var(--cor-espuma);
+  outline-offset: 3px;
+}
+
+.contato__confirmacao {
+  padding: 0.8rem 1rem;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--cor-menta-neon);
+  background-color: rgba(15, 244, 204, 0.08);
+  border-left: 3px solid var(--cor-menta-neon);
+}
+
+@keyframes contato-pulso {
+  50% {
+    opacity: 0.4;
+    box-shadow: 0 0 8px var(--cor-menta-neon);
+  }
+}
+
+@keyframes contato-sinal {
+  to {
+    transform: scale(1.15);
+  }
 }
 
 .montanha-front-rodape {
@@ -847,19 +1390,248 @@ section {
   height: 300px;
   object-fit: cover;
   object-position: top center;
-  z-index: 20;
+  z-index: 0;
+  opacity: 0.35;
+  pointer-events: none;
 }
 
 /* ---------------------------- Rodapé ---------------------------- */
 #rodape {
   position: relative;
+  font-family: var(--fonte-texto);
   background-color: var(--cor-abismo);
-  height: 300px;
-  overflow: hidden;
+  min-height: 240px;
+  padding: 2.4rem 2rem 1rem;
+}
+
+.rodape__conteudo {
+  display: grid;
+  grid-template-columns: minmax(250px, 1.35fr) minmax(150px, 0.8fr) minmax(250px, 1fr);
+  gap: clamp(2rem, 7vw, 7rem);
+  width: min(100%, 1440px);
+  margin: 0 auto;
+}
+
+.rodape__marca {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--cor-espuma);
+  text-decoration: none;
+}
+
+.rodape__simbolo {
+  display: grid;
+  width: 2.8rem;
+  height: 2.8rem;
+  place-items: center;
+  flex: 0 0 2.8rem;
+}
+
+.rodape__simbolo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: screen;
+}
+
+.rodape__nome {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  font-size: 0.88rem;
+  line-height: 1.1;
+}
+
+.rodape__assinatura {
+  font-size: 0.54rem;
+  letter-spacing: 0.11em;
+  color: var(--cor-menta-neon);
+}
+
+.rodape__descricao {
+  max-width: 27rem;
+  margin: 0.9rem 0;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: var(--cor-nevoa);
+}
+
+.rodape__indicadores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.rodape__selo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.6rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  border-radius: 2rem;
+}
+
+.rodape__selo--profundidade {
+  color: var(--cor-menta-neon);
+  background-color: rgba(15, 244, 204, 0.1);
+}
+
+.rodape__selo--comunidade {
+  color: var(--cor-pergaminho);
+  background-color: rgba(224, 144, 40, 0.12);
+}
+
+.rodape__titulo-coluna {
+  margin-bottom: 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--cor-espuma);
+}
+
+.rodape__lista {
+  display: grid;
+  gap: 0.45rem;
+  padding: 0;
+  list-style: none;
+}
+
+.rodape__lista a,
+.rodape__lista li {
+  font-size: 0.81rem;
+  line-height: 1.35;
+  color: var(--cor-nevoa);
+}
+
+.rodape__lista a {
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.rodape__lista a:hover,
+.rodape__lista a:focus-visible {
+  color: var(--cor-menta-neon);
+}
+
+.rodape__lista--canais li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+}
+
+.rodape__icone-canal {
+  flex: 0 0 0.75rem;
+  font-size: 0.65rem;
+}
+
+.rodape__icone-canal--radio {
+  color: var(--cor-menta-neon);
+}
+
+.rodape__icone-canal--alerta {
+  color: var(--cor-ferrugem);
+}
+
+.rodape__icone-canal--assembleia {
+  color: var(--cor-ambar);
+}
+
+.rodape__base {
+  width: min(100%, 1440px);
+  padding-top: 0.65rem;
+  margin: 0.8rem auto 0;
+  border-top: 1px solid rgba(169, 192, 190, 0.18);
+}
+
+.rodape__base p {
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: rgba(169, 192, 190, 0.65);
 }
 
 /* ---------------------------- Media Queries (Responsividade) ---------------------------- */
 @media (max-width: 768px) {
+  #contato {
+    padding: 4rem 1rem;
+  }
+
+  .contato__citacao {
+    margin-bottom: 4rem;
+  }
+
+  .contato__numero {
+    min-width: 3.7rem;
+    min-height: 3rem;
+    padding-left: 0.4rem;
+    font-size: 2.7rem;
+  }
+
+  .contato__cabecalho {
+    gap: 0.7rem;
+  }
+
+  .contato__formulario {
+    padding: 1.25rem;
+  }
+
+  .contato__acoes {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .contato__enviar {
+    align-self: flex-end;
+  }
+
+  #mural {
+    padding: 4rem 1rem;
+  }
+
+  .mural__citacao {
+    margin-bottom: 4rem;
+  }
+
+  .mural__numero {
+    min-width: 3.7rem;
+    min-height: 3rem;
+    padding-left: 0.4rem;
+    font-size: 2.7rem;
+  }
+
+  .mural__cabecalho {
+    gap: 0.7rem;
+  }
+
+  .mural__chapa {
+    gap: 0.65rem;
+    padding: 1rem;
+  }
+
+  .mural__mensagem {
+    min-height: 9.5rem;
+    padding: 1.2rem 1rem 0.9rem;
+  }
+
+  #rodape {
+    padding: 2rem 1.25rem 1rem;
+  }
+
+  .rodape__conteudo {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 1.5rem;
+  }
+
+  .rodape__identidade {
+    grid-column: 1 / -1;
+  }
+
+  .rodape__descricao {
+    max-width: 36rem;
+  }
+
   .waves {
     height: 40px;
     min-height: 40px;
@@ -894,12 +1666,133 @@ section {
   }
 }
 
+@media (max-width: 480px) {
+  #contato {
+    padding: 3rem 0.85rem;
+  }
+
+  .contato__citacao {
+    margin-bottom: 3rem;
+  }
+
+  .contato__citacao > span,
+  .contato__sobretitulo {
+    font-size: 0.55rem;
+  }
+
+  .contato__cabecalho {
+    align-items: flex-start;
+  }
+
+  .contato__numero {
+    min-width: 2.8rem;
+    font-size: 2.1rem;
+  }
+
+  .contato__titulo-grupo h2 {
+    font-size: clamp(1.3rem, 6vw, 1.8rem);
+  }
+
+  .contato__subtitulo {
+    font-size: 0.55rem;
+  }
+
+  .contato__campos {
+    grid-template-columns: 1fr;
+  }
+
+  .contato__campo--retorno,
+  .contato__campo--mensagem {
+    grid-column: auto;
+  }
+
+  .contato__terminal {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .contato__formulario {
+    padding: 1rem;
+  }
+
+  #mural {
+    padding: 3rem 0.85rem;
+  }
+
+  .mural__citacao {
+    margin-bottom: 3rem;
+  }
+
+  .mural__citacao > span,
+  .mural__sobretitulo {
+    font-size: 0.55rem;
+  }
+
+  .mural__cabecalho {
+    align-items: flex-start;
+  }
+
+  .mural__numero {
+    min-width: 2.8rem;
+    font-size: 2.1rem;
+  }
+
+  .mural__titulo-grupo h2 {
+    font-size: clamp(1.3rem, 6vw, 1.8rem);
+  }
+
+  .mural__subtitulo {
+    font-size: 0.55rem;
+  }
+
+  .mural__sinal {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .mural__chapa {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+    padding: 1rem 0.8rem;
+  }
+
+  .mural__mensagem--urgente {
+    grid-column: auto;
+  }
+
+  .mural__rodape {
+    flex-direction: column;
+  }
+
+  .rodape__conteudo {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+  }
+
+  .rodape__identidade {
+    grid-column: auto;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
 
   body::before,
   body::after,
-  .parallax>use {
+  .parallax>use,
+  .mural__mensagem,
+  .contato__terminal-status i,
+  .contato__enviar:hover i {
     animation: none !important;
+  }
+
+  .mural__mensagem,
+  .contato__formulario,
+  .contato__campo input,
+  .contato__campo select,
+  .contato__campo textarea,
+  .contato__enviar {
+    transition: none !important;
   }
 
   .menu-lateral,

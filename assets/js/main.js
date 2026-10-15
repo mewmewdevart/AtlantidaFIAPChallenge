@@ -39,8 +39,186 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   
+  inicializarMural();
+  inicializarFormularioContato();
   inicializarMenuLateral();
 });
+
+function inicializarFormularioContato() {
+  const formulario = document.getElementById("formularioContato");
+  if (!formulario) return;
+
+  const campos = Array.from(formulario.querySelectorAll("[required]"));
+  const confirmacao = document.getElementById("confirmacaoContato");
+  const mensagensErro = {
+    contatoNome: { required: "contact.error_name", tooShort: "contact.error_name_short" },
+    contatoSetor: { required: "contact.error_sector" },
+    contatoAssunto: { required: "contact.error_reason" },
+    contatoPrioridade: { required: "contact.error_priority" },
+    contatoRetorno: { required: "contact.error_reply", tooShort: "contact.error_reply_short" },
+    contatoMensagem: { required: "contact.error_message", tooShort: "contact.error_message_short" }
+  };
+
+  function obterTexto(chave) {
+    const idioma = document.body.dataset.lang === "atlantida" ? "ptBrAtlantida" : "ptBr";
+    const dicionario = window.i18n?.dictionaries[idioma] || window.i18n?.getFallbackDictionary(idioma);
+    return dicionario?.[chave] || "Verifique este campo e tente novamente.";
+  }
+
+  function obterErro(campo) {
+    const mensagens = mensagensErro[campo.id];
+    if (!mensagens) return null;
+
+    if (!campo.value.trim()) return obterTexto(mensagens.required);
+    if (campo.minLength > 0 && campo.value.trim().length < campo.minLength) {
+      return obterTexto(mensagens.tooShort);
+    }
+    return null;
+  }
+
+  function validarCampo(campo) {
+    const erro = obterErro(campo);
+    const elementoErro = formulario.querySelector(`[data-erro-para="${campo.id}"]`);
+    campo.setAttribute("aria-invalid", String(Boolean(erro)));
+
+    if (elementoErro) {
+      elementoErro.textContent = erro || "";
+      elementoErro.hidden = !erro;
+    }
+
+    return !erro;
+  }
+
+  campos.forEach((campo) => {
+    const evento = campo.tagName === "SELECT" ? "change" : "input";
+    campo.addEventListener(evento, () => {
+      if (campo.getAttribute("aria-invalid") === "true") validarCampo(campo);
+    });
+  });
+
+  formulario.addEventListener("submit", (evento) => {
+    evento.preventDefault();
+    const camposInvalidos = campos.filter((campo) => !validarCampo(campo));
+
+    if (camposInvalidos.length > 0) {
+      camposInvalidos[0].focus();
+      return;
+    }
+
+    if (confirmacao) {
+      confirmacao.textContent = obterTexto("contact.success");
+      confirmacao.hidden = false;
+      formulario.reset();
+      confirmacao.focus();
+    }
+  });
+
+  window.addEventListener("app:language-changed", () => {
+    campos.forEach((campo) => {
+      if (campo.getAttribute("aria-invalid") === "true") validarCampo(campo);
+    });
+    if (confirmacao && !confirmacao.hidden) {
+      confirmacao.textContent = obterTexto("contact.success");
+    }
+  });
+}
+
+function inicializarMural() {
+  const mural = document.getElementById("muralMensagens");
+  if (!mural) return;
+
+  const mensagens = Array.from(mural.querySelectorAll(".mural__mensagem"));
+  const contadorMensagens = document.getElementById("muralQuantidade");
+  const proximaExpiracao = document.getElementById("muralProximaExpiracao");
+  const avisoMuralVazio = mural.querySelector(".mural__vazio");
+  const publicacoesEmMemoria = new Map();
+  const horaMs = 60 * 60 * 1000;
+
+  const mensagensAtivas = mensagens.map((mensagem) => {
+    const id = mensagem.dataset.mensagemId;
+    const duracaoMs = Number(mensagem.dataset.ttlHoras) * horaMs;
+    const idadeInicialMs = Number(mensagem.dataset.publicadaHaHoras) * horaMs;
+    const chave = `atlantida:mural:v2:${id}:publicadaEm`;
+    let publicadaEm;
+
+    try {
+      const publicadaEmSalva = localStorage.getItem(chave);
+      const timestampSalvo = publicadaEmSalva === null ? NaN : Number(publicadaEmSalva);
+
+      if (Number.isFinite(timestampSalvo) && timestampSalvo > 0) {
+        publicadaEm = timestampSalvo;
+      } else {
+        if (publicadaEmSalva !== null) {
+          console.warn(`A data de publicação salva para a mensagem "${id}" é inválida; uma nova data será definida.`);
+          localStorage.removeItem(chave);
+        }
+        publicadaEm = Date.now() - idadeInicialMs;
+        localStorage.setItem(chave, String(publicadaEm));
+      }
+    } catch (erro) {
+      console.warn(`Não foi possível salvar a publicação da mensagem "${id}" neste navegador. A ordem e o prazo valerão apenas nesta visita.`, erro);
+      publicadaEm = publicacoesEmMemoria.get(chave) || Date.now() - idadeInicialMs;
+      publicacoesEmMemoria.set(chave, publicadaEm);
+    }
+
+    const horaTransmissao = mensagem.querySelector(".mural__hora");
+    if (horaTransmissao) {
+      horaTransmissao.dateTime = new Date(publicadaEm).toISOString();
+      horaTransmissao.textContent = new Date(publicadaEm).toLocaleString("pt-BR", {
+        day: "2-digit",
+        month: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false
+      });
+    }
+
+    return {
+      elemento: mensagem,
+      publicadaEm,
+      expiracao: publicadaEm + duracaoMs,
+      contador: mensagem.querySelector(".mural__contador")
+    };
+  }).sort((a, b) => a.publicadaEm - b.publicadaEm);
+
+  mensagensAtivas.forEach(({ elemento }) => mural.insertBefore(elemento, avisoMuralVazio));
+
+  function formatarContagem(ms) {
+    const segundos = Math.max(0, Math.floor(ms / 1000));
+    const horas = Math.floor(segundos / 3600);
+    const minutos = Math.floor((segundos % 3600) / 60);
+    const segundosRestantes = segundos % 60;
+    return `${horas}h ${String(minutos).padStart(2, "0")}m ${String(segundosRestantes).padStart(2, "0")}s`;
+  }
+
+  function atualizarMural() {
+    const agora = Date.now();
+    let proximidade = Infinity;
+    let quantidadeAtiva = 0;
+
+    mensagensAtivas.forEach(({ elemento, expiracao, contador }) => {
+      const restante = expiracao - agora;
+
+      if (restante <= 0) {
+        elemento.remove();
+        return;
+      }
+
+      quantidadeAtiva += 1;
+      proximidade = Math.min(proximidade, restante);
+      if (contador) contador.textContent = formatarContagem(restante);
+    });
+
+    if (contadorMensagens) contadorMensagens.textContent = String(quantidadeAtiva);
+    if (proximaExpiracao) {
+      proximaExpiracao.textContent = Number.isFinite(proximidade) ? formatarContagem(proximidade) : "--:--:--";
+    }
+    if (avisoMuralVazio) avisoMuralVazio.hidden = quantidadeAtiva > 0;
+  }
+
+  atualizarMural();
+  window.setInterval(atualizarMural, 1000);
+}
 
 
 function inicializarMenuLateral() {
