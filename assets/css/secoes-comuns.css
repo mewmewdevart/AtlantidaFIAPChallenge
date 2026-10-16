@@ -1,0 +1,123 @@
+/* Estilos compartilhados pelas seções "O Mundo" e "Habitantes".
+   Linguagem visual: papel e fotos impressas sobre o fundo do mar. */
+
+/* ==== Contêiner de conteúdo ==== */
+.conteiner-secao {
+  /* Textura de papel feita com SVG embutido (sem arquivo extra): ruído marrom bem leve */
+  --textura-papel: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .38 0 0 0 0 .24 0 0 0 0 .1 0 0 0 .2 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 6rem 1.25rem;
+  font-family: var(--fonte-titulo);
+  color: var(--cor-pergaminho);
+}
+
+/* O style.css dá min-height: 100vh a toda <section> (as grandes seções da página).
+   Aqui dentro as <section> são só blocos de conteúdo, então voltam ao tamanho natural. */
+.conteiner-secao section {
+  min-height: 0;
+}
+
+/* No celular o menu lateral vira uma pílula estreita à direita: reserva espaço para ela */
+@media (max-width: 768px) {
+  .conteiner-secao {
+    padding-right: 3.6rem;
+  }
+}
+
+/* Entre 769px e 1359px o menu lateral (fixo à direita) cobriria o conteúdo: reserva espaço para ele */
+@media (min-width: 769px) and (max-width: 1359px) {
+  .conteiner-secao {
+    padding-right: 10.5rem;
+  }
+}
+
+/* ==== Título de seção ==== */
+/* Numeração (02, 03...) no mesmo estilo do Mural (04) e do Contato (05): a classe .secao__numero vem do style.css */
+.titulo-secao--numerada {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+@media (max-width: 520px) {
+  .titulo-secao--numerada {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+}
+
+.titulo-secao__codigo {
+  font-size: 1.1rem;
+  color: var(--cor-ambar);
+}
+
+.titulo-secao__texto {
+  margin-top: 0.1rem;
+  font-size: clamp(2.4rem, 6.5vw, 4.8rem);
+  overflow-wrap: break-word;
+  font-weight: 500;
+  line-height: 1.02;
+  color: var(--cor-pergaminho);
+}
+
+.titulo-secao__subtitulo {
+  margin-top: 0.6rem;
+  font-size: 1.3rem;
+    color: var(--cor-nevoa);
+}
+
+.subtitulo-secao {
+  font-size: clamp(2rem, 4vw, 2.7rem);
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--cor-pergaminho);
+}
+
+/* ==== Papel: base de todos os cartões ==== */
+.papel {
+  position: relative;
+  color: var(--cor-tinta);
+  background-color: var(--cor-pergaminho);
+  background-image: var(--textura-papel);
+  border: 1px solid var(--cor-pergaminho-borda);
+  border-radius: 10px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4), inset 0 0 44px rgba(130, 90, 40, 0.14);
+}
+
+/* ==== Foto impressa: moldura de papel com legenda ==== */
+.foto-impressa {
+  margin: 0;
+  padding: 0.7rem 0.7rem 0;
+  color: var(--cor-tinta);
+  background-color: var(--cor-pergaminho);
+  background-image: var(--textura-papel);
+  border-radius: 3px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5);
+}
+
+.foto-impressa img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.foto-impressa figcaption {
+  padding: 0.8rem 0.5rem 0.9rem;
+  font-size: 1.1rem;
+    text-align: center;
+  color: var(--cor-tinta-suave);
+}
+
+/* ==== Texto visível só para leitores de tela ==== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  clip: rect(0 0 0 0);
+}
