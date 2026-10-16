@@ -743,9 +743,11 @@ body {
 .livro-3d__emblema {
   margin-bottom: calc(0.3 * var(--livro-unidade));
   font-size: calc(1.5 * var(--livro-unidade));
-  filter: drop-shadow(0 2px 4px rgba(224, 144, 40, 0.4));
 }
 
+.livro-3d__emblema img {
+  width: 75%;
+}
 .livro-3d__titulo-capa {
   padding: calc(0.35 * var(--livro-unidade)) calc(0.6 * var(--livro-unidade));
   margin: 0;

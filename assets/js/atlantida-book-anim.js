@@ -53,11 +53,11 @@ function executarAnimacaoAberturaLivro() {
     })
     .to(livro, {
       xPercent: 0,
-      duration: 1.8
+      duration: 2
     }, 0.2)
     .to(capaFrontal, {
       rotateY: -180,
-      duration: 1.8,
+      duration: 2,
       onUpdate() {
         const rotacao = gsap.getProperty(capaFrontal, "rotateY");
         capaFrontal.style.zIndex = rotacao < -90 ? 2 : 30;
@@ -65,7 +65,7 @@ function executarAnimacaoAberturaLivro() {
     }, 0.2)
     .to(folhaEsquerda, {
       rotateY: -180,
-      duration: 1.4,
+      duration: 2.4,
       onUpdate() {
         const rotacao = gsap.getProperty(folhaEsquerda, "rotateY");
         folhaEsquerda.style.zIndex = rotacao < -90 ? 20 : 25;
@@ -82,7 +82,7 @@ function executarAnimacaoAberturaLivro() {
           });
         }
       }
-    }, 1.1);
+    }, 1.7);
 }
 
 const mediaQueryResolucao820 = window.matchMedia("(max-width: 820px)");
