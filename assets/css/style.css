@@ -432,6 +432,7 @@ body {
   width: 100px;
   object-fit: contain;
   transition: transform 0.3s ease;
+  filter: contrast(0.7) saturate(1) hue-rotate(-4deg);
 }
 
 .secao-scroll-btn:hover img {
@@ -748,6 +749,7 @@ body {
 .livro-3d__emblema img {
   width: 75%;
 }
+
 .livro-3d__titulo-capa {
   padding: calc(0.35 * var(--livro-unidade)) calc(0.6 * var(--livro-unidade));
   margin: 0;
@@ -799,7 +801,7 @@ body {
   border-top: 1px solid rgba(62, 144, 137, 0.4);
 }
 
-body > section,
+body>section,
 .secao-oceano {
   min-height: 100vh;
 }
@@ -812,9 +814,9 @@ body > section,
   text-align: center;
 }
 
-.secao__citacao > span,
-.mural__citacao > span,
-.contato__citacao > span,
+.secao__citacao>span,
+.mural__citacao>span,
+.contato__citacao>span,
 .secao__sobretitulo,
 .mural__sobretitulo,
 .contato__sobretitulo {
@@ -1150,7 +1152,7 @@ body > section,
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.contato__formulario > * {
+.contato__formulario>* {
   position: relative;
   z-index: 1;
 }
@@ -1225,7 +1227,7 @@ body > section,
   color: var(--cor-menta-neon);
 }
 
-.contato__campo label > span:last-child {
+.contato__campo label>span:last-child {
   color: var(--cor-ambar);
 }
 
@@ -1813,7 +1815,7 @@ body > section,
     margin-bottom: 3rem;
   }
 
-  .secao__citacao > span,
+  .secao__citacao>span,
   .secao__sobretitulo {
     font-size: 0.55rem;
   }

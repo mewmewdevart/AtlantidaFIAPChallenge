@@ -1,5 +1,6 @@
 /* Estilos da seção 1 - O Mundo: banner, FAQ, mapa com fotos e pulso da cidade (indicadores) */
 
+
 .mundo {
   position: relative;
   z-index: 3;
@@ -210,7 +211,8 @@
   position: absolute;
   display: flex;
   align-items: center;
-  padding: 0.85rem;   /* aumenta a área de toque (mínimo 44px) sem aumentar o ponto */
+  padding: 0.85rem;
+  /* aumenta a área de toque (mínimo 44px) sem aumentar o ponto */
   line-height: 1;
   cursor: pointer;
   background: none;
@@ -286,12 +288,14 @@
 .lugar__foto img {
   display: block;
   width: 100%;
-  height: auto;          /* sem isto, o atributo height do <img> vence o aspect-ratio */
+  height: auto;
+  /* sem isto, o atributo height do <img> vence o aspect-ratio */
   aspect-ratio: 16 / 10;
   object-fit: cover;
   border-radius: 6px;
   box-shadow: 0 6px 16px rgba(50, 27, 11, 0.4);
   animation: lugar-aparecer 0.45s ease;
+  filter: contrast(0.7) saturate(1) hue-rotate(-4deg);
 }
 
 .lugar__foto figcaption {
@@ -328,8 +332,13 @@
   border-radius: 999px;
 }
 
-.lugar__estado--calmo   { color: var(--cor-oceano-hover); }
-.lugar__estado--atencao { color: var(--cor-ferrugem); }
+.lugar__estado--calmo {
+  color: var(--cor-oceano-hover);
+}
+
+.lugar__estado--atencao {
+  color: var(--cor-ferrugem);
+}
 
 .lugar__resumo {
   margin-top: 0.8rem;
@@ -356,7 +365,8 @@
 .lugar__aviso,
 .lugar__poi {
   width: 100%;
-  min-height: 2.75rem;   /* área de toque confortável */
+  min-height: 2.75rem;
+  /* área de toque confortável */
   padding: 0.6rem 0 0.6rem 1.2rem;
   position: relative;
   font: inherit;
@@ -380,8 +390,13 @@
   border-radius: 50%;
 }
 
-.lugar__aviso::before { background: var(--cor-terracota); }
-.lugar__poi::before   { background: var(--cor-oceano); }
+.lugar__aviso::before {
+  background: var(--cor-terracota);
+}
+
+.lugar__poi::before {
+  background: var(--cor-oceano);
+}
 
 .lugar__aviso:hover,
 .lugar__poi:hover,
@@ -484,10 +499,19 @@
 }
 
 /* a última linha do painel não precisa do tracejado de baixo (o papel já termina ali) */
-.indicador:last-child { border-bottom: 0; }
+.indicador:last-child {
+  border-bottom: 0;
+}
 
-.indicador--atencao { --tom: var(--cor-ambar);      --tom-texto: #8a5410; }
-.indicador--risco   { --tom: var(--cor-terracota);  --tom-texto: var(--cor-ferrugem); }
+.indicador--atencao {
+  --tom: var(--cor-ambar);
+  --tom-texto: #8a5410;
+}
+
+.indicador--risco {
+  --tom: var(--cor-terracota);
+  --tom-texto: var(--cor-ferrugem);
+}
 
 .indicador__linha {
   display: flex;
@@ -561,8 +585,15 @@
 }
 
 @keyframes lugar-aparecer {
-  from { opacity: 0; transform: translateY(-4px); }
-  to   { opacity: 1; transform: none; }
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* ---------- Responsividade ---------- */
@@ -572,7 +603,9 @@
     column-gap: 2.2rem;
   }
 
-  .indicador:nth-last-child(2) { border-bottom: 0; }
+  .indicador:nth-last-child(2) {
+    border-bottom: 0;
+  }
 
   .lugar__info {
     grid-template-columns: 1fr 1fr;
@@ -584,7 +617,9 @@
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .indicador:nth-last-child(3) { border-bottom: 0; }
+  .indicador:nth-last-child(3) {
+    border-bottom: 0;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -623,6 +658,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .faq__resposta-envoltorio,
   .faq__icone::before,
   .faq__icone::after {

@@ -103,6 +103,7 @@
   display: block;
   width: 100%;
   height: auto;
+  filter: contrast(0.7) saturate(1) hue-rotate(-4deg);
 }
 
 .foto-impressa figcaption {
