@@ -1,0 +1,425 @@
+/* Estilos da seção 2 - Os Habitantes: banner da equipe, crachás de papel com dossiê e o Chasqui (quem pode ajudar) */
+
+/* A cena das montanhas ocupa o topo da seção; o conteúdo começa logo abaixo dela, sobre o fundo escuro.
+   A curva das montanhas termina em "50px + 17,4% da largura da seção" (a imagem escala com a largura).
+   Em margin-top, % é calculado sobre a largura, então o espaço acompanha a imagem em qualquer tela.
+   O + 40px compensa a altura da linha divisória (que fica antes no fluxo) e dá uma folga para não cortar a cena. */
+/* A cena de montanhas do style.css é alta demais para esta seção: achatamos 35% na vertical
+   (só visual, o layout não muda) e o margin-top abaixo acompanha. Para mais espaço, suba 0.65 e os 11.3%. */
+#habitantes .montanha-front,
+#habitantes .montanha-back {
+  transform: scaleY(0.65);
+  transform-origin: top;
+}
+
+.habitantes {
+  position: relative;
+  z-index: 3;
+  margin-top: calc(11.3% - 15px);
+  background-color: var(--cor-abismo);
+}
+
+/* Respiro curto: a cena das montanhas já faz o papel de "espaço" entre as seções */
+.habitantes .conteiner-secao {
+  padding-top: 2rem;
+}
+
+/* ---------- Banner da equipe ---------- */
+.equipe {
+  margin-top: 3rem;
+}
+
+.equipe img {
+  aspect-ratio: 16 / 9;
+  height: auto;           /* sem isto, o atributo height do <img> vence o aspect-ratio */
+  object-fit: cover;
+  object-position: 50% 35%;
+}
+
+/* ---------- Grade de crachás ---------- */
+.grade-habitantes {
+  display: grid;
+  gap: 2rem;
+  margin-top: 3.5rem;
+  align-items: start;   /* abrir um dossiê não estica os vizinhos */
+}
+
+.cracha {
+  overflow: visible;
+  padding: 0.9rem 0.9rem 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cracha:hover,
+.cracha--aberto {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.5), inset 0 0 44px rgba(130, 90, 40, 0.14);
+}
+
+.cracha__principal {
+  display: block;
+  width: 100%;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  background: none;
+  border: 0;
+}
+
+.cracha__foto {
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 1;
+  border-radius: 6px;
+  box-shadow: 0 6px 16px rgba(50, 27, 11, 0.45);
+}
+
+.cracha__foto img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.cracha:hover .cracha__foto img {
+  transform: scale(1.04);
+}
+
+.cracha__info {
+  display: block;
+  padding: 1.1rem 0.4rem 0.4rem;
+}
+
+.cracha__nome {
+  display: block;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.cracha__funcao {
+  display: block;
+  margin-top: 0.15rem;
+  min-height: 2.6em;   /* reserva 2 linhas: cargos curtos e longos ocupam o mesmo espaço */
+  font-size: 1.15rem;
+  line-height: 1.3;
+  color: var(--cor-ferrugem);
+}
+
+.cracha__bio {
+  /* Tamanho igual em todos os cards: a bio fechada mostra no máximo 4 linhas e sempre reserva 4 linhas.
+     O texto inteiro aparece no dossiê quando o card abre. */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  overflow: hidden;
+  min-height: 6em;     /* 4 linhas x line-height 1.5 */
+  margin-top: 0.8rem;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: var(--cor-tinta-suave);
+}
+
+.cracha--aberto .cracha__bio {
+  display: none;   /* a bio passa a aparecer dentro do dossiê */
+}
+
+/* ---------- Dossiê: anima de 0fr (fechado) para 1fr (aberto), sem precisar saber a altura ---------- */
+.dossie-envoltorio {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.cracha--aberto .dossie-envoltorio {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.dossie {
+  overflow: hidden;
+}
+
+.dossie__interno {
+  margin: 0.8rem 0.4rem 0;
+  padding-top: 1rem;
+  border-top: 2px dotted var(--cor-tinta-suave);
+}
+
+.dossie__dados {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.dossie__dados dt,
+.dossie__titulo {
+  font-size: 1rem;
+  color: var(--cor-ferrugem);
+}
+
+.dossie__dados dd {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+
+.dossie__titulo {
+  margin-top: 1rem;
+}
+
+.dossie__sabe {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.4rem;
+  list-style: none;
+}
+
+.dossie__sabe li {
+  padding: 0.1rem 0.8rem 0.15rem;
+  font-size: 1.05rem;
+  background: rgba(206, 77, 44, 0.12);
+  border: 1px solid rgba(193, 75, 44, 0.45);
+  border-radius: 999px;
+}
+
+.dossie__bio {
+  margin-top: 1.1rem;
+  font-size: 1.15rem;
+  line-height: 1.5;
+}
+
+.dossie__frase {
+  position: relative;
+  margin: 1.2rem 0 0.4rem;
+  padding: 0.2rem 0 0.2rem 2.4rem;
+}
+
+.dossie__frase::before {
+  content: "“";
+  position: absolute;
+  top: -0.7rem;
+  left: 0;
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--cor-terracota);
+}
+
+.dossie__frase p {
+  margin: 0;
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
+/* ---------- Rodapé do crachá ---------- */
+.cracha__rodape {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0.8rem 0.4rem 0;
+  padding: 0.7rem 0 0.9rem;
+  border-top: 1px dotted var(--cor-tinta-suave);
+}
+
+.cracha__lugar {
+  font-size: 1.05rem;
+  color: var(--cor-tinta-suave);
+}
+
+.cracha__botao {
+  min-height: 2.75rem;   /* área de toque confortável */
+  padding: 0 0.5rem;
+  font-family: var(--fonte-titulo);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--cor-ferrugem);
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  transition: color 0.2s ease;
+}
+
+.cracha__botao:hover {
+  color: var(--cor-oceano-hover);
+}
+
+.cracha__principal:focus-visible,
+.cracha__botao:focus-visible,
+.chasqui__campo:focus-visible {
+  outline: 2px solid var(--cor-oceano);
+  outline-offset: 3px;
+}
+
+/* ---------- O Chasqui: quem pode ajudar? ---------- */
+.chasqui {
+  margin-top: 6rem;
+  padding: 2rem 1.5rem 1.8rem;
+}
+
+.chasqui__codigo {
+  font-size: 1.15rem;
+  color: var(--cor-ferrugem);
+}
+
+.chasqui__titulo {
+  margin-top: 0.2rem;
+  font-size: clamp(2rem, 4.5vw, 2.8rem);
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.chasqui__texto {
+  max-width: 38rem;
+  margin-top: 0.6rem;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: var(--cor-tinta-suave);
+}
+
+.chasqui__form {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 1.5rem;
+}
+
+/* Campo com pauta de caderno: linhas desenhadas com gradiente */
+.chasqui__campo {
+  width: 100%;
+  min-height: 7.5rem;
+  padding: 0.35rem 1rem;
+  font: 1.3rem/2rem var(--fonte-titulo);
+  color: var(--cor-tinta);
+  resize: vertical;
+  background-color: rgba(255, 252, 244, 0.55);
+  background-image: repeating-linear-gradient(transparent 0 calc(2rem - 1px), rgba(100, 73, 56, 0.28) calc(2rem - 1px) 2rem);
+  background-attachment: local;
+  border: 1px solid var(--cor-pergaminho-borda);
+  border-radius: 8px 12px 7px 13px;
+}
+
+.chasqui__campo::placeholder {
+  color: rgba(100, 73, 56, 0.6);
+}
+
+.chasqui__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.chasqui__contador {
+  font-family: var(--fonte-texto);
+  font-size: 0.9rem;
+  color: var(--cor-tinta-suave);
+}
+
+.chasqui__erro {
+  min-height: 1.3em;
+  font-size: 1.1rem;
+  color: var(--cor-ferrugem);
+}
+
+.chasqui__resultado {
+  display: grid;
+  gap: 1.4rem;
+  margin-top: 1.8rem;
+  padding-top: 1.6rem;
+  border-top: 2px dotted var(--cor-tinta-suave);
+  animation: cracha-aparecer 0.4s ease;
+}
+
+.chasqui__foto {
+  width: 9rem;
+  height: 9rem;
+  object-fit: cover;
+  border: 5px solid var(--cor-pergaminho);
+  border-radius: 4px;
+  box-shadow: 0 6px 16px rgba(50, 27, 11, 0.45);
+}
+
+.chasqui__chame {
+  font-size: 1.1rem;
+  color: var(--cor-ferrugem);
+}
+
+.chasqui__nome {
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.chasqui__motivo {
+  margin-top: 0.6rem;
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.chasqui__subtitulo {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--cor-ferrugem);
+}
+
+.chasqui__passos {
+  display: grid;
+  gap: 0.2rem;
+  margin-top: 0.3rem;
+  padding-left: 1.4rem;
+  font-size: 1.15rem;
+  color: var(--cor-tinta-suave);
+}
+
+.chasqui__reforco {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  color: var(--cor-tinta-suave);
+}
+
+@keyframes cracha-aparecer {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ---------- Responsividade ---------- */
+@media (min-width: 640px) {
+  .grade-habitantes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .chasqui {
+    padding: 2.6rem 2.6rem 2.2rem;
+  }
+
+  .chasqui__resultado {
+    grid-template-columns: 9rem 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grade-habitantes {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cracha,
+  .cracha__foto img,
+  .dossie-envoltorio {
+    transition: none !important;
+  }
+
+  .chasqui__resultado {
+    animation: none !important;
+  }
+}

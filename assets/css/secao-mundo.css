@@ -1,0 +1,639 @@
+/* Estilos da seção 1 - O Mundo: banner, FAQ, mapa com fotos e pulso da cidade (indicadores) */
+
+.mundo {
+  position: relative;
+  z-index: 3;
+}
+
+.mundo__banner {
+  margin-top: 3rem;
+}
+
+.mundo__grade {
+  display: grid;
+  gap: 2.5rem;
+  margin-top: 3.5rem;
+  align-items: start;
+}
+
+/* ---------- Texto ---------- */
+.mundo__texto {
+  display: grid;
+  gap: 1.4rem;
+  font-size: 1.3rem;
+  line-height: 1.65;
+  color: var(--cor-espuma);
+}
+
+.mundo__capitular::first-letter {
+  float: left;
+  margin-right: 0.7rem;
+  font-size: 4.9rem;
+  font-weight: 500;
+  line-height: 0.82;
+  color: var(--cor-terracota);
+}
+
+.lei-da-casa {
+  margin-top: 0.8rem;
+  padding: 1.5rem 1.6rem 1.4rem;
+}
+
+.lei-da-casa__titulo {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 1.15rem;
+  color: var(--cor-terracota);
+}
+
+.lei-da-casa__texto {
+  font-size: 1.35rem;
+  line-height: 1.45;
+}
+
+/* ---------- FAQ (perguntas sobre a história do mundo) ---------- */
+.faq {
+  padding: 1.8rem 1.6rem 1.4rem;
+}
+
+.faq__titulo {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.faq__lista {
+  margin-top: 0.8rem;
+}
+
+.faq__item {
+  border-top: 1px dotted var(--cor-tinta-suave);
+}
+
+.faq__item:first-child {
+  border-top: 0;
+}
+
+.faq__pergunta {
+  margin: 0;
+  font: inherit;
+}
+
+.faq__botao {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 0.9rem;
+  width: 100%;
+  padding: 0.95rem 0;
+  font: inherit;
+  text-align: left;
+  color: inherit;
+  cursor: pointer;
+  background: none;
+  border: 0;
+}
+
+.faq__ano {
+  min-width: 3rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--cor-terracota);
+}
+
+.faq__texto {
+  font-size: 1.25rem;
+  line-height: 1.3;
+  transition: color 0.2s ease;
+}
+
+.faq__botao:hover .faq__texto,
+.faq__item--aberto .faq__texto {
+  color: var(--cor-ferrugem);
+}
+
+/* Ícone "+" desenhado com duas linhas; ao abrir, vira "−" */
+.faq__icone {
+  position: relative;
+  align-self: center;
+  width: 1rem;
+  height: 1rem;
+}
+
+.faq__icone::before,
+.faq__icone::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--cor-terracota);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.faq__icone::after {
+  transform: rotate(90deg);
+}
+
+.faq__item--aberto .faq__icone::after {
+  opacity: 0;
+  transform: rotate(0deg);
+}
+
+/* Resposta: anima de 0fr (fechada) para 1fr (aberta), sem precisar saber a altura */
+.faq__resposta-envoltorio {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 0.4s ease-in-out, opacity 0.4s ease-in-out;
+}
+
+.faq__item--aberto .faq__resposta-envoltorio {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.faq__resposta {
+  overflow: hidden;
+}
+
+.faq__resposta p {
+  margin: 0;
+  padding: 0 0 1.1rem 3.9rem;
+  font-size: 1.15rem;
+  line-height: 1.5;
+  color: var(--cor-tinta-suave);
+}
+
+.faq__botao:focus-visible {
+  outline: 2px solid var(--cor-oceano);
+  outline-offset: 2px;
+}
+
+/* ---------- Mapa da cidade ---------- */
+.cidade {
+  margin-top: 5.5rem;
+}
+
+.cidade__cabecalho {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem 2rem;
+}
+
+.cidade__dica {
+  font-size: 1.15rem;
+  color: var(--cor-nevoa);
+}
+
+.cidade__grade {
+  display: grid;
+  gap: 2.5rem;
+  margin-top: 1.8rem;
+  align-items: start;
+}
+
+.mapa-impresso {
+  position: relative;
+}
+
+.mapa-impresso__area {
+  position: relative;
+  line-height: 0;
+}
+
+/* Marcadores: pontos sobre o mapa, com o nome do lugar numa etiqueta de papel */
+.marcador {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  padding: 0.85rem;   /* aumenta a área de toque (mínimo 44px) sem aumentar o ponto */
+  line-height: 1;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  transform: translate(-50%, -50%);
+}
+
+.marcador__ponto {
+  width: 1.5rem;
+  height: 1.5rem;
+  background: var(--cor-oceano);
+  border: 3px solid var(--cor-pergaminho);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.marcador--atencao .marcador__ponto {
+  background: var(--cor-terracota);
+}
+
+.marcador__nome {
+  position: absolute;
+  top: 50%;
+  left: calc(100% - 0.2rem);
+  padding: 0.15rem 0.6rem 0.2rem;
+  font-family: var(--fonte-titulo);
+  font-size: 0.95rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--cor-tinta);
+  background: var(--cor-pergaminho);
+  border-radius: 9px 11px 8px 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.45);
+  transform: translateY(-50%);
+}
+
+.marcador--esquerda .marcador__nome {
+  right: calc(100% - 0.2rem);
+  left: auto;
+}
+
+.marcador:hover .marcador__ponto {
+  transform: scale(1.18);
+}
+
+.marcador--ativo .marcador__ponto {
+  background: var(--cor-ambar);
+  box-shadow: 0 0 0 7px rgba(224, 144, 40, 0.4), 0 2px 8px rgba(0, 0, 0, 0.6);
+  transform: scale(1.2);
+}
+
+.marcador--ativo .marcador__nome {
+  color: var(--cor-pergaminho);
+  background: var(--cor-tinta);
+}
+
+.marcador:focus-visible,
+.lugar button:focus-visible {
+  outline: 2px solid var(--cor-ambar);
+  outline-offset: 2px;
+}
+
+/* ---------- Painel do lugar selecionado ---------- */
+.lugar {
+  padding: 1.1rem 1.1rem 1.6rem;
+}
+
+.lugar__foto {
+  margin: 0;
+}
+
+.lugar__foto img {
+  display: block;
+  width: 100%;
+  height: auto;          /* sem isto, o atributo height do <img> vence o aspect-ratio */
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 6px 16px rgba(50, 27, 11, 0.4);
+  animation: lugar-aparecer 0.45s ease;
+}
+
+.lugar__foto figcaption {
+  margin-top: 0.6rem;
+  font-size: 1rem;
+  color: var(--cor-tinta-suave);
+}
+
+.lugar__corpo {
+  padding: 0.4rem 0.5rem 0;
+}
+
+.lugar__cabecalho {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem 1rem;
+  margin-top: 0.9rem;
+}
+
+.lugar__nome {
+  font-size: 2.1rem;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.lugar__estado {
+  padding: 0.1rem 0.8rem 0.15rem;
+  font-family: var(--fonte-texto);
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+}
+
+.lugar__estado--calmo   { color: var(--cor-oceano-hover); }
+.lugar__estado--atencao { color: var(--cor-ferrugem); }
+
+.lugar__resumo {
+  margin-top: 0.8rem;
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.lugar__subtitulo {
+  margin-top: 1.4rem;
+  padding-bottom: 0.2rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--cor-ferrugem);
+  border-bottom: 1px dotted var(--cor-tinta-suave);
+}
+
+.lugar__lista {
+  display: grid;
+  gap: 0.2rem;
+  margin-top: 0.4rem;
+  list-style: none;
+}
+
+.lugar__aviso,
+.lugar__poi {
+  width: 100%;
+  min-height: 2.75rem;   /* área de toque confortável */
+  padding: 0.6rem 0 0.6rem 1.2rem;
+  position: relative;
+  font: inherit;
+  font-size: 1.15rem;
+  text-align: left;
+  color: var(--cor-tinta);
+  cursor: pointer;
+  background: none;
+  border: 0;
+  transition: color 0.2s ease;
+}
+
+.lugar__aviso::before,
+.lugar__poi::before {
+  content: "";
+  position: absolute;
+  top: 1.2rem;
+  left: 0.1rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+}
+
+.lugar__aviso::before { background: var(--cor-terracota); }
+.lugar__poi::before   { background: var(--cor-oceano); }
+
+.lugar__aviso:hover,
+.lugar__poi:hover,
+.lugar__aviso[aria-expanded="true"],
+.lugar__poi[aria-expanded="true"] {
+  color: var(--cor-ferrugem);
+}
+
+.lugar__rastro,
+.lugar__info {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0.3rem 0 0.6rem 1.2rem;
+  padding-left: 0.9rem;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  color: var(--cor-tinta-suave);
+  border-left: 2px solid var(--cor-terracota);
+  animation: lugar-aparecer 0.35s ease;
+}
+
+.lugar__rastro {
+  padding-left: 2rem;
+  list-style: decimal;
+}
+
+.lugar__info {
+  border-left-color: var(--cor-oceano);
+}
+
+.lugar__info-titulo {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--cor-ferrugem);
+}
+
+.lugar__info p {
+  margin: 0;
+}
+
+/* ---------- Pulso da cidade (indicadores) ---------- */
+.pulso {
+  margin-top: 5.5rem;
+}
+
+.pulso__codigo {
+  font-size: 1.15rem;
+  color: var(--cor-ambar);
+}
+
+.pulso__intro {
+  max-width: 44rem;
+  margin-top: 0.6rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: var(--cor-nevoa);
+}
+
+.pulso__painel {
+  margin-top: 1.8rem;
+  padding: 1.2rem 1.2rem 1.4rem;
+}
+
+.pulso__cabecalho {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.3rem 1rem;
+  padding: 0.3rem 0.4rem 1rem;
+  border-bottom: 1px dotted var(--cor-tinta-suave);
+}
+
+.pulso__painel-titulo {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.pulso__painel-sub {
+  margin-left: 0.7rem;
+  font-size: 1.05rem;
+  color: var(--cor-tinta-suave);
+}
+
+.pulso__mare {
+  font-size: 1.05rem;
+  color: var(--cor-tinta-suave);
+}
+
+.pulso__grade {
+  display: grid;
+  gap: 0;
+}
+
+.indicador {
+  --tom: var(--cor-oceano);
+  --tom-texto: var(--cor-oceano-hover);
+  padding: 1.2rem 0.5rem 1.1rem;
+  border-bottom: 1px dotted var(--cor-tinta-suave);
+}
+
+/* a última linha do painel não precisa do tracejado de baixo (o papel já termina ali) */
+.indicador:last-child { border-bottom: 0; }
+
+.indicador--atencao { --tom: var(--cor-ambar);      --tom-texto: #8a5410; }
+.indicador--risco   { --tom: var(--cor-terracota);  --tom-texto: var(--cor-ferrugem); }
+
+.indicador__linha {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.indicador__nome {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.indicador__estado {
+  padding: 0.05rem 0.7rem 0.1rem;
+  font-family: var(--fonte-texto);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--tom-texto);
+  background: color-mix(in srgb, var(--tom) 16%, transparent);
+  border: 1px solid color-mix(in srgb, var(--tom) 60%, transparent);
+  border-radius: 999px;
+}
+
+.indicador__medida {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-top: 0.3rem;
+}
+
+.indicador__valor {
+  font-size: 2.6rem;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.indicador__unidade {
+  margin-left: 0.3rem;
+  font-family: var(--fonte-texto);
+  font-size: 0.9rem;
+  color: var(--cor-tinta-suave);
+}
+
+.indicador__tendencia {
+  font-size: 1.05rem;
+  color: var(--tom-texto);
+}
+
+.indicador__barra {
+  height: 0.5rem;
+  margin-top: 0.5rem;
+  background: rgba(50, 27, 11, 0.14);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.indicador__barra span {
+  display: block;
+  height: 100%;
+  background: var(--tom);
+  border-radius: 999px;
+}
+
+.indicador__nota {
+  margin-top: 0.7rem;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  color: var(--cor-tinta-suave);
+}
+
+@keyframes lugar-aparecer {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ---------- Responsividade ---------- */
+@media (min-width: 640px) {
+  .pulso__grade {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2.2rem;
+  }
+
+  .indicador:nth-last-child(2) { border-bottom: 0; }
+
+  .lugar__info {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1360px) {
+  .pulso__grade {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .indicador:nth-last-child(3) { border-bottom: 0; }
+}
+
+@media (min-width: 1024px) {
+  .mundo__grade {
+    grid-template-columns: 1.2fr 0.8fr;
+  }
+
+  .cidade__grade {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .conteiner-secao {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .marcador__nome {
+    font-size: 0.875rem;
+  }
+
+  /* Mapa pequeno: só o lugar selecionado mostra a etiqueta (o nome dos outros continua no aria-label) */
+  .marcador:not(.marcador--ativo) .marcador__nome {
+    display: none;
+  }
+
+  .marcador__ponto {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .mundo__texto {
+    font-size: 1.2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq__resposta-envoltorio,
+  .faq__icone::before,
+  .faq__icone::after {
+    transition: none !important;
+  }
+
+  .marcador__ponto,
+  .lugar__foto img,
+  .lugar__rastro,
+  .lugar__info {
+    animation: none !important;
+    transition: none !important;
+  }
+}

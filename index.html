@@ -18,6 +18,10 @@
   <!-- Estilos -->
   <link rel="stylesheet" href="./assets/css/variables.css">
   <link rel="stylesheet" href="assets/css/style.css?v=2">
+  <link rel="stylesheet" href="./assets/css/secoes-comuns.css">
+  <link rel="stylesheet" href="./assets/css/secao-mundo.css">
+  <link rel="stylesheet" href="./assets/css/secao-habitantes.css">
+
 
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -25,6 +29,10 @@
   <script src="./assets/js/atlantida-book-anim.js?v=3" defer></script>
   <script src="./assets/js/i18n.js" defer></script>
   <script src="./assets/js/main.js" defer></script>
+  <script src="./assets/js/idioma-secoes.js" defer></script>
+  <script src="./assets/js/dados-mundo-habitantes.js" defer></script>
+  <script src="./assets/js/secao-mundo.js" defer></script>
+  <script src="./assets/js/secao-habitantes.js" defer></script>
 
   <link rel="apple-touch-icon" sizes="180x180" href="./assets/media/favicon_io/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/media/favicon_io/favicon-32x32.png">
@@ -205,10 +213,128 @@
 
   <!-- Seção 1 - O Mundo -->
   <section id="o-mundo" class="secao-oceano" aria-label="O Mundo">
-    <div class="linha-divisoria" role="separator" aria-label="Profundidade: 0 a 200 metros, Zona Fótica">
+    <div class="linha-divisoria" role="separator" aria-label="Profundidade: 0 a 200 metros, Zona Fótica" data-atl-aria-label="Ukhu kay: 0 manta 200 metro kama, K'anchay Pacha">
       <hr>
-      <p>0-200 M // Zona Fótica</p>
+      <p data-atl="0-200 M // K'anchay Pacha">0-200 M // Zona Fótica</p>
       <hr>
+    </div>
+
+    <div class="mundo">
+      <div class="conteiner-secao">
+        <header class="titulo-secao titulo-secao--numerada">
+          <span class="secao__numero" aria-hidden="true">02</span>
+          <div class="titulo-secao__grupo">
+            <p class="titulo-secao__codigo" data-atl="Ñuqanchik willakuy">Nossa história</p>
+            <h2 class="titulo-secao__texto" data-i18n="nav_lateral.mundo">O Mundo</h2>
+            <p class="titulo-secao__subtitulo" data-atl="Imaynatam llaqtaqa ukhu quchaman chayarqa">Como a cidade chegou ao fundo do mar</p>
+          </div>
+        </header>
+
+        <figure class="foto-impressa mundo__banner">
+          <img src="./assets/media/mundo/corte-cidade.webp" alt="Corte da cidade submersa: cúpulas no alto, jardins, salões, estaleiro e um fogo aceso no fundo" data-atl-alt="Ukhu llaqta kuchusqa: hanaqpi cúpulakuna, chakrakuna, hatun wasikuna, tepan wasi, ukhupi k'anchaq kütralwan" width="1500" height="844" loading="lazy">
+          <figcaption data-atl="Atlântida kuchusqa: hanaqpi cúpulakuna, ukhupi ukhu kütral.">Corte de Atlântida: as cúpulas no alto, o fogo-fundo lá embaixo.</figcaption>
+        </figure>
+
+        <div class="mundo__grade">
+          <div class="mundo__texto">
+            <p class="mundo__capitular" data-atl="Kay pachaqa mana kawsanapaq tukukuptin, Abya Yala suyukunamanta runakuna ukhu quchaman uraykurqanku. Allpa qhawaypa ñawpaq yachayninta apaspa, llasaq ukhupi wasichayta yacharqanku. Chaymantam Atlântida paqarirqa; paykunaqa Ñandeyaku sutichanku: ñuqanchik yaku.">Quando a superfície ficou inabitável, gente das periferias e dos povos originários da América Latina desceu para o fundo do mar. Levaram o saber antigo de cuidar da terra e aprenderam a construir sob pressão. Dessa mistura nasceu Atlântida, que seus moradores chamam de Ñandeyaku: nossa água.</p>
+            <p data-atl="Iskay chunka hukniyuq wata qhipamanta, wayrapas yakupas tukukuyman chayanña. Mana kamachiqniyuq mina-llank&#x27;aqkuna qucha pampata ñut&#x27;unku, cúpulakunatapas manchachinku. Kay portalqa t&#x27;aqasqa ayllukunata tinkichin, yanapata waqyan, Pachamamata harkaqkunata huñun.">Vinte e um anos depois, o ar e a água estão no limite. Mineradoras sem dono rasgam o leito do oceano e ameaçam as cúpulas. Este portal liga os bairros isolados, chama ajuda e organiza a resistência ecológica.</p>
+
+            <aside class="lei-da-casa papel">
+              <span class="lei-da-casa__titulo" data-atl="Wasi kamachiy">Lei da casa</span>
+              <p class="lei-da-casa__texto" data-atl="Huk ayllu wayrawan mana kaptinqa, manam imapas huk ayllulla kanchu.">Se um bairro está sem ar, nada é de um bairro só.</p>
+            </aside>
+          </div>
+
+          <section class="faq papel" aria-labelledby="tituloFaq">
+            <h3 class="faq__titulo" id="tituloFaq" data-atl="Sapa kuti tapukuykuna">Perguntas frequentes</h3>
+            <div class="faq__lista">
+              <div class="faq__item faq__item--aberto">
+                <h4 class="faq__pergunta"><button type="button" class="faq__botao" id="faqBotao2154" aria-expanded="true" aria-controls="faqResposta2154">
+                  <strong class="faq__ano">2154</strong>
+                  <span class="faq__texto" data-atl="Hawa pachapi imataq pasarqa?">O que aconteceu com a superfície?</span>
+                  <span class="faq__icone" aria-hidden="true"></span>
+                </button></h4>
+                <div class="faq__resposta-envoltorio" id="faqResposta2154" role="region" aria-labelledby="faqBotao2154">
+                  <div class="faq__resposta">
+                    <p data-atl="2154 watapi qhipa yaku punkukuna wichqakurqa. Hawa pachapi manañam kawsayta atirqankuchu; kuchu ayllukunapas ñawpaq runakunapas ukhu quchapi pakakunata maskayta qallarirqanku.">Em 2154 os últimos portos fecharam. Ninguém mais podia viver na superfície, e as comunidades das periferias e dos povos originários começaram a procurar abrigo no fundo do mar.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="faq__item">
+                <h4 class="faq__pergunta"><button type="button" class="faq__botao" id="faqBotao2161" aria-expanded="false" aria-controls="faqResposta2161">
+                  <strong class="faq__ano">2161</strong>
+                  <span class="faq__texto" data-atl="Pitaq ñawpaqta uraykurqa?">Quem desceu primeiro?</span>
+                  <span class="faq__icone" aria-hidden="true"></span>
+                </button></h4>
+                <div class="faq__resposta-envoltorio" id="faqResposta2161" role="region" aria-labelledby="faqBotao2161">
+                  <div class="faq__resposta" inert>
+                    <p data-atl="2161 watapi tukuy ayllukuna huñuspa uraykurqanku, muhukunata llank&#x27;ana ruwaykunatawan allpa qhawaypa yachayninta apaspa. Uraykuyta kawiñpi akllarqanku, ayllu ayllumanta.">Em 2161 famílias inteiras desceram juntas, com sementes, ferramentas e o saber de cuidar da terra. A descida foi decidida em assembleia, bairro por bairro.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="faq__item">
+                <h4 class="faq__pergunta"><button type="button" class="faq__botao" id="faqBotao2168" aria-expanded="false" aria-controls="faqResposta2168">
+                  <strong class="faq__ano">2168</strong>
+                  <span class="faq__texto" data-atl="Haykapitaq llaqta samayta qallarirqa?">Quando a cidade começou a respirar?</span>
+                  <span class="faq__icone" aria-hidden="true"></span>
+                </button></h4>
+                <div class="faq__resposta-envoltorio" id="faqResposta2168" role="region" aria-labelledby="faqBotao2168">
+                  <div class="faq__resposta" inert>
+                    <p data-atl="2168 watapi ñawpaq cochayuyokuna cúpulakunata wichqanapaq tupuq wayrata qurqa. Chay punchawmi llaqtaqa suti hap&#x27;irqa: Ñandeyaku, ñuqanchik yaku.">Em 2168 as primeiras algas deram ar suficiente para selar as cúpulas. Nesse dia a cidade ganhou nome: Ñandeyaku, nossa água.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="faq__item">
+                <h4 class="faq__pergunta"><button type="button" class="faq__botao" id="faqBotao2189" aria-expanded="false" aria-controls="faqResposta2189">
+                  <strong class="faq__ano">2189</strong>
+                  <span class="faq__texto" data-atl="Imaynatam harkay paqarirqa?">Como nasceu a resistência?</span>
+                  <span class="faq__icone" aria-hidden="true"></span>
+                </button></h4>
+                <div class="faq__resposta-envoltorio" id="faqResposta2189" role="region" aria-labelledby="faqBotao2189">
+                  <div class="faq__resposta" inert>
+                    <p data-atl="2189 watapi mana kamachiqniyuq mina-llank&#x27;aqkuna qucha pampata ñut&#x27;uyta qallarirqanku. Ñe&#x27;ẽ Wasipi radioqa ayllukunata willanapaq ñanta kichararqa, chaymantam Pachamama harkay paqarirqa.">Em 2189 as mineradoras sem dono começaram a rasgar o leito do oceano. A rádio da Casa das Vozes abriu um canal para avisar os bairros, e dali nasceu a resistência ecológica.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Mapa da cidade: o secao-mundo.js cria os marcadores e o painel do lugar -->
+        <div class="cidade">
+          <header class="cidade__cabecalho">
+            <h3 class="subtitulo-secao" data-atl="Llaqta mapu">Mapa da cidade</h3>
+            <p class="cidade__dica" data-atl="Mapapi huk unanchata llamiy, chay tiyanata riqsinaykipaq.">Toque num ponto do mapa para conhecer o lugar.</p>
+          </header>
+
+          <div class="cidade__grade">
+            <figure class="foto-impressa mapa-impresso">
+              <div class="mapa-impresso__area" id="mapaCidade" role="group" aria-label="Lugares da cidade" data-atl-aria-label="Llaqtap tiyanakuna">
+                <img src="./assets/media/mundo/mapa-cidade.webp" alt="Mapa da cidade vista de cima: um anel com o sol no centro, campos de algas, estaleiro, jardins e ruínas ao redor" data-atl-alt="Llaqta hanaqmanta qhawasqa mapa: muyu intiwan chawpipi, cochayuyo chakrakuna, tepan wasi, ruinakunapas muyuypi" width="1100" height="1100" loading="lazy">
+              </div>
+              <figcaption data-atl="Atlântida hanaqmanta qhawasqa.">Atlântida vista de cima.</figcaption>
+            </figure>
+
+            <div class="lugar papel" id="painelLugar" aria-live="polite"></div>
+          </div>
+        </div>
+
+        <!-- Pulso da cidade: o secao-mundo.js cria os indicadores a partir de dados-mundo-habitantes.js -->
+        <section class="pulso" aria-labelledby="tituloPulso">
+          <p class="pulso__codigo" data-atl="Kunan llaqtapi">Agora na cidade</p>
+          <h3 class="subtitulo-secao" id="tituloPulso" data-atl="Llaqtayolotl">O pulso da cidade</h3>
+          <p class="pulso__intro" data-atl="Kay yupaykunaqa sapa qucha puriypi hukmanyan. Mayqinpas manchaypi kaptin, portalqa ayllukunata yanapanapaq waqyan.">Os números abaixo mudam a cada maré. Quando um entra em risco, o portal chama a comunidade para ajudar.</p>
+
+          <div class="pulso__painel papel">
+            <header class="pulso__cabecalho">
+              <p><strong class="pulso__painel-titulo" data-atl="Kawsaypaq imakuna">Recursos vitais</strong><span class="pulso__painel-sub" data-atl="Mayqinkuna manchaypi">Quais estão em risco</span></p>
+              <span class="pulso__mare" data-atl="Kunan qucha puriy">Maré atual</span>
+            </header>
+            <div class="pulso__grade" id="pulsoGrade"></div>
+          </div>
+        </section>
+      </div>
     </div>
   </section>
 
@@ -217,10 +343,53 @@
     <img src="./assets/media/montanha-1.svg" alt="" class="montanha-front">
     <img src="./assets/media/montanha-2.svg" alt="" class="montanha-back">
     <div class="continuidade-montanha-front"></div>
-    <div class="linha-divisoria" role="separator" aria-label="Profundidade: 200 a 1000 metros, Zona Crepuscular">
+    <div class="linha-divisoria" role="separator" aria-label="Profundidade: 200 a 1000 metros, Zona Crepuscular" data-atl-aria-label="Ukhu kay: 200 manta 1000 metro kama, Chisi Pacha">
       <hr>
-      <p>200-1000 M // Zona Crepuscular</p>
+      <p data-atl="200-1000 M // Chisi Pacha">200-1000 M // Zona Crepuscular</p>
       <hr>
+    </div>
+
+    <div class="habitantes">
+      <div class="conteiner-secao">
+        <header class="titulo-secao titulo-secao--numerada">
+          <span class="secao__numero" aria-hidden="true">03</span>
+          <div class="titulo-secao__grupo">
+            <p class="titulo-secao__codigo" data-atl="Kaypi kawsaqkuna">Quem vive aqui</p>
+            <h2 class="titulo-secao__texto" data-i18n="nav_lateral.habitantes">Habitantes</h2>
+            <p class="titulo-secao__subtitulo" data-atl="Suqta runakuna llaqtata qhawanku">Seis pessoas cuidam da cidade</p>
+          </div>
+        </header>
+
+        <figure class="foto-impressa equipe">
+          <img src="./assets/media/habitantes/equipe-submarina.webp"
+            alt="Os seis moradores reunidos em volta da mesa do mapa" data-atl-alt="Suqta runakuna mapa-mesa muyuypi huñusqa" width="1400" height="1050" loading="lazy">
+          <figcaption data-atl="Suqta runakuna mapa-mesa muyuypi huñusqa.">Os seis moradores reunidos em volta da mesa do mapa.</figcaption>
+        </figure>
+
+        <!-- Os 6 crachás são criados pelo secao-habitantes.js a partir de dados-mundo-habitantes.js -->
+        <div class="grade-habitantes" id="listaHabitantes"></div>
+
+        <!-- O Chasqui: indica quem pode ajudar -->
+        <section class="chasqui papel">
+          <p class="chasqui__codigo" data-atl="Chaski">O Chasqui</p>
+          <h3 class="chasqui__titulo" data-atl="Pitaq yanapanman?">Quem pode ajudar?</h3>
+          <p class="chasqui__texto" data-atl="Imachus pasashasqanta willay. Chaskiqa ñankunata tuparispa, yanapayta atiqpa sutinwan kutimun.">Conte o que está acontecendo. O Chasqui corre pelos corredores e volta com o nome de quem pode ajudar.</p>
+
+          <form class="chasqui__form" id="chasquiForm" novalidate>
+            <label for="chasquiTexto" class="sr-only" data-atl="Imachus pasashasqanta willay">Conte a missão</label>
+            <textarea class="chasqui__campo" id="chasquiTexto" rows="4" maxlength="800"
+              placeholder="Ex.: A parede perto das estufas está rangendo e entrou água..."
+              data-atl-placeholder="Hina: q'oñi wasikunap qayllanpi tepantli qarqarayan, yakutaq yaykurqa..."></textarea>
+            <div class="chasqui__acoes">
+              <button type="submit" class="botao botao--primario" id="chasquiBotao" data-atl="Chaskita kachay">Mandar o Chasqui</button>
+              <span class="chasqui__contador" id="chasquiContador">0/800</span>
+            </div>
+            <p class="chasqui__erro" id="chasquiErro" role="alert"></p>
+          </form>
+
+          <div id="chasquiResultado" aria-live="polite"></div>
+        </section>
+      </div>
     </div>
   </section>
 
