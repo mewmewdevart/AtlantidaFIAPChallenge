@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- Estilos -->
+  <link rel="stylesheet" href="./assets/css/variables.css">
   <link rel="stylesheet" href="assets/css/style.css?v=2">
 
   <!-- Scripts -->
@@ -197,9 +198,9 @@
 
   <!-- Seção 1 - O Mundo -->
   <section id="o-mundo" class="secao-oceano" aria-label="O Mundo">
-    <div class="linha-divisoria">
+    <div class="linha-divisoria" role="separator" aria-label="Profundidade: 0 a 200 metros, Zona Fótica">
       <hr>
-      <p>0-200 M // Zona Fótica </p>
+      <p>0-200 M // Zona Fótica</p>
       <hr>
     </div>
   </section>
@@ -209,27 +210,33 @@
     <img src="./assets/media/montanha-1.svg" alt="" class="montanha-front">
     <img src="./assets/media/montanha-2.svg" alt="" class="montanha-back">
     <div class="continuidade-montanha-front"></div>
-    <div class="linha-divisoria">
+    <div class="linha-divisoria" role="separator" aria-label="Profundidade: 200 a 1000 metros, Zona Crepuscular">
       <hr>
-      <p>200-1000 M // Zona Crepusculo </p>
+      <p>200-1000 M // Zona Crepuscular</p>
       <hr>
     </div>
   </section>
 
   <!-- Seção 3 - O Mural  -->
   <section id="mural" class="secao-oceano" aria-label="Mural">
+    <div class="linha-divisoria" role="separator" aria-label="Profundidade: 1000 a 3000 metros, Zona Batipelágica">
+      <hr>
+      <p>1000-3000 M // Zona Batipelágica</p>
+      <hr>
+    </div>
+
     <div class="mural__conteudo">
-      <div class="mural__citacao">
+      <div class="secao__citacao mural__citacao">
         <span data-i18n="mural.quote_label">FREQ. 12 // TRANSMISSÃO COMUNITÁRIA</span>
         <p data-i18n="mural.quote">“TODA MENSAGEM É UMA COMPORTA ABERTA ENTRE NÓS.”</p>
       </div>
 
-      <header class="mural__cabecalho">
-        <span class="mural__numero" aria-hidden="true">04</span>
-        <div class="mural__titulo-grupo">
-          <span class="mural__sobretitulo" data-i18n="mural.frequency">FREQUÊNCIA COMUNITÁRIA</span>
+      <header class="secao__cabecalho mural__cabecalho">
+        <span class="secao__numero mural__numero" aria-hidden="true">04</span>
+        <div class="secao__titulo-grupo mural__titulo-grupo">
+          <span class="secao__sobretitulo mural__sobretitulo" data-i18n="mural.frequency">FREQUÊNCIA COMUNITÁRIA</span>
           <h2 data-i18n="mural.title">MURAL DA COMUNIDADE</h2>
-          <span class="mural__subtitulo" data-i18n="mural.subtitle">MENSAGENS FIXADAS NA CHAPA CENTRAL</span>
+          <span class="secao__subtitulo mural__subtitulo" data-i18n="mural.subtitle">MENSAGENS FIXADAS NA CHAPA CENTRAL</span>
         </div>
         <span class="mural__sinal" aria-hidden="true">
           <i class="fa-solid fa-tower-broadcast"></i>
@@ -314,18 +321,24 @@
 
   <!-- Seção 4 - Contato  -->
   <section id="contato" class="secao-oceano" aria-labelledby="contatoTitulo">
+    <div class="linha-divisoria" role="separator" aria-label="Profundidade: 3000 a 4000 metros, Zona Abissal">
+      <hr>
+      <p>3000-4000 M // Zona Abissal</p>
+      <hr>
+    </div>
+
     <div class="contato__conteudo">
-      <div class="contato__citacao">
+      <div class="secao__citacao contato__citacao">
         <span data-i18n="contact.quote_label">PULSO 09 // TRANSMISSÃO SEGURA</span>
         <p data-i18n="contact.quote">“VOCÊ CHEGOU AO FUNDO. AGORA RESPONDA.”</p>
       </div>
 
-      <header class="contato__cabecalho">
-        <span class="contato__numero" aria-hidden="true">05</span>
-        <div class="contato__titulo-grupo">
-          <span class="contato__sobretitulo" data-i18n="contact.channel">CANAL SEGURO</span>
+      <header class="secao__cabecalho contato__cabecalho">
+        <span class="secao__numero contato__numero" aria-hidden="true">05</span>
+        <div class="secao__titulo-grupo contato__titulo-grupo">
+          <span class="secao__sobretitulo contato__sobretitulo" data-i18n="contact.channel">CANAL SEGURO</span>
           <h2 id="contatoTitulo" data-i18n="contact.title">FALE COM O PORTAL</h2>
-          <span class="contato__subtitulo" data-i18n="contact.subtitle">TERMINAL CRT DE ALISTAMENTO</span>
+          <span class="secao__subtitulo contato__subtitulo" data-i18n="contact.subtitle">TERMINAL CRT DE ALISTAMENTO</span>
         </div>
       </header>
 
@@ -419,9 +432,9 @@
     <img src="./assets/media/montanha-1.svg" alt="" class="montanha-front-rodape">
   </section>
 
-  <div class="linha-divisoria">
+  <div class="linha-divisoria" role="separator" aria-label="Profundidade: 3400 metros ou mais, Fundo Abissal">
     <hr>
-    <p>200-1000 M // Zona do Oceânicas </p>
+    <p>3400+ M // Fundo Abissal</p>
     <hr>
   </div>
   

@@ -765,29 +765,129 @@ body {
   color: var(--cor-pergaminho);
 }
 
+/* ==== Divisórias entre seções (zonas de profundidade) ==== */
 .linha-divisoria {
+  position: relative;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 0;
+  width: 100%;
+  padding: 1.5rem clamp(1rem, 4vw, 2.5rem);
   font-family: var(--fonte-texto);
-  font-size: 1rem;
+  font-size: clamp(0.72rem, 1.6vw, 0.88rem);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--cor-sinal-claro);
   z-index: 10;
 }
 
 .linha-divisoria p {
-  padding: 0 1rem;
+  flex-shrink: 0;
+  padding: 0.35rem clamp(0.9rem, 2.2vw, 1.8rem);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.linha-divisoria hr {
+  flex: 1;
+  height: 0;
+  border: none;
+  border-top: 1px solid rgba(62, 144, 137, 0.4);
+}
+
+body > section,
+.secao-oceano {
+  min-height: 100vh;
+}
+
+/* ==== Padrão reutilizável: cabeçalho + citação de seção ==== */
+.secao__citacao,
+.mural__citacao,
+.contato__citacao {
+  margin: 0 auto clamp(3.5rem, 9vh, 6rem);
   text-align: center;
 }
 
-hr {
-  width: 40%;
-  border: 0.1px solid var(--cor-sinal-claro);
+.secao__citacao > span,
+.mural__citacao > span,
+.contato__citacao > span,
+.secao__sobretitulo,
+.mural__sobretitulo,
+.contato__sobretitulo {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--cor-menta-neon);
 }
 
-section {
-  min-height: 100vh;
+.secao__citacao p,
+.mural__citacao p,
+.contato__citacao p {
+  margin-top: 0.55rem;
+  font-size: clamp(0.92rem, 2vw, 1.3rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--cor-espuma);
+}
+
+.secao__cabecalho,
+.mural__cabecalho,
+.contato__cabecalho {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.secao__numero,
+.mural__numero,
+.contato__numero {
+  display: grid;
+  min-width: 5rem;
+  min-height: 4rem;
+  place-items: center;
+  padding-left: 0.6rem;
+  font-size: clamp(2.8rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--cor-oceano);
+  border-left: 2px solid var(--cor-oceano);
+}
+
+.secao__titulo-grupo,
+.mural__titulo-grupo,
+.contato__titulo-grupo {
+  min-width: 0;
+}
+
+.secao__sobretitulo,
+.mural__sobretitulo,
+.contato__sobretitulo {
+  margin-bottom: 0.15rem;
+  font-size: 0.62rem;
+}
+
+.secao__titulo-grupo h2,
+.mural__titulo-grupo h2,
+.contato__titulo-grupo h2 {
+  font-size: clamp(1.65rem, 4.2vw, 3rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--cor-espuma);
+}
+
+.secao__subtitulo,
+.mural__subtitulo,
+.contato__subtitulo {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--cor-ferrugem);
 }
 
 /* ---------------------------- Seção 1 - O Mundo ---------------------------- */
@@ -823,84 +923,26 @@ section {
 
 /* ---------------------------- Seção 3 - O Mural ---------------------------- */
 #mural {
+  position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: clamp(4rem, 8vh, 7rem) clamp(1.5rem, 7vw, 7rem) clamp(4rem, 8vh, 7rem) 1.5rem;
+  min-height: 100vh;
+  padding: 0;
   background-image: linear-gradient(0deg, var(--cor-jade), var(--cor-abismo));
 }
 
 .mural__conteudo {
   width: min(100%, 1160px);
   margin: 0 auto;
+  padding: clamp(3rem, 6vh, 5rem) clamp(1.5rem, 5vw, 4rem) clamp(4rem, 8vh, 6rem);
   font-family: var(--fonte-texto);
 }
 
+/* Citação do mural: herda de .secao__citacao com margem maior */
 .mural__citacao {
   margin: 0 auto clamp(4rem, 11vh, 8rem);
-  text-align: center;
-}
-
-.mural__citacao > span,
-.mural__sobretitulo {
-  display: block;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  color: var(--cor-menta-neon);
-}
-
-.mural__citacao p {
-  margin-top: 0.55rem;
-  font-size: clamp(0.92rem, 2vw, 1.3rem);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--cor-espuma);
-}
-
-.mural__cabecalho {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.mural__numero {
-  display: grid;
-  min-width: 5rem;
-  min-height: 4rem;
-  place-items: center;
-  padding-left: 0.6rem;
-  font-size: clamp(2.8rem, 6vw, 4rem);
-  font-weight: 700;
-  line-height: 1;
-  color: var(--cor-oceano);
-  border-left: 2px solid var(--cor-oceano);
-}
-
-.mural__titulo-grupo {
-  min-width: 0;
-}
-
-.mural__sobretitulo {
-  margin-bottom: 0.15rem;
-  font-size: 0.62rem;
-}
-
-.mural__titulo-grupo h2 {
-  font-size: clamp(1.65rem, 4.2vw, 3rem);
-  font-weight: 700;
-  line-height: 1;
-  color: var(--cor-espuma);
-}
-
-.mural__subtitulo {
-  display: block;
-  margin-top: 0.4rem;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--cor-ferrugem);
 }
 
 .mural__sinal {
@@ -1073,10 +1115,11 @@ section {
 #contato {
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: clamp(4rem, 8vh, 7rem) clamp(1.5rem, 7vw, 7rem) clamp(4rem, 8vh, 7rem) 1.5rem;
+  padding: 0;
   background-image: linear-gradient(0deg,
       var(--cor-abismo) 0%,
       var(--cor-jade) 100%);
@@ -1087,75 +1130,11 @@ section {
   z-index: 21;
   width: min(100%, 1160px);
   margin: 0 auto;
+  padding: clamp(3rem, 6vh, 5rem) clamp(1.5rem, 5vw, 4rem) clamp(4rem, 8vh, 6rem);
   font-family: var(--fonte-texto);
 }
 
-.contato__citacao {
-  margin: 0 auto clamp(3.5rem, 9vh, 6rem);
-  text-align: center;
-}
-
-.contato__citacao > span,
-.contato__sobretitulo {
-  display: block;
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  color: var(--cor-menta-neon);
-}
-
-.contato__citacao p {
-  margin-top: 0.55rem;
-  font-size: clamp(0.95rem, 2vw, 1.3rem);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--cor-espuma);
-}
-
-.contato__cabecalho {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.contato__numero {
-  display: grid;
-  min-width: 5rem;
-  min-height: 4rem;
-  place-items: center;
-  padding-left: 0.6rem;
-  font-size: clamp(2.8rem, 6vw, 4rem);
-  font-weight: 700;
-  line-height: 1;
-  color: var(--cor-oceano);
-  border-left: 2px solid var(--cor-oceano);
-}
-
-.contato__titulo-grupo {
-  min-width: 0;
-}
-
-.contato__sobretitulo {
-  margin-bottom: 0.15rem;
-  font-size: 0.62rem;
-}
-
-.contato__titulo-grupo h2 {
-  font-size: clamp(1.65rem, 4.2vw, 3rem);
-  font-weight: 700;
-  line-height: 1;
-  color: var(--cor-espuma);
-}
-
-.contato__subtitulo {
-  display: block;
-  margin-top: 0.4rem;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--cor-ferrugem);
-}
+/* Citação e cabeçalho do contato: herdam de .secao__ base */
 
 .contato__formulario {
   position: relative;
@@ -1395,8 +1374,15 @@ section {
   position: relative;
   font-family: var(--fonte-texto);
   background-color: var(--cor-abismo);
-  min-height: 240px;
-  padding: 2.4rem 2rem 1rem;
+  min-height: auto;
+  padding: 2.2rem 2rem 1rem;
+}
+
+#rodape section,
+.rodape section,
+.rodape__identidade,
+.rodape__canais {
+  min-height: auto;
 }
 
 .rodape__conteudo {
@@ -1738,50 +1724,19 @@ section {
     padding: 4rem 1rem;
   }
 
-  .contato__citacao {
-    margin-bottom: 4rem;
-  }
-
-  .contato__numero {
-    min-width: 3.7rem;
-    min-height: 3rem;
-    padding-left: 0.4rem;
-    font-size: 2.7rem;
-  }
-
-  .contato__cabecalho {
-    gap: 0.7rem;
-  }
-
-  .contato__formulario {
-    padding: 1.25rem;
-  }
-
-  .contato__acoes {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .contato__enviar {
-    align-self: flex-end;
-  }
-
-  #mural {
-    padding: 4rem 1rem;
-  }
-
+  .secao__citacao,
   .mural__citacao {
     margin-bottom: 4rem;
   }
 
-  .mural__numero {
+  .secao__numero {
     min-width: 3.7rem;
     min-height: 3rem;
     padding-left: 0.4rem;
     font-size: 2.7rem;
   }
 
-  .mural__cabecalho {
+  .secao__cabecalho {
     gap: 0.7rem;
   }
 
@@ -1851,78 +1806,30 @@ section {
     padding: 3rem 0.85rem;
   }
 
-  .contato__citacao {
-    margin-bottom: 3rem;
-  }
-
-  .contato__citacao > span,
-  .contato__sobretitulo {
-    font-size: 0.55rem;
-  }
-
-  .contato__cabecalho {
-    align-items: flex-start;
-  }
-
-  .contato__numero {
-    min-width: 2.8rem;
-    font-size: 2.1rem;
-  }
-
-  .contato__titulo-grupo h2 {
-    font-size: clamp(1.3rem, 6vw, 1.8rem);
-  }
-
-  .contato__subtitulo {
-    font-size: 0.55rem;
-  }
-
-  .contato__campos {
-    grid-template-columns: 1fr;
-  }
-
-  .contato__campo--retorno,
-  .contato__campo--mensagem {
-    grid-column: auto;
-  }
-
-  .contato__terminal {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-
-  .contato__formulario {
-    padding: 1rem;
-  }
-
-  #mural {
-    padding: 3rem 0.85rem;
-  }
-
+  .secao__citacao,
   .mural__citacao {
     margin-bottom: 3rem;
   }
 
-  .mural__citacao > span,
-  .mural__sobretitulo {
+  .secao__citacao > span,
+  .secao__sobretitulo {
     font-size: 0.55rem;
   }
 
-  .mural__cabecalho {
+  .secao__cabecalho {
     align-items: flex-start;
   }
 
-  .mural__numero {
+  .secao__numero {
     min-width: 2.8rem;
     font-size: 2.1rem;
   }
 
-  .mural__titulo-grupo h2 {
+  .secao__titulo-grupo h2 {
     font-size: clamp(1.3rem, 6vw, 1.8rem);
   }
 
-  .mural__subtitulo {
+  .secao__subtitulo {
     font-size: 0.55rem;
   }
 
