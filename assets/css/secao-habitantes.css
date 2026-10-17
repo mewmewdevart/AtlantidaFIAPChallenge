@@ -246,27 +246,10 @@
 }
 
 .cracha__botao {
-  min-height: 2.75rem;
-  /* área de toque confortável */
-  padding: 0 0.5rem;
-  font-family: var(--fonte-titulo);
-  font-size: var(--texto-md);
-  font-weight: var(--peso-semibold);
-  color: var(--cor-ferrugem-acessivel);
-  text-decoration: underline;
-  text-underline-offset: 0.3rem;
-  cursor: pointer;
-  background: none;
-  border: 0;
-  transition: color 0.2s ease;
-}
-
-.cracha__botao:hover {
-  color: var(--cor-oceano-hover);
+  padding: 0.5rem 1.1rem;
 }
 
 .cracha__principal:focus-visible,
-.cracha__botao:focus-visible,
 .chasqui__campo:focus-visible {
   outline: 2px solid var(--cor-oceano);
   outline-offset: 3px;

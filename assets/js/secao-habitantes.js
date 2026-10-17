@@ -58,7 +58,7 @@
 
           <div class="cracha__rodape">
             <p class="cracha__lugar">${esc(t(h, "lugar"))}</p>
-            <button type="button" class="cracha__botao" data-alternar aria-expanded="${aberto}">
+            <button type="button" class="botao botao--secundario cracha__botao" data-alternar aria-expanded="${aberto}">
               <span data-rotulo-abrir ${aberto ? "hidden" : ""}>${esc(rotulo("abrir"))}</span>
               <span data-rotulo-fechar ${aberto ? "" : "hidden"}>${esc(rotulo("fechar"))}</span>
             </button>

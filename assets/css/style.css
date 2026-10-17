@@ -485,16 +485,14 @@ body {
 
 /* Modificador Secundário */
 .botao--secundario {
-  color: var(--cor-oceano);
-  background-color: transparent;
-  border-color: var(--cor-oceano);
-  box-shadow: none;
+  color: var(--cor-espuma);
+  background-color: var(--cor-ferrugem);
+  border-color: var(--cor-ferrugem);
 }
 
 .botao--secundario:hover {
-  color: var(--cor-oceano-hover);
-  background-color: rgba(27, 155, 149, 0.08);
-  border-color: var(--cor-oceano-hover);
+  background-color: var(--cor-terracota-acessivel);
+  border-color: var(--cor-terracota-acessivel);
 }
 
 /* ==== Livro 3D interativo ==== */
@@ -700,18 +698,6 @@ body {
   padding: calc(0.24 * var(--livro-unidade)) calc(0.48 * var(--livro-unidade));
   font-size: calc(0.31 * var(--livro-unidade));
 }
-
-.livro-3d__acoes .botao--secundario {
-  color: rgb(10, 85, 80);
-  border-color: rgb(10, 85, 80);
-}
-
-.livro-3d__acoes .botao--secundario:hover {
-  color: rgb(5, 60, 56);
-  border-color: rgb(5, 60, 56);
-  background-color: rgba(10, 85, 80, 0.08);
-}
-
 
 .livro-3d__capa--frontal {
   left: calc(9.25 * var(--livro-unidade));
@@ -1345,38 +1331,7 @@ body>section,
 }
 
 .contato__enviar {
-  display: inline-flex;
-  min-height: 2.9rem;
-  align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
-  padding: 0.75rem 1.15rem;
-  font-family: var(--fonte-texto);
-  font-size: var(--texto-sm);
-  font-weight: var(--peso-bold);
-  line-height: var(--linha-compacta);
   letter-spacing: 0.05em;
-  color: var(--cor-abismo);
-  cursor: pointer;
-  background-color: var(--cor-menta-neon);
-  border: 1px solid var(--cor-menta-neon);
-  transition: background-color 0.2s ease, transform 0.2s ease;
-}
-
-.contato__enviar:hover {
-  background-color: var(--cor-jade-claro);
-  border-color: var(--cor-jade-claro);
-  box-shadow: 0 0 18px rgba(15, 244, 204, 0.28);
-  transform: translateY(-2px);
-}
-
-.contato__enviar:hover i {
-  animation: contato-sinal 0.8s ease-in-out infinite alternate;
-}
-
-.contato__enviar:focus-visible {
-  outline: 2px solid var(--cor-espuma);
-  outline-offset: 3px;
 }
 
 .contato__confirmacao {
@@ -1917,8 +1872,7 @@ body>section,
   body::after,
   .parallax>use,
   .mural__mensagem,
-  .contato__terminal-status i,
-  .contato__enviar:hover i {
+  .contato__terminal-status i {
     animation: none !important;
   }
 
