@@ -47,7 +47,7 @@
   left: 50%;
   width: 3.5rem;
   height: 0.85rem;
-  background-color: rgba(15, 244, 204, 0.76);
+  background-color: rgba(193, 75, 44, 0.76);
   transform: translateX(-50%) rotate(-1.5deg);
   pointer-events: none;
 }
