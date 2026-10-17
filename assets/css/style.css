@@ -128,8 +128,8 @@ body {
 }
 
 .seletor-idioma__rotulo {
-  font-size: 0.82rem;
-  font-weight: 700;
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-bold);
   letter-spacing: 0.5px;
   color: var(--cor-nevoa-acessivel);
   transition: color 0.3s ease, transform 0.2s ease;
@@ -176,7 +176,7 @@ body {
   justify-content: center;
   width: 18px;
   height: 18px;
-  font-size: 0.65rem;
+  font-size: var(--texto-micro);
   color: var(--cor-abismo);
   background-color: var(--cor-menta-neon);
   border-radius: 50%;
@@ -331,8 +331,8 @@ body {
   color: var(--cor-tinta);
   text-decoration: none;
   font-family: var(--fonte-texto);
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-semibold);
   letter-spacing: 0.6px;
   text-transform: uppercase;
   border-radius: 6px;
@@ -351,7 +351,7 @@ body {
 
 .menu-lateral__link:hover {
   color: var(--cor-espuma);
-  font-weight: bold;
+  font-weight: var(--peso-bold);
   transform: translateX(-2px);
   background-color: var(--cor-tinta-suave);
 }
@@ -360,7 +360,7 @@ body {
 
 .menu-lateral__link--ativo {
   color: var(--cor-espuma);
-  font-weight: 700;
+  font-weight: var(--peso-bold);
   background: var(--cor-tinta-suave);
 }
 
@@ -411,8 +411,8 @@ body {
   gap: 0.5rem;
   align-items: center;
   justify-content: center;
-  font-size: 0.8rem;
-  font-weight: 700;
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-bold);
   letter-spacing: 2px;
   color: var(--cor-sinal-texto);
   text-transform: uppercase;
@@ -450,8 +450,8 @@ body {
   justify-content: center;
   padding: 0.7rem 1.4rem;
   font-family: var(--fonte-texto);
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-semibold);
   text-decoration: none;
   cursor: pointer;
   border: 1.5px solid transparent;
@@ -631,7 +631,7 @@ body {
   margin-bottom: calc(0.35 * var(--livro-unidade));
   font-family: var(--fonte-titulo);
   font-size: calc(1.28 * var(--livro-unidade));
-  font-weight: 700;
+  font-weight: var(--peso-bold);
   line-height: 1.05;
   letter-spacing: -0.015em;
   color: var(--cor-fundo);
@@ -647,7 +647,7 @@ body {
   margin-bottom: calc(0.45 * var(--livro-unidade));
   font-family: var(--fonte-texto);
   font-size: calc(0.32 * var(--livro-unidade));
-  font-weight: 400;
+  font-weight: var(--peso-regular);
   line-height: 1.5;
   color: var(--cor-casco);
   text-transform: none;
@@ -674,7 +674,7 @@ body {
 .livro-3d__status-valor {
   font-family: var(--fonte-texto);
   font-size: calc(0.36 * var(--livro-unidade));
-  font-weight: 700;
+  font-weight: var(--peso-bold);
   letter-spacing: 0.5px;
   color: var(--cor-jade);
 }
@@ -682,7 +682,7 @@ body {
 .livro-3d__status-rotulo {
   font-family: var(--fonte-texto);
   font-size: calc(0.23 * var(--livro-unidade));
-  font-weight: 600;
+  font-weight: var(--peso-semibold);
   letter-spacing: 0.5px;
   color: var(--cor-tinta-suave-acessivel);
   text-transform: uppercase;
@@ -793,8 +793,8 @@ body {
   width: 100%;
   padding: 1.5rem clamp(1rem, 4vw, 2.5rem);
   font-family: var(--fonte-texto);
-  font-size: clamp(0.8rem, 1.6vw, 0.92rem);
-  font-weight: 600;
+  font-size: var(--linha-divisoria-texto);
+  font-weight: var(--peso-semibold);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--cor-sinal-texto);
@@ -832,13 +832,10 @@ body>section,
 
 .secao__citacao>span,
 .mural__citacao>span,
-.contato__citacao>span,
-.secao__sobretitulo,
-.mural__sobretitulo,
-.contato__sobretitulo {
+.contato__citacao>span {
   display: block;
-  font-size: 0.75rem;
-  font-weight: 700;
+  font-size: var(--texto-micro);
+  font-weight: var(--peso-bold);
   letter-spacing: 0.16em;
   color: var(--cor-menta-neon);
 }
@@ -850,8 +847,8 @@ body>section,
 .contato__citacao p,
 .contato__citacao blockquote {
   margin-top: 0.55rem;
-  font-size: clamp(0.92rem, 2vw, 1.3rem);
-  font-weight: 700;
+  font-size: var(--titulo-citacao);
+  font-weight: var(--peso-bold);
   letter-spacing: 0.04em;
   color: var(--cor-espuma);
 }
@@ -877,9 +874,9 @@ body>section,
   min-height: 4rem;
   place-items: center;
   padding-left: 0.6rem;
-  font-size: clamp(2.8rem, 6vw, 4rem);
-  font-weight: 700;
-  line-height: 1;
+  font-size: var(--titulo-secao-numero);
+  font-weight: var(--peso-bold);
+  line-height: var(--linha-compacta);
   color: var(--cor-ambar);
   border-left: 2px solid var(--cor-ambar);
 }
@@ -899,8 +896,8 @@ body>section,
 .contato__sobretitulo {
   display: block;
   margin-bottom: 0.15rem;
-  font-size: 0.72rem;
-  font-weight: 700;
+  font-size: var(--texto-micro);
+  font-weight: var(--peso-bold);
   letter-spacing: 0.16em;
   color: var(--cor-sinal-texto);
   text-transform: uppercase;
@@ -911,9 +908,9 @@ body>section,
 .habitantes__titulo-grupo h2,
 .mural__titulo-grupo h2,
 .contato__titulo-grupo h2 {
-  font-size: clamp(1.65rem, 4.2vw, 3rem);
-  font-weight: 700;
-  line-height: 1.1;
+  font-size: var(--titulo-secao-h2);
+  font-weight: var(--peso-bold);
+  line-height: var(--linha-compacta);
   color: var(--cor-espuma);
   letter-spacing: 0.02em;
 }
@@ -925,8 +922,8 @@ body>section,
 .contato__subtitulo {
   display: block;
   margin-top: 0.4rem;
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: var(--texto-micro);
+  font-weight: var(--peso-semibold);
   letter-spacing: 0.08em;
   color: var(--cor-ferrugem-clara);
   text-transform: uppercase;
@@ -1064,15 +1061,15 @@ body>section,
 }
 
 .mural__mensagem-cabecalho h3 {
-  font-size: 1rem;
-  font-weight: 700;
-  line-height: 1.2;
+  font-size: var(--texto-base);
+  font-weight: var(--peso-bold);
+  line-height: var(--linha-compacta);
   color: var(--cor-tinta);
 }
 
 .mural__transmissao {
   margin-top: 0.18rem;
-  font-size: 0.72rem;
+  font-size: var(--texto-micro);
   letter-spacing: 0.04em;
   color: var(--cor-tinta-suave-acessivel);
 }
@@ -1080,8 +1077,8 @@ body>section,
 .mural__categoria {
   flex: 0 0 auto;
   padding: 0.2rem 0.36rem;
-  font-size: 0.72rem;
-  font-weight: 700;
+  font-size: var(--texto-micro);
+  font-weight: var(--peso-bold);
   letter-spacing: 0.03em;
   color: var(--cor-ferrugem-acessivel);
   border: 1px solid currentColor;
@@ -1095,8 +1092,8 @@ body>section,
 .mural__texto {
   margin-top: 1.25rem;
   font-family: var(--fonte-titulo);
-  font-size: 1.05rem;
-  line-height: 1.4;
+  font-size: var(--texto-md);
+  line-height: var(--linha-base);
   color: var(--cor-tinta-suave-acessivel);
 }
 
@@ -1105,8 +1102,8 @@ body>section,
   align-items: center;
   gap: 0.35rem;
   margin-top: 0.75rem;
-  font-size: 0.78rem;
-  font-weight: 600;
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-semibold);
   color: var(--cor-tinta-suave-acessivel);
 }
 
@@ -1121,8 +1118,8 @@ body>section,
   gap: 0.55rem 1rem;
   padding-top: 0.8rem;
   margin-top: 0.8rem;
-  font-size: 0.72rem;
-  font-weight: 600;
+  font-size: var(--texto-micro);
+  font-weight: var(--peso-semibold);
   letter-spacing: 0.06em;
   color: var(--cor-nevoa-acessivel);
   border-top: 1px solid rgba(62, 144, 137, 0.22);
@@ -1132,7 +1129,7 @@ body>section,
   grid-column: 1 / -1;
   padding: 2rem 1rem;
   text-align: center;
-  font-size: 0.95rem;
+  font-size: var(--texto-sm);
   color: var(--cor-nevoa-acessivel);
 }
 
@@ -1206,8 +1203,8 @@ body>section,
   justify-content: space-between;
   gap: 1rem;
   padding-bottom: 0.8rem;
-  font-size: 0.72rem;
-  font-weight: 600;
+  font-size: var(--texto-micro);
+  font-weight: var(--peso-semibold);
   letter-spacing: 0.08em;
   border-bottom: 1px solid rgba(62, 144, 137, 0.35);
 }
@@ -1220,7 +1217,7 @@ body>section,
 }
 
 .contato__terminal-status i {
-  font-size: 0.7rem;
+  font-size: var(--texto-micro);
   color: var(--cor-menta-neon);
   animation: contato-pulso 2s ease-in-out infinite;
 }
@@ -1228,14 +1225,14 @@ body>section,
 .contato__orientacao {
   max-width: 52rem;
   margin-top: 1rem;
-  font-size: 0.9rem;
-  line-height: 1.5;
+  font-size: var(--texto-base);
+  line-height: var(--linha-leitura);
   color: var(--cor-nevoa-acessivel);
 }
 
 .contato__obrigatorios {
   margin-top: 0.65rem;
-  font-size: 0.8rem;
+  font-size: var(--texto-xs);
   color: var(--cor-nevoa-acessivel);
 }
 
@@ -1259,8 +1256,8 @@ body>section,
 }
 
 .contato__campo label {
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-semibold);
   letter-spacing: 0.06em;
   color: var(--cor-menta-neon);
 }
@@ -1275,7 +1272,10 @@ body>section,
   width: 100%;
   min-height: 2.75rem;
   padding: 0.7rem 0.8rem;
-  font: 400 0.88rem/1.4 var(--fonte-texto);
+  font-family: var(--fonte-texto);
+  font-size: var(--texto-base);
+  font-weight: var(--peso-regular);
+  line-height: var(--linha-base);
   color: var(--cor-espuma);
   background-color: rgba(0, 3, 5, 0.62);
   border: 1px solid var(--cor-sinal);
@@ -1321,8 +1321,9 @@ body>section,
 }
 
 .contato__erro {
-  font-size: 0.75rem;
-  line-height: 1.35;
+  font-size: var(--texto-micro);
+  font-weight: var(--peso-semibold);
+  line-height: var(--linha-curta);
   color: var(--cor-ferrugem-clara);
 }
 
@@ -1338,8 +1339,8 @@ body>section,
 
 .contato__aviso {
   max-width: 32rem;
-  font-size: 0.75rem;
-  line-height: 1.4;
+  font-size: var(--texto-micro);
+  line-height: var(--linha-base);
   color: var(--cor-nevoa-acessivel);
 }
 
@@ -1350,7 +1351,10 @@ body>section,
   justify-content: center;
   gap: 0.55rem;
   padding: 0.75rem 1.15rem;
-  font: 700 0.82rem/1.2 var(--fonte-texto);
+  font-family: var(--fonte-texto);
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-bold);
+  line-height: var(--linha-compacta);
   letter-spacing: 0.05em;
   color: var(--cor-abismo);
   cursor: pointer;
@@ -1378,8 +1382,9 @@ body>section,
 .contato__confirmacao {
   padding: 0.8rem 1rem;
   margin-top: 1rem;
-  font-size: 0.85rem;
-  line-height: 1.5;
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-semibold);
+  line-height: var(--linha-base);
   color: var(--cor-menta-neon);
   background-color: rgba(15, 244, 204, 0.08);
   border-left: 3px solid var(--cor-menta-neon);
@@ -1463,12 +1468,14 @@ body>section,
   display: flex;
   flex-direction: column;
   gap: 0.12rem;
-  font-size: 0.88rem;
-  line-height: 1.1;
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-semibold);
+  line-height: var(--linha-compacta);
 }
 
 .rodape__assinatura {
-  font-size: 0.65rem;
+  font-size: var(--texto-micro);
+  font-weight: var(--peso-semibold);
   letter-spacing: 0.11em;
   color: var(--cor-menta-neon);
 }
@@ -1476,8 +1483,8 @@ body>section,
 .rodape__descricao {
   max-width: 27rem;
   margin: 0.9rem 0;
-  font-size: 0.88rem;
-  line-height: 1.5;
+  font-size: var(--texto-sm);
+  line-height: var(--linha-base);
   color: var(--cor-nevoa-acessivel);
 }
 
@@ -1492,8 +1499,8 @@ body>section,
   align-items: center;
   gap: 0.4rem;
   padding: 0.35rem 0.6rem;
-  font-size: 0.72rem;
-  font-weight: 600;
+  font-size: var(--texto-micro);
+  font-weight: var(--peso-semibold);
   letter-spacing: 0.08em;
   border-radius: 2rem;
 }
@@ -1510,8 +1517,8 @@ body>section,
 
 .rodape__titulo-coluna {
   margin-bottom: 0.75rem;
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-semibold);
   color: var(--cor-espuma);
 }
 
@@ -1524,8 +1531,8 @@ body>section,
 
 .rodape__lista a,
 .rodape__lista li {
-  font-size: 0.85rem;
-  line-height: 1.35;
+  font-size: var(--texto-sm);
+  line-height: var(--linha-curta);
   color: var(--cor-nevoa-acessivel);
 }
 
@@ -1547,7 +1554,7 @@ body>section,
 
 .rodape__icone-canal {
   flex: 0 0 0.85rem;
-  font-size: 0.75rem;
+  font-size: var(--texto-micro);
 }
 
 .rodape__icone-canal--radio {
@@ -1570,7 +1577,7 @@ body>section,
 }
 
 .rodape__base p {
-  font-size: 0.75rem;
+  font-size: var(--texto-micro);
   letter-spacing: 0.04em;
   color: rgba(196, 216, 214, 0.75);
 }
@@ -1652,8 +1659,8 @@ body>section,
   .livro-3d__titulo-principal {
     margin-bottom: 1.15rem !important;
     font-family: var(--fonte-titulo) !important;
-    font-size: clamp(2.3rem, 7.5vw, 3.4rem) !important;
-    font-weight: 700 !important;
+    font-size: var(--titulo-hero) !important;
+    font-weight: var(--peso-bold) !important;
     line-height: 1.08 !important;
     letter-spacing: -0.015em !important;
     color: var(--cor-espuma) !important;
@@ -1672,7 +1679,7 @@ body>section,
     margin-bottom: 1.75rem !important;
     font-family: var(--fonte-texto) !important;
     font-size: clamp(0.95rem, 2.6vw, 1.125rem) !important;
-    font-weight: 400 !important;
+    font-weight: var(--peso-regular) !important;
     line-height: 1.65 !important;
     color: var(--cor-nevoa) !important;
   }
@@ -1700,7 +1707,7 @@ body>section,
   .livro-3d__status-valor {
     font-family: var(--fonte-texto) !important;
     font-size: clamp(1rem, 3.2vw, 1.25rem) !important;
-    font-weight: 700 !important;
+    font-weight: var(--peso-bold) !important;
     letter-spacing: 0.5px !important;
     color: var(--cor-menta-neon) !important;
   }
@@ -1708,7 +1715,7 @@ body>section,
   .livro-3d__status-rotulo {
     font-family: var(--fonte-texto) !important;
     font-size: clamp(0.7rem, 2vw, 0.8rem) !important;
-    font-weight: 600 !important;
+    font-weight: var(--peso-semibold) !important;
     letter-spacing: 0.8px !important;
     color: var(--cor-nevoa) !important;
     text-transform: uppercase !important;
@@ -1815,7 +1822,7 @@ body>section,
   }
 
   h1 {
-    font-size: 24px;
+    font-size: var(--texto-xl);
   }
 
   .menu-lateral {
@@ -1855,7 +1862,7 @@ body>section,
 
   .secao__citacao>span,
   .secao__sobretitulo {
-    font-size: 0.72rem;
+    font-size: var(--texto-micro);
   }
 
   .secao__cabecalho {
@@ -1872,7 +1879,7 @@ body>section,
   }
 
   .secao__subtitulo {
-    font-size: 0.72rem;
+    font-size: var(--texto-micro);
   }
 
   .mural__sinal {

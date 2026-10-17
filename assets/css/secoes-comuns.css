@@ -55,8 +55,8 @@
 .secao__sobretitulo {
   display: block;
   margin-bottom: 0.15rem;
-  font-size: 0.72rem;
-  font-weight: 700;
+  font-size: var(--texto-micro);
+  font-weight: var(--peso-bold);
   letter-spacing: 0.16em;
   color: var(--cor-sinal-texto);
   text-transform: uppercase;
@@ -64,9 +64,9 @@
 
 .titulo-secao__texto,
 .secao__titulo-grupo h2 {
-  font-size: clamp(1.65rem, 4.2vw, 3rem);
-  font-weight: 700;
-  line-height: 1.1;
+  font-size: var(--titulo-secao-h2);
+  font-weight: var(--peso-bold);
+  line-height: var(--linha-compacta);
   color: var(--cor-espuma);
   letter-spacing: 0.02em;
 }
@@ -75,17 +75,17 @@
 .secao__subtitulo {
   display: block;
   margin-top: 0.4rem;
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: var(--texto-micro);
+  font-weight: var(--peso-semibold);
   letter-spacing: 0.08em;
   color: var(--cor-ferrugem-clara);
   text-transform: uppercase;
 }
 
 .subtitulo-secao {
-  font-size: clamp(2rem, 4vw, 2.7rem);
-  font-weight: 500;
-  line-height: 1.1;
+  font-size: var(--titulo-subsecao);
+  font-weight: var(--peso-medio);
+  line-height: var(--linha-compacta);
   color: var(--cor-pergaminho);
 }
 
@@ -120,7 +120,7 @@
 
 .foto-impressa figcaption {
   padding: 0.8rem 0.5rem 0.9rem;
-  font-size: 1.1rem;
+  font-size: var(--texto-md);
   text-align: center;
   color: var(--cor-tinta-suave-acessivel);
 }

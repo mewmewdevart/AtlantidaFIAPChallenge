@@ -50,8 +50,40 @@
   --livro-largura-base: 18.5;
   --livro-altura-base: 12.5;
 
-  /* Tipografia */
+  /* Tipografia: Famílias de Fonte */
   --fonte-titulo: "EB Garamond", Georgia, serif;
   --fonte-texto: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --fonte-emblema: "Cinzel", Georgia, serif;
+
+  /* Tipografia: Pesos Padronizados (WCAG / Acessibilidade) */
+  --peso-regular: 400;   /* Textos longos, parágrafos normais, descrições */
+  --peso-medio: 500;     /* Ênfase moderada, nomes de crachás, valores de dados */
+  --peso-semibold: 600;  /* Subtítulos, labels, botões, tags, links ativos */
+  --peso-bold: 700;      /* Títulos de seção, números, alertas, ênfases principais */
+
+  /* Tipografia: Alturas de Linha (Line-height - WCAG 1.4.12) */
+  --linha-compacta: 1.15;  /* Títulos grandes, números e display */
+  --linha-curta: 1.3;      /* Subtítulos de cards, nomes e botões */
+  --linha-base: 1.45;      /* Textos curtos, itens de lista, labels */
+  --linha-leitura: 1.6;    /* Parágrafos de leitura contínua (mínimo 1.5 WCAG) */
+
+  /* Tipografia: Escala Modular de Tamanhos (Base 16px / rem) */
+  --texto-micro: 0.75rem;    /* 12px - Metadados mínimos, selos, crachás (limiar acessível) */
+  --texto-xs: 0.8125rem;     /* 13px - Timestamps, contadores, notas secundárias */
+  --texto-sm: 0.875rem;      /* 14px - Labels de formulário, menus, tags, botões compactos */
+  --texto-base: 1rem;        /* 16px - Texto base, inputs (evita zoom no mobile), figcaptions */
+  --texto-md: 1.125rem;      /* 18px - Bios, textos de apoio, chamadas médias */
+  --texto-lg: 1.25rem;       /* 20px - Subtítulos, introduções, citações de cards */
+  --texto-xl: 1.5rem;        /* 24px - Títulos h4, títulos de painéis */
+  --texto-2xl: 1.75rem;      /* 28px - Títulos h3, subseções */
+  --texto-3xl: 2rem;         /* 32px - Nomes principais em cards, títulos médios */
+  --texto-4xl: 2.5rem;       /* 40px - Indicadores numéricos grandes */
+
+  /* Tipografia: Escalas Fluídas Responsivas */
+  --titulo-hero: clamp(2.3rem, 7.5vw, 3.4rem);
+  --titulo-secao-h2: clamp(1.75rem, 4.2vw, 3rem);
+  --titulo-secao-numero: clamp(2.8rem, 6vw, 4rem);
+  --titulo-subsecao: clamp(1.85rem, 4vw, 2.7rem);
+  --titulo-citacao: clamp(0.95rem, 2vw, 1.3rem);
+  --linha-divisoria-texto: clamp(0.8125rem, 1.6vw, 0.9375rem);
 }

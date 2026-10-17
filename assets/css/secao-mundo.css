@@ -21,17 +21,17 @@
 .mundo__texto {
   display: grid;
   gap: 1.4rem;
-  font-size: 1.3rem;
-  line-height: 1.65;
+  font-size: var(--texto-lg);
+  line-height: var(--linha-leitura);
   color: var(--cor-espuma);
 }
 
 .mundo__capitular::first-letter {
   float: left;
   margin-right: 0.7rem;
-  font-size: clamp(2rem, 4vw, 4.9rem);
-  font-weight: 500;
-  line-height: 0.82;
+  font-size: clamp(2.2rem, 4vw, 4.5rem);
+  font-weight: var(--peso-bold);
+  line-height: 0.85;
   color: var(--cor-ambar);
 }
 
@@ -56,14 +56,14 @@
 h3.lei-da-casa__titulo {
   display: block;
   margin-bottom: 0.35rem;
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-size: var(--texto-md);
+  font-weight: var(--peso-bold);
   color: var(--cor-ambar-acessivel);
 }
 
 .lei-da-casa__texto {
-  font-size: 1.35rem;
-  line-height: 1.45;
+  font-size: var(--texto-lg);
+  line-height: var(--linha-base);
 }
 
 /* ---------- FAQ (perguntas sobre a história do mundo) ---------- */
@@ -72,8 +72,8 @@ h3.lei-da-casa__titulo {
 }
 
 .faq__titulo {
-  font-size: 1.8rem;
-  font-weight: 500;
+  font-size: var(--texto-2xl);
+  font-weight: var(--peso-medio);
 }
 
 .faq__lista {
@@ -110,14 +110,14 @@ h3.lei-da-casa__titulo {
 
 .faq__ano {
   min-width: 3rem;
-  font-size: 1.2rem;
-  font-weight: 600;
+  font-size: var(--texto-lg);
+  font-weight: var(--peso-semibold);
   color: var(--cor-ferrugem-acessivel);
 }
 
 .faq__texto {
-  font-size: 1.25rem;
-  line-height: 1.3;
+  font-size: var(--texto-lg);
+  line-height: var(--linha-curta);
   transition: color 0.2s ease;
 }
 
@@ -176,8 +176,8 @@ h3.lei-da-casa__titulo {
 .faq__resposta p {
   margin: 0;
   padding: 0 0 1.1rem 3.9rem;
-  font-size: 1.15rem;
-  line-height: 1.5;
+  font-size: var(--texto-md);
+  line-height: var(--linha-leitura);
   color: var(--cor-tinta-suave-acessivel);
 }
 
@@ -200,7 +200,7 @@ h3.lei-da-casa__titulo {
 }
 
 .cidade__dica {
-  font-size: 1.15rem;
+  font-size: var(--texto-md);
   color: var(--cor-nevoa-acessivel);
 }
 
@@ -253,8 +253,8 @@ h3.lei-da-casa__titulo {
   left: calc(100% - 0.2rem);
   padding: 0.6rem 0.6rem;
   font-family: var(--fonte-titulo);
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: var(--texto-base);
+  font-weight: var(--peso-semibold);
   white-space: nowrap;
   color: var(--cor-tinta);
   background: var(--cor-pergaminho);
@@ -310,7 +310,7 @@ h3.lei-da-casa__titulo {
 
 .lugar__foto figcaption {
   margin-top: 0.6rem;
-  font-size: 1rem;
+  font-size: var(--texto-base);
   color: var(--cor-tinta-suave-acessivel);
 }
 
@@ -328,16 +328,16 @@ h3.lei-da-casa__titulo {
 }
 
 .lugar__nome {
-  font-size: 2.1rem;
-  font-weight: 500;
-  line-height: 1.1;
+  font-size: var(--texto-3xl);
+  font-weight: var(--peso-medio);
+  line-height: var(--linha-compacta);
 }
 
 .lugar__estado {
   padding: 0.1rem 0.8rem 0.15rem;
   font-family: var(--fonte-texto);
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-semibold);
   border: 1px solid currentColor;
   border-radius: 999px;
 }
@@ -352,15 +352,15 @@ h3.lei-da-casa__titulo {
 
 .lugar__resumo {
   margin-top: 0.8rem;
-  font-size: 1.2rem;
-  line-height: 1.5;
+  font-size: var(--texto-lg);
+  line-height: var(--linha-leitura);
 }
 
 .lugar__subtitulo {
   margin-top: 1.4rem;
   padding-bottom: 0.2rem;
-  font-size: 1.2rem;
-  font-weight: 500;
+  font-size: var(--texto-lg);
+  font-weight: var(--peso-semibold);
   color: var(--cor-ferrugem-acessivel);
   border-bottom: 1px dotted var(--cor-tinta-suave);
 }
@@ -384,7 +384,7 @@ h3.lei-da-casa__titulo {
   justify-content: space-between;
   gap: 0.8rem;
   font: inherit;
-  font-size: 1.15rem;
+  font-size: var(--texto-md);
   text-align: left;
   color: var(--cor-tinta);
   cursor: pointer;
@@ -462,8 +462,8 @@ h3.lei-da-casa__titulo {
   gap: 0.4rem;
   margin: 0.3rem 0 0.6rem 1.2rem;
   padding-left: 0.9rem;
-  font-size: 1.05rem;
-  line-height: 1.4;
+  font-size: var(--texto-base);
+  line-height: var(--linha-base);
   color: var(--cor-tinta-suave-acessivel);
   border-left: 2px solid var(--cor-terracota);
   animation: lugar-aparecer 0.35s ease;
@@ -479,8 +479,8 @@ h3.lei-da-casa__titulo {
 }
 
 .lugar__info-titulo {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: var(--texto-base);
+  font-weight: var(--peso-semibold);
   color: var(--cor-ferrugem-acessivel);
 }
 
@@ -494,15 +494,16 @@ h3.lei-da-casa__titulo {
 }
 
 .pulso__codigo {
-  font-size: 1.15rem;
+  font-size: var(--texto-md);
+  font-weight: var(--peso-semibold);
   color: var(--cor-ferrugem-clara);
 }
 
 .pulso__intro {
   max-width: 44rem;
   margin-top: 0.6rem;
-  font-size: 1.25rem;
-  line-height: 1.5;
+  font-size: var(--texto-lg);
+  line-height: var(--linha-leitura);
   color: var(--cor-nevoa-acessivel);
 }
 
@@ -522,18 +523,18 @@ h3.lei-da-casa__titulo {
 }
 
 .pulso__painel-titulo {
-  font-size: 1.5rem;
-  font-weight: 500;
+  font-size: var(--texto-xl);
+  font-weight: var(--peso-medio);
 }
 
 .pulso__painel-sub {
   margin-left: 0.7rem;
-  font-size: 1.05rem;
+  font-size: var(--texto-base);
   color: var(--cor-tinta-suave-acessivel);
 }
 
 .pulso__mare {
-  font-size: 1.05rem;
+  font-size: var(--texto-base);
   color: var(--cor-tinta-suave-acessivel);
 }
 
@@ -572,15 +573,15 @@ h3.lei-da-casa__titulo {
 }
 
 .indicador__nome {
-  font-size: 1.3rem;
-  font-weight: 500;
+  font-size: var(--texto-lg);
+  font-weight: var(--peso-medio);
 }
 
 .indicador__estado {
   padding: 0.05rem 0.7rem 0.1rem;
   font-family: var(--fonte-texto);
-  font-size: 0.875rem;
-  font-weight: 600;
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-semibold);
   color: var(--tom-texto);
   background: color-mix(in srgb, var(--tom) 16%, transparent);
   border: 1px solid color-mix(in srgb, var(--tom) 60%, transparent);
@@ -596,20 +597,20 @@ h3.lei-da-casa__titulo {
 }
 
 .indicador__valor {
-  font-size: 2.6rem;
-  font-weight: 500;
-  line-height: 1.1;
+  font-size: var(--texto-4xl);
+  font-weight: var(--peso-medio);
+  line-height: var(--linha-compacta);
 }
 
 .indicador__unidade {
   margin-left: 0.3rem;
   font-family: var(--fonte-texto);
-  font-size: 0.9rem;
+  font-size: var(--texto-sm);
   color: var(--cor-tinta-suave-acessivel);
 }
 
 .indicador__tendencia {
-  font-size: 1.05rem;
+  font-size: var(--texto-base);
   color: var(--tom-texto);
 }
 
@@ -630,8 +631,8 @@ h3.lei-da-casa__titulo {
 
 .indicador__nota {
   margin-top: 0.7rem;
-  font-size: 1.05rem;
-  line-height: 1.4;
+  font-size: var(--texto-base);
+  line-height: var(--linha-base);
   color: var(--cor-tinta-suave-acessivel);
 }
 
@@ -690,7 +691,7 @@ h3.lei-da-casa__titulo {
   }
 
   .marcador__nome {
-    font-size: 0.875rem;
+    font-size: var(--texto-sm);
   }
 
   /* Mapa pequeno: só o lugar selecionado mostra a etiqueta (o nome dos outros continua no aria-label) */
@@ -704,7 +705,7 @@ h3.lei-da-casa__titulo {
   }
 
   .mundo__texto {
-    font-size: 1.2rem;
+    font-size: var(--texto-md);
   }
 }
 

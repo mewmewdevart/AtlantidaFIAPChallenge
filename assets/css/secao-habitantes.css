@@ -101,9 +101,9 @@
 
 .cracha__nome {
   display: block;
-  font-size: 2rem;
-  font-weight: 500;
-  line-height: 1.1;
+  font-size: var(--texto-3xl);
+  font-weight: var(--peso-medio);
+  line-height: var(--linha-compacta);
 }
 
 .cracha__funcao {
@@ -111,8 +111,9 @@
   margin-top: 0.15rem;
   min-height: 2.6em;
   /* reserva 2 linhas: cargos curtos e longos ocupam o mesmo espaço */
-  font-size: 1.15rem;
-  line-height: 1.3;
+  font-size: var(--texto-md);
+  font-weight: var(--peso-semibold);
+  line-height: var(--linha-curta);
   color: var(--cor-ferrugem-acessivel);
 }
 
@@ -127,8 +128,8 @@
   min-height: 6em;
   /* 4 linhas x line-height 1.5 */
   margin-top: 0.8rem;
-  font-size: 1.1rem;
-  line-height: 1.5;
+  font-size: var(--texto-md);
+  line-height: var(--linha-leitura);
   color: var(--cor-tinta-suave-acessivel);
 }
 
@@ -167,14 +168,16 @@
 
 .dossie__dados dt,
 .dossie__titulo {
-  font-size: 1rem;
+  font-size: var(--texto-base);
+  font-weight: var(--peso-semibold);
   color: var(--cor-ferrugem-acessivel);
 }
 
 .dossie__dados dd {
   margin: 0;
-  font-size: 1.2rem;
-  line-height: 1.3;
+  font-size: var(--texto-lg);
+  font-weight: var(--peso-medio);
+  line-height: var(--linha-curta);
 }
 
 .dossie__titulo {
@@ -191,7 +194,7 @@
 
 .dossie__sabe li {
   padding: 0.1rem 0.8rem 0.15rem;
-  font-size: 1.05rem;
+  font-size: var(--texto-base);
   background: rgba(206, 77, 44, 0.12);
   border: 1px solid rgba(193, 75, 44, 0.45);
   border-radius: 999px;
@@ -199,8 +202,8 @@
 
 .dossie__bio {
   margin-top: 1.1rem;
-  font-size: 1.15rem;
-  line-height: 1.5;
+  font-size: var(--texto-md);
+  line-height: var(--linha-leitura);
 }
 
 .dossie__frase {
@@ -222,8 +225,8 @@
 .dossie__frase p {
   margin: 0;
   font-style: italic;
-  font-size: 1.25rem;
-  line-height: 1.4;
+  font-size: var(--texto-lg);
+  line-height: var(--linha-base);
 }
 
 /* ---------- Rodapé do crachá ---------- */
@@ -238,7 +241,7 @@
 }
 
 .cracha__lugar {
-  font-size: 1.05rem;
+  font-size: var(--texto-base);
   color: var(--cor-tinta-suave-acessivel);
 }
 
@@ -247,8 +250,8 @@
   /* área de toque confortável */
   padding: 0 0.5rem;
   font-family: var(--fonte-titulo);
-  font-size: 1.15rem;
-  font-weight: 600;
+  font-size: var(--texto-md);
+  font-weight: var(--peso-semibold);
   color: var(--cor-ferrugem-acessivel);
   text-decoration: underline;
   text-underline-offset: 0.3rem;
@@ -299,8 +302,8 @@
 .chasqui__codigo {
   display: inline-block;
   padding: 0.2rem 0.45rem;
-  font-size: 0.72rem;
-  font-weight: 700;
+  font-size: var(--texto-micro);
+  font-weight: var(--peso-bold);
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--cor-ferrugem-acessivel);
@@ -311,17 +314,17 @@
 
 .chasqui__titulo {
   margin-top: 0.2rem;
-  font-size: clamp(2rem, 4.5vw, 2.8rem);
-  font-weight: 700;
-  line-height: 1.1;
+  font-size: var(--titulo-subsecao);
+  font-weight: var(--peso-bold);
+  line-height: var(--linha-compacta);
   color: var(--cor-tinta);
 }
 
 .chasqui__texto {
   max-width: 38rem;
   margin-top: 0.6rem;
-  font-size: 1.15rem;
-  line-height: 1.5;
+  font-size: var(--texto-md);
+  line-height: var(--linha-leitura);
   color: var(--cor-tinta-suave-acessivel);
 }
 
@@ -336,7 +339,9 @@
   width: 100%;
   min-height: 7.5rem;
   padding: 0.35rem 1rem;
-  font: 1.3rem/2rem var(--fonte-titulo);
+  font-size: var(--texto-lg);
+  line-height: 2rem;
+  font-family: var(--fonte-titulo);
   color: var(--cor-tinta);
   resize: vertical;
   background-color: rgba(255, 252, 244, 0.55);
@@ -359,13 +364,14 @@
 
 .chasqui__contador {
   font-family: var(--fonte-texto);
-  font-size: 0.9rem;
+  font-size: var(--texto-sm);
   color: var(--cor-tinta-suave-acessivel);
 }
 
 .chasqui__erro {
   min-height: 1.3em;
-  font-size: 1.1rem;
+  font-size: var(--texto-md);
+  font-weight: var(--peso-semibold);
   color: var(--cor-ferrugem-acessivel);
 }
 
@@ -388,26 +394,27 @@
 }
 
 .chasqui__chame {
-  font-size: 1.1rem;
+  font-size: var(--texto-md);
+  font-weight: var(--peso-semibold);
   color: var(--cor-ferrugem-acessivel);
 }
 
 .chasqui__nome {
-  font-size: 2rem;
-  font-weight: 500;
-  line-height: 1.15;
+  font-size: var(--texto-3xl);
+  font-weight: var(--peso-medio);
+  line-height: var(--linha-compacta);
 }
 
 .chasqui__motivo {
   margin-top: 0.6rem;
-  font-size: 1.2rem;
-  line-height: 1.5;
+  font-size: var(--texto-lg);
+  line-height: var(--linha-leitura);
 }
 
 .chasqui__subtitulo {
   margin-top: 1rem;
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: var(--texto-md);
+  font-weight: var(--peso-semibold);
   color: var(--cor-ferrugem-acessivel);
 }
 
@@ -416,13 +423,14 @@
   gap: 0.2rem;
   margin-top: 0.3rem;
   padding-left: 1.4rem;
-  font-size: 1.15rem;
+  font-size: var(--texto-md);
+  line-height: var(--linha-base);
   color: var(--cor-tinta-suave-acessivel);
 }
 
 .chasqui__reforco {
   margin-top: 1rem;
-  font-size: 1.1rem;
+  font-size: var(--texto-md);
   color: var(--cor-tinta-suave-acessivel);
 }
 
