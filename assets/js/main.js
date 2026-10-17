@@ -7,17 +7,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const rotuloAtlantida = document.querySelector(".seletor-idioma__rotulo--atlantida") || document.querySelector(".seletor-idioma__rotulo--asteca");
 
   if (menuNavegacao) {
+    const gatilho = menuNavegacao.querySelector(".menu-navegacao__gatilho");
+
     menuNavegacao.addEventListener("click", (evento) => {
       if (evento.target.closest(".seletor-idioma")) {
         evento.stopPropagation();
         return;
       }
-      menuNavegacao.classList.toggle("menu-navegacao--expandido");
+      const expandido = menuNavegacao.classList.toggle("menu-navegacao--expandido");
+      if (gatilho) gatilho.setAttribute("aria-expanded", String(expandido));
     });
 
     document.addEventListener("click", (evento) => {
       if (!menuNavegacao.contains(evento.target)) {
         menuNavegacao.classList.remove("menu-navegacao--expandido");
+        if (gatilho) gatilho.setAttribute("aria-expanded", "false");
       }
     });
   }

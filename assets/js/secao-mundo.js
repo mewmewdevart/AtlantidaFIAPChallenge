@@ -103,7 +103,10 @@
           : `<li>${esc(rotulo("semRastro"))}</li>`;
         return `
           <li>
-            <button type="button" class="lugar__aviso" data-aviso="${esc(aviso.id)}" aria-expanded="${aberto}">${esc(t(aviso, "texto"))}</button>
+            <button type="button" class="lugar__aviso" data-aviso="${esc(aviso.id)}" aria-expanded="${aberto}">
+              <span class="lugar__opcao-texto">${esc(t(aviso, "texto"))}</span>
+              <span class="lugar__icone" aria-hidden="true"></span>
+            </button>
             ${aberto ? `<ol class="lugar__rastro">${passos}</ol>` : ""}
           </li>`;
       }).join("");
@@ -112,7 +115,10 @@
         const aberto = estado.pontoAberto === ponto.id;
         return `
           <li>
-            <button type="button" class="lugar__poi" data-ponto="${esc(ponto.id)}" aria-expanded="${aberto}">${esc(t(ponto, "nome"))}</button>
+            <button type="button" class="lugar__poi" data-ponto="${esc(ponto.id)}" aria-expanded="${aberto}">
+              <span class="lugar__opcao-texto">${esc(t(ponto, "nome"))}</span>
+              <span class="lugar__icone" aria-hidden="true"></span>
+            </button>
             ${aberto ? `
               <div class="lugar__info">
                 <div>

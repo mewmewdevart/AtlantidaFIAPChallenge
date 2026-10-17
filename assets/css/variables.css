@@ -12,19 +12,33 @@
   --cor-menta-neon: rgb(15, 244, 204);
   --cor-espuma: rgb(238, 246, 245);
   --cor-nevoa: rgb(169, 192, 190);
+  /* Nevoa acessível: contraste ≥ 4.5:1 sobre fundos escuros (#002329, #000A10) */
+  --cor-nevoa-acessivel: rgb(196, 216, 214);
   --cor-sinal: rgb(22, 104, 99);
   --cor-sinal-claro: rgb(62, 144, 137);
+  /* Sinal legível sobre fundos escuros (≥ 4.5:1 sobre #000A10) */
+  --cor-sinal-texto: rgb(108, 192, 185);
 
   /* Cores: Metais, Carimbos & Destaques */
   --cor-ambar: rgb(224, 144, 40);
+  /* Ambar acessível sobre pergaminho (≥ 4.5:1 sobre #EFD CB5) */
+  --cor-ambar-acessivel: rgb(140, 82, 0);
   --cor-ferrugem: rgb(193, 75, 44);
+  /* Ferrugem acessível: contraste ≥ 4.5:1 sobre pergaminho claro */
+  --cor-ferrugem-acessivel: rgb(160, 55, 25);
+  /* Ferrugem clara: contraste ≥ 6:1 sobre fundos escuros (#000A10, #002329) */
+  --cor-ferrugem-clara: rgb(240, 135, 105);
   --cor-terracota: rgb(206, 77, 44);
+  /* Terracota acessível sobre pergaminho */
+  --cor-terracota-acessivel: rgb(168, 50, 20);
 
   /* Cores: Livro & Pergaminho */
   --cor-pergaminho: rgb(239, 220, 181);
   --cor-pergaminho-borda: rgb(235, 207, 173);
   --cor-tinta: rgb(50, 27, 11);
   --cor-tinta-suave: rgb(100, 73, 56);
+  /* Tinta suave acessível: contraste ≥ 4.5:1 sobre pergaminho #EFDCB5 */
+  --cor-tinta-suave-acessivel: rgb(72, 48, 32);
 
   /* Cores: Botões & Ações */
   --cor-oceano: rgb(27, 155, 149);

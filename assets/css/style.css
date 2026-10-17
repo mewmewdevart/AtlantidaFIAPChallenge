@@ -128,10 +128,10 @@ body {
 }
 
 .seletor-idioma__rotulo {
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.5px;
-  color: var(--cor-nevoa);
+  color: var(--cor-nevoa-acessivel);
   transition: color 0.3s ease, transform 0.2s ease;
 }
 
@@ -204,7 +204,10 @@ body {
   width: 80px;
   height: 80px;
   background-color: transparent;
+  border: none;
   border-radius: inherit;
+  cursor: pointer;
+  font: inherit;
   transition: border-radius 0.4s ease;
 }
 
@@ -325,11 +328,11 @@ body {
   align-items: center;
   gap: 0.75rem;
   padding: 0.55rem 0.95rem 0.55rem 0.75rem;
-  color: var(--cor-abismo);
+  color: var(--cor-tinta);
   text-decoration: none;
   font-family: var(--fonte-texto);
-  font-size: 0.8rem;
-  font-weight: 500;
+  font-size: 0.85rem;
+  font-weight: 600;
   letter-spacing: 0.6px;
   text-transform: uppercase;
   border-radius: 6px;
@@ -408,10 +411,10 @@ body {
   gap: 0.5rem;
   align-items: center;
   justify-content: center;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 2px;
-  color: var(--cor-sinal-claro);
+  color: var(--cor-sinal-texto);
   text-transform: uppercase;
   cursor: pointer;
   background: transparent;
@@ -482,7 +485,7 @@ body {
 
 /* Modificador Secundário */
 .botao--secundario {
-  color: var(--cor-sinal);
+  color: var(--cor-oceano);
   background-color: transparent;
   border-color: var(--cor-oceano);
   box-shadow: none;
@@ -681,7 +684,7 @@ body {
   font-size: calc(0.23 * var(--livro-unidade));
   font-weight: 600;
   letter-spacing: 0.5px;
-  color: var(--cor-tinta-suave);
+  color: var(--cor-tinta-suave-acessivel);
   text-transform: uppercase;
 }
 
@@ -696,6 +699,17 @@ body {
 .livro-3d__acoes .botao {
   padding: calc(0.24 * var(--livro-unidade)) calc(0.48 * var(--livro-unidade));
   font-size: calc(0.31 * var(--livro-unidade));
+}
+
+.livro-3d__acoes .botao--secundario {
+  color: rgb(10, 85, 80);
+  border-color: rgb(10, 85, 80);
+}
+
+.livro-3d__acoes .botao--secundario:hover {
+  color: rgb(5, 60, 56);
+  border-color: rgb(5, 60, 56);
+  background-color: rgba(10, 85, 80, 0.08);
 }
 
 
@@ -779,15 +793,17 @@ body {
   width: 100%;
   padding: 1.5rem clamp(1rem, 4vw, 2.5rem);
   font-family: var(--fonte-texto);
-  font-size: clamp(0.72rem, 1.6vw, 0.88rem);
-  font-weight: 500;
+  font-size: clamp(0.8rem, 1.6vw, 0.92rem);
+  font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--cor-sinal-claro);
+  color: var(--cor-sinal-texto);
   z-index: 10;
 }
 
-.linha-divisoria p {
+.linha-divisoria p,
+.linha-divisoria span,
+.linha-divisoria__texto {
   flex-shrink: 0;
   padding: 0.35rem clamp(0.9rem, 2.2vw, 1.8rem);
   text-align: center;
@@ -821,15 +837,18 @@ body>section,
 .mural__sobretitulo,
 .contato__sobretitulo {
   display: block;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.16em;
   color: var(--cor-menta-neon);
 }
 
 .secao__citacao p,
+.secao__citacao blockquote,
 .mural__citacao p,
-.contato__citacao p {
+.mural__citacao blockquote,
+.contato__citacao p,
+.contato__citacao blockquote {
   margin-top: 0.55rem;
   font-size: clamp(0.92rem, 2vw, 1.3rem);
   font-weight: 700;
@@ -838,6 +857,8 @@ body>section,
 }
 
 .secao__cabecalho,
+.mundo__cabecalho,
+.habitantes__cabecalho,
 .mural__cabecalho,
 .contato__cabecalho {
   display: flex;
@@ -847,6 +868,8 @@ body>section,
 }
 
 .secao__numero,
+.mundo__numero,
+.habitantes__numero,
 .mural__numero,
 .contato__numero {
   display: grid;
@@ -857,41 +880,56 @@ body>section,
   font-size: clamp(2.8rem, 6vw, 4rem);
   font-weight: 700;
   line-height: 1;
-  color: var(--cor-oceano);
-  border-left: 2px solid var(--cor-oceano);
+  color: var(--cor-ambar);
+  border-left: 2px solid var(--cor-ambar);
 }
 
 .secao__titulo-grupo,
+.mundo__titulo-grupo,
+.habitantes__titulo-grupo,
 .mural__titulo-grupo,
 .contato__titulo-grupo {
   min-width: 0;
 }
 
 .secao__sobretitulo,
+.mundo__sobretitulo,
+.habitantes__sobretitulo,
 .mural__sobretitulo,
 .contato__sobretitulo {
+  display: block;
   margin-bottom: 0.15rem;
-  font-size: 0.62rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--cor-sinal-texto);
+  text-transform: uppercase;
 }
 
 .secao__titulo-grupo h2,
+.mundo__titulo-grupo h2,
+.habitantes__titulo-grupo h2,
 .mural__titulo-grupo h2,
 .contato__titulo-grupo h2 {
   font-size: clamp(1.65rem, 4.2vw, 3rem);
   font-weight: 700;
-  line-height: 1;
+  line-height: 1.1;
   color: var(--cor-espuma);
+  letter-spacing: 0.02em;
 }
 
 .secao__subtitulo,
+.mundo__subtitulo,
+.habitantes__subtitulo,
 .mural__subtitulo,
 .contato__subtitulo {
   display: block;
   margin-top: 0.4rem;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.08em;
-  color: var(--cor-ferrugem);
+  color: var(--cor-ferrugem-clara);
+  text-transform: uppercase;
 }
 
 /* ---------------------------- Seção 1 - O Mundo ---------------------------- */
@@ -1034,24 +1072,24 @@ body>section,
 
 .mural__transmissao {
   margin-top: 0.18rem;
-  font-size: 0.6rem;
+  font-size: 0.72rem;
   letter-spacing: 0.04em;
-  color: var(--cor-tinta-suave);
+  color: var(--cor-tinta-suave-acessivel);
 }
 
 .mural__categoria {
   flex: 0 0 auto;
   padding: 0.2rem 0.36rem;
-  font-size: 0.55rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.03em;
-  color: var(--cor-ferrugem);
+  color: var(--cor-ferrugem-acessivel);
   border: 1px solid currentColor;
   transform: rotate(3deg);
 }
 
 .mural__categoria--urgente {
-  color: var(--cor-terracota);
+  color: var(--cor-terracota-acessivel);
 }
 
 .mural__texto {
@@ -1059,7 +1097,7 @@ body>section,
   font-family: var(--fonte-titulo);
   font-size: 1.05rem;
   line-height: 1.4;
-  color: var(--cor-tinta-suave);
+  color: var(--cor-tinta-suave-acessivel);
 }
 
 .mural__expiracao {
@@ -1067,13 +1105,13 @@ body>section,
   align-items: center;
   gap: 0.35rem;
   margin-top: 0.75rem;
-  font-size: 0.68rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  color: var(--cor-tinta-suave);
+  color: var(--cor-tinta-suave-acessivel);
 }
 
 .mural__mensagem--urgente .mural__expiracao {
-  color: var(--cor-terracota);
+  color: var(--cor-terracota-acessivel);
 }
 
 .mural__rodape {
@@ -1083,10 +1121,10 @@ body>section,
   gap: 0.55rem 1rem;
   padding-top: 0.8rem;
   margin-top: 0.8rem;
-  font-size: 0.59rem;
+  font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.06em;
-  color: var(--cor-nevoa);
+  color: var(--cor-nevoa-acessivel);
   border-top: 1px solid rgba(62, 144, 137, 0.22);
 }
 
@@ -1095,7 +1133,7 @@ body>section,
   padding: 2rem 1rem;
   text-align: center;
   font-size: 0.95rem;
-  color: var(--cor-nevoa);
+  color: var(--cor-nevoa-acessivel);
 }
 
 .mural__proxima,
@@ -1112,7 +1150,7 @@ body>section,
 }
 
 .mural__periodo {
-  color: var(--cor-nevoa);
+  color: var(--cor-nevoa-acessivel);
 }
 
 /* ---------------------------- Seção 4 - Contato ---------------------------- */
@@ -1168,7 +1206,7 @@ body>section,
   justify-content: space-between;
   gap: 1rem;
   padding-bottom: 0.8rem;
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   border-bottom: 1px solid rgba(62, 144, 137, 0.35);
@@ -1182,7 +1220,7 @@ body>section,
 }
 
 .contato__terminal-status i {
-  font-size: 0.45rem;
+  font-size: 0.7rem;
   color: var(--cor-menta-neon);
   animation: contato-pulso 2s ease-in-out infinite;
 }
@@ -1192,13 +1230,13 @@ body>section,
   margin-top: 1rem;
   font-size: 0.9rem;
   line-height: 1.5;
-  color: var(--cor-nevoa);
+  color: var(--cor-nevoa-acessivel);
 }
 
 .contato__obrigatorios {
   margin-top: 0.65rem;
-  font-size: 0.7rem;
-  color: var(--cor-nevoa);
+  font-size: 0.8rem;
+  color: var(--cor-nevoa-acessivel);
 }
 
 .contato__campos {
@@ -1221,7 +1259,7 @@ body>section,
 }
 
 .contato__campo label {
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.06em;
   color: var(--cor-menta-neon);
@@ -1262,7 +1300,7 @@ body>section,
 }
 
 .contato__campo select:invalid {
-  color: var(--cor-nevoa);
+  color: var(--cor-nevoa-acessivel);
 }
 
 .contato__campo option {
@@ -1279,13 +1317,13 @@ body>section,
 }
 
 .contato__campo [aria-invalid="true"] {
-  border-color: var(--cor-terracota);
+  border-color: var(--cor-ferrugem-clara);
 }
 
 .contato__erro {
   font-size: 0.75rem;
   line-height: 1.35;
-  color: var(--cor-terracota);
+  color: var(--cor-ferrugem-clara);
 }
 
 .contato__acoes {
@@ -1300,9 +1338,9 @@ body>section,
 
 .contato__aviso {
   max-width: 32rem;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   line-height: 1.4;
-  color: var(--cor-nevoa);
+  color: var(--cor-nevoa-acessivel);
 }
 
 .contato__enviar {
@@ -1312,7 +1350,7 @@ body>section,
   justify-content: center;
   gap: 0.55rem;
   padding: 0.75rem 1.15rem;
-  font: 700 0.75rem/1.2 var(--fonte-texto);
+  font: 700 0.82rem/1.2 var(--fonte-texto);
   letter-spacing: 0.05em;
   color: var(--cor-abismo);
   cursor: pointer;
@@ -1430,7 +1468,7 @@ body>section,
 }
 
 .rodape__assinatura {
-  font-size: 0.54rem;
+  font-size: 0.65rem;
   letter-spacing: 0.11em;
   color: var(--cor-menta-neon);
 }
@@ -1438,9 +1476,9 @@ body>section,
 .rodape__descricao {
   max-width: 27rem;
   margin: 0.9rem 0;
-  font-size: 0.84rem;
+  font-size: 0.88rem;
   line-height: 1.5;
-  color: var(--cor-nevoa);
+  color: var(--cor-nevoa-acessivel);
 }
 
 .rodape__indicadores {
@@ -1454,7 +1492,7 @@ body>section,
   align-items: center;
   gap: 0.4rem;
   padding: 0.35rem 0.6rem;
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   border-radius: 2rem;
@@ -1472,8 +1510,8 @@ body>section,
 
 .rodape__titulo-coluna {
   margin-bottom: 0.75rem;
-  font-size: 0.78rem;
-  font-weight: 500;
+  font-size: 0.85rem;
+  font-weight: 600;
   color: var(--cor-espuma);
 }
 
@@ -1486,9 +1524,9 @@ body>section,
 
 .rodape__lista a,
 .rodape__lista li {
-  font-size: 0.81rem;
+  font-size: 0.85rem;
   line-height: 1.35;
-  color: var(--cor-nevoa);
+  color: var(--cor-nevoa-acessivel);
 }
 
 .rodape__lista a {
@@ -1508,8 +1546,8 @@ body>section,
 }
 
 .rodape__icone-canal {
-  flex: 0 0 0.75rem;
-  font-size: 0.65rem;
+  flex: 0 0 0.85rem;
+  font-size: 0.75rem;
 }
 
 .rodape__icone-canal--radio {
@@ -1517,11 +1555,11 @@ body>section,
 }
 
 .rodape__icone-canal--alerta {
-  color: var(--cor-ferrugem);
+  color: var(--cor-ferrugem-clara);
 }
 
 .rodape__icone-canal--assembleia {
-  color: var(--cor-ambar);
+  color: var(--cor-sinal-texto);
 }
 
 .rodape__base {
@@ -1532,9 +1570,9 @@ body>section,
 }
 
 .rodape__base p {
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   letter-spacing: 0.04em;
-  color: rgba(169, 192, 190, 0.65);
+  color: rgba(196, 216, 214, 0.75);
 }
 
 /* ---------------------------- Media Queries (Responsividade) ---------------------------- */
@@ -1817,7 +1855,7 @@ body>section,
 
   .secao__citacao>span,
   .secao__sobretitulo {
-    font-size: 0.55rem;
+    font-size: 0.72rem;
   }
 
   .secao__cabecalho {
@@ -1834,7 +1872,7 @@ body>section,
   }
 
   .secao__subtitulo {
-    font-size: 0.55rem;
+    font-size: 0.72rem;
   }
 
   .mural__sinal {

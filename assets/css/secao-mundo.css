@@ -29,22 +29,36 @@
 .mundo__capitular::first-letter {
   float: left;
   margin-right: 0.7rem;
-  font-size: 4.9rem;
+  font-size: clamp(2rem, 4vw, 4.9rem);
   font-weight: 500;
   line-height: 0.82;
-  color: var(--cor-terracota);
+  color: var(--cor-ambar);
 }
 
 .lei-da-casa {
-  margin-top: 0.8rem;
-  padding: 1.5rem 1.6rem 1.4rem;
+  position: relative;
+  margin-top: 1.2rem;
+  padding: 1.8rem 1.6rem 1.4rem;
 }
 
-.lei-da-casa__titulo {
+.lei-da-casa .mural__fita {
+  position: absolute;
+  top: -0.42rem;
+  left: 50%;
+  width: 3.5rem;
+  height: 0.85rem;
+  background-color: rgba(15, 244, 204, 0.76);
+  transform: translateX(-50%) rotate(-1.5deg);
+  pointer-events: none;
+}
+
+.lei-da-casa__titulo,
+h3.lei-da-casa__titulo {
   display: block;
   margin-bottom: 0.35rem;
   font-size: 1.15rem;
-  color: var(--cor-terracota);
+  font-weight: 700;
+  color: var(--cor-ambar-acessivel);
 }
 
 .lei-da-casa__texto {
@@ -98,7 +112,7 @@
   min-width: 3rem;
   font-size: 1.2rem;
   font-weight: 600;
-  color: var(--cor-terracota);
+  color: var(--cor-ferrugem-acessivel);
 }
 
 .faq__texto {
@@ -109,7 +123,7 @@
 
 .faq__botao:hover .faq__texto,
 .faq__item--aberto .faq__texto {
-  color: var(--cor-ferrugem);
+  color: var(--cor-ferrugem-acessivel);
 }
 
 /* Ícone "+" desenhado com duas linhas; ao abrir, vira "−" */
@@ -128,7 +142,7 @@
   left: 0;
   width: 100%;
   height: 2px;
-  background: var(--cor-terracota);
+  background: var(--cor-ferrugem-acessivel);
   border-radius: 2px;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
@@ -164,7 +178,7 @@
   padding: 0 0 1.1rem 3.9rem;
   font-size: 1.15rem;
   line-height: 1.5;
-  color: var(--cor-tinta-suave);
+  color: var(--cor-tinta-suave-acessivel);
 }
 
 .faq__botao:focus-visible {
@@ -187,7 +201,7 @@
 
 .cidade__dica {
   font-size: 1.15rem;
-  color: var(--cor-nevoa);
+  color: var(--cor-nevoa-acessivel);
 }
 
 .cidade__grade {
@@ -221,13 +235,12 @@
 }
 
 .marcador__ponto {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 2rem;
+  height: 2rem;
   background: var(--cor-oceano);
   border: 3px solid var(--cor-pergaminho);
   border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-  transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease, background-color 0.25s ease;
 }
 
 .marcador--atencao .marcador__ponto {
@@ -238,15 +251,14 @@
   position: absolute;
   top: 50%;
   left: calc(100% - 0.2rem);
-  padding: 0.15rem 0.6rem 0.2rem;
+  padding: 0.6rem 0.6rem;
   font-family: var(--fonte-titulo);
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
   white-space: nowrap;
   color: var(--cor-tinta);
   background: var(--cor-pergaminho);
-  border-radius: 9px 11px 8px 12px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.45);
+  border-radius: 3px;
   transform: translateY(-50%);
 }
 
@@ -261,7 +273,6 @@
 
 .marcador--ativo .marcador__ponto {
   background: var(--cor-ambar);
-  box-shadow: 0 0 0 7px rgba(224, 144, 40, 0.4), 0 2px 8px rgba(0, 0, 0, 0.6);
   transform: scale(1.2);
 }
 
@@ -293,7 +304,6 @@
   aspect-ratio: 16 / 10;
   object-fit: cover;
   border-radius: 6px;
-  box-shadow: 0 6px 16px rgba(50, 27, 11, 0.4);
   animation: lugar-aparecer 0.45s ease;
   filter: contrast(0.7) saturate(1) hue-rotate(-4deg);
 }
@@ -301,7 +311,7 @@
 .lugar__foto figcaption {
   margin-top: 0.6rem;
   font-size: 1rem;
-  color: var(--cor-tinta-suave);
+  color: var(--cor-tinta-suave-acessivel);
 }
 
 .lugar__corpo {
@@ -337,7 +347,7 @@
 }
 
 .lugar__estado--atencao {
-  color: var(--cor-ferrugem);
+  color: var(--cor-ferrugem-acessivel);
 }
 
 .lugar__resumo {
@@ -351,7 +361,7 @@
   padding-bottom: 0.2rem;
   font-size: 1.2rem;
   font-weight: 500;
-  color: var(--cor-ferrugem);
+  color: var(--cor-ferrugem-acessivel);
   border-bottom: 1px dotted var(--cor-tinta-suave);
 }
 
@@ -367,8 +377,12 @@
   width: 100%;
   min-height: 2.75rem;
   /* área de toque confortável */
-  padding: 0.6rem 0 0.6rem 1.2rem;
+  padding: 0.6rem 0.6rem 0.6rem 1.4rem;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
   font: inherit;
   font-size: 1.15rem;
   text-align: left;
@@ -379,14 +393,51 @@
   transition: color 0.2s ease;
 }
 
+.lugar__opcao-texto {
+  flex: 1;
+}
+
+/* Ícone indicando interatividade (+/− igual ao FAQ) */
+.lugar__icone {
+  position: relative;
+  flex-shrink: 0;
+  width: 0.95rem;
+  height: 0.95rem;
+  margin-left: auto;
+}
+
+.lugar__icone::before,
+.lugar__icone::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--cor-ferrugem-acessivel);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.lugar__icone::after {
+  transform: rotate(90deg);
+}
+
+.lugar__aviso[aria-expanded="true"] .lugar__icone::after,
+.lugar__poi[aria-expanded="true"] .lugar__icone::after {
+  opacity: 0;
+  transform: rotate(0deg);
+}
+
 .lugar__aviso::before,
 .lugar__poi::before {
   content: "";
   position: absolute;
-  top: 1.2rem;
-  left: 0.1rem;
+  top: 50%;
+  left: 0.2rem;
   width: 0.5rem;
   height: 0.5rem;
+  transform: translateY(-50%);
   border-radius: 50%;
 }
 
@@ -402,7 +453,7 @@
 .lugar__poi:hover,
 .lugar__aviso[aria-expanded="true"],
 .lugar__poi[aria-expanded="true"] {
-  color: var(--cor-ferrugem);
+  color: var(--cor-ferrugem-acessivel);
 }
 
 .lugar__rastro,
@@ -413,7 +464,7 @@
   padding-left: 0.9rem;
   font-size: 1.05rem;
   line-height: 1.4;
-  color: var(--cor-tinta-suave);
+  color: var(--cor-tinta-suave-acessivel);
   border-left: 2px solid var(--cor-terracota);
   animation: lugar-aparecer 0.35s ease;
 }
@@ -430,7 +481,7 @@
 .lugar__info-titulo {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--cor-ferrugem);
+  color: var(--cor-ferrugem-acessivel);
 }
 
 .lugar__info p {
@@ -444,7 +495,7 @@
 
 .pulso__codigo {
   font-size: 1.15rem;
-  color: var(--cor-ambar);
+  color: var(--cor-ferrugem-clara);
 }
 
 .pulso__intro {
@@ -452,7 +503,7 @@
   margin-top: 0.6rem;
   font-size: 1.25rem;
   line-height: 1.5;
-  color: var(--cor-nevoa);
+  color: var(--cor-nevoa-acessivel);
 }
 
 .pulso__painel {
@@ -467,7 +518,7 @@
   justify-content: space-between;
   gap: 0.3rem 1rem;
   padding: 0.3rem 0.4rem 1rem;
-  border-bottom: 1px dotted var(--cor-tinta-suave);
+  border-bottom: 1px dotted var(--cor-tinta-suave-acessivel);
 }
 
 .pulso__painel-titulo {
@@ -478,12 +529,12 @@
 .pulso__painel-sub {
   margin-left: 0.7rem;
   font-size: 1.05rem;
-  color: var(--cor-tinta-suave);
+  color: var(--cor-tinta-suave-acessivel);
 }
 
 .pulso__mare {
   font-size: 1.05rem;
-  color: var(--cor-tinta-suave);
+  color: var(--cor-tinta-suave-acessivel);
 }
 
 .pulso__grade {
@@ -505,7 +556,7 @@
 
 .indicador--atencao {
   --tom: var(--cor-ambar);
-  --tom-texto: #8a5410;
+  --tom-texto: #6b4000;
 }
 
 .indicador--risco {
@@ -554,7 +605,7 @@
   margin-left: 0.3rem;
   font-family: var(--fonte-texto);
   font-size: 0.9rem;
-  color: var(--cor-tinta-suave);
+  color: var(--cor-tinta-suave-acessivel);
 }
 
 .indicador__tendencia {
@@ -581,7 +632,7 @@
   margin-top: 0.7rem;
   font-size: 1.05rem;
   line-height: 1.4;
-  color: var(--cor-tinta-suave);
+  color: var(--cor-tinta-suave-acessivel);
 }
 
 @keyframes lugar-aparecer {
@@ -633,7 +684,7 @@
 }
 
 @media (max-width: 640px) {
-  .conteiner-secao {
+  .container-secao {
     padding-top: 4rem;
     padding-bottom: 4rem;
   }
