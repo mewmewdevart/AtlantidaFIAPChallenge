@@ -956,6 +956,7 @@ body>section,
 }
 
 /* ---------------------------- Seção 3 - O Mural ---------------------------- */
+/* Fundo e área de leitura isolam o mural como uma estação comunitária dentro da sequência de profundidades. */
 #mural {
   position: relative;
   display: flex;
@@ -968,7 +969,7 @@ body>section,
 }
 
 .mural__conteudo {
-  width: min(100%, 1160px);
+  width: min(100%, 1188px);
   margin: 0 auto;
   padding: clamp(3rem, 6vh, 5rem) clamp(1.5rem, 5vw, 4rem) clamp(4rem, 8vh, 6rem);
   font-family: var(--fonte-texto);
@@ -979,66 +980,65 @@ body>section,
   margin: 0 auto clamp(4rem, 11vh, 8rem);
 }
 
+.mural__citacao>span,
+.contato__citacao>span {
+  color: var(--cor-jade-claro);
+}
+
 .mural__sinal {
+  /* Selo de transmissão decorativo que complementa o título sem competir com ele. */
   display: grid;
   width: 2.5rem;
   height: 2.5rem;
   place-items: center;
   margin-left: auto;
-  color: var(--cor-menta-neon);
-  border: 2px solid var(--cor-oceano);
+  color: var(--cor-oceano-acessivel);
+  border: 1px solid var(--cor-oceano-acessivel);
   border-radius: 50%;
 }
 
 .mural__chapa {
+  /* A base em pergaminho remete a um quadro físico e organiza os avisos em duas colunas. */
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
+  gap: 1.2rem;
   padding: clamp(1.2rem, 2.6vw, 1.9rem);
-  background-color: rgba(16, 84, 79, 0.23);
-  background-image: repeating-linear-gradient(125deg,
-      transparent 0,
-      transparent 15px,
-      rgba(62, 144, 137, 0.08) 16px,
-      transparent 17px);
-  border: 2px solid var(--cor-sinal);
-  box-shadow: 0 0 0 1px rgba(15, 244, 204, 0.08), inset 0 0 28px rgba(0, 3, 5, 0.28);
+  background-color: var(--cor-pergaminho);
+  border: 1px solid var(--cor-pergaminho-borda);
+  border-radius: 3px;
+  box-shadow: 0 6px 18px rgba(0, 3, 5, 0.35), inset 0 0 22px rgba(130, 90, 40, 0.12);
 }
 
 .mural__mensagem {
+  /* Todos os avisos compartilham o mesmo cartão para manter consistência entre categorias. */
   position: relative;
   min-height: 10rem;
   padding: 1.4rem 1.35rem 1rem;
   cursor: pointer;
   color: var(--cor-tinta);
-  background-color: var(--cor-pergaminho);
-  box-shadow: 0 4px 8px rgba(0, 3, 5, 0.22);
+  background-color: rgba(255, 250, 235, 0.46);
+  border: 1px solid rgba(100, 73, 56, 0.22);
+  box-shadow: 0 3px 8px rgba(50, 27, 11, 0.14);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.mural__mensagem--troca {
-  background-color: var(--cor-pergaminho-borda);
-}
-
 .mural__mensagem--urgente {
+  /* O aviso prioritário ocupa toda a linha para ganhar destaque na grade. */
   grid-column: 1 / -1;
 }
 
 .mural__mensagem:hover {
+  /* Elevação sutil reforça que os cartões são itens interativos sem mudar seu conteúdo. */
   z-index: 1;
-  outline: 2px solid var(--cor-ambar);
+  outline: 2px solid var(--cor-ferrugem);
   outline-offset: 2px;
   filter: brightness(1.03);
-  box-shadow: 0 14px 24px rgba(0, 3, 5, 0.34);
+  box-shadow: 0 12px 22px rgba(50, 27, 11, 0.24);
   transform: translateY(-6px) rotate(-0.5deg);
 }
 
-.mural__mensagem--troca:hover,
-.mural__mensagem--colheita:hover {
-  transform: translateY(-6px) rotate(0.5deg);
-}
-
 .mural__fita {
+  /* Detalhe de fita adesiva que sustenta a metáfora do mural físico. */
   position: absolute;
   top: -0.42rem;
   left: 50%;
@@ -1049,6 +1049,7 @@ body>section,
 }
 
 .mural__mensagem-cabecalho {
+  /* Mantém autor e categoria alinhados e facilmente distinguíveis. */
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -1056,13 +1057,15 @@ body>section,
 }
 
 .mural__mensagem-cabecalho h3 {
-  font-size: var(--texto-base);
+  font-family: var(--fonte-titulo);
+  font-size: var(--texto-xl);
   font-weight: var(--peso-bold);
   line-height: var(--linha-compacta);
   color: var(--cor-tinta);
 }
 
 .mural__transmissao {
+  /* Metadado curto para a data e hora calculadas pelo JavaScript. */
   margin-top: 0.18rem;
   font-size: var(--texto-micro);
   letter-spacing: 0.04em;
@@ -1070,6 +1073,7 @@ body>section,
 }
 
 .mural__categoria {
+  /* Etiqueta identifica rapidamente o tipo do recado. */
   flex: 0 0 auto;
   padding: 0.2rem 0.36rem;
   font-size: var(--texto-micro);
@@ -1085,6 +1089,7 @@ body>section,
 }
 
 .mural__texto {
+  /* Texto principal recebe tipografia de leitura para diferenciar conteúdo dos metadados. */
   margin-top: 1.25rem;
   font-family: var(--fonte-titulo);
   font-size: var(--texto-md);
@@ -1093,6 +1098,7 @@ body>section,
 }
 
 .mural__expiracao {
+  /* Contagem regressiva informa por quanto tempo o aviso fica ativo. */
   display: flex;
   align-items: center;
   gap: 0.35rem;
@@ -1107,6 +1113,7 @@ body>section,
 }
 
 .mural__rodape {
+  /* Resumo agregado alimentado pelo script: total de mensagens e próxima renovação. */
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -1116,16 +1123,17 @@ body>section,
   font-size: var(--texto-micro);
   font-weight: var(--peso-semibold);
   letter-spacing: 0.06em;
-  color: var(--cor-nevoa-acessivel);
-  border-top: 1px solid rgba(62, 144, 137, 0.22);
+  color: var(--cor-pergaminho);
+  border-top: 1px solid rgba(235, 207, 173, 0.28);
 }
 
 .mural__vazio {
+  /* Mensagem alternativa, revelada apenas se a lista estiver sem publicações ativas. */
   grid-column: 1 / -1;
   padding: 2rem 1rem;
   text-align: center;
   font-size: var(--texto-sm);
-  color: var(--cor-nevoa-acessivel);
+  color: var(--cor-tinta-suave-acessivel);
 }
 
 .mural__proxima,
@@ -1138,7 +1146,7 @@ body>section,
 
 .mural__proxima,
 .mural__quantidade {
-  color: var(--cor-menta-neon);
+  color: var(--cor-ambar);
 }
 
 .mural__periodo {
@@ -1146,6 +1154,7 @@ body>section,
 }
 
 /* ---------------------------- Seção 4 - Contato ---------------------------- */
+/* Mantém a transição para o fundo abissal e centraliza o formulário de contato. */
 #contato {
   position: relative;
   display: flex;
@@ -1160,9 +1169,10 @@ body>section,
 }
 
 .contato__conteudo {
+  /* Limita a largura de leitura e respeita o mesmo ritmo lateral das outras seções. */
   position: relative;
   z-index: 21;
-  width: min(100%, 1160px);
+  width: min(100%, 1188px);
   margin: 0 auto;
   padding: clamp(3rem, 6vh, 5rem) clamp(1.5rem, 5vw, 4rem) clamp(4rem, 8vh, 6rem);
   font-family: var(--fonte-texto);
@@ -1171,37 +1181,54 @@ body>section,
 /* Citação e cabeçalho do contato: herdam de .secao__ base */
 
 .contato__formulario {
+  /* Papel e sombra integram o formulário aos cartões da seção de habitantes. */
   position: relative;
   isolation: isolate;
-  overflow: hidden;
-  padding: clamp(1.1rem, 2.6vw, 2rem);
-  color: var(--cor-menta-neon);
-  background-color: rgba(0, 10, 16, 0.9);
-  border: 2px solid var(--cor-sinal);
-  box-shadow: 8px 8px 0 var(--cor-terracota), 0 0 0 1px rgba(15, 244, 204, 0.08);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  padding: clamp(2rem, 4vw, 3rem);
+  color: var(--cor-tinta);
+  background-color: var(--cor-pergaminho);
+  border: 1px solid var(--cor-pergaminho-borda);
+  border-radius: 3px;
+  box-shadow: 0 8px 24px rgba(0, 3, 5, 0.38), inset 0 0 28px rgba(130, 90, 40, 0.12);
+  transition: box-shadow 0.3s ease;
+}
+
+.contato__formulario::before {
+  /* Fita decorativa dá ao formulário o aspecto de uma folha presa ao mural. */
+  position: absolute;
+  top: -0.42rem;
+  left: 50%;
+  z-index: 1;
+  width: 4rem;
+  height: 0.9rem;
+  content: "";
+  background-color: rgba(193, 75, 44, 0.76);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  transform: translateX(-50%) rotate(-1.5deg);
 }
 
 .contato__formulario>* {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .contato__formulario:focus-within {
-  border-color: var(--cor-menta-neon);
-  box-shadow: 8px 8px 0 var(--cor-terracota), 0 0 28px rgba(15, 244, 204, 0.18);
+  /* Realça o painel enquanto qualquer controle interno está sendo usado. */
+  box-shadow: 0 12px 30px rgba(0, 3, 5, 0.42), inset 0 0 28px rgba(130, 90, 40, 0.12);
 }
 
 .contato__terminal {
+  /* Faixa de status separa visualmente o contexto do formulário dos campos. */
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
   padding-bottom: 0.8rem;
-  font-size: var(--texto-micro);
+  font-size: var(--texto-sm);
   font-weight: var(--peso-semibold);
   letter-spacing: 0.08em;
-  border-bottom: 1px solid rgba(62, 144, 137, 0.35);
+  color: var(--cor-ferrugem-acessivel);
+  border-bottom: 1px dotted rgba(100, 73, 56, 0.45);
 }
 
 .contato__terminal-status {
@@ -1212,26 +1239,29 @@ body>section,
 }
 
 .contato__terminal-status i {
-  font-size: var(--texto-micro);
-  color: var(--cor-menta-neon);
+  font-size: var(--texto-xs);
+  color: var(--cor-oceano-acessivel);
   animation: contato-pulso 2s ease-in-out infinite;
 }
 
 .contato__orientacao {
+  /* Introdução e nota de obrigatoriedade aparecem antes dos campos para orientar o preenchimento. */
   max-width: 52rem;
   margin-top: 1rem;
-  font-size: var(--texto-base);
+  font-family: var(--fonte-titulo);
+  font-size: var(--texto-md);
   line-height: var(--linha-leitura);
-  color: var(--cor-nevoa-acessivel);
+  color: var(--cor-tinta-suave-acessivel);
 }
 
 .contato__obrigatorios {
   margin-top: 0.65rem;
-  font-size: var(--texto-xs);
-  color: var(--cor-nevoa-acessivel);
+  font-size: var(--texto-sm);
+  color: var(--cor-tinta-suave-acessivel);
 }
 
 .contato__campos {
+  /* Duas colunas em telas amplas reduzem a altura; campos longos ocupam a largura completa. */
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.1rem 1rem;
@@ -1239,6 +1269,7 @@ body>section,
 }
 
 .contato__campo {
+  /* Empilha rótulo, controle e mensagem de erro para preservar a associação visual. */
   display: flex;
   min-width: 0;
   flex-direction: column;
@@ -1247,34 +1278,36 @@ body>section,
 
 .contato__campo--retorno,
 .contato__campo--mensagem {
+  /* Informações de texto livre têm mais espaço horizontal para facilitar a leitura e a digitação. */
   grid-column: 1 / -1;
 }
 
 .contato__campo label {
-  font-size: var(--texto-sm);
+  font-size: var(--texto-base);
   font-weight: var(--peso-semibold);
   letter-spacing: 0.06em;
-  color: var(--cor-menta-neon);
+  color: var(--cor-oceano-acessivel);
 }
 
 .contato__campo label>span:last-child {
-  color: var(--cor-ambar);
+  color: var(--cor-ferrugem-acessivel);
 }
 
 .contato__campo input,
 .contato__campo select,
 .contato__campo textarea {
+  /* Aparência compartilhada dos controles, com contraste e tamanho legível. */
   width: 100%;
-  min-height: 2.75rem;
+  min-height: 3rem;
   padding: 0.7rem 0.8rem;
   font-family: var(--fonte-texto);
-  font-size: var(--texto-base);
+  font-size: var(--texto-md);
   font-weight: var(--peso-regular);
   line-height: var(--linha-base);
-  color: var(--cor-espuma);
-  background-color: rgba(0, 3, 5, 0.62);
-  border: 1px solid var(--cor-sinal);
-  border-radius: 0;
+  color: var(--cor-tinta);
+  background-color: rgba(255, 250, 235, 0.58);
+  border: 1px solid rgba(100, 73, 56, 0.38);
+  border-radius: 2px;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -1285,41 +1318,43 @@ body>section,
 
 .contato__campo input::placeholder,
 .contato__campo textarea::placeholder {
-  color: rgba(169, 192, 190, 0.72);
+  color: var(--cor-tinta-suave);
 }
 
 .contato__campo input:hover,
 .contato__campo select:hover,
 .contato__campo textarea:hover {
-  border-color: var(--cor-sinal-claro);
+  border-color: var(--cor-oceano);
 }
 
 .contato__campo select:invalid {
-  color: var(--cor-nevoa-acessivel);
+  color: var(--cor-tinta-suave);
 }
 
 .contato__campo option {
-  color: var(--cor-espuma);
-  background-color: var(--cor-agua-profunda);
+  color: var(--cor-tinta);
+  background-color: var(--cor-pergaminho);
 }
 
 .contato__campo input:focus-visible,
 .contato__campo select:focus-visible,
 .contato__campo textarea:focus-visible {
-  border-color: var(--cor-menta-neon);
+  /* Indica o foco do teclado para que a navegação sem mouse permaneça clara. */
+  border-color: var(--cor-oceano-acessivel);
   outline: none;
-  box-shadow: 0 0 0 2px rgba(15, 244, 204, 0.16);
+  box-shadow: 0 0 0 2px rgba(10, 88, 84, 0.18);
 }
 
 .contato__campo [aria-invalid="true"] {
-  border-color: var(--cor-ferrugem-clara);
+  border-color: var(--cor-ferrugem-acessivel);
 }
 
 .contato__erro {
-  font-size: var(--texto-micro);
+  /* Mensagens associadas a cada campo são exibidas pelo validador do formulário. */
+  font-size: var(--texto-sm);
   font-weight: var(--peso-semibold);
   line-height: var(--linha-curta);
-  color: var(--cor-ferrugem-clara);
+  color: var(--cor-ferrugem-acessivel);
 }
 
 .contato__acoes {
@@ -1329,7 +1364,7 @@ body>section,
   gap: 1rem;
   padding-top: 1rem;
   margin-top: 1.1rem;
-  border-top: 1px solid rgba(62, 144, 137, 0.28);
+  border-top: 1px dotted rgba(100, 73, 56, 0.45);
 }
 
 .contato__aviso {
@@ -1340,24 +1375,27 @@ body>section,
 }
 
 .contato__enviar {
+  font-size: var(--texto-base);
   letter-spacing: 0.05em;
 }
 
 .contato__confirmacao {
+  /* Resultado do envio válido, anunciado pelo leitor de tela através de role=status no HTML. */
   padding: 0.8rem 1rem;
   margin-top: 1rem;
-  font-size: var(--texto-sm);
+  font-size: var(--texto-base);
   font-weight: var(--peso-semibold);
   line-height: var(--linha-base);
-  color: var(--cor-menta-neon);
-  background-color: rgba(15, 244, 204, 0.08);
-  border-left: 3px solid var(--cor-menta-neon);
+  color: var(--cor-oceano-acessivel);
+  background-color: rgba(27, 155, 149, 0.1);
+  border-left: 3px solid var(--cor-oceano-acessivel);
 }
 
 @keyframes contato-pulso {
+  /* Pulso discreto indica visualmente o estado da linha de contato demonstrativa. */
   50% {
     opacity: 0.4;
-    box-shadow: 0 0 8px var(--cor-menta-neon);
+    box-shadow: 0 0 8px var(--cor-oceano);
   }
 }
 
@@ -1368,6 +1406,7 @@ body>section,
 }
 
 .montanha-front-rodape {
+  /* Ilustração de profundidade decorativa; não intercepta cliques nem adiciona conteúdo acessível repetido. */
   position: absolute;
   bottom: 0;
   left: 0;
@@ -1381,6 +1420,7 @@ body>section,
 }
 
 /* ---------------------------- Rodapé ---------------------------- */
+/* Fecha a página com identidade, navegação e informações úteis sem herdar a altura de uma seção principal. */
 #rodape {
   position: relative;
   font-family: var(--fonte-texto);
@@ -1397,6 +1437,7 @@ body>section,
 }
 
 .rodape__conteudo {
+  /* Colunas separam apresentação do portal, atalhos e canais de escuta. */
   display: grid;
   grid-template-columns: minmax(250px, 1.35fr) minmax(150px, 0.8fr) minmax(250px, 1fr);
   gap: clamp(2rem, 7vw, 7rem);
@@ -1405,6 +1446,7 @@ body>section,
 }
 
 .rodape__marca {
+  /* Marca inteira é um link para voltar ao início. */
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
@@ -1453,6 +1495,7 @@ body>section,
 }
 
 .rodape__indicadores {
+  /* Selos curtos apresentam dados contextuais sem ocupar a descrição principal. */
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -1487,6 +1530,7 @@ body>section,
 }
 
 .rodape__lista {
+  /* Lista comum para atalhos e canais, mantendo espaçamento uniforme. */
   display: grid;
   gap: 0.45rem;
   padding: 0;
@@ -1501,6 +1545,7 @@ body>section,
 }
 
 .rodape__lista a {
+  /* Área mínima de interação facilita seleção por toque e teclado. */
   display: inline-flex;
   align-items: center;
   min-height: 2rem;            /* área de toque mínima (WCAG 2.5.8) */
@@ -1514,6 +1559,7 @@ body>section,
 }
 
 .rodape__lista--canais li {
+  /* Alinha ícone e texto em cada canal de referência. */
   display: flex;
   align-items: baseline;
   gap: 0.55rem;
@@ -1537,6 +1583,7 @@ body>section,
 }
 
 .rodape__base {
+  /* Divisor separa os créditos do restante das informações do rodapé. */
   width: min(100%, 1440px);
   padding-top: 0.65rem;
   margin: 0.8rem auto 0;
@@ -1738,6 +1785,7 @@ body>section,
 }
 
 @media (max-width: 768px) {
+  /* Reduz o respiro vertical do contato em telas estreitas para o formulário caber melhor. */
   #contato {
     padding: 4rem 1rem;
   }
@@ -1758,9 +1806,24 @@ body>section,
     gap: 0.7rem;
   }
 
+  /* Mantém a grade em duas colunas, com espaços menores para os cartões no tablet. */
   .mural__chapa {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.65rem;
     padding: 1rem;
+  }
+
+  .contato__formulario {
+    padding: 1.6rem 1.25rem;
+  }
+
+  .contato__campos {
+    grid-template-columns: 1fr;
+  }
+
+  .contato__campo--retorno,
+  .contato__campo--mensagem {
+    grid-column: auto;
   }
 
   .mural__mensagem {
@@ -1768,6 +1831,7 @@ body>section,
     padding: 1.2rem 1rem 0.9rem;
   }
 
+  /* Compacta o rodapé sem esconder conteúdo em telas menores. */
   #rodape {
     padding: 2rem 1.25rem 1rem;
   }
@@ -1820,6 +1884,7 @@ body>section,
 }
 
 @media (max-width: 480px) {
+  /* Reserva um recuo lateral menor para o formulário em celulares compactos. */
   #contato {
     padding: 3rem 0.85rem;
   }
@@ -1859,6 +1924,7 @@ body>section,
     height: 2rem;
   }
 
+  /* No celular, os cartões e o resumo passam para uma coluna para evitar texto comprimido. */
   .mural__chapa {
     grid-template-columns: 1fr;
     gap: 0.8rem;
@@ -1873,6 +1939,7 @@ body>section,
     flex-direction: column;
   }
 
+  /* Empilha as colunas do rodapé para manter cada link legível. */
   .rodape__conteudo {
     grid-template-columns: 1fr;
     gap: 1.8rem;

@@ -455,8 +455,9 @@
     </div>
   </section>
 
-  <!-- Seção 3 - O Mural  -->
+  <!-- Mural: quadro de avisos da comunidade. Mantém cinco mensagens de demonstração para mostrar autoria, data, assunto e prazo mesmo sem publicações de visitantes. -->
   <section id="mural" class="secao-oceano" aria-label="Mural" data-atl-aria-label="Tlacuilolli">
+    <!-- Identifica visualmente a faixa de profundidade em que o mural está localizado. -->
     <div class="linha-divisoria" role="separator" aria-label="Profundidade: 1000 a 3000 metros, Zona Batipelágica"
     data-atl-aria-label="Ukhu kay: 1000 manta 3000 metro kama, Tutayaq Pacha">
       <hr>
@@ -465,32 +466,32 @@
     </div>
 
     <div class="mural__conteudo">
+      <!-- Citação temática: introduz a ideia de comunicação comunitária antes dos avisos. -->
       <div class="secao__citacao mural__citacao">
         <span data-i18n="mural.quote_label" aria-hidden="true">FREQ. 12 // TRANSMISSÃO COMUNITÁRIA</span>
         <blockquote class="secao__citacao-texto" data-i18n="mural.quote">“TODA MENSAGEM É UMA COMPORTA ABERTA ENTRE
           NÓS.”</blockquote>
       </div>
 
+      <!-- Título numerado e descrição curta ajudam a identificar a finalidade da seção. -->
       <header class="secao__cabecalho mural__cabecalho">
         <span class="secao__numero mural__numero" aria-hidden="true">04</span>
         <div class="secao__titulo-grupo mural__titulo-grupo">
-          <span class="secao__sobretitulo mural__sobretitulo" aria-hidden="true" data-i18n="mural.frequency">FREQUÊNCIA
-            COMUNITÁRIA</span>
+          <span class="secao__sobretitulo mural__sobretitulo" aria-hidden="true" data-i18n="mural.frequency">VOZES DA COMUNA</span>
           <h2 data-i18n="mural.title">MURAL DA COMUNIDADE</h2>
-          <span class="secao__subtitulo mural__subtitulo" aria-hidden="true" data-i18n="mural.subtitle">MENSAGENS
-            FIXADAS NA CHAPA
-            CENTRAL</span>
+          <span class="secao__subtitulo mural__subtitulo" aria-hidden="true" data-i18n="mural.subtitle">RECADOS, AVISOS E NOVIDADES DE ATLÂNTIDA.</span>
         </div>
-        <span class="mural__sinal" aria-hidden="true">
-          <i class="fa-solid fa-tower-broadcast"></i>
-        </span>
       </header>
 
+      <!-- Contêiner acompanhado por main.js: cada article abaixo é um cartão de aviso. Os data-* definem o identificador persistente, a idade inicial e o prazo de renovação. -->
       <div class="mural__chapa" id="muralMensagens" role="group" aria-label="Mensagens da comunidade"
         data-atl-aria-label="Ayllup willayninkuna">
+        <!-- Exemplo de manutenção: a autoria e o texto vêm do HTML/dicionário; a data e o contador são preenchidos pelo JavaScript. -->
         <article class="mural__mensagem mural__mensagem--manutencao" data-mensagem-id="kora"
-          data-publicada-ha-horas="30" data-ttl-horas="36">
+          data-publicada-ha-horas="18" data-ttl-horas="24">
+          <!-- Fita decorativa que reforça a aparência de recado preso ao quadro. -->
           <span class="mural__fita" aria-hidden="true"></span>
+          <!-- Nome do habitante, horário de publicação e categoria do aviso. -->
           <div class="mural__mensagem-cabecalho">
             <div>
               <h3>KORA</h3>
@@ -502,12 +503,14 @@
           </div>
           <p class="mural__texto" data-i18n="mural.message_kora">Aviso de manutenção preventiva no Setor 4. Fechem as
             comportas secundárias às 18h.</p>
+          <!-- O contador é atualizado a cada segundo; aria-live off evita anúncios repetidos por leitores de tela. -->
           <p class="mural__expiracao"><i class="fa-regular fa-clock" aria-hidden="true"></i><span
               data-i18n="mural.expires_in">Expira em</span> <time class="mural__contador" aria-live="off"></time></p>
         </article>
 
-        <article class="mural__mensagem mural__mensagem--troca" data-mensagem-id="tito" data-publicada-ha-horas="20"
-          data-ttl-horas="36">
+        <!-- Oferta de troca publicada por Tito; usa a mesma estrutura visual e funcional dos demais cartões. -->
+        <article class="mural__mensagem mural__mensagem--troca" data-mensagem-id="tito" data-publicada-ha-horas="14"
+          data-ttl-horas="30">
           <span class="mural__fita" aria-hidden="true"></span>
           <div class="mural__mensagem-cabecalho">
             <div>
@@ -523,7 +526,8 @@
               data-i18n="mural.expires_in">Expira em</span> <time class="mural__contador" aria-live="off"></time></p>
         </article>
 
-        <article class="mural__mensagem mural__mensagem--memoria" data-mensagem-id="zilda" data-publicada-ha-horas="12"
+        <!-- Convite cultural de Mestra Zilda, classificado como memória. -->
+        <article class="mural__mensagem mural__mensagem--memoria" data-mensagem-id="zilda" data-publicada-ha-horas="10"
           data-ttl-horas="36">
           <span class="mural__fita" aria-hidden="true"></span>
           <div class="mural__mensagem-cabecalho">
@@ -534,14 +538,14 @@
             </div>
             <span class="mural__categoria mural__categoria--memoria" data-i18n="mural.tag_memory">MEMÓRIA</span>
           </div>
-          <p class="mural__texto" data-i18n="mural.message_zilda">Sessão de transmissão oral dos arquivos de Tlaloc hoje
-            à noite na praça central do reator.</p>
+          <p class="mural__texto" data-i18n="mural.message_zilda">Roda de histórias hoje à noite, no Coração do Sol. Venha ouvir e compartilhar as memórias da nossa cidade.</p>
           <p class="mural__expiracao"><i class="fa-regular fa-clock" aria-hidden="true"></i><span
               data-i18n="mural.expires_in">Expira em</span> <time class="mural__contador" aria-live="off"></time></p>
         </article>
 
+        <!-- Novidade da colheita de algas publicada por Yara. -->
         <article class="mural__mensagem mural__mensagem--colheita" data-mensagem-id="yara" data-publicada-ha-horas="6"
-          data-ttl-horas="48">
+          data-ttl-horas="42">
           <span class="mural__fita" aria-hidden="true"></span>
           <div class="mural__mensagem-cabecalho">
             <div>
@@ -557,6 +561,7 @@
               data-i18n="mural.expires_in">Expira em</span> <time class="mural__contador" aria-live="off"></time></p>
         </article>
 
+        <!-- Chamado urgente de Sueli; a classe ocupa toda a linha para destacar a prioridade. -->
         <article class="mural__mensagem mural__mensagem--urgente" data-mensagem-id="sueli" data-publicada-ha-horas="0"
           data-ttl-horas="48">
           <span class="mural__fita" aria-hidden="true"></span>
@@ -573,9 +578,11 @@
           <p class="mural__expiracao"><i class="fa-regular fa-clock" aria-hidden="true"></i><span
               data-i18n="mural.expires_in">Expira em</span> <time class="mural__contador" aria-live="off"></time></p>
         </article>
+        <!-- Estado alternativo acessível: só aparece se não houver cartões ativos no mural. -->
         <p class="mural__vazio" data-i18n="mural.empty" hidden>Não há mensagens ativas no mural neste momento.</p>
       </div>
 
+      <!-- Resumo dinâmico do mural: quantidade de avisos, menor prazo restante e ciclo de suporte. -->
       <div class="mural__rodape">
         <span class="mural__preservadas"><span class="mural__quantidade" id="muralQuantidade">5</span> <span
             data-i18n="mural.preserved">TRANSMISSÕES PRESERVADAS</span></span>
@@ -587,8 +594,9 @@
     </div>
   </section>
 
-  <!-- Seção 4 - Contato  -->
+  <!-- Contato: formulário de demonstração para registrar uma solicitação e informar um canal de retorno. O formulário valida os campos no navegador, mas não envia dados a um serviço externo. -->
   <section id="contato" class="secao-oceano" aria-labelledby="contatoTitulo">
+    <!-- Separa esta área das demais e comunica a profundidade temática do portal. -->
     <div class="linha-divisoria" role="separator" aria-label="Profundidade: 3000 a 4000 metros, Zona Abissal"
     data-atl-aria-label="Ukhu kay: 3000 manta 4000 metro kama, Ukhu Pacha">
       <hr>
@@ -597,25 +605,26 @@
     </div>
 
     <div class="contato__conteudo">
+      <!-- Chamada editorial que contextualiza o contato como uma transmissão segura. -->
       <div class="secao__citacao contato__citacao">
-        <span data-i18n="contact.quote_label" aria-hidden="true">PULSO 09 // TRANSMISSÃO SEGURA</span>
-        <blockquote class="secao__citacao-texto" data-i18n="contact.quote">“VOCÊ CHEGOU AO FUNDO. AGORA RESPONDA.”
+        <span data-i18n="contact.quote_label" aria-hidden="true">TRANSMISSÃO SEGURA</span>
+        <blockquote class="secao__citacao-texto" data-i18n="contact.quote">"SEU LUGAR EM ATLÂNTIDA COMEÇA AQUI."
         </blockquote>
       </div>
 
+      <!-- Cabeçalho da seção, ligado semanticamente ao formulário pelo título. -->
       <header class="secao__cabecalho contato__cabecalho">
         <span class="secao__numero contato__numero" aria-hidden="true">05</span>
         <div class="secao__titulo-grupo contato__titulo-grupo">
-          <span class="secao__sobretitulo contato__sobretitulo" aria-hidden="true" data-i18n="contact.channel">CANAL
-            SEGURO</span>
+          <span class="secao__sobretitulo contato__sobretitulo" aria-hidden="true" data-i18n="contact.channel">CONTATO</span>
           <h2 id="contatoTitulo" data-i18n="contact.title">FALE COM O PORTAL</h2>
-          <span class="secao__subtitulo contato__subtitulo" aria-hidden="true" data-i18n="contact.subtitle">TERMINAL CRT
-            DE
-            ALISTAMENTO</span>
+          <span class="secao__subtitulo contato__subtitulo" aria-hidden="true" data-i18n="contact.subtitle">CENTRAL DE INTEGRAÇÃO DE ATLÂNTIDA</span>
         </div>
       </header>
 
+      <!-- novalidate deixa a validação e as mensagens acessíveis sob controle do main.js. -->
       <form class="contato__formulario" id="formularioContato" novalidate>
+        <!-- Indicador visual da linha de atendimento fictícia; não representa conexão real. -->
         <div class="contato__terminal">
           <span class="contato__terminal-status">
             <i class="fa-solid fa-circle" aria-hidden="true"></i>
@@ -623,15 +632,18 @@
           </span>
         </div>
 
+        <!-- Explica o uso do canal e sinaliza os campos obrigatórios antes do preenchimento. -->
         <p class="contato__orientacao" data-i18n="contact.description">
           Um canal de suporte para esclarecer dúvidas, realizar seu cadastro ou entrar em contato com a administração do
           portal.
         </p>
         <p class="contato__obrigatorios" data-i18n="contact.required_note">(*) Campos obrigatórios</p>
 
+        <!-- Agrupa os controles do formulário; cada label aponta para seu campo e cada erro tem uma região live. -->
         <div class="contato__campos">
+          <!-- Identificação: limites de tamanho evitam entradas vazias ou excessivamente longas. -->
           <div class="contato__campo">
-            <label for="contatoNome"><span data-i18n="contact.name_label">01 // NOME OU CODINOME</span> <span
+            <label for="contatoNome"><span data-i18n="contact.name_label">01: NOME OU CODINOME</span> <span
                 aria-hidden="true">*</span></label>
             <input id="contatoNome" name="nome" type="text" autocomplete="name" minlength="2" maxlength="60"
               placeholder="Ex.: Maré Alta" data-i18n-placeholder="contact.name_placeholder" required
@@ -640,25 +652,26 @@
               hidden></span>
           </div>
 
+          <!-- Setor de origem ajuda a localizar a solicitação dentro da cidade. -->
           <div class="contato__campo">
-            <label for="contatoSetor"><span data-i18n="contact.sector_label">02 // SETOR DE ORIGEM</span> <span
+            <label for="contatoSetor"><span data-i18n="contact.sector_label">02: SETOR DE ORIGEM</span> <span
                 aria-hidden="true">*</span></label>
             <select id="contatoSetor" name="setor" required aria-describedby="erroContatoSetor">
               <option value="" data-i18n="contact.sector_placeholder">Selecione seu setor</option>
-              <option value="domo-norte" data-i18n="contact.sector_north">Reator Central</option>
-              <option value="anel-central" data-i18n="contact.sector_central">Arquivo Oral</option>
-              <option value="setor-4" data-i18n="contact.sector_four">Anel Exterior </option>
-              <option value="zona-agricola" data-i18n="contact.sector_farm">Cúpula Agrícola</option>
-              <option value="zona-agricola" data-i18n="contact.sector_farm">Oficina Estrutural</option>
-              <option value="zona-agricola" data-i18n="contact.sector_farm">Central de Rádio</option>
+              <option value="domo-norte" data-i18n="contact.sector_north">Coração do Sol</option>
+              <option value="anel-central" data-i18n="contact.sector_central">Casa das Vozes</option>
+              <option value="setor-4" data-i18n="contact.sector_four">Anel de Fora </option>
+              <option value="zona-agricola" data-i18n="contact.sector_farm">Jardins de Alga</option>
+              <option value="zona-agricola" data-i18n="contact.sector_farm">Estaleiro</option>
               <option value="outro" data-i18n="contact.sector_other">Outro</option>
             </select>
             <span class="contato__erro" id="erroContatoSetor" data-erro-para="contatoSetor" aria-live="polite"
               hidden></span>
           </div>
 
+          <!-- Assunto classifica o tipo de suporte solicitado. -->
           <div class="contato__campo">
-            <label for="contatoAssunto"><span data-i18n="contact.reason_label">03 // TIPO DE CHAMADO</span> <span
+            <label for="contatoAssunto"><span data-i18n="contact.reason_label">03: TIPO DE CHAMADO</span> <span
                 aria-hidden="true">*</span></label>
             <select id="contatoAssunto" name="assunto" required aria-describedby="erroContatoAssunto">
               <option value="" data-i18n="contact.reason_placeholder">Selecione o motivo do contato</option>
@@ -671,8 +684,9 @@
               hidden></span>
           </div>
 
+          <!-- Prioridade permite indicar a urgência do chamado. -->
           <div class="contato__campo">
-            <label for="contatoPrioridade"><span data-i18n="contact.priority_label">04 // PRIORIDADE</span> <span
+            <label for="contatoPrioridade"><span data-i18n="contact.priority_label">04: PRIORIDADE</span> <span
                 aria-hidden="true">*</span></label>
             <select id="contatoPrioridade" name="prioridade" required aria-describedby="erroContatoPrioridade">
               <option value="" data-i18n="contact.priority_placeholder">Selecione a prioridade</option>
@@ -684,18 +698,20 @@
               hidden></span>
           </div>
 
+          <!-- Canal de retorno: o usuário informa onde espera receber uma resposta. -->
           <div class="contato__campo contato__campo--retorno">
-            <label for="contatoRetorno"><span data-i18n="contact.reply_label">05 // CANAL DE RETORNO</span> <span
+            <label for="contatoRetorno"><span data-i18n="contact.reply_label">05: CANAL DE RETORNO</span> <span
                 aria-hidden="true">*</span></label>
             <input id="contatoRetorno" name="retorno" type="text" minlength="3" maxlength="100"
-              placeholder="Ex.: Frequência 12 ou mare@comuna.abissal" data-i18n-placeholder="contact.reply_placeholder"
+              placeholder="Ex.: Frequência 12 ou seuemail@comuna.abissal" data-i18n-placeholder="contact.reply_placeholder"
               required aria-describedby="erroContatoRetorno">
             <span class="contato__erro" id="erroContatoRetorno" data-erro-para="contatoRetorno" aria-live="polite"
               hidden></span>
           </div>
 
+          <!-- Texto livre com limite de caracteres para descrever a situação ou dúvida. -->
           <div class="contato__campo contato__campo--mensagem">
-            <label for="contatoMensagem"><span data-i18n="contact.message_label">06 // MENSAGEM DE TRANSMISSÃO</span>
+            <label for="contatoMensagem"><span data-i18n="contact.message_label">06: MENSAGEM DE TRANSMISSÃO</span>
               <span aria-hidden="true">*</span></label>
             <textarea id="contatoMensagem" name="mensagem" rows="5" minlength="10" maxlength="1000"
               placeholder="> Digite sua mensagem para a central…" data-i18n-placeholder="contact.message_placeholder"
@@ -705,19 +721,23 @@
           </div>
         </div>
 
+        <!-- Envio dispara a validação; em sucesso, a confirmação é anunciada e recebe foco. -->
         <div class="contato__acoes">
           <button class="botao botao--primario contato__enviar" type="submit">
             <span data-i18n="contact.submit">ENVIAR TRANSMISSÃO</span>
           </button>
         </div>
+        <!-- Começa oculto e só é exibido após envio válido; role=status comunica o resultado sem interromper. -->
         <p class="contato__confirmacao" id="confirmacaoContato" role="status" aria-live="polite" tabindex="-1" hidden>
         </p>
       </form>
     </div>
 
+    <!-- Silhueta decorativa de fundo; alt vazio a mantém fora da leitura de conteúdo. -->
     <img src="./assets/media/montanha-1.svg" alt="" class="montanha-front-rodape">
   </section>
 
+  <!-- Marca a transição visual entre o formulário e as informações finais do portal. -->
   <div class="linha-divisoria" role="separator" aria-label="Profundidade: 3400 metros ou mais, Fundo Abissal"
     data-atl-aria-label="Ukhu kay: 3400 metro utaq aswan, Ukhu Pampa">
     <hr>
@@ -725,9 +745,11 @@
     <hr>
   </div>
 
-  <!-- Rodapé/Footer-->
+  <!-- Rodapé: reúne a identidade do portal, atalhos internos, canais de referência e créditos do projeto. -->
   <footer id="rodape" class="rodape">
+    <!-- Grade responsiva com os três grupos de informação do rodapé. -->
     <div class="rodape__conteudo">
+      <!-- Marca, breve descrição e indicadores resumem o propósito e o contexto de Atlântida. -->
       <section class="rodape__identidade" aria-label="Sobre o Portal Atlântida"
         data-atl-aria-label="Atlântida portalmanta">
         <a class="rodape__marca" href="#inicio" aria-label="Atlântida — voltar ao início"
@@ -741,8 +763,7 @@
           </span>
         </a>
         <p class="rodape__descricao" data-i18n="footer.description">
-          O portal que mantém a cidade conectada. Aqui os habitantes das cúpulas se conhecem, se comunicam, pedem e
-          oferecem ajuda. Ninguém se afoga sozinho.
+        A vida acontece em cada cúpula. Um espaço para descobrir o que acontece pela cidade, conhecer outros habitantes, compartilhar novidades e encontrar quem pode dar aquela força no dia a dia. Porque viver em comunidade é melhor quando todo mundo faz parte.
         </p>
         <div class="rodape__indicadores" role="group" aria-label="Informações da comunidade"
           data-atl-aria-label="Ayllup willaykuna">
@@ -757,6 +778,7 @@
         </div>
       </section>
 
+      <!-- Atalhos para navegar diretamente às seções principais da página. -->
       <nav class="rodape__navegacao" aria-label="Links do portal" data-atl-aria-label="Portalpa ñankuna">
         <h2 class="rodape__titulo-coluna" data-i18n="footer.areas_heading">As áreas do portal</h2>
         <ul class="rodape__lista">
@@ -768,28 +790,25 @@
         </ul>
       </nav>
 
+      <!-- Canais de referência para comunicação e suporte dentro da experiência demonstrativa. -->
       <section class="rodape__canais" aria-labelledby="rodapeCanaisTitulo">
         <h2 class="rodape__titulo-coluna" id="rodapeCanaisTitulo" data-i18n="footer.channels_heading">Canais de escuta
         </h2>
         <ul class="rodape__lista rodape__lista--canais">
           <li>
             <i class="fa-solid fa-radio rodape__icone-canal rodape__icone-canal--radio" aria-hidden="true"></i>
-            <span data-i18n="footer.channel_radio">Rádio Comunal — frequência 12</span>
+            <span data-i18n="footer.channel_radio"><a href="#mural">Rádio Comunal — notícias, recados e novidades na frequência 12.</a></span>
           </li>
           <li>
             <i class="fa-solid fa-circle-exclamation rodape__icone-canal rodape__icone-canal--alerta"
               aria-hidden="true"></i>
-            <span data-i18n="footer.channel_emergency">Emergência de pressão — anel central</span>
-          </li>
-          <li>
-            <i class="fa-solid fa-people-group rodape__icone-canal rodape__icone-canal--assembleia"
-              aria-hidden="true"></i>
-            <span data-i18n="footer.channel_assembly">Assembleia de bairros — toda lua nova</span>
+            <span data-i18n="footer.channel_emergency"><a href="#o-mundo">Coração do Sol — informações e suporte para os moradores, as rodas de conversa começam aqui.</a></span>
           </li>
         </ul>
       </section>
     </div>
 
+    <!-- Créditos e autoria do projeto, separados visualmente do conteúdo de navegação. -->
     <div class="rodape__base">
       <p data-i18n="footer.copyright">© 2026 Grupo Ctrl + People — NEXT FIAP / VR Code Arena.</p>
     </div>

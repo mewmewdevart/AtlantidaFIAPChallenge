@@ -59,9 +59,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function inicializarFormularioContato() {
+  // Localiza o formulário e seus controles para conectar validação e confirmação ao envio.
   const formulario = document.getElementById("formularioContato");
   if (!formulario) return;
 
+  // Só os controles obrigatórios são validados; as mensagens vêm do dicionário ativo.
   const campos = Array.from(formulario.querySelectorAll("[required]"));
   const confirmacao = document.getElementById("confirmacaoContato");
   const mensagensErro = {
@@ -74,12 +76,14 @@ function inicializarFormularioContato() {
   };
 
   function obterTexto(chave) {
+    // Respeita o idioma atual para manter erros e confirmação coerentes com a interface.
     const idioma = document.body.dataset.lang === "atlantida" ? "ptBrAtlantida" : "ptBr";
     const dicionario = window.i18n?.dictionaries[idioma] || window.i18n?.getFallbackDictionary(idioma);
     return dicionario?.[chave] || "Verifique este campo e tente novamente.";
   }
 
   function obterErro(campo) {
+    // Complementa required com limites mínimos legíveis, inclusive para texto com espaços.
     const mensagens = mensagensErro[campo.id];
     if (!mensagens) return null;
 
@@ -91,6 +95,7 @@ function inicializarFormularioContato() {
   }
 
   function validarCampo(campo) {
+    // Sincroniza a validade visual do controle com seu texto acessível de erro.
     const erro = obterErro(campo);
     const elementoErro = formulario.querySelector(`[data-erro-para="${campo.id}"]`);
     campo.setAttribute("aria-invalid", String(Boolean(erro)));
@@ -104,6 +109,7 @@ function inicializarFormularioContato() {
   }
 
   campos.forEach((campo) => {
+    // Revalida um campo após erro assim que a pessoa volta a editá-lo.
     const evento = campo.tagName === "SELECT" ? "change" : "input";
     campo.addEventListener(evento, () => {
       if (campo.getAttribute("aria-invalid") === "true") validarCampo(campo);
@@ -111,15 +117,18 @@ function inicializarFormularioContato() {
   });
 
   formulario.addEventListener("submit", (evento) => {
+    // A demonstração não envia dados à rede: impede o submit padrão e valida localmente.
     evento.preventDefault();
     const camposInvalidos = campos.filter((campo) => !validarCampo(campo));
 
     if (camposInvalidos.length > 0) {
+      // Leva o foco ao primeiro problema para orientar teclado e tecnologia assistiva.
       camposInvalidos[0].focus();
       return;
     }
 
     if (confirmacao) {
+      // Exibe a confirmação somente quando todos os campos passaram pela validação.
       confirmacao.textContent = obterTexto("contact.success");
       confirmacao.hidden = false;
       formulario.reset();
@@ -128,6 +137,7 @@ function inicializarFormularioContato() {
   });
 
   window.addEventListener("app:language-changed", () => {
+    // Atualiza erros e confirmação já visíveis após uma troca de idioma.
     campos.forEach((campo) => {
       if (campo.getAttribute("aria-invalid") === "true") validarCampo(campo);
     });
@@ -138,6 +148,7 @@ function inicializarFormularioContato() {
 }
 
 function inicializarMural() {
+  // O mural depende dos cartões do HTML; se a seção não existir, não há atualização a executar.
   const mural = document.getElementById("muralMensagens");
   if (!mural) return;
 
@@ -148,11 +159,28 @@ function inicializarMural() {
   const publicacoesEmMemoria = new Map();
   const horaMs = 60 * 60 * 1000;
 
+  function atualizarDataPublicacao(elemento, publicadaEm) {
+    // Mantém o valor semântico ISO para máquinas e um formato local legível para visitantes.
+    const horaTransmissao = elemento.querySelector(".mural__hora");
+    if (!horaTransmissao) return;
+
+    const data = new Date(publicadaEm);
+    horaTransmissao.dateTime = data.toISOString();
+    horaTransmissao.textContent = data.toLocaleString("pt-BR", {
+      day: "2-digit",
+      month: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false
+    });
+  }
+
   const mensagensAtivas = mensagens.map((mensagem) => {
+    // O HTML fornece a idade e validade iniciais; localStorage mantém datas consistentes entre visitas.
     const id = mensagem.dataset.mensagemId;
     const duracaoMs = Number(mensagem.dataset.ttlHoras) * horaMs;
     const idadeInicialMs = Number(mensagem.dataset.publicadaHaHoras) * horaMs;
-    const chave = `atlantida:mural:v2:${id}:publicadaEm`;
+    const chave = `atlantida:mural:v3:${id}:publicadaEm`;
     let publicadaEm;
 
     try {
@@ -175,29 +203,21 @@ function inicializarMural() {
       publicacoesEmMemoria.set(chave, publicadaEm);
     }
 
-    const horaTransmissao = mensagem.querySelector(".mural__hora");
-    if (horaTransmissao) {
-      horaTransmissao.dateTime = new Date(publicadaEm).toISOString();
-      horaTransmissao.textContent = new Date(publicadaEm).toLocaleString("pt-BR", {
-        day: "2-digit",
-        month: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false
-      });
-    }
+    atualizarDataPublicacao(mensagem, publicadaEm);
 
     return {
       elemento: mensagem,
+      id,
+      chave,
+      duracaoMs,
       publicadaEm,
       expiracao: publicadaEm + duracaoMs,
       contador: mensagem.querySelector(".mural__contador")
     };
-  }).sort((a, b) => a.publicadaEm - b.publicadaEm);
-
-  mensagensAtivas.forEach(({ elemento }) => mural.insertBefore(elemento, avisoMuralVazio));
+  });
 
   function formatarContagem(ms) {
+    // Converte o intervalo restante para a apresentação usada nos cartões e no resumo.
     const segundos = Math.max(0, Math.floor(ms / 1000));
     const horas = Math.floor(segundos / 3600);
     const minutos = Math.floor((segundos % 3600) / 60);
@@ -206,21 +226,32 @@ function inicializarMural() {
   }
 
   function atualizarMural() {
+    // Renova avisos vencidos em vez de removê-los, mantendo os cartões de demonstração disponíveis.
     const agora = Date.now();
     let proximidade = Infinity;
     let quantidadeAtiva = 0;
 
-    mensagensAtivas.forEach(({ elemento, expiracao, contador }) => {
-      const restante = expiracao - agora;
+    mensagensAtivas.forEach((publicacao) => {
+      let restante = publicacao.expiracao - agora;
 
       if (restante <= 0) {
-        elemento.remove();
-        return;
+        // Reinicia publicação e prazo; autor e texto permanecem no cartão original.
+        publicacao.publicadaEm = agora;
+        publicacao.expiracao = agora + publicacao.duracaoMs;
+        restante = publicacao.duracaoMs;
+        atualizarDataPublicacao(publicacao.elemento, publicacao.publicadaEm);
+
+        try {
+          localStorage.setItem(publicacao.chave, String(publicacao.publicadaEm));
+        } catch (erro) {
+          console.warn(`Não foi possível renovar a publicação "${publicacao.id}" neste navegador. A renovação valerá apenas nesta visita.`, erro);
+        }
+        publicacoesEmMemoria.set(publicacao.chave, publicacao.publicadaEm);
       }
 
       quantidadeAtiva += 1;
       proximidade = Math.min(proximidade, restante);
-      if (contador) contador.textContent = formatarContagem(restante);
+      if (publicacao.contador) publicacao.contador.textContent = formatarContagem(restante);
     });
 
     if (contadorMensagens) contadorMensagens.textContent = String(quantidadeAtiva);
@@ -230,6 +261,7 @@ function inicializarMural() {
     if (avisoMuralVazio) avisoMuralVazio.hidden = quantidadeAtiva > 0;
   }
 
+  // Inicializa o estado de imediato e atualiza contagens a cada segundo.
   atualizarMural();
   window.setInterval(atualizarMural, 1000);
 }
