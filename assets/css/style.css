@@ -474,25 +474,25 @@ body {
 /* Modificador Primário */
 .botao--primario {
   color: var(--cor-espuma);
-  background-color: var(--cor-oceano);
-  border-color: var(--cor-oceano);
+  background-color: var(--cor-oceano-acessivel);
+  border-color: var(--cor-oceano-acessivel);
 }
 
 .botao--primario:hover {
-  background-color: var(--cor-oceano-hover);
-  border-color: var(--cor-oceano-hover);
+  background-color: var(--cor-oceano-acessivel-hover);
+  border-color: var(--cor-oceano-acessivel-hover);
 }
 
 /* Modificador Secundário */
 .botao--secundario {
   color: var(--cor-espuma);
-  background-color: var(--cor-ferrugem);
-  border-color: var(--cor-ferrugem);
+  background-color: var(--cor-ferrugem-acessivel);
+  border-color: var(--cor-ferrugem-acessivel);
 }
 
 .botao--secundario:hover {
-  background-color: var(--cor-terracota-acessivel);
-  border-color: var(--cor-terracota-acessivel);
+  background-color: var(--cor-ferrugem-profunda);
+  border-color: var(--cor-ferrugem-profunda);
 }
 
 /* ==== Livro 3D interativo ==== */
@@ -551,7 +551,9 @@ body {
   right: 0;
   bottom: 0;
   z-index: 9999 !important;
-  width: 140%;
+  /* Largura = página direita (9) + 1.2 de sangria para dentro da página do texto.
+     O texto (.livro-3d__conteudo-texto) para antes disso, então a ilustração nunca cobre as palavras. */
+  width: calc(10.2 * var(--livro-unidade));
   pointer-events: none;
   background-repeat: no-repeat;
   object-fit: cover;
@@ -605,7 +607,7 @@ body {
   right: calc(-9 * var(--livro-unidade));
   bottom: 0;
   z-index: 2;
-  width: 140%;
+  width: calc(10.2 * var(--livro-unidade));
   height: 100%;
   pointer-events: none;
   object-fit: cover;
@@ -621,6 +623,7 @@ body {
   align-items: flex-start;
   justify-content: center;
   width: 100%;
+  max-width: calc(6.5 * var(--livro-unidade));   /* termina antes da ilustração (ver .livro-3d__imagem-ilustracao) */
   height: 100%;
   user-select: none;
 }
@@ -641,10 +644,10 @@ body {
 }
 
 .livro-3d__descricao {
-  max-width: calc(7.2 * var(--livro-unidade));
+  max-width: 100%;
   margin-bottom: calc(0.45 * var(--livro-unidade));
   font-family: var(--fonte-texto);
-  font-size: calc(0.32 * var(--livro-unidade));
+  font-size: max(0.875rem, calc(0.32 * var(--livro-unidade)));
   font-weight: var(--peso-regular);
   line-height: 1.5;
   color: var(--cor-casco);
@@ -656,7 +659,8 @@ body {
   gap: calc(0.55 * var(--livro-unidade));
   align-items: center;
   width: 100%;
-  max-width: calc(7.2 * var(--livro-unidade));
+  max-width: 100%;
+  flex-wrap: wrap;
   padding: calc(0.22 * var(--livro-unidade)) 0;
   margin-bottom: calc(0.55 * var(--livro-unidade));
   border-top: 1px dashed rgba(1, 56, 60, 0.25);
@@ -671,7 +675,7 @@ body {
 
 .livro-3d__status-valor {
   font-family: var(--fonte-texto);
-  font-size: calc(0.36 * var(--livro-unidade));
+  font-size: max(1rem, calc(0.36 * var(--livro-unidade)));
   font-weight: var(--peso-bold);
   letter-spacing: 0.5px;
   color: var(--cor-jade);
@@ -679,7 +683,7 @@ body {
 
 .livro-3d__status-rotulo {
   font-family: var(--fonte-texto);
-  font-size: calc(0.23 * var(--livro-unidade));
+  font-size: max(var(--texto-micro), calc(0.23 * var(--livro-unidade)));
   font-weight: var(--peso-semibold);
   letter-spacing: 0.5px;
   color: var(--cor-tinta-suave-acessivel);
@@ -689,14 +693,15 @@ body {
 .livro-3d__acoes {
   display: flex;
   flex-wrap: wrap;
-  gap: calc(0.28 * var(--livro-unidade));
+  gap: calc(0.2 * var(--livro-unidade));
   align-items: center;
 }
 
 /* Ajuste proporcional específico para a diagramação interna do Livro 3D */
 .livro-3d__acoes .botao {
-  padding: calc(0.24 * var(--livro-unidade)) calc(0.48 * var(--livro-unidade));
-  font-size: calc(0.31 * var(--livro-unidade));
+  padding: calc(0.24 * var(--livro-unidade)) calc(0.38 * var(--livro-unidade));
+  white-space: nowrap;
+  font-size: max(0.875rem, calc(0.31 * var(--livro-unidade)));
 }
 
 .livro-3d__capa--frontal {
@@ -860,6 +865,7 @@ body>section,
   min-height: 4rem;
   place-items: center;
   padding-left: 0.6rem;
+  font-family: var(--fonte-titulo);
   font-size: var(--titulo-secao-numero);
   font-weight: var(--peso-bold);
   line-height: var(--linha-compacta);
@@ -882,7 +888,8 @@ body>section,
 .contato__sobretitulo {
   display: block;
   margin-bottom: 0.15rem;
-  font-size: var(--texto-micro);
+  font-family: var(--fonte-texto);
+  font-size: var(--texto-xs);
   font-weight: var(--peso-bold);
   letter-spacing: 0.16em;
   color: var(--cor-sinal-texto);
@@ -894,6 +901,7 @@ body>section,
 .habitantes__titulo-grupo h2,
 .mural__titulo-grupo h2,
 .contato__titulo-grupo h2 {
+  font-family: var(--fonte-titulo);
   font-size: var(--titulo-secao-h2);
   font-weight: var(--peso-bold);
   line-height: var(--linha-compacta);
@@ -908,7 +916,8 @@ body>section,
 .contato__subtitulo {
   display: block;
   margin-top: 0.4rem;
-  font-size: var(--texto-micro);
+  font-family: var(--fonte-texto);
+  font-size: var(--texto-xs);
   font-weight: var(--peso-semibold);
   letter-spacing: 0.08em;
   color: var(--cor-ferrugem-clara);
@@ -1492,6 +1501,9 @@ body>section,
 }
 
 .rodape__lista a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;            /* área de toque mínima (WCAG 2.5.8) */
   text-decoration: none;
   transition: color 0.2s ease;
 }
@@ -1538,7 +1550,9 @@ body>section,
 }
 
 /* ---------------------------- Media Queries (Responsividade) ---------------------------- */
-@media (max-width: 820px) {
+/* Abaixo de 1100px o livro 3D ficaria com letras de 9-11px; por isso vira uma coluna simples.
+   Se mudar este valor, mude também MAX_LARGURA_LIVRO_PLANO em atlantida-book-anim.js. */
+@media (max-width: 1100px) {
 
   /* Remove o livro 3D e a ilustração */
   .livro-3d__capa--base,
@@ -1669,7 +1683,7 @@ body>section,
 
   .livro-3d__status-rotulo {
     font-family: var(--fonte-texto) !important;
-    font-size: clamp(0.7rem, 2vw, 0.8rem) !important;
+    font-size: clamp(0.75rem, 2vw, 0.8rem) !important;
     font-weight: var(--peso-semibold) !important;
     letter-spacing: 0.8px !important;
     color: var(--cor-nevoa) !important;
@@ -1815,9 +1829,12 @@ body>section,
     margin-bottom: 3rem;
   }
 
-  .secao__citacao>span,
-  .secao__sobretitulo {
+  .secao__citacao>span {
     font-size: var(--texto-micro);
+  }
+
+  .secao__sobretitulo {
+    font-size: var(--texto-xs);
   }
 
   .secao__cabecalho {
@@ -1834,7 +1851,7 @@ body>section,
   }
 
   .secao__subtitulo {
-    font-size: var(--texto-micro);
+    font-size: var(--texto-xs);
   }
 
   .mural__sinal {

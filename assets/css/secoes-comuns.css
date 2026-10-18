@@ -34,57 +34,12 @@
   }
 }
 
-/* ==== Título de seção (Padronizado com o formato 04 do Mural da Comunidade) ==== */
-.titulo-secao--numerada,
-.secao__cabecalho {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-@media (max-width: 520px) {
-
-  .titulo-secao--numerada,
-  .secao__cabecalho {
-    align-items: flex-start;
-  }
-}
-
-.titulo-secao__codigo,
-.secao__sobretitulo {
-  display: block;
-  margin-bottom: 0.15rem;
-  font-size: var(--texto-micro);
-  font-weight: var(--peso-bold);
-  letter-spacing: 0.16em;
-  color: var(--cor-sinal-texto);
-  text-transform: uppercase;
-}
-
-.titulo-secao__texto,
-.secao__titulo-grupo h2 {
-  font-size: var(--titulo-secao-h2);
-  font-weight: var(--peso-bold);
-  line-height: var(--linha-compacta);
-  color: var(--cor-espuma);
-  letter-spacing: 0.02em;
-}
-
-.titulo-secao__subtitulo,
-.secao__subtitulo {
-  display: block;
-  margin-top: 0.4rem;
-  font-size: var(--texto-micro);
-  font-weight: var(--peso-semibold);
-  letter-spacing: 0.08em;
-  color: var(--cor-ferrugem-clara);
-  text-transform: uppercase;
-}
-
+/* ==== Título de seção ====
+   O cabeçalho numerado (02, 03, 04, 05) é o mesmo para todas as seções e vive em style.css
+   (.secao__cabecalho, .secao__numero, .secao__titulo-grupo...). Aqui fica só o título de subseção. */
 .subtitulo-secao {
   font-size: var(--titulo-subsecao);
-  font-weight: var(--peso-medio);
+  font-weight: var(--peso-semibold);
   line-height: var(--linha-compacta);
   color: var(--cor-pergaminho);
 }
@@ -133,4 +88,44 @@
   overflow: hidden;
   white-space: nowrap;
   clip: rect(0 0 0 0);
+}
+/* ==== Foco do teclado ====
+   Anel de duas cores (escuro por dentro, menta por fora): aparece tanto sobre papel claro quanto sobre o fundo escuro do mar.
+   Usa :where(), então qualquer regra mais específica do site continua mandando no contorno. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--cor-casco);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--cor-menta-neon);
+}
+
+/* ==== Link "Pular para o conteúdo" ====
+   Fica fora da tela e só aparece quando recebe o foco (primeiro Tab da página). */
+.pular-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 10000;
+  padding: 0.7rem 1.1rem;
+  font-family: var(--fonte-texto);
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-semibold);
+  color: var(--cor-espuma);
+  text-decoration: none;
+  background: var(--cor-oceano-acessivel);
+  border-radius: 8px;
+}
+
+.pular-link:not(:focus) {
+  /* escondido sem sair do alcance do leitor de tela */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+#inicio:focus {
+  outline: none;
 }

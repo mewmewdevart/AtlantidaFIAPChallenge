@@ -27,10 +27,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script>window.gsap || document.write('<script src="./assets/js/gsap.min.js"><\/script>');</script>
   <script src="./assets/js/atlantida-book-anim.js?v=3" defer></script>
+  <script src="./assets/lang/dicionarios.js" defer></script>
   <script src="./assets/js/i18n.js" defer></script>
   <script src="./assets/js/main.js" defer></script>
   <script src="./assets/js/idioma-secoes.js" defer></script>
   <script src="./assets/js/dados-mundo-habitantes.js" defer></script>
+  <script src="./assets/js/chasqui-palavras.js" defer></script>
   <script src="./assets/js/secao-mundo.js" defer></script>
   <script src="./assets/js/secao-habitantes.js" defer></script>
 
@@ -41,6 +43,8 @@
 </head>
 
 <body>
+  <a class="pular-link" href="#inicio" data-atl="Willayman riy">Pular para o conteúdo</a>
+
   <div>
     <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
       viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
@@ -56,24 +60,25 @@
     </svg>
   </div>
 
-  <nav class="menu-navegacao" id="menuNavegacao" aria-label="Menu principal">
+  <nav class="menu-navegacao" id="menuNavegacao" aria-label="Menu principal" data-atl-aria-label="Kuraq ñankuna">
     <div class="menu-navegacao__conteudo">
       <div class="seletor-idioma">
         <span class="seletor-idioma__rotulo seletor-idioma__rotulo--pt seletor-idioma__rotulo--ativo"
           data-i18n="nav.lang_pt">PT-BR</span>
-        <label class="seletor-idioma__interruptor" for="seletorIdiomaSwitch"
-          aria-label="Alternar idioma para Atlântida">
-          <input type="checkbox" class="seletor-idioma__campo" id="seletorIdiomaSwitch">
+        <label class="seletor-idioma__interruptor" for="seletorIdiomaSwitch">
+          <input type="checkbox" class="seletor-idioma__campo" id="seletorIdiomaSwitch" role="switch"
+            aria-label="Alternar idioma entre português e Atlântida"
+            data-atl-aria-label="Simita tikray: portugues icha Atlântida">
           <span class="seletor-idioma__trilho">
             <i class="fa-solid fa-feather-pointed seletor-idioma__icone-deslizante" aria-hidden="true"></i>
           </span>
         </label>
         <span class="seletor-idioma__rotulo seletor-idioma__rotulo--atlantida"
-          data-i18n="nav.lang_atlantida">Atlantida</span>
+          data-i18n="nav.lang_atlantida">Atlântida</span>
       </div>
     </div>
 
-    <button class="menu-navegacao__gatilho" type="button" aria-label="Abrir ou fechar menu" aria-expanded="false"
+    <button class="menu-navegacao__gatilho" type="button" aria-label="Abrir ou fechar menu" data-atl-aria-label="Menuta kichay icha wichqay" aria-expanded="false"
       aria-controls="menuLateral">
       <div class="menu-navegacao__hamburguer" aria-hidden="true">
         <span class="menu-navegacao__linha menu-navegacao__linha--superior"></span>
@@ -85,7 +90,8 @@
   </nav>
 
   <!-- Menu de Navegação Vertical Lateral (Fixo à Direita) -->
-  <nav class="menu-lateral" id="menuLateral" aria-label="Navegação rápida pelas seções" aria-hidden="true">
+  <nav class="menu-lateral" id="menuLateral" aria-label="Navegação rápida pelas seções"
+    data-atl-aria-label="Suyukunaman utqaylla riy" aria-hidden="true" inert>
     <!-- Indicador de Rolagem Temático: Submarino Marcador de Profundidade -->
     <div class="menu-lateral__indicador-submarino" id="indicadorSubmarino" aria-hidden="true">
       <!-- <div class="menu-lateral__regua-trilha">
@@ -101,27 +107,32 @@
 
     <ul class="menu-lateral__lista">
       <li class="menu-lateral__item">
-        <a href="#inicio" class="menu-lateral__link" data-secao="inicio" aria-label="Ir para Início">
+        <a href="#inicio" class="menu-lateral__link" data-secao="inicio" aria-label="Ir para Início"
+          data-atl-aria-label="Riy: Ipepe">
           <span class="menu-lateral__rotulo" data-i18n="nav_lateral.inicio">Início</span>
         </a>
       </li>
       <li class="menu-lateral__item">
-        <a href="#o-mundo" class="menu-lateral__link" data-secao="o-mundo" aria-label="Ir para O Mundo">
+        <a href="#o-mundo" class="menu-lateral__link" data-secao="o-mundo" aria-label="Ir para O Mundo"
+          data-atl-aria-label="Riy: Cemanahuatl">
           <span class="menu-lateral__rotulo" data-i18n="nav_lateral.mundo">O Mundo</span>
         </a>
       </li>
       <li class="menu-lateral__item">
-        <a href="#habitantes" class="menu-lateral__link" data-secao="habitantes" aria-label="Ir para Habitantes">
+        <a href="#habitantes" class="menu-lateral__link" data-secao="habitantes" aria-label="Ir para Habitantes"
+          data-atl-aria-label="Riy: Macehualtin">
           <span class="menu-lateral__rotulo" data-i18n="nav_lateral.habitantes">Habitantes</span>
         </a>
       </li>
       <li class="menu-lateral__item">
-        <a href="#mural" class="menu-lateral__link" data-secao="mural" aria-label="Ir para Mural">
+        <a href="#mural" class="menu-lateral__link" data-secao="mural" aria-label="Ir para Mural"
+          data-atl-aria-label="Riy: Tlacuilolli">
           <span class="menu-lateral__rotulo" data-i18n="nav_lateral.mural">Mural</span>
         </a>
       </li>
       <li class="menu-lateral__item">
-        <a href="#contato" class="menu-lateral__link" data-secao="contato" aria-label="Ir para Contato">
+        <a href="#contato" class="menu-lateral__link" data-secao="contato" aria-label="Ir para Contato"
+          data-atl-aria-label="Riy: Nahuatilli">
           <span class="menu-lateral__rotulo" data-i18n="nav_lateral.contato">Contato</span>
         </a>
       </li>
@@ -129,8 +140,8 @@
   </nav>
 
   <!-- Seção 0 - Hero Section -->
-  <main class="secao-apresentacao" id="inicio">
-    <button class="secao-scroll-btn" type="button" aria-label="Rolar para baixo">
+  <main class="secao-apresentacao" id="inicio" tabindex="-1">
+    <button class="secao-scroll-btn" type="button" aria-label="Rolar para baixo" data-atl-aria-label="Uraykuy">
       <img src="./assets/media/submarino--bolhas-dir-2.png" alt="" aria-hidden="true">
       <span aria-hidden="true">scroll</span>
     </button>
@@ -148,13 +159,14 @@
       </svg>
     </div>
 
-    <div class="livro-3d" id="livro3D" role="region" aria-label="Livro interativo de Atlântida">
+    <div class="livro-3d" id="livro3D" role="region" aria-label="Livro interativo de Atlântida"
+      data-atl-aria-label="Atlântidap liwrun, makiwan kuyuchina">
       <div class="livro-3d__capa livro-3d__capa--base" id="capaBase" aria-hidden="true"></div>
 
       <div class="livro-3d__folha livro-3d__folha--direita" id="folhaDireita">
         <div class="livro-3d__face livro-3d__face--frente livro-3d__face--ilustracao">
           <img class="livro-3d__imagem-ilustracao" src="./assets/media/image-hero-section.png"
-            alt="Submarino explorando Atlântida">
+            alt="Submarino explorando Atlântida" data-atl-alt="Submarino Atlântidata maskashan">
         </div>
       </div>
 
@@ -174,26 +186,22 @@
 
             <div class="livro-3d__painel-status">
               <div class="livro-3d__status-item">
-                <span class="livro-3d__status-valor">ANO 2189</span>
-                <span class="livro-3d__status-rotulo">Ciclo Atual</span>
+                <span class="livro-3d__status-valor" data-atl="WATA 2189">ANO 2189</span>
+                <span class="livro-3d__status-rotulo" data-atl="Kunan muyuy">Ciclo Atual</span>
               </div>
               <div class="livro-3d__status-item">
                 <span class="livro-3d__status-valor">04:17</span>
-                <span class="livro-3d__status-rotulo">Hora Abissal</span>
+                <span class="livro-3d__status-rotulo" data-atl="Ukhu pacha">Hora Abissal</span>
               </div>
               <div class="livro-3d__status-item">
                 <span class="livro-3d__status-valor">93%</span>
-                <span class="livro-3d__status-rotulo">Oxigênio</span>
+                <span class="livro-3d__status-rotulo" data-atl="Wayra">Oxigênio</span>
               </div>
             </div>
 
             <div class="livro-3d__acoes">
-              <button class="botao botao--primario" data-i18n="hero.btn_explorar">
-                Explorar Atlântida
-              </button>
-              <button class="botao botao--secundario" data-i18n="hero.btn_saiba_mais">
-                Saiba mais
-              </button>
+              <a class="botao botao--primario" href="#o-mundo" data-i18n="hero.btn_explorar">Explorar Atlântida</a>
+              <a class="botao botao--secundario" href="#habitantes" data-i18n="hero.btn_saiba_mais">Saiba mais</a>
             </div>
           </div>
         </div>
@@ -213,11 +221,11 @@
   </main>
 
   <!-- Seção 1 - O Mundo -->
-  <section id="o-mundo" class="secao-oceano" aria-label="O Mundo">
+  <section id="o-mundo" class="secao-oceano" aria-label="O Mundo" data-atl-aria-label="Cemanahuatl">
     <div class="linha-divisoria" role="separator" aria-label="Profundidade: 0 a 200 metros, Zona Fótica"
       data-atl-aria-label="Ukhu kay: 0 manta 200 metro kama, K'anchay Pacha">
       <hr>
-      <span class="linha-divisoria__texto" data-atl="0-200 M // K'anchay Pacha">0-200 M // Zona Fótica</span>
+      <span class="linha-divisoria__texto" data-atl="0–200 M // K'anchay Pacha">0–200 M // Zona Fótica</span>
       <hr>
     </div>
 
@@ -384,14 +392,14 @@
   </section>
 
   <!-- Seção 2 - Os Habitantes -->
-  <section id="habitantes" class="secao-oceano" aria-label="Habitantes">
+  <section id="habitantes" class="secao-oceano" aria-label="Habitantes" data-atl-aria-label="Macehualtin">
     <img src="./assets/media/montanha-1.svg" alt="" class="montanha-front">
     <img src="./assets/media/montanha-2.svg" alt="" class="montanha-back">
     <div class="continuidade-montanha-front"></div>
     <div class="linha-divisoria" role="separator" aria-label="Profundidade: 200 a 1000 metros, Zona Crepuscular"
       data-atl-aria-label="Ukhu kay: 200 manta 1000 metro kama, Chisi Pacha">
       <hr>
-      <span class="linha-divisoria__texto" data-atl="200-1000 M // Chisi Pacha">200-1000 M // Zona Crepuscular</span>
+      <span class="linha-divisoria__texto" data-atl="200–1000 M // Chisi Pacha">200–1000 M // Zona Crepuscular</span>
       <hr>
     </div>
 
@@ -431,8 +439,8 @@
           <form class="chasqui__form" id="chasquiForm" novalidate>
             <label for="chasquiTexto" class="sr-only" data-atl="Imachus pasashasqanta willay">Conte a missão</label>
             <textarea class="chasqui__campo" id="chasquiTexto" rows="4" maxlength="800"
-              placeholder="Ex.: A parede perto das estufas está rangendo e entrou água..."
-              data-atl-placeholder="Hina: q'oñi wasikunap qayllanpi tepantli qarqarayan, yakutaq yaykurqa..."></textarea>
+              placeholder="Ex.: A parede perto das estufas está rangendo e entrou água…"
+              data-atl-placeholder="Hina: q'oñi wasikunap qayllanpi tepantli qarqarayan, yakutaq yaykurqa…"></textarea>
             <div class="chasqui__acoes">
               <button type="submit" class="botao botao--primario" id="chasquiBotao" data-atl="Chaskita kachay">Mandar o
                 Chasqui</button>
@@ -448,10 +456,11 @@
   </section>
 
   <!-- Seção 3 - O Mural  -->
-  <section id="mural" class="secao-oceano" aria-label="Mural">
-    <div class="linha-divisoria" role="separator" aria-label="Profundidade: 1000 a 3000 metros, Zona Batipelágica">
+  <section id="mural" class="secao-oceano" aria-label="Mural" data-atl-aria-label="Tlacuilolli">
+    <div class="linha-divisoria" role="separator" aria-label="Profundidade: 1000 a 3000 metros, Zona Batipelágica"
+    data-atl-aria-label="Ukhu kay: 1000 manta 3000 metro kama, Tutayaq Pacha">
       <hr>
-      <span class="linha-divisoria__texto">1000-3000 M // Zona Batipelágica</span>
+      <span class="linha-divisoria__texto" data-atl="1000–3000 M // Tutayaq Pacha">1000–3000 M // Zona Batipelágica</span>
       <hr>
     </div>
 
@@ -477,7 +486,8 @@
         </span>
       </header>
 
-      <div class="mural__chapa" id="muralMensagens" aria-label="Mensagens da comunidade">
+      <div class="mural__chapa" id="muralMensagens" role="group" aria-label="Mensagens da comunidade"
+        data-atl-aria-label="Ayllup willayninkuna">
         <article class="mural__mensagem mural__mensagem--manutencao" data-mensagem-id="kora"
           data-publicada-ha-horas="30" data-ttl-horas="36">
           <span class="mural__fita" aria-hidden="true"></span>
@@ -579,9 +589,10 @@
 
   <!-- Seção 4 - Contato  -->
   <section id="contato" class="secao-oceano" aria-labelledby="contatoTitulo">
-    <div class="linha-divisoria" role="separator" aria-label="Profundidade: 3000 a 4000 metros, Zona Abissal">
+    <div class="linha-divisoria" role="separator" aria-label="Profundidade: 3000 a 4000 metros, Zona Abissal"
+    data-atl-aria-label="Ukhu kay: 3000 manta 4000 metro kama, Ukhu Pacha">
       <hr>
-      <span class="linha-divisoria__texto">3000-4000 M // Zona Abissal</span>
+      <span class="linha-divisoria__texto" data-atl="3000–4000 M // Ukhu Pacha">3000–4000 M // Zona Abissal</span>
       <hr>
     </div>
 
@@ -687,7 +698,7 @@
             <label for="contatoMensagem"><span data-i18n="contact.message_label">06 // MENSAGEM DE TRANSMISSÃO</span>
               <span aria-hidden="true">*</span></label>
             <textarea id="contatoMensagem" name="mensagem" rows="5" minlength="10" maxlength="1000"
-              placeholder="> Digite sua mensagem para a central..." data-i18n-placeholder="contact.message_placeholder"
+              placeholder="> Digite sua mensagem para a central…" data-i18n-placeholder="contact.message_placeholder"
               required aria-describedby="erroContatoMensagem"></textarea>
             <span class="contato__erro" id="erroContatoMensagem" data-erro-para="contatoMensagem" aria-live="polite"
               hidden></span>
@@ -707,17 +718,20 @@
     <img src="./assets/media/montanha-1.svg" alt="" class="montanha-front-rodape">
   </section>
 
-  <div class="linha-divisoria" role="separator" aria-label="Profundidade: 3400 metros ou mais, Fundo Abissal">
+  <div class="linha-divisoria" role="separator" aria-label="Profundidade: 3400 metros ou mais, Fundo Abissal"
+    data-atl-aria-label="Ukhu kay: 3400 metro utaq aswan, Ukhu Pampa">
     <hr>
-    <span class="linha-divisoria__texto">3400+ M // Fundo Abissal</span>
+    <span class="linha-divisoria__texto" data-atl="3400+ M // Ukhu Pampa">3400+ M // Fundo Abissal</span>
     <hr>
   </div>
 
   <!-- Rodapé/Footer-->
   <footer id="rodape" class="rodape">
     <div class="rodape__conteudo">
-      <section class="rodape__identidade" aria-label="Sobre o Portal Atlântida">
-        <a class="rodape__marca" href="#inicio" aria-label="Atlântida — voltar ao início">
+      <section class="rodape__identidade" aria-label="Sobre o Portal Atlântida"
+        data-atl-aria-label="Atlântida portalmanta">
+        <a class="rodape__marca" href="#inicio" aria-label="Atlântida — voltar ao início"
+          data-atl-aria-label="Atlântida — qallariyman kutiy">
           <span class="rodape__simbolo" aria-hidden="true">
             <img src="./assets/media/atlantida-emblema.png" alt="">
           </span>
@@ -730,7 +744,8 @@
           O portal que mantém a cidade conectada. Aqui os habitantes das cúpulas se conhecem, se comunicam, pedem e
           oferecem ajuda. Ninguém se afoga sozinho.
         </p>
-        <div class="rodape__indicadores" aria-label="Informações da comunidade">
+        <div class="rodape__indicadores" role="group" aria-label="Informações da comunidade"
+          data-atl-aria-label="Ayllup willaykuna">
           <span class="rodape__selo rodape__selo--profundidade">
             <i class="fa-solid fa-water" aria-hidden="true"></i>
             <span data-i18n="footer.depth">PROFUNDIDADE 3.400 m</span>
@@ -742,7 +757,7 @@
         </div>
       </section>
 
-      <nav class="rodape__navegacao" aria-label="Links do portal">
+      <nav class="rodape__navegacao" aria-label="Links do portal" data-atl-aria-label="Portalpa ñankuna">
         <h2 class="rodape__titulo-coluna" data-i18n="footer.areas_heading">As áreas do portal</h2>
         <ul class="rodape__lista">
           <li><a href="#inicio" data-i18n="nav_lateral.inicio">Início</a></li>

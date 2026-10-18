@@ -16,7 +16,7 @@
    - Mudar o estado de um recurso  edite "estado" em `indicadores` (estavel | atencao | risco).
    - Mexer o marcador no mapa ... edite "pin" do lugar (x = esquerda, y = topo, em %).
    - Novo habitante ............. copie um bloco de `habitantes`, ponha o retrato em
-                                  assets/media/habitantes/ e copie também o bloco dele em `chasqui`.
+                                  assets/media/habitantes/ e copie também o bloco dele em chasqui-palavras.js.
    Este arquivo é .js (e não .json) para o site abrir com dois cliques, sem servidor.
    ============================================================================ */
 
@@ -477,97 +477,9 @@ window.DADOS_MUNDO_HABITANTES = {
   ],
 
   /* ------------------------------------------------------------------------
-     CHASQUI: palavras que ligam uma missão a cada habitante.
-     - palavras: em português, SEM acento; só o começo da palavra basta ("cultiv" pega cultivo, cultivar...).
-     - palavras_atl: o mesmo em Atlante (sem acento e sem ñ; o apóstrofo pode ficar).
-     - passos: o que fazer primeiro.
+     CHASQUI: as palavras-chave e os "primeiros passos" de cada habitante ficam em
+     chasqui-palavras.js (um arquivo só para o Chasqui). Aqui ficam apenas os textos de tela dele (rótulos).
      ------------------------------------------------------------------------ */
-  chasqui: {
-    kora: {
-      palavras: ["fogo", "nucleo", "reator", "calor", "pressao", "valvula", "energia", "luz", "apagao", "sobrecarga", "manometro", "aquec", "refriger", "frio"],
-      palavras_atl: ["kutral", "q'oniy", "newen", "nina", "kallpa"],
-      passos: [
-        "Fechar a válvula mais próxima antes de qualquer conserto.",
-        "Conferir o calor do fogo-fundo ao fim de cada maré.",
-        "Anotar o que mudou e avisar a Casa das Vozes."
-      ],
-      passos_atl: [
-        "Allichayta manaraq qallarispa aswan qaylla valvulata wichqay.",
-        "Sapa qucha puriy tukukuptin ukhu kütralpa q'oñinta qhaway.",
-        "Imachus hukman tikrasqanta qillqay, Ñe'ẽ Wasitaq willay."
-      ]
-    },
-    zilda: {
-      palavras: ["arquivo", "memoria", "fita", "historia", "codigo", "cifra", "canto", "antigo", "document", "tradu", "ensin", "conto", "cultura", "ritual", "registro", "biblioteca"],
-      palavras_atl: ["amoxcalli", "cuicatl", "khipu", "willakuy", "yuyay", "qillqa"],
-      passos: [
-        "Reunir os registros e as fitas do caso.",
-        "Marcar uma roda de memória com os mais velhos.",
-        "Escrever de novo o que foi recuperado, antes que se perca."
-      ],
-      passos_atl: [
-        "Kay ruwaypaq qillqakunata cintakunatapas huñuy.",
-        "Machu-paya runakunawan yuyay muyuta rimanakuy.",
-        "Chinkaptinmanta ñawpaq, tarisqata huktawan qillqay."
-      ]
-    },
-    tito: {
-      palavras: ["mergulh", "exterior", "fossa", "naufrag", "sucata", "cabo", "resgat", "oceano", "escuro", "expedicao", "peca", "mineradora", "escavadeira", "fora"],
-      palavras_atl: ["uraykuy", "qucha", "hawa", "ukhu", "mashkay", "chinkasqa"],
-      passos: [
-        "Conferir o traje e a eclusa do Anel de Fora.",
-        "Combinar a rota de ida e volta antes de mergulhar.",
-        "Levar corda-guia e luz reserva."
-      ],
-      passos_atl: [
-        "Hawa Muyup pachanta punkuntapas qhaway.",
-        "Uraykuymanta ñawpaq rinapaq kutimunapaq ñanta rimanakuy.",
-        "Pusaq waskhata waqaychasqa k'anchaytapas apay."
-      ]
-    },
-    yara: {
-      palavras: ["alga", "oxigenio", "planta", "cultiv", "estufa", "comida", "alimento", "colheita", "semente", "broto", "jardim", "adubo", "bioluminesc", "fome", "respirar"],
-      palavras_atl: ["cochayuyo", "mallki", "tarpuy", "wayra", "chakra", "muhu"],
-      passos: [
-        "Medir o ar e a luz nas estufas.",
-        "Separar os brotos que apagaram e ver o que houve.",
-        "Ajustar o adubo dos tanques."
-      ],
-      passos_atl: [
-        "Q'oñi wasikunapi wayrata k'anchaytapas tupuy.",
-        "Mana k'anchaq mallkikunata t'aqaspa, imachus pasasqanta qhaway.",
-        "P'uyñukunap wanunta allichay."
-      ]
-    },
-    beto: {
-      palavras: ["antepara", "solda", "soldar", "porta", "reforc", "infiltra", "rachadura", "fissura", "estrutura", "parede", "comporta", "rang", "vazamento", "casco"],
-      palavras_atl: ["tepantli", "tepoz", "punku", "p'aki", "tinkichiy"],
-      passos: [
-        "Olhar a parede e marcar as rachaduras.",
-        "Fechar as comportas do corredor.",
-        "Soldar e testar por uma maré inteira."
-      ],
-      passos_atl: [
-        "Tepantlita qhawaspa p'akikunata unanchay.",
-        "Ñan punkukunata wichqay.",
-        "Tinkichiy, hukkuti qucha puriykama tupuy."
-      ]
-    },
-    sueli: {
-      palavras: ["radio", "canal", "comunic", "chamado", "aviso", "noticia", "mensagem", "sinal", "interferencia", "frequencia", "coorden", "isolado", "trocas", "emergencia", "chiado"],
-      palavras_atl: ["waqyay", "willay", "rimay", "ch'illiy"],
-      passos: [
-        "Abrir o canal e avisar todos os setores.",
-        "Trocar de frequência se houver ruído.",
-        "Anotar quem respondeu ao chamado."
-      ],
-      passos_atl: [
-        "Ñanta kichaspa tukuy ayllukunata willay.",
-        "Ch'illiy kaptin huk ñanman tikray.",
-        "Pikunachus kutichisqankuta qillqay."
-      ]
-    }
-  },
 
   /* ------------------------------------------------------------------------
      RÓTULOS usados pelos blocos que o JavaScript monta (cada um com pt e atl).

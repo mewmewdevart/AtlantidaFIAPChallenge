@@ -9,7 +9,8 @@
     const listaHabitantes = document.getElementById("listaHabitantes");
     if (!dados || !window.IDIOMA || !listaHabitantes) return;
 
-    const { habitantes, chasqui: palavrasChasqui } = dados;
+    const { habitantes } = dados;
+    const CHASQUI = window.CHASQUI;           // palavras-chave e motor de busca: chasqui-palavras.js
     const { t, lista, rotulo } = window.IDIOMA;
 
     // Evita que texto dos dados vire HTML sem querer (boa prática ao usar innerHTML)
@@ -100,44 +101,20 @@
     // O que o Chasqui está mostrando agora (guardado para refazer a tela ao trocar de idioma)
     const chasquiEstado = { missao: null, erro: null };
 
-    // Tira acentos e deixa minúsculo: "Antepara RANGENDO, infiltração" -> "antepara rangendo, infiltracao"
-    function normalizar(texto) {
-      return texto.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
-    }
-
-    // Conta quantas palavras-chave de cada habitante aparecem na missão (em português ou em Atlante)
-    // e guarda a palavra COMO A PESSOA DIGITOU, para mostrar no resultado.
-    function pontuar(missao) {
-      const texto = normalizar(missao);
-      return habitantes.map((h) => {
-        const dadosH = palavrasChasqui[h.id];
-        const achadas = [];
-        [...dadosH.palavras, ...(dadosH.palavras_atl || [])].forEach((p) => {
-          const m = new RegExp("(^|[^a-z])" + normalizar(p) + "[a-z']*").exec(texto);
-          if (m) {
-            const inicio = m.index + m[1].length;
-            achadas.push(missao.slice(inicio, m.index + m[0].length).toLowerCase());
-          }
-        });
-        return { habitante: h, achadas: [...new Set(achadas)] };
-      }).sort((a, b) => b.achadas.length - a.achadas.length);
-    }
-
-    // Devolve quem pode atender a missão, ou null se nenhuma palavra bater com ninguém
+    // Quem pode atender a missão? A busca (palavras fortes e fracas, português e Atlante) está em chasqui-palavras.js.
+    // Devolve null se nenhuma palavra bater com ninguém.
     function consultar(missao) {
-      const [primeiro, segundo] = pontuar(missao);
-      if (primeiro.achadas.length === 0) return null;
-      return {
-        habitante: primeiro.habitante,
-        palavras: primeiro.achadas,
-        reforco: segundo.achadas.length > 0 ? segundo.habitante : null,
-      };
+      if (!CHASQUI) return null;
+      const r = CHASQUI.consultar(missao);
+      if (!r) return null;
+      const achar = (id) => habitantes.find((h) => h.id === id);
+      return { habitante: achar(r.id), palavras: r.palavras, reforco: r.reforco ? achar(r.reforco) : null };
     }
 
     function mostrarResultado(r) {
       const h = r.habitante;
       const motivo = `${rotulo("voceFalou")} ${r.palavras.join(", ")}. ${t(h, "nome")} (${t(h, "funcao")}) ${rotulo("sabeFazer")} ${lista(h, "sabe").slice(0, 2).join(", ")}.`;
-      const passos = lista(palavrasChasqui[h.id], "passos");
+      const passos = lista(CHASQUI.habitantes[h.id], "passos");
 
       resultado.innerHTML = `
         <div class="chasqui__resultado">

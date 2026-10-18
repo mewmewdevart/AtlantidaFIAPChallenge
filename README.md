@@ -30,24 +30,31 @@ O **Portal Web - Atlântida** é uma solução digital concebida para o desafio 
 
 ## 📂 Estrutura do Projeto
 
-A organização dos arquivos e pastas segue o padrão de boas práticas para projetos web:
-
 ```text
 AtlantidaFIAPChallenge/
-├── assets/                  # Recursos estáticos da aplicação
-│   ├── css/                 # Estilos e temas da aplicação
-│   │   └── style.css        # Estilo principal com CSS Variables
-│   ├── js/                  # Scripts e lógica client-side
-│   │   ├── atlantida-book-anim.js # Animação e renderização do livro interativo
-│   │   └── main.js          # Script principal
-│   ├── docs/                # Documentação técnica e arquivos de apoio
-│   │   └── .gitkeep
-│   └── media/               # Imagens, ícones, vídeos e mídias
-│       └── .gitkeep
-├── index.html               # Página inicial (HTML5 semântico)
-├── .gitignore               # Configurações de arquivos ignorados pelo Git
-├── LICENSE                  # Licença do repositório (MIT)
-└── README.md                # Documentação oficial do projeto
+├── assets/
+│   ├── css/
+│   │   ├── variables.css          # Cores, tipografia e medidas (tokens)
+│   │   ├── style.css              # Estilo principal: hero, menu, Mural, Contato, rodapé
+│   │   ├── secoes-comuns.css      # Base das seções O Mundo e Habitantes (papel, foto, foco, link de pular)
+│   │   ├── secao-mundo.css        # Seção 02 · O Mundo
+│   │   └── secao-habitantes.css   # Seção 03 · Habitantes
+│   ├── js/
+│   │   ├── atlantida-book-anim.js # Animação do livro interativo (GSAP)
+│   │   ├── i18n.js                # Troca de idioma (português ⇄ Atlante)
+│   │   ├── main.js                # Menu, Mural e formulário de contato
+│   │   ├── idioma-secoes.js       # Troca de idioma das seções 02 e 03 (data-atl)
+│   │   ├── dados-mundo-habitantes.js # Conteúdo editável de O Mundo e Habitantes
+│   │   ├── chasqui-palavras.js    # Palavras-chave, passos e busca do Chasqui
+│   │   ├── secao-mundo.js         # Mapa, indicadores e FAQ
+│   │   └── secao-habitantes.js    # Crachás e Chasqui
+│   ├── lang/
+│   │   └── dicionarios.js         # Textos data-i18n nos dois idiomas
+│   └── media/                     # Imagens, ícones e mídias
+├── docs/                          # Guia de edição, glossário do Atlante e conferências (node)
+├── index.html                     # Página única (HTML5 semântico)
+├── LICENSE
+└── README.md
 ```
 
 ---
@@ -76,6 +83,19 @@ AtlantidaFIAPChallenge/
 3. **Abrir a Aplicação:**
    - Abra o arquivo `index.html` diretamente em seu navegador preferido; **OU**
    - Utilize a extensão **Live Server** no VS Code para simular um servidor local de desenvolvimento (`http://127.0.0.1:5500`).
+
+---
+
+## 🌐 Idiomas e conferências
+
+O site tem dois idiomas: português e **Atlante**, um dialeto inventado de Atlântida (regras e vocabulário em `docs/glossario-atlantida.md`). Guia de edição para a arena: `docs/como-editar.md`. Com Node.js instalado, três comandos conferem o projeto:
+
+```bash
+node docs/verificar-atlante.js   # O Mundo e Habitantes: tudo tem Atlante?
+node docs/verificar-idiomas.js   # menu, hero, Mural, Contato, rodapé
+node docs/testar-chasqui.js      # o Chasqui acerta as frases de exemplo?
+node docs/verificar-palavras-chave.js   # as listas de palavras têm repetição ou palavra comum demais?
+```
 
 ---
 

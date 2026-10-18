@@ -18,6 +18,16 @@ document.addEventListener("DOMContentLoaded", () => {
       if (gatilho) gatilho.setAttribute("aria-expanded", String(expandido));
     });
 
+    // Esc fecha o menu e devolve o foco ao botão que o abriu
+    document.addEventListener("keydown", (evento) => {
+      if (evento.key !== "Escape" || !menuNavegacao.classList.contains("menu-navegacao--expandido")) return;
+      menuNavegacao.classList.remove("menu-navegacao--expandido");
+      if (gatilho) {
+        gatilho.setAttribute("aria-expanded", "false");
+        gatilho.focus();
+      }
+    });
+
     document.addEventListener("click", (evento) => {
       if (!menuNavegacao.contains(evento.target)) {
         menuNavegacao.classList.remove("menu-navegacao--expandido");
@@ -314,9 +324,11 @@ function inicializarMenuLateral() {
     if (scrollY >= limiarSegundaSecao) {
       menuLateral.classList.add("menu-lateral--visivel");
       menuLateral.setAttribute("aria-hidden", "false");
+      menuLateral.inert = false;
     } else {
       menuLateral.classList.remove("menu-lateral--visivel");
       menuLateral.setAttribute("aria-hidden", "true");
+      menuLateral.inert = true;           // escondido = fora do alcance do Tab
     }
 
     const posicoes = calcularPosicoesItens();
