@@ -17,7 +17,7 @@
   --cor-sinal: rgb(22, 104, 99);
   --cor-sinal-claro: rgb(62, 144, 137);
   /* Sinal legível sobre fundos escuros (≥ 4.5:1 sobre #000A10) */
-  --cor-sinal-texto: rgb(108, 192, 185);
+  --cor-sinal-texto: rgb(135, 210, 203);
 
   /* Cores: Metais, Carimbos & Destaques */
   --cor-ambar: rgb(224, 144, 40);
@@ -26,8 +26,10 @@
   --cor-ferrugem: rgb(193, 75, 44);
   /* Ferrugem acessível: contraste ≥ 4.5:1 sobre pergaminho claro */
   --cor-ferrugem-acessivel: rgb(160, 55, 25);
+  /* Ferrugem profunda: estado "hover" de botões ferrugem */
+  --cor-ferrugem-profunda: rgb(128, 42, 18);
   /* Ferrugem clara: contraste ≥ 6:1 sobre fundos escuros (#000A10, #002329) */
-  --cor-ferrugem-clara: rgb(240, 135, 105);
+  --cor-ferrugem-clara: rgb(255, 160, 130);
   --cor-terracota: rgb(206, 77, 44);
   /* Terracota acessível sobre pergaminho */
   --cor-terracota-acessivel: rgb(168, 50, 20);
@@ -44,9 +46,13 @@
   --cor-oceano: rgb(27, 155, 149);
   --cor-oceano-hover: rgb(21, 133, 128);
   --cor-oceano-sombra: rgba(27, 155, 149, 0.35);
+  /* Oceano acessível: texto claro sobre ele ≥ 7:1; texto dele sobre pergaminho ≥ 4.5:1 */
+  --cor-oceano-acessivel: rgb(10, 88, 84);
+  --cor-oceano-acessivel-hover: rgb(7, 70, 67);
 
   /* Medidas & Escalas: Livro 3D */
-  --livro-unidade: clamp(28px, 3.6vw, 50px);
+  /* escala com a largura E com a altura da janela, para o livro inteiro caber na tela */
+  --livro-unidade: clamp(36px, min(3.6vw, 6.4vh), 50px);
   --livro-largura-base: 18.5;
   --livro-altura-base: 12.5;
 

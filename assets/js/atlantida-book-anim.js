@@ -2,6 +2,9 @@
 
 let timelineLivro = null;
 
+// Abaixo desta largura o livro vira uma coluna simples (mesmo valor do @media em style.css)
+const MAX_LARGURA_LIVRO_PLANO = 1100;
+
 function executarAnimacaoAberturaLivro() {
   const livro = document.getElementById("livro3D");
   const capaFrontal = document.getElementById("capaFrontal");
@@ -13,9 +16,9 @@ function executarAnimacaoAberturaLivro() {
     return;
   }
 
-  const ehResolucaoMenor820 = window.matchMedia("(max-width: 820px)").matches;
+  const ehLivroPlano = window.matchMedia(`(max-width: ${MAX_LARGURA_LIVRO_PLANO}px)`).matches;
 
-  if (ehResolucaoMenor820) {
+  if (ehLivroPlano) {
     if (timelineLivro) {
       timelineLivro.kill();
       timelineLivro = null;
@@ -85,8 +88,8 @@ function executarAnimacaoAberturaLivro() {
     }, 1.7);
 }
 
-const mediaQueryResolucao820 = window.matchMedia("(max-width: 820px)");
-mediaQueryResolucao820.addEventListener("change", () => {
+const mediaQueryLivroPlano = window.matchMedia(`(max-width: ${MAX_LARGURA_LIVRO_PLANO}px)`);
+mediaQueryLivroPlano.addEventListener("change", () => {
   executarAnimacaoAberturaLivro();
 });
 

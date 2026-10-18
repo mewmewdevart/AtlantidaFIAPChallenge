@@ -285,7 +285,8 @@
 .chasqui__codigo {
   display: inline-block;
   padding: 0.2rem 0.45rem;
-  font-size: var(--texto-micro);
+  font-family: var(--fonte-texto);
+  font-size: var(--texto-xs);
   font-weight: var(--peso-bold);
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -298,7 +299,7 @@
 .chasqui__titulo {
   margin-top: 0.2rem;
   font-size: var(--titulo-subsecao);
-  font-weight: var(--peso-bold);
+  font-weight: var(--peso-semibold);
   line-height: var(--linha-compacta);
   color: var(--cor-tinta);
 }
