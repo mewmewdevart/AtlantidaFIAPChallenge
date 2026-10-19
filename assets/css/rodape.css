@@ -64,7 +64,7 @@
   font-size: var(--texto-micro);
   font-weight: var(--peso-semibold);
   letter-spacing: 0.11em;
-  color: var(--cor-menta-neon);
+  color: var(--cor-ambar);
 }
 
 .rodape__descricao {
@@ -90,11 +90,11 @@
   font-size: var(--texto-micro);
   font-weight: var(--peso-semibold);
   letter-spacing: 0.08em;
-  border-radius: 2rem;
+  border-radius: 3px;
 }
 
 .rodape__selo--profundidade {
-  color: var(--cor-menta-neon);
+  color: var(--cor-ambar);
   background-color: rgba(15, 244, 204, 0.1);
 }
 
@@ -135,7 +135,7 @@
 
 .rodape__lista a:hover,
 .rodape__lista a:focus-visible {
-  color: var(--cor-menta-neon);
+  color: var(--cor-ambar);
 }
 
 .rodape__lista--canais li {
@@ -150,7 +150,7 @@
 }
 
 .rodape__icone-canal--radio {
-  color: var(--cor-menta-neon);
+  color: var(--cor-ambar);
 }
 
 .rodape__icone-canal--alerta {

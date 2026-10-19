@@ -528,6 +528,49 @@ body>section,
   opacity: 0.6;
 }
 
+/* Botão de Login no Menu Lateral (estilo e coloração do botão secundário "Saiba mais") */
+.menu-lateral__item--login {
+  margin-top: 0.35rem;
+  padding-top: 0.35rem;
+  border-top: 1px dotted rgba(100, 73, 56, 0.35);
+}
+
+.menu-lateral__link--login,
+.menu-lateral__link[data-secao="login"] {
+  justify-content: center;
+  color: var(--cor-espuma);
+  background-color: var(--cor-ferrugem-acessivel);
+  border: 1px solid var(--cor-ferrugem-acessivel);
+  border-radius: var(--btn-raio, 4px);
+  box-shadow: 0 2px 6px rgba(128, 42, 18, 0.28);
+  font-weight: var(--peso-semibold);
+  transition: transform 0.2s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.menu-lateral__link--login:hover,
+.menu-lateral__link[data-secao="login"]:hover {
+  color: var(--cor-espuma);
+  background-color: var(--cor-ferrugem-profunda);
+  border-color: var(--cor-ferrugem-profunda);
+  transform: translateX(2px);
+  box-shadow: 0 4px 10px rgba(128, 42, 18, 0.38);
+}
+
+.menu-lateral__link--login:active,
+.menu-lateral__link[data-secao="login"]:active {
+  transform: translateX(0);
+}
+
+.menu-lateral__link--login:focus-visible,
+.menu-lateral__link[data-secao="login"]:focus-visible {
+  outline: 2px solid var(--cor-ferrugem-acessivel);
+  outline-offset: 2px;
+}
+
 /* ==========================================================================
    4. PADRÕES DE LAYOUT E TÍTULOS DE SEÇÃO
    ========================================================================== */

@@ -27,6 +27,7 @@ window.I18N_DICIONARIOS = {
     "nav_lateral.habitantes": "Habitantes",
     "nav_lateral.mural": "Mural",
     "nav_lateral.contato": "Contato",
+    "nav_lateral.login": "Login",
     /* ---- Contato ---- */
     "contact.quote_label": "PULSO 09 // TRANSMISSÃO SEGURA",
     "contact.quote": "“VOCÊ CHEGOU AO FUNDO. AGORA RESPONDA.”",
@@ -132,6 +133,7 @@ window.I18N_DICIONARIOS = {
     "nav_lateral.habitantes": "Macehualtin",
     "nav_lateral.mural": "Tlacuilolli",
     "nav_lateral.contato": "Nahuatilli",
+    "nav_lateral.login": "Yaykuy",
     /* ---- Contato ---- */
     "contact.quote_label": "PULSO 09 // TLANONOTZALIZTLI TLAPALLI",
     "contact.quote": "“TIHUEHCAH ATL TLANAMACA. AXCAN XINOTZA.”",

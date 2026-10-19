@@ -43,12 +43,24 @@
 
     const grade = document.getElementById("pulsoGrade");
 
+    // Ícones intuitivos e representativos para cada estado de recurso vital
+    const iconesEstado = {
+      estavel: "fa-solid fa-circle-check",
+      atencao: "fa-solid fa-triangle-exclamation",
+      risco: "fa-solid fa-circle-exclamation"
+    };
+
     function criarIndicadores() {
-      grade.innerHTML = indicadores.map((i) => `
+      grade.innerHTML = indicadores.map((i) => {
+        const icone = iconesEstado[i.estado] || "fa-solid fa-circle-info";
+        return `
         <article class="indicador indicador--${esc(i.estado)}">
           <header class="indicador__linha">
             <h4 class="indicador__nome">${esc(rotulo(i.id))}</h4>
-            <span class="indicador__estado">${esc(rotulo(i.estado))}</span>
+            <span class="indicador__estado indicador__estado--${esc(i.estado)}">
+              <i class="${icone} indicador__icone" aria-hidden="true"></i>
+              <span>${esc(rotulo(i.estado))}</span>
+            </span>
           </header>
           <div class="indicador__medida">
             <p class="indicador__valor">${esc(i.valor)}<span class="indicador__unidade">${esc(i.unidade)}</span></p>
@@ -56,7 +68,8 @@
           </div>
           <div class="indicador__barra" role="img" aria-label="${esc(i.valor)} ${esc(i.unidade)}"><span style="width:${Number(i.barra)}%"></span></div>
           <p class="indicador__nota">${esc(t(i, "nota"))}</p>
-        </article>`).join("");
+        </article>`;
+      }).join("");
     }
 
     /* ======================= MAPA DA CIDADE ======================= */

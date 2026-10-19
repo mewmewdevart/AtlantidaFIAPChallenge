@@ -39,7 +39,7 @@
   border: 1px solid var(--cor-pergaminho-borda);
   border-radius: 3px;
   box-shadow: 0 8px 24px rgba(0, 3, 5, 0.38), inset 0 0 28px rgba(130, 90, 40, 0.12);
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease, outline 0.25s ease, outline-offset 0.25s ease;
 }
 
 .contato__formulario::before {
@@ -58,10 +58,6 @@
 .contato__formulario>* {
   position: relative;
   z-index: 2;
-}
-
-.contato__formulario:focus-within {
-  box-shadow: 0 12px 30px rgba(0, 3, 5, 0.42), inset 0 0 28px rgba(130, 90, 40, 0.12);
 }
 
 /* Faixa de status do terminal */
@@ -130,11 +126,11 @@
   font-size: var(--texto-base);
   font-weight: var(--peso-semibold);
   letter-spacing: 0.06em;
-  color: var(--cor-oceano-acessivel);
+  color: var(--cor-abismo);
 }
 
 .contato__campo label>span:last-child {
-  color: var(--cor-ferrugem-acessivel);
+  color: var(--cor-abismo);
 }
 
 /* Inputs, Selects e Textareas */
@@ -152,7 +148,7 @@
   background-color: rgba(255, 250, 235, 0.58);
   border: 1px solid rgba(100, 73, 56, 0.38);
   border-radius: var(--campo-raio);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, outline 0.2s ease, outline-offset 0.2s ease;
 }
 
 .contato__campo textarea {
@@ -168,7 +164,9 @@
 .contato__campo input:hover,
 .contato__campo select:hover,
 .contato__campo textarea:hover {
-  border-color: var(--cor-oceano);
+  border-color: var(--cor-ferrugem);
+  outline: 2px solid var(--cor-ferrugem);
+  outline-offset: 2px;
 }
 
 .contato__campo select:invalid {
@@ -180,16 +178,28 @@
   background-color: var(--cor-pergaminho);
 }
 
+.contato__campo input:focus,
+.contato__campo select:focus,
+.contato__campo textarea:focus,
 .contato__campo input:focus-visible,
 .contato__campo select:focus-visible,
 .contato__campo textarea:focus-visible {
-  border-color: var(--cor-oceano-acessivel);
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(10, 88, 84, 0.18);
+  border-color: var(--cor-ferrugem);
+  outline: 2px solid var(--cor-ferrugem);
+  outline-offset: 2px;
+  box-shadow: 0 4px 12px rgba(193, 75, 44, 0.16);
 }
 
 .contato__campo [aria-invalid="true"] {
   border-color: var(--cor-ferrugem-acessivel);
+}
+
+.contato__campo [aria-invalid="true"]:hover,
+.contato__campo [aria-invalid="true"]:focus,
+.contato__campo [aria-invalid="true"]:focus-visible {
+  border-color: var(--cor-terracota-acessivel);
+  outline: 2px solid var(--cor-terracota-acessivel);
+  outline-offset: 2px;
 }
 
 .contato__erro {
@@ -222,6 +232,13 @@
   font-size: var(--texto-base);
   letter-spacing: 0.05em;
   border-radius: var(--btn-raio);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, outline 0.2s ease, outline-offset 0.2s ease;
+}
+
+.contato__enviar:hover,
+.contato__enviar:focus-visible {
+  outline: 2px solid var(--cor-ferrugem);
+  outline-offset: 2px;
 }
 
 .contato__confirmacao {

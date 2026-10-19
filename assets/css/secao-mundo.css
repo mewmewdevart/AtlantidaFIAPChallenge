@@ -560,17 +560,17 @@ h3.lei-da-casa__titulo {
 
 .indicador--atencao {
   --tom: var(--cor-ambar);
-  --tom-texto: #6b4000;
+  --tom-texto: var(--cor-ambar-acessivel);
 }
 
 .indicador--risco {
   --tom: var(--cor-terracota);
-  --tom-texto: var(--cor-ferrugem-profunda);
+  --tom-texto: var(--cor-terracota-acessivel);
 }
 
 .indicador__linha {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 0.8rem;
 }
@@ -580,15 +580,50 @@ h3.lei-da-casa__titulo {
   font-weight: var(--peso-semibold);
 }
 
+/* Tag de status no mesmo formato artesanal de etiqueta/carimbo do Mural */
 .indicador__estado {
-  padding: 0.05rem 0.7rem 0.1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.45rem;
   font-family: var(--fonte-texto);
-  font-size: var(--texto-sm);
-  font-weight: var(--peso-semibold);
-  color: var(--tom-texto);
-  background: color-mix(in srgb, var(--tom) 16%, transparent);
-  border: 1px solid color-mix(in srgb, var(--tom) 60%, transparent);
-  border-radius: 999px;
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-bold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--cor-ferrugem-acessivel);
+  border: 1px solid currentColor;
+  transform: rotate(1deg);
+  margin-bottom: 0.5rem;
+}
+
+
+.indicador__icone {
+  font-size: 0.72rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* Cores específicas adaptadas por estado com contraste e harmonia com o pergaminho */
+.indicador__estado--estavel,
+.indicador:not(.indicador--atencao):not(.indicador--risco) .indicador__estado {
+  color: var(--cor-oceano-acessivel);
+  background-color: rgba(22, 104, 99, 0.09);
+  border-color: currentColor;
+}
+
+.indicador__estado--atencao,
+.indicador--atencao .indicador__estado {
+  color: var(--cor-ambar-acessivel);
+  background-color: rgba(224, 144, 40, 0.13);
+  border-color: currentColor;
+}
+
+.indicador__estado--risco,
+.indicador--risco .indicador__estado {
+  color: var(--cor-terracota-acessivel);
+  background-color: rgba(206, 77, 44, 0.13);
+  border-color: currentColor;
 }
 
 .indicador__medida {
