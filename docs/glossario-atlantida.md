@@ -4,7 +4,7 @@ O idioma "Atlantida" do site é inventado. Ele mistura línguas e dialetos da Am
 
 > **Importante:** é uma criação artística. As raízes foram escolhidas de memória, a escrita varia entre os dialetos de cada língua e algumas palavras foram inventadas por analogia (marcadas com ★). Antes de publicar fora do desafio, vale conferir com dicionários ou falantes.
 
-Para checar se sobrou português nas traduções: `node docs/verificar-atlante.js`.
+Para checar se sobrou português nas traduções: `node assets/js/tests/verificar-atlante.js`.
 
 ## 1. Ideia geral
 

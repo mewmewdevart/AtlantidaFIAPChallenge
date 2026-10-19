@@ -1,10 +1,10 @@
-/* Testa o Chasqui com as frases de docs/chasqui-casos.js e mostra onde ele errou.
-   Uso (na pasta do projeto):   node docs/testar-chasqui.js
-   Para ver o ranking de uma frase só:   node docs/testar-chasqui.js "a parede está rangendo"
+/* Testa o Chasqui com as frases de assets/js/tests/chasqui-casos.js e mostra onde ele errou.
+   Uso (na pasta do projeto):   node assets/js/tests/testar-chasqui.js
+   Para ver o ranking de uma frase só:   node assets/js/tests/testar-chasqui.js "a parede está rangendo"
    Sai com erro (código 1) se alguma frase de exemplo falhar. */
 
 const path = require("path");
-const CHASQUI = require(path.join(__dirname, "../assets/js/chasqui-palavras.js"));
+const CHASQUI = require(path.join(__dirname, "../chasqui-palavras.js"));
 
 const frase = process.argv[2];
 if (frase) {

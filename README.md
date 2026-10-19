@@ -91,10 +91,10 @@ AtlantidaFIAPChallenge/
 O site tem dois idiomas: português e **Atlante**, um dialeto inventado de Atlântida (regras e vocabulário em `docs/glossario-atlantida.md`). Guia de edição para a arena: `docs/como-editar.md`. Com Node.js instalado, três comandos conferem o projeto:
 
 ```bash
-node docs/verificar-atlante.js   # O Mundo e Habitantes: tudo tem Atlante?
-node docs/verificar-idiomas.js   # menu, hero, Mural, Contato, rodapé
-node docs/testar-chasqui.js      # o Chasqui acerta as frases de exemplo?
-node docs/verificar-palavras-chave.js   # as listas de palavras têm repetição ou palavra comum demais?
+node assets/js/tests/verificar-atlante.js        # O Mundo e Habitantes: tudo tem Atlante?
+node assets/js/tests/verificar-idiomas.js        # menu, hero, Mural, Contato, rodapé
+node assets/js/tests/testar-chasqui.js           # o Chasqui acerta as frases de exemplo?
+node assets/js/tests/verificar-palavras-chave.js # as listas de palavras têm repetição ou palavra comum demais?
 ```
 
 ---

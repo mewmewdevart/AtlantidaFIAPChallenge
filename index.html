@@ -4,8 +4,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portal Web Atlântida - VR Code Arena NEXT FIAP 2026.">
+  <meta name="description" content="Portal Web Atlântida — Plataforma de comunicação e suporte mútuo para a comunidade submersa da VR Code Arena (NEXT FIAP 2026). Conectando cúpulas, moradores e recursos vitais no fundo do oceano.">
   <title>Portal Web — Atlântida | VR Code Arena</title>
+
+  <!-- Metatags de SEO e Redes Sociais (Open Graph & Twitter) -->
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Portal Web — Atlântida | VR Code Arena">
+  <meta property="og:description" content="Conecte-se à cidade submarina, descubra seus espaços e explore um novo mundo abaixo da superfície. Desafio NEXT FIAP 2026.">
+  <meta property="og:url" content="https://mewmewdevart.github.io/AtlantidaFIAPChallenge/">
+  <meta property="og:image" content="./assets/media/image-hero-section.webp">
+  <meta property="og:image:alt" content="Submarino explorando Atlântida">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Portal Web — Atlântida | VR Code Arena">
+  <meta name="twitter:description" content="Conecte-se à cidade submarina de Atlântida e acompanhe o pulso da comunidade subaquática.">
+  <meta name="twitter:image" content="./assets/media/image-hero-section.webp">
 
   <!-- Tipografia & Ícones -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,10 +35,8 @@
   <link rel="stylesheet" href="./assets/css/secao-mundo.css">
   <link rel="stylesheet" href="./assets/css/secao-habitantes.css">
 
-
   <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script>window.gsap || document.write('<script src="./assets/js/gsap.min.js"><\/script>');</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="./assets/js/atlantida-book-anim.js?v=3" defer></script>
   <script src="./assets/lang/dicionarios.js" defer></script>
   <script src="./assets/js/i18n.js" defer></script>
@@ -165,7 +176,7 @@
 
       <div class="livro-3d__folha livro-3d__folha--direita" id="folhaDireita">
         <div class="livro-3d__face livro-3d__face--frente livro-3d__face--ilustracao">
-          <img class="livro-3d__imagem-ilustracao" src="./assets/media/image-hero-section.png"
+          <img class="livro-3d__imagem-ilustracao" src="./assets/media/image-hero-section.webp"
             alt="Submarino explorando Atlântida" data-atl-alt="Submarino Atlântidata maskashan">
         </div>
       </div>
@@ -200,8 +211,8 @@
             </div>
 
             <div class="livro-3d__acoes">
-              <a class="botao botao--primario" href="#o-mundo" data-i18n="hero.btn_explorar">Explorar Atlântida</a>
-              <a class="botao botao--secundario" href="#habitantes" data-i18n="hero.btn_saiba_mais">Saiba mais</a>
+              <a class="botao botao--primario botao--md" href="#o-mundo" data-i18n="hero.btn_explorar">Explorar Atlântida</a>
+              <a class="botao botao--secundario botao--md" href="#habitantes" data-i18n="hero.btn_saiba_mais">Saiba mais</a>
             </div>
           </div>
         </div>
@@ -442,7 +453,7 @@
               placeholder="Ex.: A parede perto das estufas está rangendo e entrou água…"
               data-atl-placeholder="Hina: q'oñi wasikunap qayllanpi tepantli qarqarayan, yakutaq yaykurqa…"></textarea>
             <div class="chasqui__acoes">
-              <button type="submit" class="botao botao--primario" id="chasquiBotao" data-atl="Chaskita kachay">Mandar o
+              <button type="submit" class="botao botao--primario botao--md" id="chasquiBotao" data-atl="Chaskita kachay">Mandar o
                 Chasqui</button>
               <span class="chasqui__contador" id="chasquiContador">0/800</span>
             </div>
@@ -660,9 +671,9 @@
               <option value="" data-i18n="contact.sector_placeholder">Selecione seu setor</option>
               <option value="domo-norte" data-i18n="contact.sector_north">Coração do Sol</option>
               <option value="anel-central" data-i18n="contact.sector_central">Casa das Vozes</option>
-              <option value="setor-4" data-i18n="contact.sector_four">Anel de Fora </option>
+              <option value="setor-4" data-i18n="contact.sector_four">Anel de Fora</option>
               <option value="zona-agricola" data-i18n="contact.sector_farm">Jardins de Alga</option>
-              <option value="zona-agricola" data-i18n="contact.sector_farm">Estaleiro</option>
+              <option value="estaleiro" data-i18n="contact.sector_shipyard">Estaleiro</option>
               <option value="outro" data-i18n="contact.sector_other">Outro</option>
             </select>
             <span class="contato__erro" id="erroContatoSetor" data-erro-para="contatoSetor" aria-live="polite"
@@ -723,7 +734,7 @@
 
         <!-- Envio dispara a validação; em sucesso, a confirmação é anunciada e recebe foco. -->
         <div class="contato__acoes">
-          <button class="botao botao--primario contato__enviar" type="submit">
+          <button class="botao botao--primario botao--lg contato__enviar" type="submit">
             <span data-i18n="contact.submit">ENVIAR TRANSMISSÃO</span>
           </button>
         </div>

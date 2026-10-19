@@ -246,7 +246,9 @@
 }
 
 .cracha__botao {
-  padding: 0.5rem 1.1rem;
+  min-height: var(--btn-altura-sm);
+  padding: var(--btn-pad-sm);
+  border-radius: var(--btn-raio);
 }
 
 .cracha__principal:focus-visible,

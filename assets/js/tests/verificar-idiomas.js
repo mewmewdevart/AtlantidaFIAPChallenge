@@ -1,5 +1,5 @@
 /* Confere os textos de assets/lang/dicionarios.js (menu, hero, Mural, Contato, rodapé) nos dois idiomas.
-   Uso (na pasta do projeto):   node docs/verificar-idiomas.js
+   Uso (na pasta do projeto):   node assets/js/tests/verificar-idiomas.js
    Sai com erro (código 1) se achar problema.
 
    O que ele olha:
@@ -12,7 +12,7 @@ const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
 
-const raiz = path.join(__dirname, "..");
+const raiz = path.join(__dirname, "../../..");
 const problemas = [];
 
 const janela = {};

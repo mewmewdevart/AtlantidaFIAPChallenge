@@ -4,11 +4,11 @@ Regra de ouro: **conteúdo = um arquivo só** (`assets/js/dados-mundo-habitantes
 
 Depois de qualquer mudança: abra o `index.html`, troque o idioma no menu para ver o Atlante e rode as conferências (precisa do Node.js; se não tiver, só olhe os dois idiomas no navegador):
 
-```
-node docs/verificar-atlante.js    # O Mundo e Habitantes: tudo tem Atlante? sobrou português?
-node docs/verificar-idiomas.js    # menu, hero, Mural, Contato, rodapé: mesmas chaves nos dois idiomas, caracteres
-node docs/testar-chasqui.js       # o Chasqui ainda acerta as frases de exemplo?
-node docs/verificar-palavras-chave.js   # as listas têm repetição ou palavra comum demais?
+```bash
+node assets/js/tests/verificar-atlante.js        # O Mundo e Habitantes: tudo tem Atlante? sobrou português?
+node assets/js/tests/verificar-idiomas.js        # menu, hero, Mural, Contato, rodapé: mesmas chaves nos dois idiomas, caracteres
+node assets/js/tests/testar-chasqui.js           # o Chasqui ainda acerta as frases de exemplo?
+node assets/js/tests/verificar-palavras-chave.js # as listas têm repetição ou palavra comum demais?
 ```
 
 ## Onde fica cada coisa
@@ -52,7 +52,7 @@ Para trocar o nome de um indicador (ex.: "Água"), edite `rotulos.agua`.
 
 **Mudar o nome da cidade:** o nome Ñandeyaku aparece em `index.html` e em `dados-mundo-habitantes.js`; use localizar e substituir nesses dois arquivos (e em `docs/glossario-atlantida.md`).
 
-**Ensinar uma palavra nova ao Chasqui:** abra `assets/js/chasqui-palavras.js`, ache o habitante e ponha a palavra em `forte` (aponta direto para ele, vale 2 pontos) ou em `fraca` (pista, vale 1). Só o começo da palavra basta (`"cultiv"` pega cultivo e cultivar); termine com `$` para a palavra inteira (`"porta$"` não pega "portal"). As regras completas estão no comentário do topo do arquivo. Palavra repetida conta uma vez só, então pode ampliar a lista sem medo de dar ponto dobrado. Depois rode `node docs/testar-chasqui.js` (frases de exemplo) e `node docs/verificar-palavras-chave.js` (avisa de palavra comum demais, como "uma" ou "para", que faria o Chasqui responder fora de hora). Quando alguém escrever na arena uma frase que o Chasqui errou, acrescente a frase e o habitante certo em `docs/chasqui-casos.js`.
+**Ensinar uma palavra nova ao Chasqui:** abra `assets/js/chasqui-palavras.js`, ache o habitante e ponha a palavra em `forte` (aponta direto para ele, vale 2 pontos) ou em `fraca` (pista, vale 1). Só o começo da palavra basta (`"cultiv"` pega cultivo e cultivar); termine com `$` para a palavra inteira (`"porta$"` não pega "portal"). As regras completas estão no comentário do topo do arquivo. Palavra repetida conta uma vez só, então pode ampliar a lista sem medo de dar ponto dobrado. Depois rode `node assets/js/tests/testar-chasqui.js` (frases de exemplo) e `node assets/js/tests/verificar-palavras-chave.js` (avisa de palavra comum demais, como "uma" ou "para", que faria o Chasqui responder fora de hora). Quando alguém escrever na arena uma frase que o Chasqui errou, acrescente a frase e o habitante certo em `assets/js/tests/chasqui-casos.js`.
 
 **Mudar um texto do menu, do hero ou do rodapé:** edite a chave em `assets/lang/dicionarios.js`, nos dois blocos (`ptBr` e `ptBrAtlantida`). Textos que o HTML marca com `data-atl="..."` ficam no próprio HTML.
 

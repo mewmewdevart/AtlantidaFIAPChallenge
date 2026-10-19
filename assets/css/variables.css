@@ -92,4 +92,19 @@
   --titulo-subsecao: clamp(1.85rem, 4vw, 2.7rem);
   --titulo-citacao: clamp(0.95rem, 2vw, 1.3rem);
   --linha-divisoria-texto: clamp(0.8125rem, 1.6vw, 0.9375rem);
+
+  /* Componentes: Botões e Elementos Interativos (Padronização) */
+  --btn-altura-sm: 2.25rem;       /* 36px - Compacto (crachás, ações secundárias) */
+  --btn-altura-md: 2.75rem;       /* 44px - Padrão WCAG (toque e clique confortáveis) */
+  --btn-altura-lg: 3.125rem;      /* 50px - Destaque (hero e envio de formulário) */
+  --btn-pad-sm: 0.45rem 1rem;     /* Espaçamento interno compacto */
+  --btn-pad-md: 0.65rem 1.4rem;   /* Espaçamento interno padrão */
+  --btn-pad-lg: 0.85rem 1.85rem;  /* Espaçamento interno destaque */
+  --btn-raio: 6px;                /* Arredondamento harmônico consistente */
+  --btn-borda: 1.5px;             /* Espessura padrão de contorno */
+
+  /* Componentes: Controles de Formulário (Inputs, Selects e Textareas) */
+  --campo-altura: 2.875rem;       /* 46px - Altura alinhada ao botão padrão */
+  --campo-pad: 0.75rem 1rem;      /* Espaçamento interno de campos */
+  --campo-raio: 6px;              /* Raio harmônico aos botões */
 }

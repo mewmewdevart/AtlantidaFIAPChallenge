@@ -1,10 +1,10 @@
 /* Confere as listas de palavras do Chasqui (assets/js/chasqui-palavras.js) e avisa de problemas comuns.
-   Uso (na pasta do projeto):   node docs/verificar-palavras-chave.js
-   Não substitui  node docs/testar-chasqui.js  (que roda as frases de exemplo): este olha as LISTAS.
+   Uso (na pasta do projeto):   node assets/js/tests/verificar-palavras-chave.js
+   Não substitui  node assets/js/tests/testar-chasqui.js  (que roda as frases de exemplo): este olha as LISTAS.
    Sai com erro (código 1) só nos itens marcados como ERRO; os AVISOS são para você decidir. */
 
 const path = require("path");
-const CHASQUI = require(path.join(__dirname, "../assets/js/chasqui-palavras.js"));
+const CHASQUI = require(path.join(__dirname, "../chasqui-palavras.js"));
 const { normalizar } = CHASQUI;
 
 const erros = [];

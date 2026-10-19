@@ -1,12 +1,12 @@
 /* Confere se tudo que tem versão em português também tem versão em Atlante, e se sobrou português nas traduções.
-   Uso (na pasta do projeto):   node docs/verificar-atlante.js
+   Uso (na pasta do projeto):   node assets/js/tests/verificar-atlante.js
    Sai com erro (código 1) se achar problema, para dar para usar antes de entregar. */
 
 const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
 
-const raiz = path.join(__dirname, "..");
+const raiz = path.join(__dirname, "../../..");
 const problemas = [];
 
 // Palavras comuns do português que não existem no Atlante ("uma" ficou de fora de propósito: em Atlante é a água). Se aparecerem num texto _atl, é sinal de resto sem traduzir.
