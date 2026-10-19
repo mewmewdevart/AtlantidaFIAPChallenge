@@ -20,6 +20,7 @@ window.I18N_DICIONARIOS = {
     "nav.menu": "MENU",
     "nav.lang_pt": "PT-BR",
     "nav.lang_atlantida": "Atlântida",
+    "nav.animations": "Animações",
     /* ---- Menu lateral ---- */
     "nav_lateral.inicio": "Início",
     "nav_lateral.mundo": "O Mundo",
@@ -124,6 +125,7 @@ window.I18N_DICIONARIOS = {
     "nav.menu": "KALPULLI",
     "nav.lang_pt": "PT-BR",
     "nav.lang_atlantida": "Atlântida",
+    "nav.animations": "Kuyuy",
     /* ---- Menu lateral ---- */
     "nav_lateral.inicio": "Ipepe",
     "nav_lateral.mundo": "Cemanahuatl",

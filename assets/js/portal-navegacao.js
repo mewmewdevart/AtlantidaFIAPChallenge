@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const gatilho = menuNavegacao.querySelector(".menu-navegacao__gatilho");
 
     menuNavegacao.addEventListener("click", (evento) => {
-      if (evento.target.closest(".seletor-idioma")) {
+      if (evento.target.closest(".seletor-idioma") || evento.target.closest(".menu-navegacao__botao-animacoes")) {
         evento.stopPropagation();
         return;
       }
@@ -56,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
   inicializarMural();
   inicializarFormularioContato();
   inicializarMenuLateral();
+  inicializarControleAnimacoes();
 });
 
 function inicializarFormularioContato() {
@@ -454,4 +455,54 @@ function inicializarMenuLateral() {
   });
   calcularPosicoesItens();
   atualizarEstadoMenu();
+}
+
+function inicializarControleAnimacoes() {
+  const botaoAnimacoes = document.getElementById("botaoAnimacoes");
+  if (!botaoAnimacoes) return;
+
+  const icone = botaoAnimacoes.querySelector(".menu-navegacao__icone-animacoes");
+  const CHAVE_STORAGE = "atlantida_animacoes_desativadas";
+
+  const atualizarEstado = (pausadas) => {
+    document.body.classList.toggle("sem-animacoes", pausadas);
+    botaoAnimacoes.classList.toggle("menu-navegacao__botao-animacoes--pausado", pausadas);
+    botaoAnimacoes.setAttribute("aria-pressed", String(pausadas));
+
+    if (icone) {
+      icone.className = pausadas
+        ? "fa-solid fa-play menu-navegacao__icone-animacoes"
+        : "fa-solid fa-pause menu-navegacao__icone-animacoes";
+    }
+
+    const ehAtlante = document.body.getAttribute("data-lang") === "atlantida";
+    const titulo = pausadas ? "Ativar animações" : "Pausar animações";
+    botaoAnimacoes.setAttribute("title", titulo);
+
+    const labelPt = pausadas ? "Ativar animações da página" : "Pausar animações da página";
+    const labelAtl = pausadas ? "Kuyuyta qallariy" : "Kuyuyta sayachiy";
+    botaoAnimacoes.setAttribute("aria-label", ehAtlante ? labelAtl : labelPt);
+    botaoAnimacoes.setAttribute("data-atl-aria-label", labelAtl);
+  };
+
+  let pausadas = false;
+  try {
+    const salvo = localStorage.getItem(CHAVE_STORAGE);
+    if (salvo !== null) {
+      pausadas = salvo === "true";
+    } else {
+      pausadas = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    }
+  } catch (_) {}
+
+  atualizarEstado(pausadas);
+
+  botaoAnimacoes.addEventListener("click", (evento) => {
+    evento.stopPropagation();
+    const novoEstado = !document.body.classList.contains("sem-animacoes");
+    atualizarEstado(novoEstado);
+    try {
+      localStorage.setItem(CHAVE_STORAGE, String(novoEstado));
+    } catch (_) {}
+  });
 }

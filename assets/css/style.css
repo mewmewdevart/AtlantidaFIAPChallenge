@@ -108,27 +108,33 @@ body > section,
   height: 80px;
   padding: 0;
   overflow: hidden;
-  color: var(--cor-espuma);
+  color: var(--cor-abismo);
   white-space: nowrap;
   cursor: pointer;
-  background-color: var(--cor-jade);
+  background-color: var(--cor-pergaminho);
+  border: 1px solid var(--cor-pergaminho-borda);
   border-radius: 100%;
+  box-shadow: 0 6px 20px rgba(0, 3, 5, 0.22);
   transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1),
     border-radius 0.4s ease,
-    background-color 0.3s ease;
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .menu-navegacao:hover,
 .menu-navegacao--expandido {
   justify-content: space-between;
-  width: 380px;
+  width: 440px;
   max-width: calc(100vw - 2rem);
   border-radius: 1rem;
+  box-shadow: 0 10px 28px rgba(0, 3, 5, 0.32);
 }
 
 .menu-navegacao__conteudo {
   display: flex;
   align-items: center;
+  gap: 0.75rem;
   width: 0;
   overflow: hidden;
   opacity: 0;
@@ -140,7 +146,7 @@ body > section,
 .menu-navegacao:hover .menu-navegacao__conteudo,
 .menu-navegacao--expandido .menu-navegacao__conteudo {
   width: auto;
-  padding-right: 1.5rem;
+  padding-right: 1.25rem;
   padding-left: 0.5rem;
   opacity: 1;
   visibility: visible;
@@ -157,18 +163,28 @@ body > section,
 
 .seletor-idioma__rotulo {
   font-size: var(--texto-xs);
-  font-weight: var(--peso-bold);
+  font-weight: var(--peso-semibold);
   letter-spacing: 0.5px;
-  color: var(--cor-nevoa-acessivel);
-  transition: color 0.3s ease, transform 0.2s ease;
+  color: var(--cor-tinta-suave-acessivel);
+  opacity: 0.8;
+  transition: color 0.3s ease, opacity 0.3s ease, font-weight 0.2s ease, transform 0.2s ease;
+}
+
+.seletor-idioma__rotulo:hover {
+  opacity: 1;
+  color: var(--cor-abismo);
 }
 
 .seletor-idioma__rotulo--ativo {
-  color: var(--cor-menta-neon);
+  color: var(--cor-abismo);
+  font-weight: var(--peso-bold);
+  opacity: 1;
 }
 
 .seletor-idioma__rotulo--atlantida.seletor-idioma__rotulo--ativo {
-  color: var(--cor-ambar);
+  color: var(--cor-abismo);
+  font-weight: var(--peso-bold);
+  opacity: 1;
 }
 
 .seletor-idioma__interruptor {
@@ -191,8 +207,8 @@ body > section,
   display: flex;
   align-items: center;
   padding: 2px;
-  background-color: var(--cor-casco);
-  border: 1px solid var(--cor-sinal-claro);
+  background-color: var(--cor-tinta-suave);
+  border: 1px solid var(--cor-pergaminho-borda);
   border-radius: 1rem;
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
@@ -204,21 +220,83 @@ body > section,
   width: 18px;
   height: 18px;
   font-size: var(--texto-micro);
-  color: var(--cor-abismo);
-  background-color: var(--cor-menta-neon);
+  color: var(--cor-pergaminho);
+  background-color: var(--cor-tinta);
   border-radius: 50%;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease, color 0.3s ease;
 }
 
 .seletor-idioma__campo:checked + .seletor-idioma__trilho {
-  background-color: var(--cor-jade);
-  border-color: var(--cor-ambar);
+  background-color: var(--cor-tinta-suave-acessivel);
+  border-color: var(--cor-tinta);
 }
 
 .seletor-idioma__campo:checked + .seletor-idioma__trilho .seletor-idioma__icone-deslizante {
-  color: var(--cor-tinta);
-  background-color: var(--cor-ambar);
+  color: var(--cor-pergaminho);
+  background-color: var(--cor-abismo);
   transform: translateX(22px) rotate(45deg);
+}
+
+.seletor-idioma__campo:focus-visible + .seletor-idioma__trilho {
+  outline: 2px solid var(--cor-abismo);
+  outline-offset: 2px;
+}
+
+/* Divisor vertical sutil entre idioma e controles */
+.menu-navegacao__divisor {
+  width: 1px;
+  height: 22px;
+  background-color: var(--cor-pergaminho-borda);
+  flex-shrink: 0;
+}
+
+/* Botão de Alternância de Animações */
+.menu-navegacao__botao-animacoes {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.65rem;
+  font-family: inherit;
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-semibold);
+  letter-spacing: 0.3px;
+  color: var(--cor-tinta-suave-acessivel);
+  background-color: rgba(50, 27, 11, 0.06);
+  border: 1px solid var(--cor-pergaminho-borda);
+  border-radius: 1.5rem;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.menu-navegacao__botao-animacoes:hover {
+  color: var(--cor-abismo);
+  background-color: rgba(50, 27, 11, 0.12);
+  border-color: var(--cor-tinta-suave);
+  transform: translateY(-1px);
+}
+
+.menu-navegacao__botao-animacoes:active {
+  transform: translateY(0);
+}
+
+.menu-navegacao__icone-animacoes {
+  font-size: var(--texto-sm);
+  transition: transform 0.3s ease;
+}
+
+/* Estado Quando Animações Estão Pausadas/Desativadas */
+.menu-navegacao__botao-animacoes--pausado {
+  color: var(--cor-pergaminho);
+  background-color: var(--cor-tinta);
+  border-color: var(--cor-tinta);
+  box-shadow: 0 2px 6px rgba(0, 3, 5, 0.25);
+}
+
+.menu-navegacao__botao-animacoes:focus-visible {
+  outline: 2px solid var(--cor-abismo);
+  outline-offset: 2px;
 }
 
 .menu-navegacao__gatilho {
@@ -230,12 +308,21 @@ body > section,
   justify-content: center;
   width: 80px;
   height: 80px;
+  color: var(--cor-abismo);
   background-color: transparent;
   border: none;
   border-radius: inherit;
   cursor: pointer;
   font: inherit;
   transition: border-radius 0.4s ease;
+}
+
+.menu-navegacao__rotulo {
+  font-size: var(--texto-micro);
+  font-weight: var(--peso-bold);
+  letter-spacing: 0.5px;
+  line-height: 1;
+  color: var(--cor-abismo);
 }
 
 .menu-navegacao__hamburguer {
@@ -252,7 +339,7 @@ body > section,
   display: block;
   width: 100%;
   height: 2.5px;
-  background-color: var(--cor-menta-neon);
+  background-color: var(--cor-abismo);
   border-radius: 3px;
   transform-origin: center;
   transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55),
@@ -850,4 +937,52 @@ body > section,
   .menu-lateral__link--ativo .menu-lateral__marcador::after {
     animation: none !important;
   }
+}
+
+/* Ajuste responsivo compacto do menu de navegação */
+@media (max-width: 480px) {
+  .menu-navegacao:hover,
+  .menu-navegacao--expandido {
+    width: calc(100vw - 2rem);
+  }
+
+  .menu-navegacao__rotulo-animacoes {
+    display: none;
+  }
+
+  .menu-navegacao__botao-animacoes {
+    padding: 0.35rem 0.5rem;
+  }
+}
+
+/* ==========================================================================
+   10. DESATIVAÇÃO GERAL DE ANIMAÇÕES (PREFERÊNCIA DO USUÁRIO / ACESSIBILIDADE)
+   ========================================================================== */
+body.sem-animacoes *,
+body.sem-animacoes *::before,
+body.sem-animacoes *::after {
+  animation: none !important;
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  animation-play-state: paused !important;
+  transition: none !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+body.sem-animacoes .parallax > use {
+  animation: none !important;
+}
+
+body.sem-animacoes .menu-lateral,
+body.sem-animacoes .menu-lateral__link,
+body.sem-animacoes .menu-lateral__marcador,
+body.sem-animacoes .menu-lateral__submarino-wrapper,
+body.sem-animacoes .menu-lateral__submarino-img {
+  transition: none !important;
+  animation: none !important;
+}
+
+body.sem-animacoes .menu-lateral__link--ativo .menu-lateral__marcador::after {
+  animation: none !important;
 }
