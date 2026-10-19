@@ -46,10 +46,10 @@
     function criarIndicadores() {
       grade.innerHTML = indicadores.map((i) => `
         <article class="indicador indicador--${esc(i.estado)}">
-          <div class="indicador__linha">
+          <header class="indicador__linha">
             <h4 class="indicador__nome">${esc(rotulo(i.id))}</h4>
             <span class="indicador__estado">${esc(rotulo(i.estado))}</span>
-          </div>
+          </header>
           <div class="indicador__medida">
             <p class="indicador__valor">${esc(i.valor)}<span class="indicador__unidade">${esc(i.unidade)}</span></p>
             <span class="indicador__tendencia">${esc(rotulo(i.tendencia))}</span>
@@ -140,10 +140,10 @@
         </figure>
 
         <div class="lugar__corpo">
-          <div class="lugar__cabecalho">
+          <header class="lugar__cabecalho">
             <h3 class="lugar__nome">${esc(t(lugar, "nome"))}</h3>
             <span class="lugar__estado lugar__estado--${esc(lugar.tom)}">${esc(t(lugar, "estado"))}</span>
-          </div>
+          </header>
           <p class="lugar__resumo">${esc(t(lugar, "resumo"))}</p>
 
           ${lugar.avisos.length ? `

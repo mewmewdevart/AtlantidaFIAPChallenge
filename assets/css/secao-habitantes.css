@@ -412,7 +412,7 @@
   margin-top: 1rem;
   font-size: var(--texto-md);
   font-weight: var(--peso-semibold);
-  color: var(--cor-ferrugem-acessivel);
+  color: blue;
 }
 
 .chasqui__passos {

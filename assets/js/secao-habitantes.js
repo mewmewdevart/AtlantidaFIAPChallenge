@@ -57,13 +57,13 @@
             </div>
           </div>
 
-          <div class="cracha__rodape">
+          <footer class="cracha__rodape">
             <p class="cracha__lugar">${esc(t(h, "lugar"))}</p>
             <button type="button" class="botao botao--secundario botao--sm cracha__botao" data-alternar aria-expanded="${aberto}">
               <span data-rotulo-abrir ${aberto ? "hidden" : ""}>${esc(rotulo("abrir"))}</span>
               <span data-rotulo-fechar ${aberto ? "" : "hidden"}>${esc(rotulo("fechar"))}</span>
             </button>
-          </div>
+          </footer>
         </article>`;
     }
 

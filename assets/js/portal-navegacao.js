@@ -1,27 +1,29 @@
 /* Controla a lógica principal da página, incluindo menu de navegação, troca de idioma e inicialização de animações */
 
 document.addEventListener("DOMContentLoaded", () => {
-  const menuNavegacao = document.getElementById("menuNavegacao");
+  const cabecalhoTopo = document.getElementById("cabecalhoTopo") || document.getElementById("menuNavegacao");
   const seletorIdiomaSwitch = document.getElementById("seletorIdiomaSwitch");
   const rotuloPt = document.querySelector(".seletor-idioma__rotulo--pt");
   const rotuloAtlantida = document.querySelector(".seletor-idioma__rotulo--atlantida");
 
-  if (menuNavegacao) {
-    const gatilho = menuNavegacao.querySelector(".menu-navegacao__gatilho");
+  if (cabecalhoTopo) {
+    const gatilho = cabecalhoTopo.querySelector(".cabecalho-topo__gatilho, .menu-navegacao__gatilho");
 
-    menuNavegacao.addEventListener("click", (evento) => {
-      if (evento.target.closest(".seletor-idioma") || evento.target.closest(".menu-navegacao__botao-animacoes")) {
+    cabecalhoTopo.addEventListener("click", (evento) => {
+      if (evento.target.closest(".seletor-idioma") || evento.target.closest(".cabecalho-topo__botao-animacoes, .menu-navegacao__botao-animacoes")) {
         evento.stopPropagation();
         return;
       }
-      const expandido = menuNavegacao.classList.toggle("menu-navegacao--expandido");
+      const expandido = cabecalhoTopo.classList.toggle("cabecalho-topo--expandido");
+      cabecalhoTopo.classList.toggle("menu-navegacao--expandido", expandido);
       if (gatilho) gatilho.setAttribute("aria-expanded", String(expandido));
     });
 
     // Esc fecha o menu e devolve o foco ao botão que o abriu
     document.addEventListener("keydown", (evento) => {
-      if (evento.key !== "Escape" || !menuNavegacao.classList.contains("menu-navegacao--expandido")) return;
-      menuNavegacao.classList.remove("menu-navegacao--expandido");
+      if (evento.key !== "Escape" || (!cabecalhoTopo.classList.contains("cabecalho-topo--expandido") && !cabecalhoTopo.classList.contains("menu-navegacao--expandido"))) return;
+      cabecalhoTopo.classList.remove("cabecalho-topo--expandido");
+      cabecalhoTopo.classList.remove("menu-navegacao--expandido");
       if (gatilho) {
         gatilho.setAttribute("aria-expanded", "false");
         gatilho.focus();
@@ -29,8 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     document.addEventListener("click", (evento) => {
-      if (!menuNavegacao.contains(evento.target)) {
-        menuNavegacao.classList.remove("menu-navegacao--expandido");
+      if (!cabecalhoTopo.contains(evento.target)) {
+        cabecalhoTopo.classList.remove("cabecalho-topo--expandido");
+        cabecalhoTopo.classList.remove("menu-navegacao--expandido");
         if (gatilho) gatilho.setAttribute("aria-expanded", "false");
       }
     });
@@ -461,18 +464,19 @@ function inicializarControleAnimacoes() {
   const botaoAnimacoes = document.getElementById("botaoAnimacoes");
   if (!botaoAnimacoes) return;
 
-  const icone = botaoAnimacoes.querySelector(".menu-navegacao__icone-animacoes");
+  const icone = botaoAnimacoes.querySelector(".cabecalho-topo__icone-animacoes, .menu-navegacao__icone-animacoes");
   const CHAVE_STORAGE = "atlantida_animacoes_desativadas";
 
   const atualizarEstado = (pausadas) => {
     document.body.classList.toggle("sem-animacoes", pausadas);
+    botaoAnimacoes.classList.toggle("cabecalho-topo__botao-animacoes--pausado", pausadas);
     botaoAnimacoes.classList.toggle("menu-navegacao__botao-animacoes--pausado", pausadas);
     botaoAnimacoes.setAttribute("aria-pressed", String(pausadas));
 
     if (icone) {
       icone.className = pausadas
-        ? "fa-solid fa-play menu-navegacao__icone-animacoes"
-        : "fa-solid fa-pause menu-navegacao__icone-animacoes";
+        ? "fa-solid fa-play cabecalho-topo__icone-animacoes menu-navegacao__icone-animacoes"
+        : "fa-solid fa-pause cabecalho-topo__icone-animacoes menu-navegacao__icone-animacoes";
     }
 
     const ehAtlante = document.body.getAttribute("data-lang") === "atlantida";
@@ -483,6 +487,11 @@ function inicializarControleAnimacoes() {
     const labelAtl = pausadas ? "Kuyuyta qallariy" : "Kuyuyta sayachiy";
     botaoAnimacoes.setAttribute("aria-label", ehAtlante ? labelAtl : labelPt);
     botaoAnimacoes.setAttribute("data-atl-aria-label", labelAtl);
+
+    if (pausadas && typeof window.definirLivroAberto === "function") {
+      window.definirLivroAberto();
+    }
+    window.dispatchEvent(new CustomEvent("animacoes:alteradas", { detail: { pausadas } }));
   };
 
   let pausadas = false;

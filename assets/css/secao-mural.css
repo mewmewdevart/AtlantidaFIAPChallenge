@@ -26,8 +26,8 @@
   margin: 0 auto clamp(4rem, 11vh, 8rem);
 }
 
-.mural__citacao > span {
-  color: var(--cor-jade-claro);
+.mural__citacao>span {
+  color: var(--cor-ambar);
 }
 
 /* Selo circular de transmissão decorativo */

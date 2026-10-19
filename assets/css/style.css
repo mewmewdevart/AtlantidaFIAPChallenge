@@ -37,10 +37,16 @@ body {
   width: 100%;
   margin: 0;
   font-family: var(--fonte-texto);
-  background-image: linear-gradient(0deg, var(--cor-abismo), var(--cor-jade));
+  background-color: var(--cor-abismo);
+  background-image: linear-gradient(180deg,
+      var(--cor-jade) 0%,
+      var(--cor-jade) clamp(100px, 15vh, 150px),
+      var(--cor-fundo) 50%,
+      var(--cor-abismo) 100%);
+  background-repeat: no-repeat;
 }
 
-body > section,
+body>section,
 .secao-oceano {
   min-height: 100vh;
 }
@@ -50,6 +56,8 @@ body > section,
    ========================================================================== */
 .waves {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 15vh;
   min-height: 100px;
@@ -57,26 +65,26 @@ body > section,
   background-color: var(--cor-jade-claro);
 }
 
-.parallax > use {
+.parallax>use {
   animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
 }
 
-.parallax > use:nth-child(1) {
+.parallax>use:nth-child(1) {
   animation-delay: -2s;
   animation-duration: 7s;
 }
 
-.parallax > use:nth-child(2) {
+.parallax>use:nth-child(2) {
   animation-delay: -3s;
   animation-duration: 10s;
 }
 
-.parallax > use:nth-child(3) {
+.parallax>use:nth-child(3) {
   animation-delay: -4s;
   animation-duration: 13s;
 }
 
-.parallax > use:nth-child(4) {
+.parallax>use:nth-child(4) {
   animation-delay: -5s;
   animation-duration: 20s;
 }
@@ -85,6 +93,7 @@ body > section,
   0% {
     transform: translate3d(-90px, 0, 0);
   }
+
   100% {
     transform: translate3d(85px, 0, 0);
   }
@@ -94,7 +103,8 @@ body > section,
    3. NAVEGAÇÃO GLOBAL
    ========================================================================== */
 
-/* --- Menu de Navegação Flutuante Superior --- */
+/* --- Cabeçalho Superior Flutuante / Barra de Acessibilidade e Idioma --- */
+.cabecalho-topo,
 .menu-navegacao {
   position: fixed;
   top: 1rem;
@@ -122,6 +132,8 @@ body > section,
     box-shadow 0.3s ease;
 }
 
+.cabecalho-topo:hover,
+.cabecalho-topo--expandido,
 .menu-navegacao:hover,
 .menu-navegacao--expandido {
   justify-content: space-between;
@@ -131,6 +143,7 @@ body > section,
   box-shadow: 0 10px 28px rgba(0, 3, 5, 0.32);
 }
 
+.cabecalho-topo__conteudo,
 .menu-navegacao__conteudo {
   display: flex;
   align-items: center;
@@ -143,6 +156,8 @@ body > section,
   transition: opacity 0.3s ease 0.05s, transform 0.3s ease 0.05s, visibility 0.3s ease, width 0.3s ease;
 }
 
+.cabecalho-topo:hover .cabecalho-topo__conteudo,
+.cabecalho-topo--expandido .cabecalho-topo__conteudo,
 .menu-navegacao:hover .menu-navegacao__conteudo,
 .menu-navegacao--expandido .menu-navegacao__conteudo {
   width: auto;
@@ -226,23 +241,24 @@ body > section,
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease, color 0.3s ease;
 }
 
-.seletor-idioma__campo:checked + .seletor-idioma__trilho {
+.seletor-idioma__campo:checked+.seletor-idioma__trilho {
   background-color: var(--cor-tinta-suave-acessivel);
   border-color: var(--cor-tinta);
 }
 
-.seletor-idioma__campo:checked + .seletor-idioma__trilho .seletor-idioma__icone-deslizante {
+.seletor-idioma__campo:checked+.seletor-idioma__trilho .seletor-idioma__icone-deslizante {
   color: var(--cor-pergaminho);
   background-color: var(--cor-abismo);
   transform: translateX(22px) rotate(45deg);
 }
 
-.seletor-idioma__campo:focus-visible + .seletor-idioma__trilho {
+.seletor-idioma__campo:focus-visible+.seletor-idioma__trilho {
   outline: 2px solid var(--cor-abismo);
   outline-offset: 2px;
 }
 
 /* Divisor vertical sutil entre idioma e controles */
+.cabecalho-topo__divisor,
 .menu-navegacao__divisor {
   width: 1px;
   height: 22px;
@@ -251,6 +267,7 @@ body > section,
 }
 
 /* Botão de Alternância de Animações */
+.cabecalho-topo__botao-animacoes,
 .menu-navegacao__botao-animacoes {
   display: inline-flex;
   align-items: center;
@@ -270,6 +287,7 @@ body > section,
   transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
 }
 
+.cabecalho-topo__botao-animacoes:hover,
 .menu-navegacao__botao-animacoes:hover {
   color: var(--cor-abismo);
   background-color: rgba(50, 27, 11, 0.12);
@@ -277,16 +295,19 @@ body > section,
   transform: translateY(-1px);
 }
 
+.cabecalho-topo__botao-animacoes:active,
 .menu-navegacao__botao-animacoes:active {
   transform: translateY(0);
 }
 
+.cabecalho-topo__icone-animacoes,
 .menu-navegacao__icone-animacoes {
   font-size: var(--texto-sm);
   transition: transform 0.3s ease;
 }
 
 /* Estado Quando Animações Estão Pausadas/Desativadas */
+.cabecalho-topo__botao-animacoes--pausado,
 .menu-navegacao__botao-animacoes--pausado {
   color: var(--cor-pergaminho);
   background-color: var(--cor-tinta);
@@ -294,11 +315,13 @@ body > section,
   box-shadow: 0 2px 6px rgba(0, 3, 5, 0.25);
 }
 
+.cabecalho-topo__botao-animacoes:focus-visible,
 .menu-navegacao__botao-animacoes:focus-visible {
   outline: 2px solid var(--cor-abismo);
   outline-offset: 2px;
 }
 
+.cabecalho-topo__gatilho,
 .menu-navegacao__gatilho {
   display: flex;
   flex-direction: column;
@@ -317,6 +340,7 @@ body > section,
   transition: border-radius 0.4s ease;
 }
 
+.cabecalho-topo__rotulo,
 .menu-navegacao__rotulo {
   font-size: var(--texto-micro);
   font-weight: var(--peso-bold);
@@ -325,6 +349,7 @@ body > section,
   color: var(--cor-abismo);
 }
 
+.cabecalho-topo__hamburguer,
 .menu-navegacao__hamburguer {
   position: relative;
   display: flex;
@@ -335,6 +360,7 @@ body > section,
   height: 18px;
 }
 
+.cabecalho-topo__linha,
 .menu-navegacao__linha {
   display: block;
   width: 100%;
@@ -347,17 +373,23 @@ body > section,
     width 0.3s ease;
 }
 
+.cabecalho-topo:hover .cabecalho-topo__linha--superior,
+.cabecalho-topo--expandido .cabecalho-topo__linha--superior,
 .menu-navegacao:hover .menu-navegacao__linha--superior,
 .menu-navegacao--expandido .menu-navegacao__linha--superior {
   transform: translateY(7.75px) rotate(45deg);
 }
 
+.cabecalho-topo:hover .cabecalho-topo__linha--meio,
+.cabecalho-topo--expandido .cabecalho-topo__linha--meio,
 .menu-navegacao:hover .menu-navegacao__linha--meio,
 .menu-navegacao--expandido .menu-navegacao__linha--meio {
   opacity: 0;
   transform: scaleX(0);
 }
 
+.cabecalho-topo:hover .cabecalho-topo__linha--inferior,
+.cabecalho-topo--expandido .cabecalho-topo__linha--inferior,
 .menu-navegacao:hover .menu-navegacao__linha--inferior,
 .menu-navegacao--expandido .menu-navegacao__linha--inferior {
   transform: translateY(-7.75px) rotate(-45deg);
@@ -521,7 +553,7 @@ body > section,
   font-size: var(--titulo-subsecao);
   font-weight: var(--peso-semibold);
   line-height: var(--linha-compacta);
-  color: var(--cor-pergaminho);
+  color: var(--cor-espuma);
 }
 
 /* Citação temática que antecede a seção */
@@ -530,7 +562,7 @@ body > section,
   text-align: center;
 }
 
-.secao__citacao > span {
+.secao__citacao>span {
   display: block;
   font-size: var(--texto-micro);
   font-weight: var(--peso-bold);
@@ -580,7 +612,7 @@ body > section,
   font-size: var(--texto-xs);
   font-weight: var(--peso-bold);
   letter-spacing: 0.16em;
-  color: var(--cor-sinal-texto);
+  color: var(--cor-ambar);
   text-transform: uppercase;
 }
 
@@ -600,7 +632,7 @@ body > section,
   font-size: var(--texto-xs);
   font-weight: var(--peso-semibold);
   letter-spacing: 0.08em;
-  color: var(--cor-ferrugem-clara);
+  color: var(--cor-nevoa);
   text-transform: uppercase;
 }
 
@@ -822,6 +854,27 @@ body > section,
   outline: none;
 }
 
+.fundo-decoracao-right,
+.fundo-decoracao-right-2 {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  right: 10px;
+  top: 10px;
+  opacity: 0.8;
+  z-index: 10;
+}
+
+.fundo-decoracao-left {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  left: 10px;
+  bottom: 10px;
+  opacity: 0.8;
+}
+
+
 /* ==========================================================================
    8. RESPONSIVIDADE GLOBAL
    ========================================================================== */
@@ -889,7 +942,7 @@ body > section,
     margin-bottom: 3rem;
   }
 
-  .secao__citacao > span {
+  .secao__citacao>span {
     font-size: var(--texto-micro);
   }
 
@@ -919,9 +972,10 @@ body > section,
    9. PREFERÊNCIA DE MOVIMENTO REDUZIDO (ACESSIBILIDADE)
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
+
   body::before,
   body::after,
-  .parallax > use {
+  .parallax>use {
     animation: none !important;
   }
 
@@ -939,17 +993,22 @@ body > section,
   }
 }
 
-/* Ajuste responsivo compacto do menu de navegação */
+/* Ajuste responsivo compacto do cabeçalho superior */
 @media (max-width: 480px) {
+
+  .cabecalho-topo:hover,
+  .cabecalho-topo--expandido,
   .menu-navegacao:hover,
   .menu-navegacao--expandido {
     width: calc(100vw - 2rem);
   }
 
+  .cabecalho-topo__rotulo-animacoes,
   .menu-navegacao__rotulo-animacoes {
     display: none;
   }
 
+  .cabecalho-topo__botao-animacoes,
   .menu-navegacao__botao-animacoes {
     padding: 0.35rem 0.5rem;
   }
@@ -970,7 +1029,7 @@ body.sem-animacoes *::after {
   scroll-behavior: auto !important;
 }
 
-body.sem-animacoes .parallax > use {
+body.sem-animacoes .parallax>use {
   animation: none !important;
 }
 
@@ -985,4 +1044,42 @@ body.sem-animacoes .menu-lateral__submarino-img {
 
 body.sem-animacoes .menu-lateral__link--ativo .menu-lateral__marcador::after {
   animation: none !important;
+}
+
+/* Quando as animações estão desativadas, o Livro 3D fica completamente aberto exibindo todas as informações */
+body.sem-animacoes .livro-3d {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+@media (min-width: 1101px) {
+  body.sem-animacoes .livro-3d__capa--frontal {
+    transform: rotateY(-180deg) !important;
+    z-index: 2 !important;
+  }
+
+  body.sem-animacoes .livro-3d__folha--esquerda {
+    transform: rotateY(-180deg) translateZ(2px) !important;
+    z-index: 35 !important;
+  }
+
+  body.sem-animacoes .livro-3d__folha--direita {
+    z-index: 20 !important;
+  }
+}
+
+@media (max-width: 1100px) {
+
+  body.sem-animacoes .livro-3d,
+  body.sem-animacoes .livro-3d__folha--esquerda,
+  body.sem-animacoes .livro-3d__face--verso,
+  body.sem-animacoes #paginaConteudoContainer,
+  body.sem-animacoes .livro-3d__conteudo-texto {
+    transform: none !important;
+    rotate: 0deg !important;
+  }
+}
+
+body.sem-animacoes .livro-3d__imagem-ilustracao {
+  opacity: 1 !important;
 }

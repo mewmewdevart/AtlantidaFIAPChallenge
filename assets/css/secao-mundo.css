@@ -491,6 +491,7 @@ h3.lei-da-casa__titulo {
 }
 
 /* ---------- Pulso da cidade (indicadores) ---------- */
+
 .pulso {
   margin-top: 5.5rem;
 }
@@ -498,7 +499,7 @@ h3.lei-da-casa__titulo {
 .pulso__codigo {
   font-size: var(--texto-md);
   font-weight: var(--peso-semibold);
-  color: var(--cor-ferrugem-clara);
+  color: var(--cor-ambar);
 }
 
 .pulso__intro {
@@ -506,7 +507,7 @@ h3.lei-da-casa__titulo {
   margin-top: 0.6rem;
   font-size: var(--texto-lg);
   line-height: var(--linha-leitura);
-  color: var(--cor-nevoa-acessivel);
+  color: var(--cor-espuma);
 }
 
 .pulso__painel {
@@ -520,7 +521,7 @@ h3.lei-da-casa__titulo {
   align-items: baseline;
   justify-content: space-between;
   gap: 0.3rem 1rem;
-  padding: 0.3rem 0.4rem 1rem;
+  padding: 2rem 0.4rem 1rem;
   border-bottom: 1px dotted var(--cor-tinta-suave-acessivel);
 }
 
