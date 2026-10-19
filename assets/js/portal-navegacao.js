@@ -10,13 +10,35 @@ document.addEventListener("DOMContentLoaded", () => {
     const gatilho = cabecalhoTopo.querySelector(".cabecalho-topo__gatilho, .menu-navegacao__gatilho");
 
     cabecalhoTopo.addEventListener("click", (evento) => {
+      // Ignora cliques no seletor de idioma ou botão de animações para não fechar acidentalmente
       if (evento.target.closest(".seletor-idioma") || evento.target.closest(".cabecalho-topo__botao-animacoes, .menu-navegacao__botao-animacoes")) {
         evento.stopPropagation();
         return;
       }
-      const expandido = cabecalhoTopo.classList.toggle("cabecalho-topo--expandido");
-      cabecalhoTopo.classList.toggle("menu-navegacao--expandido", expandido);
-      if (gatilho) gatilho.setAttribute("aria-expanded", String(expandido));
+
+      // Ao clicar em um link de navegação do menu responsivo, rola suavemente e fecha o menu
+      const linkClicado = evento.target.closest(".cabecalho-topo__link, .menu-navegacao__link");
+      if (linkClicado) {
+        const alvoId = linkClicado.getAttribute("href")?.replace("#", "");
+        if (alvoId && alvoId !== "login") {
+          evento.preventDefault();
+          const elementoAlvo = document.getElementById(alvoId);
+          if (elementoAlvo) {
+            elementoAlvo.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+        cabecalhoTopo.classList.remove("cabecalho-topo--expandido");
+        cabecalhoTopo.classList.remove("menu-navegacao--expandido");
+        if (gatilho) gatilho.setAttribute("aria-expanded", "false");
+        return;
+      }
+
+      // Alterna abertura/fechamento ao clicar no gatilho ou no cabeçalho fechado
+      if (evento.target.closest(".cabecalho-topo__gatilho, .menu-navegacao__gatilho") || !cabecalhoTopo.classList.contains("cabecalho-topo--expandido")) {
+        const expandido = cabecalhoTopo.classList.toggle("cabecalho-topo--expandido");
+        cabecalhoTopo.classList.toggle("menu-navegacao--expandido", expandido);
+        if (gatilho) gatilho.setAttribute("aria-expanded", String(expandido));
+      }
     });
 
     // Esc fecha o menu e devolve o foco ao botão que o abriu
@@ -422,6 +444,19 @@ function inicializarMenuLateral() {
         link.setAttribute("aria-current", "true");
       } else {
         link.classList.remove("menu-lateral__link--ativo");
+        link.removeAttribute("aria-current");
+      }
+    });
+
+    // Sincroniza também o estado ativo nos links do menu responsivo superior
+    const linksTopo = document.querySelectorAll(".cabecalho-topo__link, .menu-navegacao__link");
+    linksTopo.forEach((link) => {
+      const alvoId = link.getAttribute("href")?.replace("#", "");
+      if (alvoId === secaoAtivaId) {
+        link.classList.add("cabecalho-topo__link--ativo");
+        link.setAttribute("aria-current", "true");
+      } else {
+        link.classList.remove("cabecalho-topo__link--ativo");
         link.removeAttribute("aria-current");
       }
     });

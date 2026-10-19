@@ -80,53 +80,93 @@
     </svg>
   </div>
 
-  <!-- Cabeçalho Superior Flutuante: ferramentas de idioma e acessibilidade -->
-  <header class="cabecalho-topo menu-navegacao" id="cabecalhoTopo" aria-label="Cabeçalho do portal e ferramentas"
+  <!-- Cabeçalho Superior Flutuante: ferramentas e menu de navegação -->
+  <header class="cabecalho-topo" id="cabecalhoTopo" aria-label="Cabeçalho e navegação do portal"
     data-atl-aria-label="Kuraq umalliq">
-    <button class="cabecalho-topo__gatilho menu-navegacao__gatilho" type="button" aria-label="Abrir ou fechar menu"
-      data-atl-aria-label="Menuta kichay icha wichqay" aria-expanded="false" aria-controls="menuLateral">
-      <div class="cabecalho-topo__hamburguer menu-navegacao__hamburguer" aria-hidden="true">
-        <span
-          class="cabecalho-topo__linha cabecalho-topo__linha--superior menu-navegacao__linha menu-navegacao__linha--superior"></span>
-        <span
-          class="cabecalho-topo__linha cabecalho-topo__linha--meio menu-navegacao__linha menu-navegacao__linha--meio"></span>
-        <span
-          class="cabecalho-topo__linha cabecalho-topo__linha--inferior menu-navegacao__linha menu-navegacao__linha--inferior"></span>
-      </div>
-      <span class="cabecalho-topo__rotulo menu-navegacao__rotulo" data-i18n="nav.menu" aria-hidden="true">MENU</span>
-    </button>
-
-    <div class="cabecalho-topo__conteudo menu-navegacao__conteudo">
-      <div class="seletor-idioma">
-        <span class="seletor-idioma__rotulo seletor-idioma__rotulo--pt seletor-idioma__rotulo--ativo"
-          data-i18n="nav.lang_pt">PT-BR</span>
-        <label class="seletor-idioma__interruptor" for="seletorIdiomaSwitch">
-          <input type="checkbox" class="seletor-idioma__campo" id="seletorIdiomaSwitch" role="switch"
-            aria-label="Alternar idioma entre português e Atlântida"
-            data-atl-aria-label="Simita tikray: portugues icha Atlântida">
-          <span class="seletor-idioma__trilho">
-            <i class="fa-solid fa-feather-pointed seletor-idioma__icone-deslizante" aria-hidden="true"></i>
-          </span>
-        </label>
-        <span class="seletor-idioma__rotulo seletor-idioma__rotulo--atlantida"
-          data-i18n="nav.lang_atlantida">Atlântida</span>
-      </div>
-
-      <span class="cabecalho-topo__divisor menu-navegacao__divisor" aria-hidden="true"></span>
-
-      <button class="cabecalho-topo__botao-animacoes menu-navegacao__botao-animacoes" id="botaoAnimacoes" type="button"
-        aria-label="Pausar animações da página" data-atl-aria-label="Kuyuyta sayachiy" aria-pressed="false"
-        title="Pausar animações">
-        <i class="fa-solid fa-pause cabecalho-topo__icone-animacoes menu-navegacao__icone-animacoes"
-          aria-hidden="true"></i>
-        <span class="cabecalho-topo__rotulo-animacoes menu-navegacao__rotulo-animacoes"
-          data-i18n="nav.animations">Animações</span>
+    <div class="cabecalho-topo__barra-topo">
+      <button class="cabecalho-topo__gatilho" type="button" aria-label="Abrir ou fechar menu"
+        data-atl-aria-label="Menuta kichay icha wichqay" aria-expanded="false" aria-controls="menuPrincipal">
+        <div class="cabecalho-topo__hamburguer" aria-hidden="true">
+          <span class="cabecalho-topo__linha cabecalho-topo__linha--superior"></span>
+          <span class="cabecalho-topo__linha cabecalho-topo__linha--meio"></span>
+          <span class="cabecalho-topo__linha cabecalho-topo__linha--inferior"></span>
+        </div>
+        <span class="cabecalho-topo__rotulo" data-i18n="nav.menu" aria-hidden="true">MENU</span>
       </button>
+
+      <div class="cabecalho-topo__conteudo">
+        <div class="seletor-idioma">
+          <span class="seletor-idioma__rotulo seletor-idioma__rotulo--pt seletor-idioma__rotulo--ativo"
+            data-i18n="nav.lang_pt">PT-BR</span>
+          <label class="seletor-idioma__interruptor" for="seletorIdiomaSwitch">
+            <input type="checkbox" class="seletor-idioma__campo" id="seletorIdiomaSwitch" role="switch"
+              aria-label="Alternar idioma entre português e Atlântida"
+              data-atl-aria-label="Simita tikray: portugues icha Atlântida">
+            <span class="seletor-idioma__trilho">
+              <i class="fa-solid fa-feather-pointed seletor-idioma__icone-deslizante" aria-hidden="true"></i>
+            </span>
+          </label>
+          <span class="seletor-idioma__rotulo seletor-idioma__rotulo--atlantida"
+            data-i18n="nav.lang_atlantida">Atlântida</span>
+        </div>
+
+        <span class="cabecalho-topo__divisor" aria-hidden="true"></span>
+
+        <button class="cabecalho-topo__botao-animacoes" id="botaoAnimacoes" type="button"
+          aria-label="Pausar animações da página" data-atl-aria-label="Kuyuyta sayachiy" aria-pressed="false"
+          title="Pausar animações">
+          <i class="fa-solid fa-pause cabecalho-topo__icone-animacoes" aria-hidden="true"></i>
+          <span class="cabecalho-topo__rotulo-animacoes" data-i18n="nav.animations">Animações</span>
+        </button>
+      </div>
     </div>
+
+    <!-- Navegação Principal Responsiva (opções do menu lateral em ordem vertical) -->
+    <nav class="cabecalho-topo__navegacao" id="menuPrincipal" aria-label="Navegação principal"
+      data-atl-aria-label="Suyukunaman utqaylla riy">
+      <ul class="cabecalho-topo__lista">
+        <li class="cabecalho-topo__item">
+          <a href="#inicio" class="cabecalho-topo__link" data-secao="inicio" aria-label="Ir para Início"
+            data-atl-aria-label="Riy: Ipepe">
+            <span class="cabecalho-topo__rotulo-link" data-i18n="nav_lateral.inicio">Início</span>
+          </a>
+        </li>
+        <li class="cabecalho-topo__item">
+          <a href="#o-mundo" class="cabecalho-topo__link" data-secao="o-mundo" aria-label="Ir para O Mundo"
+            data-atl-aria-label="Riy: Cemanahuatl">
+            <span class="cabecalho-topo__rotulo-link" data-i18n="nav_lateral.mundo">O Mundo</span>
+          </a>
+        </li>
+        <li class="cabecalho-topo__item">
+          <a href="#habitantes" class="cabecalho-topo__link" data-secao="habitantes" aria-label="Ir para Habitantes"
+            data-atl-aria-label="Riy: Macehualtin">
+            <span class="cabecalho-topo__rotulo-link" data-i18n="nav_lateral.habitantes">Habitantes</span>
+          </a>
+        </li>
+        <li class="cabecalho-topo__item">
+          <a href="#mural" class="cabecalho-topo__link" data-secao="mural" aria-label="Ir para Mural"
+            data-atl-aria-label="Riy: Tlacuilolli">
+            <span class="cabecalho-topo__rotulo-link" data-i18n="nav_lateral.mural">Mural</span>
+          </a>
+        </li>
+        <li class="cabecalho-topo__item">
+          <a href="#contato" class="cabecalho-topo__link" data-secao="contato" aria-label="Ir para Contato"
+            data-atl-aria-label="Riy: Nahuatilli">
+            <span class="cabecalho-topo__rotulo-link" data-i18n="nav_lateral.contato">Contato</span>
+          </a>
+        </li>
+        <li class="cabecalho-topo__item cabecalho-topo__item--login">
+          <a href="#login" class="cabecalho-topo__link cabecalho-topo__link--login" data-secao="login"
+            aria-label="Ir para Login" data-atl-aria-label="Riy: Yaykuy">
+            <span class="cabecalho-topo__rotulo-link" data-i18n="nav_lateral.login">Login</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
   </header>
 
-  <!-- Menu de Navegação Vertical Lateral (Fixo à Esquerda) -->
-  <nav class="menu-lateral" id="menuLateral" aria-label="Navegação principal pelas seções"
+  <!-- Menu de Navegação Vertical Lateral (Fixo à Esquerda - Desktop) -->
+  <nav class="menu-lateral" id="menuLateral" aria-label="Navegação lateral pelas seções"
     data-atl-aria-label="Suyukunaman utqaylla riy" aria-hidden="true" inert>
     <!-- Indicador de Rolagem Temático: Submarino Marcador de Profundidade -->
     <div class="menu-lateral__indicador-submarino" id="indicadorSubmarino" aria-hidden="true">
@@ -580,9 +620,9 @@
             <p class="mural__texto" data-i18n="mural.message_kora">Aviso de manutenção preventiva no Setor 4. Fechem as
               comportas secundárias às 18h.</p>
             <!-- O contador é atualizado a cada segundo; aria-live off evita anúncios repetidos por leitores de tela. -->
-            <footer class="mural__mensagem-rodape mural__expiracao"><i class="fa-regular fa-clock"
+            <div class="mural__mensagem-rodape mural__expiracao"><i class="fa-regular fa-clock"
                 aria-hidden="true"></i><span data-i18n="mural.expires_in">Expira em</span> <time class="mural__contador"
-                aria-live="off"></time></footer>
+                aria-live="off"></time></div>
           </article>
 
           <!-- Oferta de troca publicada por Tito; usa a mesma estrutura visual e funcional dos demais cartões. -->
@@ -599,9 +639,9 @@
             </header>
             <p class="mural__texto" data-i18n="mural.message_tito">Achei cabos coaxiais intactos perto da carcaça do
               petroleiro. Quem precisar, apareça na oficina.</p>
-            <footer class="mural__mensagem-rodape mural__expiracao"><i class="fa-regular fa-clock"
+            <div class="mural__mensagem-rodape mural__expiracao"><i class="fa-regular fa-clock"
                 aria-hidden="true"></i><span data-i18n="mural.expires_in">Expira em</span> <time class="mural__contador"
-                aria-live="off"></time></footer>
+                aria-live="off"></time></div>
           </article>
 
           <!-- Convite cultural de Mestra Zilda, classificado como memória. -->
@@ -618,9 +658,9 @@
             </header>
             <p class="mural__texto" data-i18n="mural.message_zilda">Roda de histórias hoje à noite, no Coração do Sol.
               Venha ouvir e compartilhar as memórias da nossa cidade.</p>
-            <footer class="mural__mensagem-rodape mural__expiracao"><i class="fa-regular fa-clock"
+            <div class="mural__mensagem-rodape mural__expiracao"><i class="fa-regular fa-clock"
                 aria-hidden="true"></i><span data-i18n="mural.expires_in">Expira em</span> <time class="mural__contador"
-                aria-live="off"></time></footer>
+                aria-live="off"></time></div>
           </article>
 
           <!-- Novidade da colheita de algas publicada por Yara. -->
@@ -637,9 +677,9 @@
             </header>
             <p class="mural__texto" data-i18n="mural.message_yara">Nova safra de algas com rendimento 15% superior de
               oxigênio. O ar vai ficar mais limpo.</p>
-            <footer class="mural__mensagem-rodape mural__expiracao"><i class="fa-regular fa-clock"
+            <div class="mural__mensagem-rodape mural__expiracao"><i class="fa-regular fa-clock"
                 aria-hidden="true"></i><span data-i18n="mural.expires_in">Expira em</span> <time class="mural__contador"
-                aria-live="off"></time></footer>
+                aria-live="off"></time></div>
           </article>
 
           <!-- Chamado urgente de Sueli; a classe ocupa toda a linha para destacar a prioridade. -->
@@ -656,23 +696,23 @@
             </header>
             <p class="mural__texto" data-i18n="mural.message_sueli">Canal de chamados aberto. Se sua cúpula estiver
               perdendo pressão, avise imediatamente aqui.</p>
-            <footer class="mural__mensagem-rodape mural__expiracao"><i class="fa-regular fa-clock"
+            <div class="mural__mensagem-rodape mural__expiracao"><i class="fa-regular fa-clock"
                 aria-hidden="true"></i><span data-i18n="mural.expires_in">Expira em</span> <time class="mural__contador"
-                aria-live="off"></time></footer>
+                aria-live="off"></time></div>
           </article>
           <!-- Estado alternativo acessível: só aparece se não houver cartões ativos no mural. -->
           <p class="mural__vazio" data-i18n="mural.empty" hidden>Não há mensagens ativas no mural neste momento.</p>
         </div>
 
         <!-- Resumo dinâmico do mural: quantidade de avisos, menor prazo restante e ciclo de suporte. -->
-        <footer class="mural__rodape">
+        <div class="mural__rodape">
           <span class="mural__preservadas"><span class="mural__quantidade" id="muralQuantidade">5</span> <span
               data-i18n="mural.preserved">TRANSMISSÕES PRESERVADAS</span></span>
           <span class="mural__proxima"><span data-i18n="mural.next_expiration">PRÓXIMA JANELA DE RENOVAÇÃO</span> //
             <time id="muralProximaExpiracao">--:--:--</time></span>
           <span class="mural__periodo"><span data-i18n="mural.expiration_period">CICLO DE SUPORTE</span> // <span
               data-i18n="mural.expiration_duration">48 H</span></span>
-        </footer>
+        </div>
       </div>
     </section>
 

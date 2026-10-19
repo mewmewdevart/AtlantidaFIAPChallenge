@@ -191,7 +191,6 @@
   align-items: flex-start;
   justify-content: center;
   width: 100%;
-  max-width: calc(6.5 * var(--livro-unidade));
   height: 100%;
   user-select: text;
   -webkit-user-select: text;
