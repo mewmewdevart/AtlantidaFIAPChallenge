@@ -254,7 +254,7 @@ h3.lei-da-casa__titulo {
   top: 50%;
   left: calc(100% - 0.2rem);
   padding: 0.6rem 0.6rem;
-  font-family: var(--fonte-titulo);
+  font-family: var(--fonte-texto);
   font-size: var(--texto-base);
   font-weight: var(--peso-semibold);
   white-space: nowrap;

@@ -1,0 +1,291 @@
+/* ==========================================================================
+   SEÇÃO 04: CONTATO (CENTRAL DE INTEGRAÇÃO & FALE COM O PORTAL)
+   Estilos específicos do terminal seguro e formulário de comunicação.
+   ========================================================================== */
+
+#contato {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 0;
+  background-image: linear-gradient(0deg,
+      var(--cor-abismo) 0%,
+      var(--cor-jade) 100%);
+}
+
+.contato__conteudo {
+  position: relative;
+  z-index: 21;
+  width: min(100%, 1188px);
+  margin: 0 auto;
+  padding: clamp(3rem, 6vh, 5rem) clamp(1.5rem, 5vw, 4rem) clamp(4rem, 8vh, 6rem);
+  font-family: var(--fonte-texto);
+}
+
+.contato__citacao > span {
+  color: var(--cor-jade-claro);
+}
+
+/* Painel de Formulário em Pergaminho com Fita */
+.contato__formulario {
+  position: relative;
+  isolation: isolate;
+  padding: clamp(2rem, 4vw, 3rem);
+  color: var(--cor-tinta);
+  background-color: var(--cor-pergaminho);
+  border: 1px solid var(--cor-pergaminho-borda);
+  border-radius: 3px;
+  box-shadow: 0 8px 24px rgba(0, 3, 5, 0.38), inset 0 0 28px rgba(130, 90, 40, 0.12);
+  transition: box-shadow 0.3s ease;
+}
+
+.contato__formulario::before {
+  position: absolute;
+  top: -0.42rem;
+  left: 50%;
+  z-index: 1;
+  width: 4rem;
+  height: 0.9rem;
+  content: "";
+  background-color: rgba(193, 75, 44, 0.76);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  transform: translateX(-50%) rotate(-1.5deg);
+}
+
+.contato__formulario > * {
+  position: relative;
+  z-index: 2;
+}
+
+.contato__formulario:focus-within {
+  box-shadow: 0 12px 30px rgba(0, 3, 5, 0.42), inset 0 0 28px rgba(130, 90, 40, 0.12);
+}
+
+/* Faixa de status do terminal */
+.contato__terminal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.8rem;
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-semibold);
+  letter-spacing: 0.08em;
+  color: var(--cor-ferrugem-acessivel);
+  border-bottom: 1px dotted rgba(100, 73, 56, 0.45);
+}
+
+.contato__terminal-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+
+.contato__terminal-status i {
+  font-size: var(--texto-xs);
+  color: var(--cor-oceano-acessivel);
+  animation: contato-pulso 2s ease-in-out infinite;
+}
+
+.contato__orientacao {
+  max-width: 52rem;
+  margin-top: 1rem;
+  font-family: var(--fonte-texto);
+  font-size: var(--texto-md);
+  line-height: var(--linha-leitura);
+  color: var(--cor-tinta-suave-acessivel);
+}
+
+.contato__obrigatorios {
+  margin-top: 0.65rem;
+  font-size: var(--texto-sm);
+  color: var(--cor-tinta-suave-acessivel);
+}
+
+/* Grade de campos do formulário */
+.contato__campos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.1rem 1rem;
+  margin-top: 1.25rem;
+}
+
+.contato__campo {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.contato__campo--retorno,
+.contato__campo--mensagem {
+  grid-column: 1 / -1;
+}
+
+.contato__campo label {
+  font-size: var(--texto-base);
+  font-weight: var(--peso-semibold);
+  letter-spacing: 0.06em;
+  color: var(--cor-oceano-acessivel);
+}
+
+.contato__campo label > span:last-child {
+  color: var(--cor-ferrugem-acessivel);
+}
+
+/* Inputs, Selects e Textareas */
+.contato__campo input,
+.contato__campo select,
+.contato__campo textarea {
+  width: 100%;
+  min-height: var(--campo-altura);
+  padding: var(--campo-pad);
+  font-family: var(--fonte-texto);
+  font-size: var(--texto-base);
+  font-weight: var(--peso-regular);
+  line-height: var(--linha-base);
+  color: var(--cor-tinta);
+  background-color: rgba(255, 250, 235, 0.58);
+  border: 1px solid rgba(100, 73, 56, 0.38);
+  border-radius: var(--campo-raio);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contato__campo textarea {
+  min-height: 7rem;
+  resize: vertical;
+}
+
+.contato__campo input::placeholder,
+.contato__campo textarea::placeholder {
+  color: var(--cor-tinta-suave);
+}
+
+.contato__campo input:hover,
+.contato__campo select:hover,
+.contato__campo textarea:hover {
+  border-color: var(--cor-oceano);
+}
+
+.contato__campo select:invalid {
+  color: var(--cor-tinta-suave);
+}
+
+.contato__campo option {
+  color: var(--cor-tinta);
+  background-color: var(--cor-pergaminho);
+}
+
+.contato__campo input:focus-visible,
+.contato__campo select:focus-visible,
+.contato__campo textarea:focus-visible {
+  border-color: var(--cor-oceano-acessivel);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(10, 88, 84, 0.18);
+}
+
+.contato__campo [aria-invalid="true"] {
+  border-color: var(--cor-ferrugem-acessivel);
+}
+
+.contato__erro {
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-semibold);
+  line-height: var(--linha-curta);
+  color: var(--cor-ferrugem-acessivel);
+}
+
+.contato__acoes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1rem;
+  margin-top: 1.1rem;
+  border-top: 1px dotted rgba(100, 73, 56, 0.45);
+}
+
+.contato__aviso {
+  max-width: 32rem;
+  font-size: var(--texto-micro);
+  line-height: var(--linha-base);
+  color: var(--cor-nevoa-acessivel);
+}
+
+.contato__enviar {
+  min-height: var(--btn-altura-lg);
+  padding: var(--btn-pad-lg);
+  font-size: var(--texto-base);
+  letter-spacing: 0.05em;
+  border-radius: var(--btn-raio);
+}
+
+.contato__confirmacao {
+  padding: 0.8rem 1rem;
+  margin-top: 1rem;
+  font-size: var(--texto-base);
+  font-weight: var(--peso-semibold);
+  line-height: var(--linha-base);
+  color: var(--cor-oceano-acessivel);
+  background-color: rgba(27, 155, 149, 0.1);
+  border-left: 3px solid var(--cor-oceano-acessivel);
+}
+
+@keyframes contato-pulso {
+  50% {
+    opacity: 0.4;
+    box-shadow: 0 0 8px var(--cor-oceano);
+  }
+}
+
+@keyframes contato-sinal {
+  to {
+    transform: scale(1.15);
+  }
+}
+
+/* Silhueta de relevo submarino decorativa no rodapé da seção */
+.montanha-front-rodape {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: top center;
+  z-index: 0;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE DO CONTATO
+   ========================================================================== */
+@media (max-width: 768px) {
+  #contato {
+    padding: 4rem 1rem;
+  }
+
+  .contato__formulario {
+    padding: 1.6rem 1.25rem;
+  }
+
+  .contato__campos {
+    grid-template-columns: 1fr;
+  }
+
+  .contato__campo--retorno,
+  .contato__campo--mensagem {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  #contato {
+    padding: 3rem 0.85rem;
+  }
+}

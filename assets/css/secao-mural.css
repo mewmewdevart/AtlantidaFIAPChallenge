@@ -1,0 +1,226 @@
+/* ==========================================================================
+   SEÇÃO 03: O MURAL (QUADRO DE AVISOS DA COMUNIDADE)
+   Estilos específicos do mural comunitário de Atlântida.
+   ========================================================================== */
+
+#mural {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 0;
+  background-image: linear-gradient(0deg, var(--cor-jade), var(--cor-abismo));
+}
+
+.mural__conteudo {
+  width: min(100%, 1188px);
+  margin: 0 auto;
+  padding: clamp(3rem, 6vh, 5rem) clamp(1.5rem, 5vw, 4rem) clamp(4rem, 8vh, 6rem);
+  font-family: var(--fonte-texto);
+}
+
+/* Citação temática do mural */
+.mural__citacao {
+  margin: 0 auto clamp(4rem, 11vh, 8rem);
+}
+
+.mural__citacao > span {
+  color: var(--cor-jade-claro);
+}
+
+/* Selo circular de transmissão decorativo */
+.mural__sinal {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  margin-left: auto;
+  color: var(--cor-oceano-acessivel);
+  border: 1px solid var(--cor-oceano-acessivel);
+  border-radius: 50%;
+}
+
+/* Chapa base do mural (painel de cortiça/pergaminho) */
+.mural__chapa {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem;
+  padding: clamp(1.2rem, 2.6vw, 1.9rem);
+  background-color: var(--cor-pergaminho);
+  border: 1px solid var(--cor-pergaminho-borda);
+  border-radius: 3px;
+  box-shadow: 0 6px 18px rgba(0, 3, 5, 0.35), inset 0 0 22px rgba(130, 90, 40, 0.12);
+}
+
+/* Cartões individuais de aviso */
+.mural__mensagem {
+  position: relative;
+  min-height: 10rem;
+  padding: 1.4rem 1.35rem 1rem;
+  cursor: pointer;
+  color: var(--cor-tinta);
+  background-color: rgba(255, 250, 235, 0.46);
+  border: 1px solid rgba(100, 73, 56, 0.22);
+  box-shadow: 0 3px 8px rgba(50, 27, 11, 0.14);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.mural__mensagem--urgente {
+  grid-column: 1 / -1;
+}
+
+.mural__mensagem:hover {
+  z-index: 1;
+  outline: 2px solid var(--cor-ferrugem);
+  outline-offset: 2px;
+  filter: brightness(1.03);
+  box-shadow: 0 12px 22px rgba(50, 27, 11, 0.24);
+  transform: translateY(-6px) rotate(-0.5deg);
+}
+
+.mural__mensagem-cabecalho {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.7rem;
+}
+
+.mural__mensagem-cabecalho h3 {
+  font-family: var(--fonte-texto);
+  font-size: var(--texto-xl);
+  font-weight: var(--peso-bold);
+  line-height: var(--linha-compacta);
+  color: var(--cor-tinta);
+}
+
+.mural__transmissao {
+  margin-top: 0.18rem;
+  font-size: var(--texto-micro);
+  letter-spacing: 0.04em;
+  color: var(--cor-tinta-suave-acessivel);
+}
+
+/* Etiquetas de categoria dos avisos */
+.mural__categoria {
+  flex: 0 0 auto;
+  padding: 0.2rem 0.36rem;
+  font-size: var(--texto-micro);
+  font-weight: var(--peso-bold);
+  letter-spacing: 0.03em;
+  color: var(--cor-ferrugem-acessivel);
+  border: 1px solid currentColor;
+  transform: rotate(3deg);
+}
+
+.mural__categoria--urgente {
+  color: var(--cor-terracota-acessivel);
+}
+
+.mural__texto {
+  margin-top: 1.25rem;
+  font-family: var(--fonte-texto);
+  font-size: var(--texto-md);
+  line-height: var(--linha-base);
+  color: var(--cor-tinta-suave-acessivel);
+}
+
+.mural__expiracao {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-semibold);
+  color: var(--cor-tinta-suave-acessivel);
+}
+
+.mural__mensagem--urgente .mural__expiracao {
+  color: var(--cor-terracota-acessivel);
+}
+
+/* Rodapé de status e agregação do mural */
+.mural__rodape {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.55rem 1rem;
+  padding-top: 0.8rem;
+  margin-top: 0.8rem;
+  font-size: var(--texto-micro);
+  font-weight: var(--peso-semibold);
+  letter-spacing: 0.06em;
+  color: var(--cor-pergaminho);
+  border-top: 1px solid rgba(235, 207, 173, 0.28);
+}
+
+.mural__vazio {
+  grid-column: 1 / -1;
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: var(--texto-sm);
+  color: var(--cor-tinta-suave-acessivel);
+}
+
+.mural__proxima,
+.mural__preservadas,
+.mural__periodo {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.mural__proxima,
+.mural__quantidade {
+  color: var(--cor-ambar);
+}
+
+.mural__periodo {
+  color: var(--cor-nevoa-acessivel);
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE DO MURAL
+   ========================================================================== */
+@media (max-width: 768px) {
+  .mural__citacao {
+    margin-bottom: 4rem;
+  }
+
+  .mural__chapa {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+    padding: 1rem;
+  }
+
+  .mural__mensagem {
+    min-height: 9.5rem;
+    padding: 1.2rem 1rem 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .mural__citacao {
+    margin-bottom: 3rem;
+  }
+
+  .mural__sinal {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .mural__chapa {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+    padding: 1rem 0.8rem;
+  }
+
+  .mural__mensagem--urgente {
+    grid-column: auto;
+  }
+
+  .mural__rodape {
+    flex-direction: column;
+  }
+}

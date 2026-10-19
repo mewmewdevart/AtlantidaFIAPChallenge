@@ -1,4 +1,21 @@
-/* ==== Reset e estilos globais ==== */
+/* ==========================================================================
+   STYLE.CSS — ESTILOS GLOBAIS E COMPONENTES COMPARTILHADOS
+   Portal Web Atlântida | VR Code Arena (NEXT FIAP 2026)
+   
+   Conteúdo deste arquivo:
+   1. Reset e Estilos Base
+   2. Ondulações Oceânicas (Waves Parallax)
+   3. Navegação Global (Menu Flutuante & Menu Lateral Submarino)
+   4. Padrões de Layout e Títulos de Seção
+   5. Componentes Compartilhados (Botões, Stickers/Fitas, Papel, Fotos)
+   6. Divisórias Temáticas de Profundidade
+   7. Acessibilidade Global (Foco, Pular Link, Leitores de Tela)
+   8. Responsividade Global & Prefers-Reduced-Motion
+   ========================================================================== */
+
+/* ==========================================================================
+   1. RESET E ESTILOS BASE
+   ========================================================================== */
 *,
 *::before,
 *::after {
@@ -19,10 +36,18 @@ body {
 body {
   width: 100%;
   margin: 0;
+  font-family: var(--fonte-texto);
   background-image: linear-gradient(0deg, var(--cor-abismo), var(--cor-jade));
 }
 
-/* ==== Ondulações fluidas (waves) ==== */
+body > section,
+.secao-oceano {
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   2. ONDULAÇÕES OCEÂNICAS FLUIDAS (WAVES PARALLAX)
+   ========================================================================== */
 .waves {
   position: absolute;
   width: 100%;
@@ -32,26 +57,26 @@ body {
   background-color: var(--cor-jade-claro);
 }
 
-.parallax>use {
+.parallax > use {
   animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
 }
 
-.parallax>use:nth-child(1) {
+.parallax > use:nth-child(1) {
   animation-delay: -2s;
   animation-duration: 7s;
 }
 
-.parallax>use:nth-child(2) {
+.parallax > use:nth-child(2) {
   animation-delay: -3s;
   animation-duration: 10s;
 }
 
-.parallax>use:nth-child(3) {
+.parallax > use:nth-child(3) {
   animation-delay: -4s;
   animation-duration: 13s;
 }
 
-.parallax>use:nth-child(4) {
+.parallax > use:nth-child(4) {
   animation-delay: -5s;
   animation-duration: 20s;
 }
@@ -60,21 +85,25 @@ body {
   0% {
     transform: translate3d(-90px, 0, 0);
   }
-
   100% {
     transform: translate3d(85px, 0, 0);
   }
 }
 
-/* ==== Menu de navegação flutuante ==== */
+/* ==========================================================================
+   3. NAVEGAÇÃO GLOBAL
+   ========================================================================== */
+
+/* --- Menu de Navegação Flutuante Superior --- */
 .menu-navegacao {
   position: fixed;
   top: 1rem;
-  right: 1rem;
+  left: 1rem;
+  right: auto;
   z-index: 9999;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   width: 80px;
   height: 80px;
   padding: 0;
@@ -93,6 +122,7 @@ body {
 .menu-navegacao--expandido {
   justify-content: space-between;
   width: 380px;
+  max-width: calc(100vw - 2rem);
   border-radius: 1rem;
 }
 
@@ -103,19 +133,21 @@ body {
   overflow: hidden;
   opacity: 0;
   visibility: hidden;
-  transform: translateX(20px);
+  transform: translateX(-20px);
   transition: opacity 0.3s ease 0.05s, transform 0.3s ease 0.05s, visibility 0.3s ease, width 0.3s ease;
 }
 
 .menu-navegacao:hover .menu-navegacao__conteudo,
 .menu-navegacao--expandido .menu-navegacao__conteudo {
   width: auto;
-  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-left: 0.5rem;
   opacity: 1;
   visibility: visible;
   transform: translateX(0);
 }
 
+/* Seletor de Idioma (PT-BR / Atlântida) */
 .seletor-idioma {
   display: flex;
   align-items: center;
@@ -135,8 +167,7 @@ body {
   color: var(--cor-menta-neon);
 }
 
-.seletor-idioma__rotulo--atlantida.seletor-idioma__rotulo--ativo,
-.seletor-idioma__rotulo--asteca.seletor-idioma__rotulo--ativo {
+.seletor-idioma__rotulo--atlantida.seletor-idioma__rotulo--ativo {
   color: var(--cor-ambar);
 }
 
@@ -179,12 +210,12 @@ body {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
 }
 
-.seletor-idioma__campo:checked+.seletor-idioma__trilho {
+.seletor-idioma__campo:checked + .seletor-idioma__trilho {
   background-color: var(--cor-jade);
   border-color: var(--cor-ambar);
 }
 
-.seletor-idioma__campo:checked+.seletor-idioma__trilho .seletor-idioma__icone-deslizante {
+.seletor-idioma__campo:checked + .seletor-idioma__trilho .seletor-idioma__icone-deslizante {
   color: var(--cor-tinta);
   background-color: var(--cor-ambar);
   transform: translateX(22px) rotate(45deg);
@@ -245,10 +276,12 @@ body {
   transform: translateY(-7.75px) rotate(-45deg);
 }
 
+/* --- Menu de Navegação Vertical Lateral (Fixo à Esquerda) --- */
 .menu-lateral {
   position: fixed;
   top: 50%;
-  right: 1rem;
+  left: 1rem;
+  right: auto;
   z-index: 990;
   display: flex;
   flex-direction: column;
@@ -259,7 +292,7 @@ body {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: translateY(-50%) translateX(25px);
+  transform: translateY(-50%) translateX(-25px);
   transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
     visibility 0.45s ease;
@@ -276,7 +309,8 @@ body {
 
 .menu-lateral__indicador-submarino {
   position: absolute;
-  right: calc(100% + 12px);
+  left: calc(100% + 12px);
+  right: auto;
   top: 0;
   bottom: 0;
   width: 90px;
@@ -284,12 +318,13 @@ body {
   user-select: none;
   display: flex;
   align-items: stretch;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 .menu-lateral__submarino-wrapper {
   position: absolute;
-  right: 0;
+  left: 0;
+  right: auto;
   top: 0;
   width: 44px;
   height: 44px;
@@ -344,15 +379,12 @@ body {
   transition: transform 0.2s ease, color 0.2s ease;
 }
 
-
 .menu-lateral__link:hover {
   color: var(--cor-espuma);
   font-weight: var(--peso-bold);
-  transform: translateX(-2px);
+  transform: translateX(2px);
   background-color: var(--cor-tinta-suave);
 }
-
-
 
 .menu-lateral__link--ativo {
   color: var(--cor-espuma);
@@ -377,69 +409,119 @@ body {
   opacity: 0.6;
 }
 
-/* ---------------------------- Seção 00 - Hero Section ---------------------------- */
-.secao-apresentacao {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* ==========================================================================
+   4. PADRÕES DE LAYOUT E TÍTULOS DE SEÇÃO
+   ========================================================================== */
+
+/* Contêiner de conteúdo padronizado das seções */
+.container-secao {
+  --textura-papel: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .38 0 0 0 0 .24 0 0 0 0 .1 0 0 0 .2 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
   width: 100%;
-  height: 100vh;
-  perspective: calc(160 * var(--livro-unidade));
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 6rem 1.25rem;
+  font-family: var(--fonte-texto);
+  color: var(--cor-pergaminho);
 }
 
-.secao-apresentacao::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
+.container-secao section {
+  min-height: 0;
 }
 
-.secao-scroll-btn {
-  position: absolute;
-  right: 1rem;
-  bottom: 1rem;
+/* Subtítulo padrão de subseções */
+.subtitulo-secao {
+  font-size: var(--titulo-subsecao);
+  font-weight: var(--peso-semibold);
+  line-height: var(--linha-compacta);
+  color: var(--cor-pergaminho);
+}
+
+/* Citação temática que antecede a seção */
+.secao__citacao {
+  margin: 0 auto clamp(3.5rem, 9vh, 6rem);
+  text-align: center;
+}
+
+.secao__citacao > span {
+  display: block;
+  font-size: var(--texto-micro);
+  font-weight: var(--peso-bold);
+  letter-spacing: 0.16em;
+  color: var(--cor-menta-neon);
+}
+
+.secao__citacao p,
+.secao__citacao blockquote {
+  margin-top: 0.55rem;
+  font-size: var(--titulo-citacao);
+  font-weight: var(--peso-bold);
+  letter-spacing: 0.04em;
+  color: var(--cor-espuma);
+}
+
+/* Cabeçalho numerado padronizado (02, 03, 04, 05) */
+.secao__cabecalho {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
   align-items: center;
-  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.secao__numero {
+  display: grid;
+  min-width: 5rem;
+  min-height: 4rem;
+  place-items: center;
+  padding-left: 0.6rem;
+  font-family: var(--fonte-titulo);
+  font-size: var(--titulo-secao-numero);
+  font-weight: var(--peso-bold);
+  line-height: var(--linha-compacta);
+  color: var(--cor-ambar);
+  border-left: 2px solid var(--cor-ambar);
+}
+
+.secao__titulo-grupo {
+  min-width: 0;
+}
+
+.secao__sobretitulo {
+  display: block;
+  margin-bottom: 0.15rem;
+  font-family: var(--fonte-texto);
   font-size: var(--texto-xs);
   font-weight: var(--peso-bold);
-  letter-spacing: 2px;
+  letter-spacing: 0.16em;
   color: var(--cor-sinal-texto);
   text-transform: uppercase;
-  cursor: pointer;
-  background: transparent;
-  border: none;
-  opacity: 1;
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
-    color 0.3s ease,
-    filter 0.3s ease;
 }
 
-.secao-scroll-btn:hover {
-  color: var(--cor-menta-neon);
-  transform: translateY(5px);
-  filter: drop-shadow(0 0 10px rgba(15, 244, 204, 0.45));
+.secao__titulo-grupo h2 {
+  font-family: var(--fonte-texto);
+  font-size: var(--titulo-secao-h2);
+  font-weight: var(--peso-bold);
+  line-height: var(--linha-compacta);
+  color: var(--cor-espuma);
+  letter-spacing: 0.02em;
 }
 
-.secao-scroll-btn img {
-  width: 100px;
-  object-fit: contain;
-  transition: transform 0.3s ease;
-  filter: contrast(0.7) saturate(1) hue-rotate(-4deg);
+.secao__subtitulo {
+  display: block;
+  margin-top: 0.4rem;
+  font-family: var(--fonte-texto);
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-semibold);
+  letter-spacing: 0.08em;
+  color: var(--cor-ferrugem-clara);
+  text-transform: uppercase;
 }
 
-.secao-scroll-btn:hover img {
-  transform: scale(1.05);
-}
+/* ==========================================================================
+   5. COMPONENTES COMPARTILHADOS
+   ========================================================================== */
 
-
-/* ==== Botões Genéricos e Reutilizáveis (Padronizados) ==== */
+/* --- Botões Reutilizáveis (Padronizados) --- */
 .botao {
   display: inline-flex;
   align-items: center;
@@ -471,11 +553,17 @@ body {
   outline-offset: 2px;
 }
 
-/* Modificadores de Tamanho */
+/* Modificadores de Tamanho de Botão */
 .botao--sm {
   min-height: var(--btn-altura-sm);
   padding: var(--btn-pad-sm);
   font-size: var(--texto-xs);
+}
+
+.botao--md {
+  min-height: var(--btn-altura-md);
+  padding: var(--btn-pad-md);
+  font-size: var(--texto-sm);
 }
 
 .botao--lg {
@@ -485,7 +573,7 @@ body {
   letter-spacing: 0.04em;
 }
 
-/* Modificador Primário */
+/* Modificador Primário (Oceânico) */
 .botao--primario {
   color: var(--cor-espuma);
   background-color: var(--cor-oceano-acessivel);
@@ -497,7 +585,7 @@ body {
   border-color: var(--cor-oceano-acessivel-hover);
 }
 
-/* Modificador Secundário */
+/* Modificador Secundário (Ferrugem) */
 .botao--secundario {
   color: var(--cor-espuma);
   background-color: var(--cor-ferrugem-acessivel);
@@ -509,285 +597,60 @@ body {
   border-color: var(--cor-ferrugem-profunda);
 }
 
-/* ==== Livro 3D interativo ==== */
-.livro-3d {
-  position: relative;
-  width: calc(var(--livro-largura-base) * var(--livro-unidade));
-  height: calc(var(--livro-altura-base) * var(--livro-unidade));
-  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.55));
-  transform-style: preserve-3d;
-  rotate: 2deg;
-}
-
-.livro-3d__capa,
-.livro-3d__folha {
+/* --- Sticker / Fita Adesiva Decorativa Compartilhada --- */
+.mural__fita,
+.adesivo-fita {
   position: absolute;
-  top: 0;
-  box-sizing: border-box;
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-
-.livro-3d__capa--base {
-  left: calc(9.25 * var(--livro-unidade));
+  top: -0.42rem;
+  left: 50%;
   z-index: 1;
-  width: calc(9.25 * var(--livro-unidade));
-  height: calc(12.5 * var(--livro-unidade));
-  background-color: var(--cor-painel);
-  background-image: linear-gradient(135deg, var(--cor-casco) 0%, var(--cor-agua-profunda) 100%);
-  border: 2px solid var(--cor-ambar);
-  border-left: none;
-  border-radius: 0 calc(0.35 * var(--livro-unidade)) calc(0.35 * var(--livro-unidade)) 0;
-  transform: translateZ(-2px);
-}
-
-.livro-3d__folha--direita {
-  position: absolute;
-  top: calc(0.25 * var(--livro-unidade));
-  left: calc(9.25 * var(--livro-unidade));
-  z-index: 5;
-  width: calc(9 * var(--livro-unidade));
-  height: calc(12 * var(--livro-unidade));
-  transform: translateZ(0);
-  transform-origin: left center;
-}
-
-.livro-3d__face--ilustracao {
-  position: absolute;
-  inset: 0;
-  z-index: 10;
-  overflow: visible;
-  border-radius: 0 calc(0.3 * var(--livro-unidade)) calc(0.3 * var(--livro-unidade)) 0;
-}
-
-.livro-3d__imagem-ilustracao {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  z-index: 9999 !important;
-  width: calc(12.2 * var(--livro-unidade));
+  width: 3.5rem;
+  height: 0.85rem;
+  background-color: rgba(193, 75, 44, 0.76);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  transform: translateX(-50%) rotate(-1.5deg);
   pointer-events: none;
-  background-repeat: no-repeat;
-  object-fit: cover;
-  object-position: center right;
-  opacity: 0;
 }
 
-
-.livro-3d__folha--esquerda {
-  top: calc(0.25 * var(--livro-unidade));
-  left: calc(9.25 * var(--livro-unidade));
-  z-index: 20;
-  width: calc(9 * var(--livro-unidade));
-  height: calc(12 * var(--livro-unidade));
-  transform: rotateY(0deg) translateZ(2px);
-  transform-origin: left center;
-}
-
-.livro-3d__face {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: calc(0.9 * var(--livro-unidade));
-  line-height: 1.6;
-  backface-visibility: hidden;
-}
-
-.livro-3d__face--frente {
-  background-color: var(--cor-pergaminho);
-  background-image: linear-gradient(to right, var(--cor-pergaminho-borda) 0%, var(--cor-pergaminho) 90%, var(--cor-pergaminho-borda) 100%);
-  border-radius: 0 calc(0.3 * var(--livro-unidade)) calc(0.3 * var(--livro-unidade)) 0;
-}
-
-.livro-3d__face--verso {
-  z-index: 1;
-  align-items: flex-start;
-  justify-content: center;
-  padding: calc(1.1 * var(--livro-unidade)) calc(0.95 * var(--livro-unidade));
-  overflow: hidden;
-  background-color: var(--cor-pergaminho);
-  background-image: linear-gradient(to left, var(--cor-pergaminho-borda) 0%, var(--cor-pergaminho) 90%, var(--cor-pergaminho-borda) 100%);
-  border-radius: calc(0.3 * var(--livro-unidade)) 0 0 calc(0.3 * var(--livro-unidade));
-  box-shadow: inset 2px 0 8px rgba(0, 0, 0, 0.08);
-  transform: rotateY(180deg);
-}
-
-.livro-3d__imagem-ilustracao--sobreposicao {
-  position: absolute;
-  right: calc(-9 * var(--livro-unidade));
-  bottom: 0;
-  z-index: 2;
-  width: calc(10.2 * var(--livro-unidade));
-  height: 100%;
-  pointer-events: none;
-  object-fit: cover;
-  object-position: center right;
-  opacity: 0;
-}
-
-.livro-3d__conteudo-texto {
+/* --- Base de Cartão em Papel Pergaminho --- */
+.papel {
   position: relative;
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  width: 100%;
-  max-width: calc(6.5 * var(--livro-unidade));
-  /* termina antes da ilustração (ver .livro-3d__imagem-ilustracao) */
-  height: 100%;
-  user-select: none;
+  color: var(--cor-tinta);
+  background-color: var(--cor-pergaminho);
+  background-image: var(--textura-papel);
+  border: 1px solid var(--cor-pergaminho-borda);
+  border-radius: 3px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4), inset 0 0 22px rgba(130, 90, 40, 0.14);
 }
 
-.livro-3d__titulo-principal {
-  margin-bottom: calc(0.35 * var(--livro-unidade));
-  font-family: var(--fonte-titulo);
-  font-size: calc(1.28 * var(--livro-unidade));
-  font-weight: var(--peso-bold);
-  line-height: 1.05;
-  letter-spacing: -0.015em;
-  color: var(--cor-fundo);
-  text-transform: none;
-}
-
-.livro-3d__titulo-linha {
-  display: block;
-}
-
-.livro-3d__descricao {
-  max-width: 100%;
-  margin-bottom: calc(0.45 * var(--livro-unidade));
-  font-family: var(--fonte-texto);
-  font-size: max(0.875rem, calc(0.32 * var(--livro-unidade)));
-  font-weight: var(--peso-regular);
-  line-height: 1.5;
-  color: var(--cor-casco);
-  text-transform: none;
-}
-
-.livro-3d__painel-status {
-  display: flex;
-  gap: calc(0.55 * var(--livro-unidade));
-  align-items: center;
-  width: 100%;
-  max-width: 100%;
-  flex-wrap: wrap;
-  padding: calc(0.22 * var(--livro-unidade)) 0;
-  margin-bottom: calc(0.55 * var(--livro-unidade));
-  border-top: 1px dashed rgba(1, 56, 60, 0.25);
-  border-bottom: 1px dashed rgba(1, 56, 60, 0.25);
-}
-
-.livro-3d__status-item {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.livro-3d__status-valor {
-  font-family: var(--fonte-texto);
-  font-size: max(1rem, calc(0.36 * var(--livro-unidade)));
-  font-weight: var(--peso-bold);
-  letter-spacing: 0.5px;
-  color: var(--cor-jade);
-}
-
-.livro-3d__status-rotulo {
-  font-family: var(--fonte-texto);
-  font-size: max(var(--texto-micro), calc(0.23 * var(--livro-unidade)));
-  font-weight: var(--peso-semibold);
-  letter-spacing: 0.5px;
-  color: var(--cor-tinta-suave-acessivel);
-  text-transform: uppercase;
-}
-
-.livro-3d__acoes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: calc(0.2 * var(--livro-unidade));
-  align-items: center;
-}
-
-/* Ajuste proporcional específico para a diagramação interna do Livro 3D */
-.livro-3d__acoes .botao {
-  padding: calc(0.24 * var(--livro-unidade)) calc(0.38 * var(--livro-unidade));
-  white-space: nowrap;
-  font-size: max(0.875rem, calc(0.31 * var(--livro-unidade)));
-}
-
-.livro-3d__capa--frontal {
-  left: calc(9.25 * var(--livro-unidade));
-  z-index: 30;
-  width: calc(9.25 * var(--livro-unidade));
-  height: calc(12.5 * var(--livro-unidade));
-  transform: rotateY(0deg) translateZ(4px);
-  transform-origin: left center;
-}
-
-.livro-3d__face-capa {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: calc(1.2 * var(--livro-unidade));
-  text-align: center;
-  backface-visibility: hidden;
-}
-
-.livro-3d__face-capa--frente {
-  color: var(--cor-ambar);
-  background-color: var(--cor-painel);
-  background-image: linear-gradient(135deg, var(--cor-casco) 0%, var(--cor-agua-profunda) 100%);
-  border: 2px solid var(--cor-ambar);
-  border-left: none;
-  border-radius: 0 calc(0.35 * var(--livro-unidade)) calc(0.35 * var(--livro-unidade)) 0;
-  box-shadow: inset -4px 0 20px rgba(0, 0, 0, 0.4);
-}
-
-.livro-3d__face-capa--verso {
-  color: var(--cor-ambar);
-  background-color: var(--cor-agua-profunda);
-  background-image: linear-gradient(135deg, var(--cor-painel) 0%, var(--cor-abismo) 100%);
-  border: 2px solid var(--cor-ambar);
-  border-right: none;
-  border-radius: calc(0.35 * var(--livro-unidade)) 0 0 calc(0.35 * var(--livro-unidade));
-  box-shadow: inset 4px 0 15px rgba(0, 0, 0, 0.35);
-  transform: rotateY(180deg);
-}
-
-.livro-3d__emblema {
-  margin-bottom: calc(0.3 * var(--livro-unidade));
-  font-size: calc(1.5 * var(--livro-unidade));
-}
-
-.livro-3d__emblema img {
-  width: 75%;
-}
-
-.livro-3d__titulo-capa {
-  padding: calc(0.35 * var(--livro-unidade)) calc(0.6 * var(--livro-unidade));
+/* --- Moldura de Foto Impressa com Legenda --- */
+.foto-impressa {
   margin: 0;
-  font-family: var(--fonte-emblema);
-  font-size: calc(1.15 * var(--livro-unidade));
-  letter-spacing: 4px;
-  color: var(--cor-ambar);
-  border-top: 1px solid var(--cor-ambar);
-  border-bottom: 1px solid var(--cor-ambar);
+  padding: 0.7rem 0.7rem 0;
+  color: var(--cor-tinta);
+  background-color: var(--cor-pergaminho);
+  background-image: var(--textura-papel);
+  border-radius: 3px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
-.livro-3d__subtitulo-capa {
-  margin-top: calc(0.4 * var(--livro-unidade));
-  font-family: var(--fonte-texto);
-  font-size: calc(0.55 * var(--livro-unidade));
-  letter-spacing: 2px;
-  color: var(--cor-pergaminho);
+.foto-impressa img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: contrast(0.7) saturate(1) hue-rotate(-4deg);
 }
 
-/* ==== Divisórias entre seções (zonas de profundidade) ==== */
+.foto-impressa figcaption {
+  padding: 0.8rem 0.5rem 0.9rem;
+  font-size: var(--texto-md);
+  text-align: center;
+  color: var(--cor-tinta-suave-acessivel);
+}
+
+/* ==========================================================================
+   6. DIVISÓRIAS TEMÁTICAS ENTRE SEÇÕES (ZONAS DE PROFUNDIDADE)
+   ========================================================================== */
 .linha-divisoria {
   position: relative;
   display: flex;
@@ -821,985 +684,72 @@ body {
   border-top: 1px solid rgba(62, 144, 137, 0.4);
 }
 
-body>section,
-.secao-oceano {
-  min-height: 100vh;
-}
+/* ==========================================================================
+   7. ACESSIBILIDADE GLOBAL
+   ========================================================================== */
 
-/* ==== Padrão reutilizável: cabeçalho + citação de seção ==== */
-.secao__citacao,
-.mural__citacao,
-.contato__citacao {
-  margin: 0 auto clamp(3.5rem, 9vh, 6rem);
-  text-align: center;
-}
-
-.secao__citacao>span,
-.mural__citacao>span,
-.contato__citacao>span {
-  display: block;
-  font-size: var(--texto-micro);
-  font-weight: var(--peso-bold);
-  letter-spacing: 0.16em;
-  color: var(--cor-menta-neon);
-}
-
-.secao__citacao p,
-.secao__citacao blockquote,
-.mural__citacao p,
-.mural__citacao blockquote,
-.contato__citacao p,
-.contato__citacao blockquote {
-  margin-top: 0.55rem;
-  font-size: var(--titulo-citacao);
-  font-weight: var(--peso-bold);
-  letter-spacing: 0.04em;
-  color: var(--cor-espuma);
-}
-
-.secao__cabecalho,
-.mundo__cabecalho,
-.habitantes__cabecalho,
-.mural__cabecalho,
-.contato__cabecalho {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.secao__numero,
-.mundo__numero,
-.habitantes__numero,
-.mural__numero,
-.contato__numero {
-  display: grid;
-  min-width: 5rem;
-  min-height: 4rem;
-  place-items: center;
-  padding-left: 0.6rem;
-  font-family: var(--fonte-titulo);
-  font-size: var(--titulo-secao-numero);
-  font-weight: var(--peso-bold);
-  line-height: var(--linha-compacta);
-  color: var(--cor-ambar);
-  border-left: 2px solid var(--cor-ambar);
-}
-
-.secao__titulo-grupo,
-.mundo__titulo-grupo,
-.habitantes__titulo-grupo,
-.mural__titulo-grupo,
-.contato__titulo-grupo {
-  min-width: 0;
-}
-
-.secao__sobretitulo,
-.mundo__sobretitulo,
-.habitantes__sobretitulo,
-.mural__sobretitulo,
-.contato__sobretitulo {
-  display: block;
-  margin-bottom: 0.15rem;
-  font-family: var(--fonte-texto);
-  font-size: var(--texto-xs);
-  font-weight: var(--peso-bold);
-  letter-spacing: 0.16em;
-  color: var(--cor-sinal-texto);
-  text-transform: uppercase;
-}
-
-.secao__titulo-grupo h2,
-.mundo__titulo-grupo h2,
-.habitantes__titulo-grupo h2,
-.mural__titulo-grupo h2,
-.contato__titulo-grupo h2 {
-  font-family: var(--fonte-titulo);
-  font-size: var(--titulo-secao-h2);
-  font-weight: var(--peso-bold);
-  line-height: var(--linha-compacta);
-  color: var(--cor-espuma);
-  letter-spacing: 0.02em;
-}
-
-.secao__subtitulo,
-.mundo__subtitulo,
-.habitantes__subtitulo,
-.mural__subtitulo,
-.contato__subtitulo {
-  display: block;
-  margin-top: 0.4rem;
-  font-family: var(--fonte-texto);
-  font-size: var(--texto-xs);
-  font-weight: var(--peso-semibold);
-  letter-spacing: 0.08em;
-  color: var(--cor-ferrugem-clara);
-  text-transform: uppercase;
-}
-
-/* ---------------------------- Seção 1 - O Mundo ---------------------------- */
-
-/* ---------------------------- Seção 2 - Os Habitantes ---------------------------- */
-.montanha-front {
+/* Texto visível exclusivamente para tecnologias assistivas */
+.sr-only {
   position: absolute;
-  z-index: 1;
-  top: 50px;
-  width: 100%;
-}
-
-.montanha-back {
-  position: absolute;
-  z-index: 0;
-  width: 100%;
-}
-
-.continuidade-montanha-front {
-  /* background-image: linear-gradient(0deg, var(--cor-jade), var(--cor-abismo)); */
-  background-color: var(--cor-abismo);
-  position: absolute;
-  bottom: -1px;
-  height: 50%;
-  width: 100%;
-  z-index: 2;
-}
-
-#habitantes {
-  position: relative;
+  width: 1px;
+  height: 1px;
   overflow: hidden;
+  white-space: nowrap;
+  clip: rect(0 0 0 0);
 }
 
-/* ---------------------------- Seção 3 - O Mural ---------------------------- */
-/* Fundo e área de leitura isolam o mural como uma estação comunitária dentro da sequência de profundidades. */
-#mural {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 0;
-  background-image: linear-gradient(0deg, var(--cor-jade), var(--cor-abismo));
-}
-
-.mural__conteudo {
-  width: min(100%, 1188px);
-  margin: 0 auto;
-  padding: clamp(3rem, 6vh, 5rem) clamp(1.5rem, 5vw, 4rem) clamp(4rem, 8vh, 6rem);
-  font-family: var(--fonte-texto);
-}
-
-/* Citação do mural: herda de .secao__citacao com margem maior */
-.mural__citacao {
-  margin: 0 auto clamp(4rem, 11vh, 8rem);
-}
-
-.mural__citacao>span,
-.contato__citacao>span {
-  color: var(--cor-jade-claro);
-}
-
-.mural__sinal {
-  /* Selo de transmissão decorativo que complementa o título sem competir com ele. */
-  display: grid;
-  width: 2.5rem;
-  height: 2.5rem;
-  place-items: center;
-  margin-left: auto;
-  color: var(--cor-oceano-acessivel);
-  border: 1px solid var(--cor-oceano-acessivel);
-  border-radius: 50%;
-}
-
-.mural__chapa {
-  /* A base em pergaminho remete a um quadro físico e organiza os avisos em duas colunas. */
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.2rem;
-  padding: clamp(1.2rem, 2.6vw, 1.9rem);
-  background-color: var(--cor-pergaminho);
-  border: 1px solid var(--cor-pergaminho-borda);
-  border-radius: 3px;
-  box-shadow: 0 6px 18px rgba(0, 3, 5, 0.35), inset 0 0 22px rgba(130, 90, 40, 0.12);
-}
-
-.mural__mensagem {
-  /* Todos os avisos compartilham o mesmo cartão para manter consistência entre categorias. */
-  position: relative;
-  min-height: 10rem;
-  padding: 1.4rem 1.35rem 1rem;
-  cursor: pointer;
-  color: var(--cor-tinta);
-  background-color: rgba(255, 250, 235, 0.46);
-  border: 1px solid rgba(100, 73, 56, 0.22);
-  box-shadow: 0 3px 8px rgba(50, 27, 11, 0.14);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.mural__mensagem--urgente {
-  /* O aviso prioritário ocupa toda a linha para ganhar destaque na grade. */
-  grid-column: 1 / -1;
-}
-
-.mural__mensagem:hover {
-  /* Elevação sutil reforça que os cartões são itens interativos sem mudar seu conteúdo. */
-  z-index: 1;
-  outline: 2px solid var(--cor-ferrugem);
+/* Indicador de foco por teclado acessível e de alto contraste */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--cor-casco);
   outline-offset: 2px;
-  filter: brightness(1.03);
-  box-shadow: 0 12px 22px rgba(50, 27, 11, 0.24);
-  transform: translateY(-6px) rotate(-0.5deg);
+  box-shadow: 0 0 0 4px var(--cor-menta-neon);
 }
 
-.mural__fita {
-  /* Detalhe de fita adesiva que sustenta a metáfora do mural físico. */
-  position: absolute;
-  top: -0.42rem;
-  left: 50%;
-  width: 3rem;
-  height: 0.8rem;
-  background-color: rgba(193, 75, 44, 0.76);
-  transform: translateX(-50%) rotate(-2deg);
-}
-
-.mural__mensagem-cabecalho {
-  /* Mantém autor e categoria alinhados e facilmente distinguíveis. */
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 0.7rem;
-}
-
-.mural__mensagem-cabecalho h3 {
-  font-family: var(--fonte-titulo);
-  font-size: var(--texto-xl);
-  font-weight: var(--peso-bold);
-  line-height: var(--linha-compacta);
-  color: var(--cor-tinta);
-}
-
-.mural__transmissao {
-  /* Metadado curto para a data e hora calculadas pelo JavaScript. */
-  margin-top: 0.18rem;
-  font-size: var(--texto-micro);
-  letter-spacing: 0.04em;
-  color: var(--cor-tinta-suave-acessivel);
-}
-
-.mural__categoria {
-  /* Etiqueta identifica rapidamente o tipo do recado. */
-  flex: 0 0 auto;
-  padding: 0.2rem 0.36rem;
-  font-size: var(--texto-micro);
-  font-weight: var(--peso-bold);
-  letter-spacing: 0.03em;
-  color: var(--cor-ferrugem-acessivel);
-  border: 1px solid currentColor;
-  transform: rotate(3deg);
-}
-
-.mural__categoria--urgente {
-  color: var(--cor-terracota-acessivel);
-}
-
-.mural__texto {
-  /* Texto principal recebe tipografia de leitura para diferenciar conteúdo dos metadados. */
-  margin-top: 1.25rem;
-  font-family: var(--fonte-titulo);
-  font-size: var(--texto-md);
-  line-height: var(--linha-base);
-  color: var(--cor-tinta-suave-acessivel);
-}
-
-.mural__expiracao {
-  /* Contagem regressiva informa por quanto tempo o aviso fica ativo. */
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  margin-top: 0.75rem;
-  font-size: var(--texto-xs);
-  font-weight: var(--peso-semibold);
-  color: var(--cor-tinta-suave-acessivel);
-}
-
-.mural__mensagem--urgente .mural__expiracao {
-  color: var(--cor-terracota-acessivel);
-}
-
-.mural__rodape {
-  /* Resumo agregado alimentado pelo script: total de mensagens e próxima renovação. */
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0.55rem 1rem;
-  padding-top: 0.8rem;
-  margin-top: 0.8rem;
-  font-size: var(--texto-micro);
-  font-weight: var(--peso-semibold);
-  letter-spacing: 0.06em;
-  color: var(--cor-pergaminho);
-  border-top: 1px solid rgba(235, 207, 173, 0.28);
-}
-
-.mural__vazio {
-  /* Mensagem alternativa, revelada apenas se a lista estiver sem publicações ativas. */
-  grid-column: 1 / -1;
-  padding: 2rem 1rem;
-  text-align: center;
-  font-size: var(--texto-sm);
-  color: var(--cor-tinta-suave-acessivel);
-}
-
-.mural__proxima,
-.mural__preservadas,
-.mural__periodo {
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 0.25rem;
-}
-
-.mural__proxima,
-.mural__quantidade {
-  color: var(--cor-ambar);
-}
-
-.mural__periodo {
-  color: var(--cor-nevoa-acessivel);
-}
-
-/* ---------------------------- Seção 4 - Contato ---------------------------- */
-/* Mantém a transição para o fundo abissal e centraliza o formulário de contato. */
-#contato {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 0;
-  background-image: linear-gradient(0deg,
-      var(--cor-abismo) 0%,
-      var(--cor-jade) 100%);
-}
-
-.contato__conteudo {
-  /* Limita a largura de leitura e respeita o mesmo ritmo lateral das outras seções. */
-  position: relative;
-  z-index: 21;
-  width: min(100%, 1188px);
-  margin: 0 auto;
-  padding: clamp(3rem, 6vh, 5rem) clamp(1.5rem, 5vw, 4rem) clamp(4rem, 8vh, 6rem);
+/* Atalho acessível para pular direto ao conteúdo principal */
+.pular-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 10000;
+  padding: 0.7rem 1.1rem;
   font-family: var(--fonte-texto);
-}
-
-/* Citação e cabeçalho do contato: herdam de .secao__ base */
-
-.contato__formulario {
-  /* Papel e sombra integram o formulário aos cartões da seção de habitantes. */
-  position: relative;
-  isolation: isolate;
-  padding: clamp(2rem, 4vw, 3rem);
-  color: var(--cor-tinta);
-  background-color: var(--cor-pergaminho);
-  border: 1px solid var(--cor-pergaminho-borda);
-  border-radius: 3px;
-  box-shadow: 0 8px 24px rgba(0, 3, 5, 0.38), inset 0 0 28px rgba(130, 90, 40, 0.12);
-  transition: box-shadow 0.3s ease;
-}
-
-.contato__formulario::before {
-  /* Fita decorativa dá ao formulário o aspecto de uma folha presa ao mural. */
-  position: absolute;
-  top: -0.42rem;
-  left: 50%;
-  z-index: 1;
-  width: 4rem;
-  height: 0.9rem;
-  content: "";
-  background-color: rgba(193, 75, 44, 0.76);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
-  transform: translateX(-50%) rotate(-1.5deg);
-}
-
-.contato__formulario>* {
-  position: relative;
-  z-index: 2;
-}
-
-.contato__formulario:focus-within {
-  /* Realça o painel enquanto qualquer controle interno está sendo usado. */
-  box-shadow: 0 12px 30px rgba(0, 3, 5, 0.42), inset 0 0 28px rgba(130, 90, 40, 0.12);
-}
-
-.contato__terminal {
-  /* Faixa de status separa visualmente o contexto do formulário dos campos. */
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding-bottom: 0.8rem;
   font-size: var(--texto-sm);
   font-weight: var(--peso-semibold);
-  letter-spacing: 0.08em;
-  color: var(--cor-ferrugem-acessivel);
-  border-bottom: 1px dotted rgba(100, 73, 56, 0.45);
+  color: var(--cor-espuma);
+  text-decoration: none;
+  background: var(--cor-oceano-acessivel);
+  border-radius: 8px;
 }
 
-.contato__terminal-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
+.pular-link:not(:focus) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
   white-space: nowrap;
 }
 
-.contato__terminal-status i {
-  font-size: var(--texto-xs);
-  color: var(--cor-oceano-acessivel);
-  animation: contato-pulso 2s ease-in-out infinite;
-}
-
-.contato__orientacao {
-  /* Introdução e nota de obrigatoriedade aparecem antes dos campos para orientar o preenchimento. */
-  max-width: 52rem;
-  margin-top: 1rem;
-  font-family: var(--fonte-titulo);
-  font-size: var(--texto-md);
-  line-height: var(--linha-leitura);
-  color: var(--cor-tinta-suave-acessivel);
-}
-
-.contato__obrigatorios {
-  margin-top: 0.65rem;
-  font-size: var(--texto-sm);
-  color: var(--cor-tinta-suave-acessivel);
-}
-
-.contato__campos {
-  /* Duas colunas em telas amplas reduzem a altura; campos longos ocupam a largura completa. */
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.1rem 1rem;
-  margin-top: 1.25rem;
-}
-
-.contato__campo {
-  /* Empilha rótulo, controle e mensagem de erro para preservar a associação visual. */
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.contato__campo--retorno,
-.contato__campo--mensagem {
-  /* Informações de texto livre têm mais espaço horizontal para facilitar a leitura e a digitação. */
-  grid-column: 1 / -1;
-}
-
-.contato__campo label {
-  font-size: var(--texto-base);
-  font-weight: var(--peso-semibold);
-  letter-spacing: 0.06em;
-  color: var(--cor-oceano-acessivel);
-}
-
-.contato__campo label>span:last-child {
-  color: var(--cor-ferrugem-acessivel);
-}
-
-.contato__campo input,
-.contato__campo select,
-.contato__campo textarea {
-  /* Aparência compartilhada dos controles, com contraste e tamanho legível. */
-  width: 100%;
-  min-height: var(--campo-altura);
-  padding: var(--campo-pad);
-  font-family: var(--fonte-texto);
-  font-size: var(--texto-base);
-  font-weight: var(--peso-regular);
-  line-height: var(--linha-base);
-  color: var(--cor-tinta);
-  background-color: rgba(255, 250, 235, 0.58);
-  border: 1px solid rgba(100, 73, 56, 0.38);
-  border-radius: var(--campo-raio);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.contato__campo textarea {
-  min-height: 7rem;
-  resize: vertical;
-}
-
-.contato__campo input::placeholder,
-.contato__campo textarea::placeholder {
-  color: var(--cor-tinta-suave);
-}
-
-.contato__campo input:hover,
-.contato__campo select:hover,
-.contato__campo textarea:hover {
-  border-color: var(--cor-oceano);
-}
-
-.contato__campo select:invalid {
-  color: var(--cor-tinta-suave);
-}
-
-.contato__campo option {
-  color: var(--cor-tinta);
-  background-color: var(--cor-pergaminho);
-}
-
-.contato__campo input:focus-visible,
-.contato__campo select:focus-visible,
-.contato__campo textarea:focus-visible {
-  /* Indica o foco do teclado para que a navegação sem mouse permaneça clara. */
-  border-color: var(--cor-oceano-acessivel);
+#inicio:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(10, 88, 84, 0.18);
 }
 
-.contato__campo [aria-invalid="true"] {
-  border-color: var(--cor-ferrugem-acessivel);
-}
-
-.contato__erro {
-  /* Mensagens associadas a cada campo são exibidas pelo validador do formulário. */
-  font-size: var(--texto-sm);
-  font-weight: var(--peso-semibold);
-  line-height: var(--linha-curta);
-  color: var(--cor-ferrugem-acessivel);
-}
-
-.contato__acoes {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding-top: 1rem;
-  margin-top: 1.1rem;
-  border-top: 1px dotted rgba(100, 73, 56, 0.45);
-}
-
-.contato__aviso {
-  max-width: 32rem;
-  font-size: var(--texto-micro);
-  line-height: var(--linha-base);
-  color: var(--cor-nevoa-acessivel);
-}
-
-.contato__enviar {
-  min-height: var(--btn-altura-lg);
-  padding: var(--btn-pad-lg);
-  font-size: var(--texto-base);
-  letter-spacing: 0.05em;
-  border-radius: var(--btn-raio);
-}
-
-.contato__confirmacao {
-  /* Resultado do envio válido, anunciado pelo leitor de tela através de role=status no HTML. */
-  padding: 0.8rem 1rem;
-  margin-top: 1rem;
-  font-size: var(--texto-base);
-  font-weight: var(--peso-semibold);
-  line-height: var(--linha-base);
-  color: var(--cor-oceano-acessivel);
-  background-color: rgba(27, 155, 149, 0.1);
-  border-left: 3px solid var(--cor-oceano-acessivel);
-}
-
-@keyframes contato-pulso {
-
-  /* Pulso discreto indica visualmente o estado da linha de contato demonstrativa. */
-  50% {
-    opacity: 0.4;
-    box-shadow: 0 0 8px var(--cor-oceano);
-  }
-}
-
-@keyframes contato-sinal {
-  to {
-    transform: scale(1.15);
-  }
-}
-
-.montanha-front-rodape {
-  /* Ilustração de profundidade decorativa; não intercepta cliques nem adiciona conteúdo acessível repetido. */
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  object-position: top center;
-  z-index: 0;
-  opacity: 0.35;
-  pointer-events: none;
-}
-
-/* ---------------------------- Rodapé ---------------------------- */
-/* Fecha a página com identidade, navegação e informações úteis sem herdar a altura de uma seção principal. */
-#rodape {
-  position: relative;
-  font-family: var(--fonte-texto);
-  background-color: var(--cor-abismo);
-  min-height: auto;
-  padding: 2.2rem 2rem 1rem;
-}
-
-#rodape section,
-.rodape section,
-.rodape__identidade,
-.rodape__canais {
-  min-height: auto;
-}
-
-.rodape__conteudo {
-  /* Colunas separam apresentação do portal, atalhos e canais de escuta. */
-  display: grid;
-  grid-template-columns: minmax(250px, 1.35fr) minmax(150px, 0.8fr) minmax(250px, 1fr);
-  gap: clamp(2rem, 7vw, 7rem);
-  width: min(100%, 1440px);
-  margin: 0 auto;
-}
-
-.rodape__marca {
-  /* Marca inteira é um link para voltar ao início. */
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  color: var(--cor-espuma);
-  text-decoration: none;
-}
-
-.rodape__simbolo {
-  display: grid;
-  width: 2.8rem;
-  height: 2.8rem;
-  place-items: center;
-  flex: 0 0 2.8rem;
-}
-
-.rodape__simbolo img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  mix-blend-mode: screen;
-}
-
-.rodape__nome {
-  display: flex;
-  flex-direction: column;
-  gap: 0.12rem;
-  font-size: var(--texto-sm);
-  font-weight: var(--peso-semibold);
-  line-height: var(--linha-compacta);
-}
-
-.rodape__assinatura {
-  font-size: var(--texto-micro);
-  font-weight: var(--peso-semibold);
-  letter-spacing: 0.11em;
-  color: var(--cor-menta-neon);
-}
-
-.rodape__descricao {
-  max-width: 27rem;
-  margin: 0.9rem 0;
-  font-size: var(--texto-sm);
-  line-height: var(--linha-base);
-  color: var(--cor-nevoa-acessivel);
-}
-
-.rodape__indicadores {
-  /* Selos curtos apresentam dados contextuais sem ocupar a descrição principal. */
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.rodape__selo {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.35rem 0.6rem;
-  font-size: var(--texto-micro);
-  font-weight: var(--peso-semibold);
-  letter-spacing: 0.08em;
-  border-radius: 2rem;
-}
-
-.rodape__selo--profundidade {
-  color: var(--cor-menta-neon);
-  background-color: rgba(15, 244, 204, 0.1);
-}
-
-.rodape__selo--comunidade {
-  color: var(--cor-pergaminho);
-  background-color: rgba(224, 144, 40, 0.12);
-}
-
-.rodape__titulo-coluna {
-  margin-bottom: 0.75rem;
-  font-size: var(--texto-sm);
-  font-weight: var(--peso-semibold);
-  color: var(--cor-espuma);
-}
-
-.rodape__lista {
-  /* Lista comum para atalhos e canais, mantendo espaçamento uniforme. */
-  display: grid;
-  gap: 0.45rem;
-  padding: 0;
-  list-style: none;
-}
-
-.rodape__lista a,
-.rodape__lista li {
-  font-size: var(--texto-sm);
-  line-height: var(--linha-curta);
-  color: var(--cor-nevoa-acessivel);
-}
-
-.rodape__lista a {
-  /* Área mínima de interação facilita seleção por toque e teclado. */
-  display: inline-flex;
-  align-items: center;
-  min-height: 2rem;
-  /* área de toque mínima (WCAG 2.5.8) */
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.rodape__lista a:hover,
-.rodape__lista a:focus-visible {
-  color: var(--cor-menta-neon);
-}
-
-.rodape__lista--canais li {
-  /* Alinha ícone e texto em cada canal de referência. */
-  display: flex;
-  align-items: baseline;
-  gap: 0.55rem;
-}
-
-.rodape__icone-canal {
-  flex: 0 0 0.85rem;
-  font-size: var(--texto-micro);
-}
-
-.rodape__icone-canal--radio {
-  color: var(--cor-menta-neon);
-}
-
-.rodape__icone-canal--alerta {
-  color: var(--cor-ferrugem-clara);
-}
-
-.rodape__icone-canal--assembleia {
-  color: var(--cor-sinal-texto);
-}
-
-.rodape__base {
-  /* Divisor separa os créditos do restante das informações do rodapé. */
-  width: min(100%, 1440px);
-  padding-top: 0.65rem;
-  margin: 0.8rem auto 0;
-  border-top: 1px solid rgba(169, 192, 190, 0.18);
-}
-
-.rodape__base p {
-  font-size: var(--texto-micro);
-  letter-spacing: 0.04em;
-  color: rgba(196, 216, 214, 0.75);
-}
-
-/* ---------------------------- Media Queries (Responsividade) ---------------------------- */
-/* Abaixo de 1100px o livro 3D ficaria com letras de 9-11px; por isso vira uma coluna simples.
-   Se mudar este valor, mude também MAX_LARGURA_LIVRO_PLANO em atlantida-book-anim.js. */
-@media (max-width: 1100px) {
-
-  /* Remove o livro 3D e a ilustração */
-  .livro-3d__capa--base,
-  .livro-3d__capa--frontal,
-  .livro-3d__folha--direita,
-  .livro-3d__folha--esquerda>.livro-3d__face--frente,
-  .livro-3d__imagem-ilustracao {
-    display: none !important;
-  }
-
-  .secao-apresentacao {
-    perspective: none !important;
-    min-height: 100vh;
-    height: auto;
-    padding: clamp(5.5rem, 12vh, 7rem) 1.5rem 5.5rem 1.5rem;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .livro-3d {
-    position: relative !important;
-    width: 100% !important;
-    max-width: 580px !important;
-    height: auto !important;
-    min-height: auto !important;
-    transform: none !important;
-    rotate: 0deg !important;
-    filter: none !important;
-    perspective: none !important;
-    transform-style: flat !important;
-    margin: 0 auto !important;
-    padding: 0 !important;
-  }
-
-  .livro-3d__folha--esquerda {
-    position: static !important;
-    top: auto !important;
-    left: auto !important;
-    width: 100% !important;
-    height: auto !important;
-    transform: none !important;
-    transform-origin: unset !important;
-    z-index: 10 !important;
-  }
-
-  .livro-3d__face--verso {
-    position: relative !important;
-    inset: auto !important;
-    width: 100% !important;
-    height: auto !important;
-    transform: none !important;
-    backface-visibility: visible !important;
-    background: none !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    padding: 0 !important;
-    overflow: visible !important;
-  }
-
-  .livro-3d__conteudo-texto {
-    position: relative !important;
-    width: 100% !important;
-    height: auto !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    text-align: left !important;
-    user-select: auto;
-  }
-
-  .livro-3d__titulo-principal {
-    margin-bottom: 1.15rem !important;
-    font-family: var(--fonte-titulo) !important;
-    font-size: var(--titulo-hero) !important;
-    font-weight: var(--peso-bold) !important;
-    line-height: 1.08 !important;
-    letter-spacing: -0.015em !important;
-    color: var(--cor-espuma) !important;
-  }
-
-  .livro-3d__titulo-linha {
-    display: block !important;
-  }
-
-  .livro-3d__titulo-linha:last-child {
-    color: var(--cor-menta-neon) !important;
-  }
-
-  .livro-3d__descricao {
-    max-width: 520px !important;
-    margin-bottom: 1.75rem !important;
-    font-family: var(--fonte-texto) !important;
-    font-size: clamp(0.95rem, 2.6vw, 1.125rem) !important;
-    font-weight: var(--peso-regular) !important;
-    line-height: 1.65 !important;
-    color: var(--cor-nevoa) !important;
-  }
-
-  .livro-3d__painel-status {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 1.25rem 2.25rem !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    width: 100% !important;
-    max-width: 520px !important;
-    padding: 0.95rem 0 !important;
-    margin-bottom: 2rem !important;
-    border-top: 1px dashed rgba(99, 182, 175, 0.35) !important;
-    border-bottom: 1px dashed rgba(99, 182, 175, 0.35) !important;
-  }
-
-  .livro-3d__status-item {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 3px !important;
-  }
-
-  .livro-3d__status-valor {
-    font-family: var(--fonte-texto) !important;
-    font-size: clamp(1rem, 3.2vw, 1.25rem) !important;
-    font-weight: var(--peso-bold) !important;
-    letter-spacing: 0.5px !important;
-    color: var(--cor-menta-neon) !important;
-  }
-
-  .livro-3d__status-rotulo {
-    font-family: var(--fonte-texto) !important;
-    font-size: clamp(0.75rem, 2vw, 0.8rem) !important;
-    font-weight: var(--peso-semibold) !important;
-    letter-spacing: 0.8px !important;
-    color: var(--cor-nevoa) !important;
-    text-transform: uppercase !important;
-    opacity: 0.85;
-  }
-
-  .livro-3d__acoes {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 1rem !important;
-    align-items: center !important;
-    width: 100% !important;
-  }
-
-  .livro-3d__acoes .botao {
-    min-height: var(--btn-altura-md) !important;
-    padding: var(--btn-pad-md) !important;
-    font-size: var(--texto-sm) !important;
-    border-radius: var(--btn-raio) !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .livro-3d__painel-status {
-    justify-content: space-between !important;
-    gap: 0.75rem !important;
-  }
-
-  .livro-3d__acoes {
-    gap: 0.75rem !important;
-  }
-
-  .livro-3d__acoes .botao {
-    flex: 1 1 calc(50% - 0.5rem);
-    min-width: 130px;
-    text-align: center;
-    padding: 0.8rem 1rem !important;
-  }
-}
-
+/* ==========================================================================
+   8. RESPONSIVIDADE GLOBAL
+   ========================================================================== */
 @media (max-width: 768px) {
-
-  /* Reduz o respiro vertical do contato em telas estreitas para o formulário caber melhor. */
-  #contato {
-    padding: 4rem 1rem;
+  .container-secao {
+    padding-left: 3.6rem;
+    padding-right: 1.25rem;
   }
 
-  .secao__citacao,
-  .mural__citacao {
+  .secao__citacao {
     margin-bottom: 4rem;
+  }
+
+  .secao__cabecalho {
+    gap: 0.7rem;
   }
 
   .secao__numero {
@@ -1809,64 +759,14 @@ body>section,
     font-size: 2.7rem;
   }
 
-  .secao__cabecalho {
-    gap: 0.7rem;
-  }
-
-  /* Mantém a grade em duas colunas, com espaços menores para os cartões no tablet. */
-  .mural__chapa {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.65rem;
-    padding: 1rem;
-  }
-
-  .contato__formulario {
-    padding: 1.6rem 1.25rem;
-  }
-
-  .contato__campos {
-    grid-template-columns: 1fr;
-  }
-
-  .contato__campo--retorno,
-  .contato__campo--mensagem {
-    grid-column: auto;
-  }
-
-  .mural__mensagem {
-    min-height: 9.5rem;
-    padding: 1.2rem 1rem 0.9rem;
-  }
-
-  /* Compacta o rodapé sem esconder conteúdo em telas menores. */
-  #rodape {
-    padding: 2rem 1.25rem 1rem;
-  }
-
-  .rodape__conteudo {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2rem 1.5rem;
-  }
-
-  .rodape__identidade {
-    grid-column: 1 / -1;
-  }
-
-  .rodape__descricao {
-    max-width: 36rem;
-  }
-
   .waves {
     height: 40px;
     min-height: 40px;
   }
 
-  h1 {
-    font-size: var(--texto-xl);
-  }
-
   .menu-lateral {
-    right: 0.6rem;
+    left: 0.6rem;
+    right: auto;
     padding: 0.5rem 0.35rem;
     border-radius: 28px;
   }
@@ -1890,24 +790,20 @@ body>section,
   }
 }
 
-@media (max-width: 480px) {
-
-  /* Reserva um recuo lateral menor para o formulário em celulares compactos. */
-  #contato {
-    padding: 3rem 0.85rem;
+@media (min-width: 769px) and (max-width: 1359px) {
+  .container-secao {
+    padding-left: 10.5rem;
+    padding-right: 1.25rem;
   }
+}
 
-  .secao__citacao,
-  .mural__citacao {
+@media (max-width: 480px) {
+  .secao__citacao {
     margin-bottom: 3rem;
   }
 
-  .secao__citacao>span {
+  .secao__citacao > span {
     font-size: var(--texto-micro);
-  }
-
-  .secao__sobretitulo {
-    font-size: var(--texto-xs);
   }
 
   .secao__cabecalho {
@@ -1919,6 +815,10 @@ body>section,
     font-size: 2.1rem;
   }
 
+  .secao__sobretitulo {
+    font-size: var(--texto-xs);
+  }
+
   .secao__titulo-grupo h2 {
     font-size: clamp(1.3rem, 6vw, 1.8rem);
   }
@@ -1926,55 +826,16 @@ body>section,
   .secao__subtitulo {
     font-size: var(--texto-xs);
   }
-
-  .mural__sinal {
-    width: 2rem;
-    height: 2rem;
-  }
-
-  /* No celular, os cartões e o resumo passam para uma coluna para evitar texto comprimido. */
-  .mural__chapa {
-    grid-template-columns: 1fr;
-    gap: 0.8rem;
-    padding: 1rem 0.8rem;
-  }
-
-  .mural__mensagem--urgente {
-    grid-column: auto;
-  }
-
-  .mural__rodape {
-    flex-direction: column;
-  }
-
-  /* Empilha as colunas do rodapé para manter cada link legível. */
-  .rodape__conteudo {
-    grid-template-columns: 1fr;
-    gap: 1.8rem;
-  }
-
-  .rodape__identidade {
-    grid-column: auto;
-  }
 }
 
+/* ==========================================================================
+   9. PREFERÊNCIA DE MOVIMENTO REDUZIDO (ACESSIBILIDADE)
+   ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
-
   body::before,
   body::after,
-  .parallax>use,
-  .mural__mensagem,
-  .contato__terminal-status i {
+  .parallax > use {
     animation: none !important;
-  }
-
-  .mural__mensagem,
-  .contato__formulario,
-  .contato__campo input,
-  .contato__campo select,
-  .contato__campo textarea,
-  .contato__enviar {
-    transition: none !important;
   }
 
   .menu-lateral,

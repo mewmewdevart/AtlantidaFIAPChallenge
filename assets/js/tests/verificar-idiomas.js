@@ -30,7 +30,7 @@ for (const [nome, dic] of [["português", ptBr], ["Atlante", ptBrAtlantida]]) {
 const html = fs.readFileSync(path.join(raiz, "index.html"), "utf8");
 const usadas = new Set([...html.matchAll(/data-i18n(?:-placeholder)?="([^"]+)"/g)].map((m) => m[1]));
 usadas.forEach((k) => { if (!(k in ptBr)) problemas.push(`o index.html usa "${k}", que não existe no dicionário`); });
-const emCodigo = fs.readFileSync(path.join(raiz, "assets/js/main.js"), "utf8");
+const emCodigo = fs.readFileSync(path.join(raiz, "assets/js/portal-navegacao.js"), "utf8");
 const semUso = Object.keys(ptBr).filter((k) => !usadas.has(k) && !emCodigo.includes(`"${k}"`));
 
 // 3. resto de português ou espanhol dentro do Atlante

@@ -28,9 +28,9 @@ function conferirTexto(onde, pt, atl) {
   if (sobras.length) problemas.push(`${onde}: português no Atlante (${[...new Set(sobras)].join(", ")}): "${atl.slice(0, 70)}"`);
 }
 
-/* ---------- 1. Dados (dados-mundo-habitantes.js) ---------- */
+/* ---------- 1. Dados (dados-secoes.js) ---------- */
 const janela = {};
-vm.runInNewContext(fs.readFileSync(path.join(raiz, "assets/js/dados-mundo-habitantes.js"), "utf8"), { window: janela });
+vm.runInNewContext(fs.readFileSync(path.join(raiz, "assets/js/dados-secoes.js"), "utf8"), { window: janela });
 const d = janela.DADOS_MUNDO_HABITANTES;
 
 // Varre o objeto: para todo campo "x" que tenha "x_atl" (ou que devesse ter), confere o par.
@@ -56,9 +56,9 @@ function varrer(obj, caminho) {
 
 Object.entries(d.rotulos).forEach(([k, r]) => conferirTexto(`rotulos.${k}`, r.pt, r.atl));
 
-// Chasqui: palavras-chave e passos vivem em chasqui-palavras.js
+// Chasqui: palavras-chave e passos vivem em chasqui-motor.js
 const janelaChasqui = {};
-vm.runInNewContext(fs.readFileSync(path.join(raiz, "assets/js/chasqui-palavras.js"), "utf8"), { window: janelaChasqui });
+vm.runInNewContext(fs.readFileSync(path.join(raiz, "assets/js/chasqui-motor.js"), "utf8"), { window: janelaChasqui });
 Object.entries(janelaChasqui.CHASQUI.habitantes).forEach(([id, c]) => {
   if (!c.passos_atl || c.passos_atl.length !== c.passos.length) problemas.push(`chasqui.${id}: passos_atl não bate com passos`);
   else c.passos_atl.forEach((p, i) => conferirTexto(`chasqui.${id}.passos[${i}]`, c.passos[i], p));

@@ -36,7 +36,6 @@ AtlantidaFIAPChallenge/
 │   ├── css/
 │   │   ├── variables.css          # Cores, tipografia e medidas (tokens)
 │   │   ├── style.css              # Estilo principal: hero, menu, Mural, Contato, rodapé
-│   │   ├── secoes-comuns.css      # Base das seções O Mundo e Habitantes (papel, foto, foco, link de pular)
 │   │   ├── secao-mundo.css        # Seção 02 · O Mundo
 │   │   └── secao-habitantes.css   # Seção 03 · Habitantes
 │   ├── js/

@@ -1,91 +1,88 @@
 :root {
-  /* Cores: Água & Profundezas */
-  --cor-abismo: rgb(0, 3, 5);
-  --cor-agua-profunda: rgb(0, 10, 16);
-  --cor-fundo: rgb(0, 35, 41);
-  --cor-painel: rgb(0, 46, 50);
-  --cor-casco: rgb(1, 56, 60);
-  --cor-jade: rgb(16, 84, 79);
-  --cor-jade-claro: rgb(99, 182, 175);
+  /* ==========================================================================
+     1. IDENTIDADE VISUAL & PALETA DE CORES
+     ========================================================================== */
 
-  /* Cores: Interface & Tipografia */
-  --cor-menta-neon: rgb(15, 244, 204);
-  --cor-espuma: rgb(238, 246, 245);
-  --cor-nevoa: rgb(169, 192, 190);
-  /* Nevoa acessível: contraste ≥ 4.5:1 sobre fundos escuros (#002329, #000A10) */
-  --cor-nevoa-acessivel: rgb(196, 216, 214);
-  --cor-sinal: rgb(22, 104, 99);
-  --cor-sinal-claro: rgb(62, 144, 137);
-  /* Sinal legível sobre fundos escuros (≥ 4.5:1 sobre #000A10) */
-  --cor-sinal-texto: rgb(135, 210, 203);
+  /* --- Profundidades & Oceano --- */
+  --cor-abismo: rgb(0, 3, 5);             /* Fundo mais escuro para áreas abissais */
+  --cor-agua-profunda: rgb(0, 10, 16);     /* Tom abissal intermediário */
+  --cor-fundo: rgb(0, 35, 41);             /* Fundo escuro azul-esverdeado */
+  --cor-painel: rgb(0, 46, 50);            /* Fundo de painéis e capas */
+  --cor-casco: rgb(1, 56, 60);             /* Tom metálico de submarino e estruturas */
+  --cor-jade: rgb(16, 84, 79);             /* Verde jade oceânico base */
+  --cor-jade-claro: rgb(99, 182, 175);     /* Realce de cristas e ondas */
 
-  /* Cores: Metais, Carimbos & Destaques */
-  --cor-ambar: rgb(224, 144, 40);
-  /* Ambar acessível sobre pergaminho (≥ 4.5:1 sobre #EFD CB5) */
-  --cor-ambar-acessivel: rgb(140, 82, 0);
-  --cor-ferrugem: rgb(193, 75, 44);
-  /* Ferrugem acessível: contraste ≥ 4.5:1 sobre pergaminho claro */
-  --cor-ferrugem-acessivel: rgb(160, 55, 25);
-  /* Ferrugem profunda: estado "hover" de botões ferrugem */
-  --cor-ferrugem-profunda: rgb(128, 42, 18);
-  /* Ferrugem clara: contraste ≥ 6:1 sobre fundos escuros (#000A10, #002329) */
-  --cor-ferrugem-clara: rgb(255, 160, 130);
-  --cor-terracota: rgb(206, 77, 44);
-  /* Terracota acessível sobre pergaminho */
-  --cor-terracota-acessivel: rgb(168, 50, 20);
+  /* --- Interface, Iluminação & Tipografia em Fundo Escuro --- */
+  --cor-menta-neon: rgb(15, 244, 204);     /* Realces luminosos bioluminescentes */
+  --cor-espuma: rgb(238, 246, 245);        /* Branco marítimo suave para leitura em fundos escuros */
+  --cor-nevoa: rgb(169, 192, 190);         /* Cinza-azulado suave para textos secundários */
+  --cor-nevoa-acessivel: rgb(196, 216, 214); /* Contraste ≥ 4.5:1 sobre fundos escuros */
+  --cor-sinal: rgb(22, 104, 99);           /* Indicadores e foco de interface */
+  --cor-sinal-claro: rgb(62, 144, 137);    /* Bordas e elementos divisores */
+  --cor-sinal-texto: rgb(135, 210, 203);   /* Texto legível de sinalização (≥ 4.5:1) */
 
-  /* Cores: Livro & Pergaminho */
-  --cor-pergaminho: rgb(239, 220, 181);
-  --cor-pergaminho-borda: rgb(235, 207, 173);
-  --cor-tinta: rgb(50, 27, 11);
-  --cor-tinta-suave: rgb(100, 73, 56);
-  /* Tinta suave acessível: contraste ≥ 4.5:1 sobre pergaminho #EFDCB5 */
-  --cor-tinta-suave-acessivel: rgb(72, 48, 32);
+  /* --- Metais, Carimbos & Destaques --- */
+  --cor-ambar: rgb(224, 144, 40);          /* Dourado/âmbar para números e ícones */
+  --cor-ambar-acessivel: rgb(140, 82, 0);  /* Âmbar de alto contraste sobre pergaminho */
+  --cor-ferrugem: rgb(193, 75, 44);        /* Vermelho ferrugem característico */
+  --cor-ferrugem-acessivel: rgb(160, 55, 25); /* Ferrugem legível sobre pergaminho claro */
+  --cor-ferrugem-profunda: rgb(128, 42, 18);  /* Estado hover de botões ferrugem */
+  --cor-ferrugem-clara: rgb(255, 160, 130);   /* Subtítulos em destaque sobre fundos escuros */
+  --cor-terracota: rgb(206, 77, 44);       /* Alertas e ênfases quentes */
+  --cor-terracota-acessivel: rgb(168, 50, 20); /* Terracota de alto contraste sobre papel */
 
-  /* Cores: Botões & Ações */
-  --cor-oceano: rgb(27, 155, 149);
-  --cor-oceano-hover: rgb(21, 133, 128);
-  --cor-oceano-sombra: rgba(27, 155, 149, 0.35);
-  /* Oceano acessível: texto claro sobre ele ≥ 7:1; texto dele sobre pergaminho ≥ 4.5:1 */
-  --cor-oceano-acessivel: rgb(10, 88, 84);
-  --cor-oceano-acessivel-hover: rgb(7, 70, 67);
+  /* --- Papel, Pergaminho & Impressão --- */
+  --cor-pergaminho: rgb(239, 220, 181);    /* Fundo quente para cartões, fichas e dossiês */
+  --cor-pergaminho-borda: rgb(235, 207, 173); /* Contorno sutil para folhas de papel */
+  --cor-tinta: rgb(50, 27, 11);            /* Tinta escura principal de texto impresso */
+  --cor-tinta-suave: rgb(100, 73, 56);     /* Tinta suavizada para notas e bordas pontilhadas */
+  --cor-tinta-suave-acessivel: rgb(72, 48, 32); /* Tinta secundária com contraste WCAG garantido */
 
-  /* Medidas & Escalas: Livro 3D */
-  /* escala com a largura E com a altura da janela, para o livro inteiro caber na tela */
+  /* --- Ações & Botões --- */
+  --cor-oceano: rgb(27, 155, 149);         /* Tom de ação oceânico */
+  --cor-oceano-acessivel: rgb(10, 88, 84); /* Ação primária acessível (≥ 7:1 sobre claro / ≥ 4.5:1 sobre papel) */
+  --cor-oceano-acessivel-hover: rgb(7, 70, 67); /* Estado hover do botão oceânico */
+
+  /* ==========================================================================
+     2. DIMENSÕES & PROPORÇÕES DO LIVRO 3D
+     ========================================================================== */
   --livro-unidade: clamp(36px, min(3.6vw, 6.4vh), 50px);
   --livro-largura-base: 18.5;
   --livro-altura-base: 12.5;
 
-  /* Tipografia: Famílias de Fonte */
-  --fonte-titulo: "EB Garamond", Georgia, serif;
+  /* ==========================================================================
+     3. TIPOGRAFIA & ESCALAS
+     ========================================================================== */
+
+  /* Famílias Tipográficas */
+  --fonte-titulo: "Asimovian", sans-serif;
   --fonte-texto: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --fonte-emblema: "Cinzel", Georgia, serif;
 
-  /* Tipografia: Pesos Padronizados (WCAG / Acessibilidade) */
-  --peso-regular: 400;   /* Textos longos, parágrafos normais, descrições */
-  --peso-medio: 500;     /* Ênfase moderada, nomes de crachás, valores de dados */
-  --peso-semibold: 600;  /* Subtítulos, labels, botões, tags, links ativos */
-  --peso-bold: 700;      /* Títulos de seção, números, alertas, ênfases principais */
+  /* Pesos Padronizados (WCAG / Acessibilidade) */
+  --peso-regular: 400;   /* Parágrafos, descrições e leitura geral */
+  --peso-medio: 500;     /* Dados moderados e metadados */
+  --peso-semibold: 600;  /* Subtítulos, rótulos de campos e botões */
+  --peso-bold: 700;      /* Títulos, números grandes e chamadas principais */
 
-  /* Tipografia: Alturas de Linha (Line-height - WCAG 1.4.12) */
-  --linha-compacta: 1.15;  /* Títulos grandes, números e display */
-  --linha-curta: 1.3;      /* Subtítulos de cards, nomes e botões */
-  --linha-base: 1.45;      /* Textos curtos, itens de lista, labels */
-  --linha-leitura: 1.6;    /* Parágrafos de leitura contínua (mínimo 1.5 WCAG) */
+  /* Alturas de Linha (Line-height) */
+  --linha-compacta: 1.15; /* Títulos grandes e números de seção */
+  --linha-curta: 1.3;     /* Cabeçalhos de cards e botões */
+  --linha-base: 1.45;     /* Textos curtos, itens de lista e campos */
+  --linha-leitura: 1.6;   /* Parágrafos de leitura contínua (mínimo 1.5 WCAG) */
 
-  /* Tipografia: Escala Modular de Tamanhos (Base 16px / rem) */
-  --texto-micro: 0.75rem;    /* 12px - Metadados mínimos, selos, crachás (limiar acessível) */
-  --texto-xs: 0.8125rem;     /* 13px - Timestamps, contadores, notas secundárias */
-  --texto-sm: 0.875rem;      /* 14px - Labels de formulário, menus, tags, botões compactos */
-  --texto-base: 1rem;        /* 16px - Texto base, inputs (evita zoom no mobile), figcaptions */
-  --texto-md: 1.125rem;      /* 18px - Bios, textos de apoio, chamadas médias */
-  --texto-lg: 1.25rem;       /* 20px - Subtítulos, introduções, citações de cards */
-  --texto-xl: 1.5rem;        /* 24px - Títulos h4, títulos de painéis */
-  --texto-2xl: 1.75rem;      /* 28px - Títulos h3, subseções */
-  --texto-3xl: 2rem;         /* 32px - Nomes principais em cards, títulos médios */
-  --texto-4xl: 2.5rem;       /* 40px - Indicadores numéricos grandes */
+  /* Escala Modular de Tamanhos (Base 16px / rem) */
+  --texto-micro: 0.75rem;    /* 12px - Selos, timestamps e legendas curtas */
+  --texto-xs: 0.8125rem;     /* 13px - Indicadores secundários e notas */
+  --texto-sm: 0.875rem;      /* 14px - Labels de formulário, menus e tags */
+  --texto-base: 1rem;        /* 16px - Texto padrão do corpo da página */
+  --texto-md: 1.125rem;      /* 18px - Textos de apoio e parágrafos de destaque */
+  --texto-lg: 1.25rem;       /* 20px - Subtítulos e introduções */
+  --texto-xl: 1.5rem;        /* 24px - Títulos h3/h4 e títulos de caixas */
+  --texto-3xl: 2rem;         /* 32px - Nomes de destaque em cartões */
+  --texto-4xl: 2.5rem;       /* 40px - Indicadores numéricos expressivos */
 
-  /* Tipografia: Escalas Fluídas Responsivas */
+  /* Escalas Fluídas Responsivas */
   --titulo-hero: clamp(2.3rem, 7.5vw, 3.4rem);
   --titulo-secao-h2: clamp(1.75rem, 4.2vw, 3rem);
   --titulo-secao-numero: clamp(2.8rem, 6vw, 4rem);
@@ -93,18 +90,22 @@
   --titulo-citacao: clamp(0.95rem, 2vw, 1.3rem);
   --linha-divisoria-texto: clamp(0.8125rem, 1.6vw, 0.9375rem);
 
-  /* Componentes: Botões e Elementos Interativos (Padronização) */
-  --btn-altura-sm: 2.25rem;       /* 36px - Compacto (crachás, ações secundárias) */
-  --btn-altura-md: 2.75rem;       /* 44px - Padrão WCAG (toque e clique confortáveis) */
-  --btn-altura-lg: 3.125rem;      /* 50px - Destaque (hero e envio de formulário) */
-  --btn-pad-sm: 0.45rem 1rem;     /* Espaçamento interno compacto */
-  --btn-pad-md: 0.65rem 1.4rem;   /* Espaçamento interno padrão */
-  --btn-pad-lg: 0.85rem 1.85rem;  /* Espaçamento interno destaque */
-  --btn-raio: 6px;                /* Arredondamento harmônico consistente */
-  --btn-borda: 1.5px;             /* Espessura padrão de contorno */
+  /* ==========================================================================
+     4. COMPONENTES: BOTÕES E CONTROLES DE INTERFACE
+     ========================================================================== */
 
-  /* Componentes: Controles de Formulário (Inputs, Selects e Textareas) */
-  --campo-altura: 2.875rem;       /* 46px - Altura alinhada ao botão padrão */
-  --campo-pad: 0.75rem 1rem;      /* Espaçamento interno de campos */
-  --campo-raio: 6px;              /* Raio harmônico aos botões */
+  /* Botões Reutilizáveis */
+  --btn-altura-sm: 2.25rem;    /* 36px - Compacto */
+  --btn-altura-md: 2.75rem;    /* 44px - Padrão ergonômico WCAG */
+  --btn-altura-lg: 3.125rem;   /* 50px - Destaque para envio e chamadas */
+  --btn-pad-sm: 0.45rem 1rem;
+  --btn-pad-md: 0.65rem 1.4rem;
+  --btn-pad-lg: 0.85rem 1.85rem;
+  --btn-raio: 6px;
+  --btn-borda: 1.5px;
+
+  /* Controles de Formulário (Inputs, Selects, Textareas) */
+  --campo-altura: 2.875rem;   /* 46px - Alinhado à altura de toque do botão */
+  --campo-pad: 0.75rem 1rem;
+  --campo-raio: 6px;
 }

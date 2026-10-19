@@ -1,15 +1,26 @@
 /* Estilos da seção 2 - Os Habitantes: banner da equipe, crachás de papel com dossiê e o Chasqui (quem pode ajudar) */
 
+#habitantes {
+  position: relative;
+  overflow: hidden;
+}
+
 .habitantes {
   position: relative;
   z-index: 3;
 }
 
 #habitantes .montanha-front {
+  position: absolute;
+  top: 50px;
+  width: 100%;
   z-index: 2;
 }
 
 #habitantes .montanha-back {
+  position: absolute;
+  top: 0;
+  width: 100%;
   z-index: 0;
 }
 
@@ -327,7 +338,7 @@
   padding: 0.35rem 1rem;
   font-size: var(--texto-lg);
   line-height: 2rem;
-  font-family: var(--fonte-titulo);
+  font-family: var(--fonte-texto);
   color: var(--cor-tinta);
   resize: vertical;
   background-color: rgba(255, 252, 244, 0.55);

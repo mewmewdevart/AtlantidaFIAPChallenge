@@ -87,11 +87,12 @@ O cabeçalho numerado (`.secao__cabecalho`) é definido **uma vez só**, em `sty
 ## O que cada arquivo faz
 
 - `assets/lang/dicionarios.js`: todos os textos `data-i18n` nos dois idiomas (fonte única, funciona abrindo o arquivo com dois cliques).
-- `assets/js/i18n.js` (da equipe): troca o idioma do site, atualiza o `lang` do `<html>` e avisa as outras partes com o evento `app:language-changed`.
-- `assets/js/chasqui-palavras.js`: palavras-chave, passos e o motor de busca do Chasqui.
-- `assets/js/idioma-secoes.js`: troca os textos com `data-atl` e oferece `IDIOMA.t(objeto, "campo")` para os scripts.
-- `assets/js/secao-mundo.js` e `secao-habitantes.js`: leem os dados e montam o mapa, os indicadores, os crachás e o Chasqui. Redesenham tudo quando o idioma muda.
-- `assets/css/secoes-comuns.css`, `secao-mundo.css`, `secao-habitantes.css`: visual das duas seções.
+- `assets/js/idioma-geral.js`: gerencia a troca global de idioma do site, atualiza o `lang` do `<html>` e emite o evento `app:language-changed`.
+- `assets/js/dados-secoes.js`: dados dos lugares do mapa, indicadores de maré do pulso e fichas completas dos 6 habitantes.
+- `assets/js/chasqui-motor.js`: motor de busca e recomendação inteligente do Chasqui ("Quem pode ajudar?").
+- `assets/js/secao-hero.js`: animação de abertura 3D do Livro e interatividade da capa.
+- `assets/js/secao-mundo.js` e `assets/js/secao-habitantes.js`: renderizam mapa, indicadores, crachás e o formulário do Chasqui.
+- `assets/js/portal-navegacao.js`: menu de navegação, submarino indicador de profundidade, mural e formulário de contato.
 
 ## Se algo não aparecer
 

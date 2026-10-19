@@ -4,7 +4,7 @@
    Sai com erro (código 1) só nos itens marcados como ERRO; os AVISOS são para você decidir. */
 
 const path = require("path");
-const CHASQUI = require(path.join(__dirname, "../chasqui-palavras.js"));
+const CHASQUI = require(path.join(__dirname, "../chasqui-motor.js"));
 const { normalizar } = CHASQUI;
 
 const erros = [];

@@ -4,20 +4,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portal Web Atlântida — Plataforma de comunicação e suporte mútuo para a comunidade submersa da VR Code Arena (NEXT FIAP 2026). Conectando cúpulas, moradores e recursos vitais no fundo do oceano.">
+  <meta name="description"
+    content="Portal Web Atlântida — Plataforma de comunicação e suporte mútuo para a comunidade submersa da VR Code Arena (NEXT FIAP 2026). Conectando cúpulas, moradores e recursos vitais no fundo do oceano.">
   <title>Portal Web — Atlântida | VR Code Arena</title>
 
   <!-- Metatags de SEO e Redes Sociais (Open Graph & Twitter) -->
   <meta property="og:locale" content="pt_BR">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Portal Web — Atlântida | VR Code Arena">
-  <meta property="og:description" content="Conecte-se à cidade submarina, descubra seus espaços e explore um novo mundo abaixo da superfície. Desafio NEXT FIAP 2026.">
+  <meta property="og:description"
+    content="Conecte-se à cidade submarina, descubra seus espaços e explore um novo mundo abaixo da superfície. Desafio NEXT FIAP 2026.">
   <meta property="og:url" content="https://mewmewdevart.github.io/AtlantidaFIAPChallenge/">
   <meta property="og:image" content="./assets/media/image-hero-section.webp">
   <meta property="og:image:alt" content="Submarino explorando Atlântida">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Portal Web — Atlântida | VR Code Arena">
-  <meta name="twitter:description" content="Conecte-se à cidade submarina de Atlântida e acompanhe o pulso da comunidade subaquática.">
+  <meta name="twitter:description"
+    content="Conecte-se à cidade submarina de Atlântida e acompanhe o pulso da comunidade subaquática.">
   <meta name="twitter:image" content="./assets/media/image-hero-section.webp">
 
   <!-- Tipografia & Ícones -->
@@ -29,21 +32,27 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- Estilos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Asimovian&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="./assets/css/variables.css">
-  <link rel="stylesheet" href="assets/css/style.css?v=2">
-  <link rel="stylesheet" href="./assets/css/secoes-comuns.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/secao-hero.css">
   <link rel="stylesheet" href="./assets/css/secao-mundo.css">
   <link rel="stylesheet" href="./assets/css/secao-habitantes.css">
+  <link rel="stylesheet" href="./assets/css/secao-mural.css">
+  <link rel="stylesheet" href="./assets/css/secao-contato.css">
+  <link rel="stylesheet" href="./assets/css/rodape.css">
 
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="./assets/js/atlantida-book-anim.js?v=3" defer></script>
+  <script src="./assets/js/secao-hero.js" defer></script>
   <script src="./assets/lang/dicionarios.js" defer></script>
-  <script src="./assets/js/i18n.js" defer></script>
-  <script src="./assets/js/main.js" defer></script>
-  <script src="./assets/js/idioma-secoes.js" defer></script>
-  <script src="./assets/js/dados-mundo-habitantes.js" defer></script>
-  <script src="./assets/js/chasqui-palavras.js" defer></script>
+  <script src="./assets/js/idioma-geral.js" defer></script>
+  <script src="./assets/js/portal-navegacao.js" defer></script>
+  <script src="./assets/js/dados-secoes.js" defer></script>
+  <script src="./assets/js/chasqui-motor.js" defer></script>
   <script src="./assets/js/secao-mundo.js" defer></script>
   <script src="./assets/js/secao-habitantes.js" defer></script>
 
@@ -72,6 +81,16 @@
   </div>
 
   <nav class="menu-navegacao" id="menuNavegacao" aria-label="Menu principal" data-atl-aria-label="Kuraq ñankuna">
+    <button class="menu-navegacao__gatilho" type="button" aria-label="Abrir ou fechar menu"
+      data-atl-aria-label="Menuta kichay icha wichqay" aria-expanded="false" aria-controls="menuLateral">
+      <div class="menu-navegacao__hamburguer" aria-hidden="true">
+        <span class="menu-navegacao__linha menu-navegacao__linha--superior"></span>
+        <span class="menu-navegacao__linha menu-navegacao__linha--meio"></span>
+        <span class="menu-navegacao__linha menu-navegacao__linha--inferior"></span>
+      </div>
+      <span class="menu-navegacao__rotulo" data-i18n="nav.menu" aria-hidden="true">MENU</span>
+    </button>
+
     <div class="menu-navegacao__conteudo">
       <div class="seletor-idioma">
         <span class="seletor-idioma__rotulo seletor-idioma__rotulo--pt seletor-idioma__rotulo--ativo"
@@ -88,30 +107,16 @@
           data-i18n="nav.lang_atlantida">Atlântida</span>
       </div>
     </div>
-
-    <button class="menu-navegacao__gatilho" type="button" aria-label="Abrir ou fechar menu" data-atl-aria-label="Menuta kichay icha wichqay" aria-expanded="false"
-      aria-controls="menuLateral">
-      <div class="menu-navegacao__hamburguer" aria-hidden="true">
-        <span class="menu-navegacao__linha menu-navegacao__linha--superior"></span>
-        <span class="menu-navegacao__linha menu-navegacao__linha--meio"></span>
-        <span class="menu-navegacao__linha menu-navegacao__linha--inferior"></span>
-      </div>
-      <span class="menu-navegacao__rotulo" data-i18n="nav.menu" aria-hidden="true">MENU</span>
-    </button>
   </nav>
 
-  <!-- Menu de Navegação Vertical Lateral (Fixo à Direita) -->
+  <!-- Menu de Navegação Vertical Lateral (Fixo à Esquerda) -->
   <nav class="menu-lateral" id="menuLateral" aria-label="Navegação rápida pelas seções"
     data-atl-aria-label="Suyukunaman utqaylla riy" aria-hidden="true" inert>
     <!-- Indicador de Rolagem Temático: Submarino Marcador de Profundidade -->
     <div class="menu-lateral__indicador-submarino" id="indicadorSubmarino" aria-hidden="true">
-      <!-- <div class="menu-lateral__regua-trilha">
-        <div class="menu-lateral__regua-linha"></div>
-        <div class="menu-lateral__regua-marcas" id="reguaMarcas"></div>
-      </div> -->
       <div class="menu-lateral__submarino-wrapper" id="submarinoWrapper">
         <div class="menu-lateral__submarino-luz" aria-hidden="true"></div>
-        <img src="./assets/media/submarino-dir-1.png" alt="" class="menu-lateral__submarino-img" id="submarinoImg"
+        <img src="./assets/media/submarino-esq-1.png" alt="" class="menu-lateral__submarino-img" id="submarinoImg"
           draggable="false" />
       </div>
     </div>
@@ -211,8 +216,10 @@
             </div>
 
             <div class="livro-3d__acoes">
-              <a class="botao botao--primario botao--md" href="#o-mundo" data-i18n="hero.btn_explorar">Explorar Atlântida</a>
-              <a class="botao botao--secundario botao--md" href="#habitantes" data-i18n="hero.btn_saiba_mais">Saiba mais</a>
+              <a class="botao botao--primario botao--md" href="#o-mundo" data-i18n="hero.btn_explorar">Explorar
+                Atlântida</a>
+              <a class="botao botao--secundario botao--md" href="#habitantes" data-i18n="hero.btn_saiba_mais">Saiba
+                mais</a>
             </div>
           </div>
         </div>
@@ -223,8 +230,6 @@
           <div class="livro-3d__emblema" aria-hidden="true">
             <img src="./assets/media/atlantida-emblema-1.png" alt="">
           </div>
-          <!-- <h2 class="livro-3d__titulo-capa" data-i18n="hero.cover_title">ATLÂNTIDA</h2>
-          <p class="livro-3d__subtitulo-capa" data-i18n="hero.cover_subtitle">VR CODE ARENA — NEXT FIAP</p> -->
         </div>
         <div class="livro-3d__face-capa livro-3d__face-capa--verso" aria-hidden="true"></div>
       </div>
@@ -453,7 +458,8 @@
               placeholder="Ex.: A parede perto das estufas está rangendo e entrou água…"
               data-atl-placeholder="Hina: q'oñi wasikunap qayllanpi tepantli qarqarayan, yakutaq yaykurqa…"></textarea>
             <div class="chasqui__acoes">
-              <button type="submit" class="botao botao--primario botao--md" id="chasquiBotao" data-atl="Chaskita kachay">Mandar o
+              <button type="submit" class="botao botao--primario botao--md" id="chasquiBotao"
+                data-atl="Chaskita kachay">Mandar o
                 Chasqui</button>
               <span class="chasqui__contador" id="chasquiContador">0/800</span>
             </div>
@@ -470,9 +476,10 @@
   <section id="mural" class="secao-oceano" aria-label="Mural" data-atl-aria-label="Tlacuilolli">
     <!-- Identifica visualmente a faixa de profundidade em que o mural está localizado. -->
     <div class="linha-divisoria" role="separator" aria-label="Profundidade: 1000 a 3000 metros, Zona Batipelágica"
-    data-atl-aria-label="Ukhu kay: 1000 manta 3000 metro kama, Tutayaq Pacha">
+      data-atl-aria-label="Ukhu kay: 1000 manta 3000 metro kama, Tutayaq Pacha">
       <hr>
-      <span class="linha-divisoria__texto" data-atl="1000–3000 M // Tutayaq Pacha">1000–3000 M // Zona Batipelágica</span>
+      <span class="linha-divisoria__texto" data-atl="1000–3000 M // Tutayaq Pacha">1000–3000 M // Zona
+        Batipelágica</span>
       <hr>
     </div>
 
@@ -488,9 +495,11 @@
       <header class="secao__cabecalho mural__cabecalho">
         <span class="secao__numero mural__numero" aria-hidden="true">04</span>
         <div class="secao__titulo-grupo mural__titulo-grupo">
-          <span class="secao__sobretitulo mural__sobretitulo" aria-hidden="true" data-i18n="mural.frequency">VOZES DA COMUNA</span>
+          <span class="secao__sobretitulo mural__sobretitulo" aria-hidden="true" data-i18n="mural.frequency">VOZES DA
+            COMUNA</span>
           <h2 data-i18n="mural.title">MURAL DA COMUNIDADE</h2>
-          <span class="secao__subtitulo mural__subtitulo" aria-hidden="true" data-i18n="mural.subtitle">RECADOS, AVISOS E NOVIDADES DE ATLÂNTIDA.</span>
+          <span class="secao__subtitulo mural__subtitulo" aria-hidden="true" data-i18n="mural.subtitle">RECADOS, AVISOS
+            E NOVIDADES DE ATLÂNTIDA.</span>
         </div>
       </header>
 
@@ -549,7 +558,8 @@
             </div>
             <span class="mural__categoria mural__categoria--memoria" data-i18n="mural.tag_memory">MEMÓRIA</span>
           </div>
-          <p class="mural__texto" data-i18n="mural.message_zilda">Roda de histórias hoje à noite, no Coração do Sol. Venha ouvir e compartilhar as memórias da nossa cidade.</p>
+          <p class="mural__texto" data-i18n="mural.message_zilda">Roda de histórias hoje à noite, no Coração do Sol.
+            Venha ouvir e compartilhar as memórias da nossa cidade.</p>
           <p class="mural__expiracao"><i class="fa-regular fa-clock" aria-hidden="true"></i><span
               data-i18n="mural.expires_in">Expira em</span> <time class="mural__contador" aria-live="off"></time></p>
         </article>
@@ -609,7 +619,7 @@
   <section id="contato" class="secao-oceano" aria-labelledby="contatoTitulo">
     <!-- Separa esta área das demais e comunica a profundidade temática do portal. -->
     <div class="linha-divisoria" role="separator" aria-label="Profundidade: 3000 a 4000 metros, Zona Abissal"
-    data-atl-aria-label="Ukhu kay: 3000 manta 4000 metro kama, Ukhu Pacha">
+      data-atl-aria-label="Ukhu kay: 3000 manta 4000 metro kama, Ukhu Pacha">
       <hr>
       <span class="linha-divisoria__texto" data-atl="3000–4000 M // Ukhu Pacha">3000–4000 M // Zona Abissal</span>
       <hr>
@@ -627,9 +637,11 @@
       <header class="secao__cabecalho contato__cabecalho">
         <span class="secao__numero contato__numero" aria-hidden="true">05</span>
         <div class="secao__titulo-grupo contato__titulo-grupo">
-          <span class="secao__sobretitulo contato__sobretitulo" aria-hidden="true" data-i18n="contact.channel">CONTATO</span>
+          <span class="secao__sobretitulo contato__sobretitulo" aria-hidden="true"
+            data-i18n="contact.channel">CONTATO</span>
           <h2 id="contatoTitulo" data-i18n="contact.title">FALE COM O PORTAL</h2>
-          <span class="secao__subtitulo contato__subtitulo" aria-hidden="true" data-i18n="contact.subtitle">CENTRAL DE INTEGRAÇÃO DE ATLÂNTIDA</span>
+          <span class="secao__subtitulo contato__subtitulo" aria-hidden="true" data-i18n="contact.subtitle">CENTRAL DE
+            INTEGRAÇÃO DE ATLÂNTIDA</span>
         </div>
       </header>
 
@@ -714,8 +726,8 @@
             <label for="contatoRetorno"><span data-i18n="contact.reply_label">05: CANAL DE RETORNO</span> <span
                 aria-hidden="true">*</span></label>
             <input id="contatoRetorno" name="retorno" type="text" minlength="3" maxlength="100"
-              placeholder="Ex.: Frequência 12 ou seuemail@comuna.abissal" data-i18n-placeholder="contact.reply_placeholder"
-              required aria-describedby="erroContatoRetorno">
+              placeholder="Ex.: Frequência 12 ou seuemail@comuna.abissal"
+              data-i18n-placeholder="contact.reply_placeholder" required aria-describedby="erroContatoRetorno">
             <span class="contato__erro" id="erroContatoRetorno" data-erro-para="contatoRetorno" aria-live="polite"
               hidden></span>
           </div>
@@ -774,7 +786,9 @@
           </span>
         </a>
         <p class="rodape__descricao" data-i18n="footer.description">
-        A vida acontece em cada cúpula. Um espaço para descobrir o que acontece pela cidade, conhecer outros habitantes, compartilhar novidades e encontrar quem pode dar aquela força no dia a dia. Porque viver em comunidade é melhor quando todo mundo faz parte.
+          A vida acontece em cada cúpula. Um espaço para descobrir o que acontece pela cidade, conhecer outros
+          habitantes, compartilhar novidades e encontrar quem pode dar aquela força no dia a dia. Porque viver em
+          comunidade é melhor quando todo mundo faz parte.
         </p>
         <div class="rodape__indicadores" role="group" aria-label="Informações da comunidade"
           data-atl-aria-label="Ayllup willaykuna">
@@ -808,12 +822,14 @@
         <ul class="rodape__lista rodape__lista--canais">
           <li>
             <i class="fa-solid fa-radio rodape__icone-canal rodape__icone-canal--radio" aria-hidden="true"></i>
-            <span data-i18n="footer.channel_radio"><a href="#mural">Rádio Comunal — notícias, recados e novidades na frequência 12.</a></span>
+            <span data-i18n="footer.channel_radio"><a href="#mural">Rádio Comunal — notícias, recados e novidades na
+                frequência 12.</a></span>
           </li>
           <li>
             <i class="fa-solid fa-circle-exclamation rodape__icone-canal rodape__icone-canal--alerta"
               aria-hidden="true"></i>
-            <span data-i18n="footer.channel_emergency"><a href="#o-mundo">Coração do Sol — informações e suporte para os moradores, as rodas de conversa começam aqui.</a></span>
+            <span data-i18n="footer.channel_emergency"><a href="#o-mundo">Coração do Sol — informações e suporte para os
+                moradores, as rodas de conversa começam aqui.</a></span>
           </li>
         </ul>
       </section>

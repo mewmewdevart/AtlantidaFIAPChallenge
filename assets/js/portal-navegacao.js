@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuNavegacao = document.getElementById("menuNavegacao");
   const seletorIdiomaSwitch = document.getElementById("seletorIdiomaSwitch");
   const rotuloPt = document.querySelector(".seletor-idioma__rotulo--pt");
-  const rotuloAtlantida = document.querySelector(".seletor-idioma__rotulo--atlantida") || document.querySelector(".seletor-idioma__rotulo--asteca");
+  const rotuloAtlantida = document.querySelector(".seletor-idioma__rotulo--atlantida");
 
   if (menuNavegacao) {
     const gatilho = menuNavegacao.querySelector(".menu-navegacao__gatilho");
@@ -295,8 +295,8 @@ function inicializarMenuLateral() {
   const prefereMovimentoReduzido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const framesSubmarino = [
-    "./assets/media/submarino-dir-1.png",
-    "./assets/media/submarino-dir-2.png"
+    "./assets/media/submarino-esq-1.png",
+    "./assets/media/submarino-esq-2.png"
   ];
   let frameAtual = 0;
 

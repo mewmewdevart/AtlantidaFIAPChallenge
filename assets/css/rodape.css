@@ -1,0 +1,209 @@
+/* ==========================================================================
+   RODAPÉ DO PORTAL (IDENTIDADE, NAVEGAÇÃO & CANAIS DA COMUNIDADE)
+   Estilos específicos do rodapé de Atlântida.
+   ========================================================================== */
+
+#rodape {
+  position: relative;
+  font-family: var(--fonte-texto);
+  background-color: var(--cor-abismo);
+  min-height: auto;
+  padding: 2.2rem 2rem 1rem;
+}
+
+#rodape section,
+.rodape section,
+.rodape__identidade,
+.rodape__canais {
+  min-height: auto;
+}
+
+.rodape__conteudo {
+  display: grid;
+  grid-template-columns: minmax(250px, 1.35fr) minmax(150px, 0.8fr) minmax(250px, 1fr);
+  gap: clamp(2rem, 7vw, 7rem);
+  width: min(100%, 1440px);
+  margin: 0 auto;
+}
+
+/* Marca e Emblema */
+.rodape__marca {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--cor-espuma);
+  text-decoration: none;
+}
+
+.rodape__simbolo {
+  display: grid;
+  width: 2.8rem;
+  height: 2.8rem;
+  place-items: center;
+  flex: 0 0 2.8rem;
+}
+
+.rodape__simbolo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: screen;
+}
+
+.rodape__nome {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-semibold);
+  line-height: var(--linha-compacta);
+}
+
+.rodape__assinatura {
+  font-size: var(--texto-micro);
+  font-weight: var(--peso-semibold);
+  letter-spacing: 0.11em;
+  color: var(--cor-menta-neon);
+}
+
+.rodape__descricao {
+  max-width: 27rem;
+  margin: 0.9rem 0;
+  font-size: var(--texto-sm);
+  line-height: var(--linha-base);
+  color: var(--cor-nevoa-acessivel);
+}
+
+/* Selos e Metadados */
+.rodape__indicadores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.rodape__selo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.6rem;
+  font-size: var(--texto-micro);
+  font-weight: var(--peso-semibold);
+  letter-spacing: 0.08em;
+  border-radius: 2rem;
+}
+
+.rodape__selo--profundidade {
+  color: var(--cor-menta-neon);
+  background-color: rgba(15, 244, 204, 0.1);
+}
+
+.rodape__selo--comunidade {
+  color: var(--cor-pergaminho);
+  background-color: rgba(224, 144, 40, 0.12);
+}
+
+/* Colunas de Navegação e Canais */
+.rodape__titulo-coluna {
+  margin-bottom: 0.75rem;
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-semibold);
+  color: var(--cor-espuma);
+}
+
+.rodape__lista {
+  display: grid;
+  gap: 0.45rem;
+  padding: 0;
+  list-style: none;
+}
+
+.rodape__lista a,
+.rodape__lista li {
+  font-size: var(--texto-sm);
+  line-height: var(--linha-curta);
+  color: var(--cor-nevoa-acessivel);
+}
+
+.rodape__lista a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.rodape__lista a:hover,
+.rodape__lista a:focus-visible {
+  color: var(--cor-menta-neon);
+}
+
+.rodape__lista--canais li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+}
+
+.rodape__icone-canal {
+  flex: 0 0 0.85rem;
+  font-size: var(--texto-micro);
+}
+
+.rodape__icone-canal--radio {
+  color: var(--cor-menta-neon);
+}
+
+.rodape__icone-canal--alerta {
+  color: var(--cor-ferrugem-clara);
+}
+
+.rodape__icone-canal--assembleia {
+  color: var(--cor-sinal-texto);
+}
+
+/* Linha Final de Copyright */
+.rodape__base {
+  width: min(100%, 1440px);
+  padding-top: 0.65rem;
+  margin: 0.8rem auto 0;
+  border-top: 1px solid rgba(169, 192, 190, 0.18);
+}
+
+.rodape__base p {
+  font-size: var(--texto-micro);
+  letter-spacing: 0.04em;
+  color: rgba(196, 216, 214, 0.75);
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE DO RODAPÉ
+   ========================================================================== */
+@media (max-width: 768px) {
+  #rodape {
+    padding: 2rem 1.25rem 1rem;
+  }
+
+  .rodape__conteudo {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 1.5rem;
+  }
+
+  .rodape__identidade {
+    grid-column: 1 / -1;
+  }
+
+  .rodape__descricao {
+    max-width: 36rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .rodape__conteudo {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+  }
+
+  .rodape__identidade {
+    grid-column: auto;
+  }
+}
