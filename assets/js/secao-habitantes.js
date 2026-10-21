@@ -169,5 +169,109 @@
 
     desenharTudo();
     document.addEventListener("idioma:alterado", desenharTudo);   // troca de idioma = redesenhar
+
+    /* ======================= ANIMAÇÕES SUBMARINAS (ANIME.JS) ======================= */
+    function iniciarAnimacoesSubmarinas() {
+      if (typeof window.anime !== "function") {
+        setTimeout(iniciarAnimacoesSubmarinas, 100);
+        return;
+      }
+
+      const svgContainer = document.querySelector(".underwater-container");
+      if (!svgContainer) return;
+
+      const animacoes = [];
+
+      // Animação da camada de água / refração
+      animacoes.push(
+        window.anime({
+          targets: ".underwater-container .UNDERWATER-8",
+          duration: 350000,
+          translateY: [200, -500],
+          delay: -1000,
+          loop: true,
+          easing: "linear"
+        })
+      );
+
+      // Cardumes
+      animacoes.push(
+        window.anime({
+          targets: "#School-1",
+          duration: 350000,
+          translateX: [-200, 500],
+          delay: -1000,
+          loop: true,
+          easing: "linear"
+        })
+      );
+
+      animacoes.push(
+        window.anime({
+          targets: "#School-2",
+          duration: 350000,
+          translateX: [-200, 500],
+          delay: -1000,
+          loop: true,
+          easing: "linear"
+        })
+      );
+
+      animacoes.push(
+        window.anime({
+          targets: "#School-3",
+          duration: 350000,
+          translateX: [-200, 500],
+          delay: -1000,
+          loop: true,
+          easing: "easeInOutExpo"
+        })
+      );
+
+      // Peixes individuais (Fish-1 a Fish-12)
+      for (let i = 1; i <= 12; i++) {
+        animacoes.push(
+          window.anime({
+            targets: `#Fish-${i}`,
+            duration: 350000,
+            translateX: [-200, 500],
+            delay: -1000,
+            loop: true,
+            easing: "linear"
+          })
+        );
+      }
+
+      // Tubarão navegando na direção contrária
+      animacoes.push(
+        window.anime({
+          targets: "#Shark",
+          duration: 350000,
+          translateX: [400, -500],
+          delay: -1000,
+          loop: true,
+          easing: "linear"
+        })
+      );
+
+      // Controle de acessibilidade (pausar / retomar)
+      const verificarEstado = (pausadas) => {
+        animacoes.forEach((anim) => {
+          if (anim) {
+            pausadas ? anim.pause() : anim.play();
+          }
+        });
+      };
+
+      if (document.body.classList.contains("sem-animacoes")) {
+        verificarEstado(true);
+      }
+
+      window.addEventListener("animacoes:alteradas", (evento) => {
+        verificarEstado(evento.detail && evento.detail.pausadas);
+      });
+    }
+
+    iniciarAnimacoesSubmarinas();
   });
 })();

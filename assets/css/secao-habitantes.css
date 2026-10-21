@@ -3,36 +3,6 @@
 #habitantes {
   position: relative;
   overflow: hidden;
-}
-
-.habitantes {
-  position: relative;
-  z-index: 3;
-}
-
-#habitantes .montanha-front {
-  position: absolute;
-  top: 50px;
-  width: 100%;
-  z-index: 2;
-}
-
-#habitantes .montanha-back {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 0;
-}
-
-#habitantes .continuidade-montanha-front {
-  position: absolute;
-  top: clamp(280px, 35vw, 520px);
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  width: 100%;
-  height: auto;
-  background-color: var(--cor-abismo);
   z-index: 1;
 }
 
