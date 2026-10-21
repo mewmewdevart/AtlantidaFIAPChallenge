@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         cabecalhoTopo.classList.remove("cabecalho-topo--expandido");
         cabecalhoTopo.classList.remove("menu-navegacao--expandido");
+        document.body.classList.remove("menu-aberto");
         if (gatilho) gatilho.setAttribute("aria-expanded", "false");
         return;
       }
@@ -37,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (evento.target.closest(".cabecalho-topo__gatilho, .menu-navegacao__gatilho") || !cabecalhoTopo.classList.contains("cabecalho-topo--expandido")) {
         const expandido = cabecalhoTopo.classList.toggle("cabecalho-topo--expandido");
         cabecalhoTopo.classList.toggle("menu-navegacao--expandido", expandido);
+        document.body.classList.toggle("menu-aberto", expandido);
         if (gatilho) gatilho.setAttribute("aria-expanded", String(expandido));
       }
     });
@@ -46,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (evento.key !== "Escape" || (!cabecalhoTopo.classList.contains("cabecalho-topo--expandido") && !cabecalhoTopo.classList.contains("menu-navegacao--expandido"))) return;
       cabecalhoTopo.classList.remove("cabecalho-topo--expandido");
       cabecalhoTopo.classList.remove("menu-navegacao--expandido");
+      document.body.classList.remove("menu-aberto");
       if (gatilho) {
         gatilho.setAttribute("aria-expanded", "false");
         gatilho.focus();
@@ -56,6 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!cabecalhoTopo.contains(evento.target)) {
         cabecalhoTopo.classList.remove("cabecalho-topo--expandido");
         cabecalhoTopo.classList.remove("menu-navegacao--expandido");
+        document.body.classList.remove("menu-aberto");
         if (gatilho) gatilho.setAttribute("aria-expanded", "false");
       }
     });
@@ -387,6 +391,17 @@ function inicializarMenuLateral() {
       menuLateral.classList.remove("menu-lateral--visivel");
       menuLateral.setAttribute("aria-hidden", "true");
       menuLateral.inert = true;           // escondido = fora do alcance do Tab
+    }
+
+    const logoCentralizado = document.querySelector(".logo-centralizado");
+    if (logoCentralizado) {
+      if (scrollY >= limiarSegundaSecao) {
+        logoCentralizado.classList.add("logo-centralizado--visivel");
+        logoCentralizado.setAttribute("aria-hidden", "false");
+      } else {
+        logoCentralizado.classList.remove("logo-centralizado--visivel");
+        logoCentralizado.setAttribute("aria-hidden", "true");
+      }
     }
 
     const posicoes = calcularPosicoesItens();

@@ -1,3 +1,11 @@
+
+@font-face {
+  font-family: 'MexicanKnappett';
+  src: url('../fonts/mexican_knappett.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   /* ==========================================================================
      1. IDENTIDADE VISUAL & PALETA DE CORES
