@@ -193,7 +193,7 @@
             { y: 200 },
             {
               y: -500,
-              duration: 350,
+              duration: 35,
               repeat: -1,
               ease: "none"
             }
@@ -213,7 +213,7 @@
             { x: -200 },
             {
               x: 500,
-              duration: 350,
+              duration: 35,
               repeat: -1,
               ease: "none"
             }
@@ -232,7 +232,7 @@
             { x: -200 },
             {
               x: 500,
-              duration: 350,
+              duration: 35,
               repeat: -1,
               ease: "none"
             }
@@ -251,7 +251,7 @@
             { x: -200 },
             {
               x: 500,
-              duration: 350,
+              duration: 35,
               repeat: -1,
               ease: "power4.inOut"
             }
@@ -272,7 +272,7 @@
               { x: -200 },
               {
                 x: 500,
-                duration: 350,
+                duration: 35,
                 repeat: -1,
                 ease: "none"
               }
@@ -292,7 +292,7 @@
             { x: 400 },
             {
               x: -500,
-              duration: 350,
+              duration: 35,
               repeat: -1,
               ease: "none"
             }
