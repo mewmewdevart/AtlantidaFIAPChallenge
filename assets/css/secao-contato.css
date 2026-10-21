@@ -55,7 +55,7 @@
   transform: translateX(-50%) rotate(-1.5deg);
 }
 
-.contato__formulario>* {
+.contato__formulario>*:not(.fundo-decoracao-right):not(.fundo-decoracao-left) {
   position: relative;
   z-index: 2;
 }
