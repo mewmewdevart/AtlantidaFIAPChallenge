@@ -319,7 +319,7 @@ function inicializarMenuLateral() {
     { id: "o-mundo", label: "200 M" },
     { id: "habitantes", label: "1000 M" },
     { id: "mural", label: "2000 M" },
-    { id: "contato", label: "4000 M" }
+    { id: "contato", label: "3400 M" }
   ];
 
   const prefereMovimentoReduzido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -440,6 +440,12 @@ function inicializarMenuLateral() {
     }
 
     if (submarinoWrapper) {
+      const profAtiva = profundidades.find((p) => p.id === secaoAtivaId);
+      if (profAtiva) {
+        submarinoWrapper.setAttribute("title", `Profundidade: ${profAtiva.label}`);
+        submarinoWrapper.setAttribute("aria-label", `Marcador de profundidade: ${profAtiva.label}`);
+      }
+
       if (typeof gsap !== "undefined" && !prefereMovimentoReduzido) {
         gsap.to(submarinoWrapper, {
           y: targetSubmarinoY,

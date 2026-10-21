@@ -170,9 +170,9 @@
     desenharTudo();
     document.addEventListener("idioma:alterado", desenharTudo);   // troca de idioma = redesenhar
 
-    /* ======================= ANIMAÇÕES SUBMARINAS (ANIME.JS) ======================= */
+    /* ======================= ANIMAÇÕES SUBMARINAS (GSAP) ======================= */
     function iniciarAnimacoesSubmarinas() {
-      if (typeof window.anime !== "function") {
+      if (typeof window.gsap === "undefined") {
         setTimeout(iniciarAnimacoesSubmarinas, 100);
         return;
       }
@@ -183,76 +183,106 @@
       const animacoes = [];
 
       // Animação da camada de água / refração
-      animacoes.push(
-        window.anime({
-          targets: ".underwater-container .UNDERWATER-8",
-          duration: 350000,
-          translateY: [200, -500],
-          delay: -1000,
-          loop: true,
-          easing: "linear"
-        })
-      );
-
-      // Cardumes
-      animacoes.push(
-        window.anime({
-          targets: "#School-1",
-          duration: 350000,
-          translateX: [-200, 500],
-          delay: -1000,
-          loop: true,
-          easing: "linear"
-        })
-      );
-
-      animacoes.push(
-        window.anime({
-          targets: "#School-2",
-          duration: 350000,
-          translateX: [-200, 500],
-          delay: -1000,
-          loop: true,
-          easing: "linear"
-        })
-      );
-
-      animacoes.push(
-        window.anime({
-          targets: "#School-3",
-          duration: 350000,
-          translateX: [-200, 500],
-          delay: -1000,
-          loop: true,
-          easing: "easeInOutExpo"
-        })
-      );
-
-      // Peixes individuais (Fish-1 a Fish-12)
-      for (let i = 1; i <= 12; i++) {
+      const camadaAgua = svgContainer.querySelector(".UNDERWATER-8");
+      if (camadaAgua) {
         animacoes.push(
-          window.anime({
-            targets: `#Fish-${i}`,
-            duration: 350000,
-            translateX: [-200, 500],
-            delay: -1000,
-            loop: true,
-            easing: "linear"
-          })
+          window.gsap.fromTo(
+            camadaAgua,
+            { y: 200 },
+            {
+              y: -500,
+              duration: 350,
+              repeat: -1,
+              ease: "none"
+            }
+          )
         );
       }
 
+      // Cardumes
+      const school1 = document.getElementById("School-1");
+      if (school1) {
+        animacoes.push(
+          window.gsap.fromTo(
+            school1,
+            { x: -200 },
+            {
+              x: 500,
+              duration: 350,
+              repeat: -1,
+              ease: "none"
+            }
+          )
+        );
+      }
+
+      const school2 = document.getElementById("School-2");
+      if (school2) {
+        animacoes.push(
+          window.gsap.fromTo(
+            school2,
+            { x: -200 },
+            {
+              x: 500,
+              duration: 350,
+              repeat: -1,
+              ease: "none"
+            }
+          )
+        );
+      }
+
+      const school3 = document.getElementById("School-3");
+      if (school3) {
+        animacoes.push(
+          window.gsap.fromTo(
+            school3,
+            { x: -200 },
+            {
+              x: 500,
+              duration: 350,
+              repeat: -1,
+              ease: "power4.inOut"
+            }
+          )
+        );
+      }
+
+      // Peixes individuais (Fish-1 a Fish-12)
+      for (let i = 1; i <= 12; i++) {
+        const peixe = document.getElementById(`Fish-${i}`);
+        if (peixe) {
+          animacoes.push(
+            window.gsap.fromTo(
+              peixe,
+              { x: -200 },
+              {
+                x: 500,
+                duration: 350,
+                repeat: -1,
+                ease: "none"
+              }
+            )
+          );
+        }
+      }
+
       // Tubarão navegando na direção contrária
-      animacoes.push(
-        window.anime({
-          targets: "#Shark",
-          duration: 350000,
-          translateX: [400, -500],
-          delay: -1000,
-          loop: true,
-          easing: "linear"
-        })
-      );
+      const shark = document.getElementById("Shark");
+      if (shark) {
+        animacoes.push(
+          window.gsap.fromTo(
+            shark,
+            { x: 400 },
+            {
+              x: -500,
+              duration: 350,
+              repeat: -1,
+              ease: "none"
+            }
+          )
+        );
+      }
 
       // Controle de acessibilidade (pausar / retomar)
       const verificarEstado = (pausadas) => {
@@ -263,7 +293,11 @@
         });
       };
 
-      if (document.body.classList.contains("sem-animacoes")) {
+      const prefereReduzido =
+        document.body.classList.contains("sem-animacoes") ||
+        (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+
+      if (prefereReduzido) {
         verificarEstado(true);
       }
 
