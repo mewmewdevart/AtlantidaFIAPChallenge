@@ -6,6 +6,17 @@
   z-index: 1;
 }
 
+/* Decoração de algas de fundo da seção Habitantes */
+.habitantes__decoracao-algas {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  z-index: -1;
+}
+
 /* ---------- Banner da equipe ---------- */
 .equipe {
   margin-top: 3rem;

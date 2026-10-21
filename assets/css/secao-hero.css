@@ -15,7 +15,8 @@
   overflow: hidden;
 }
 
-/* Background Submarino Animado atrás do Livro 3D */
+/* Background Submarino Animado atrás do Livro 3D (Atomic Design BEM) */
+.secao-apresentacao .cenario-submarino,
 .secao-apresentacao .underwater-container {
   position: absolute;
   inset: 0;
@@ -27,46 +28,44 @@
   transform: translateZ(-250px);
 }
 
-.secao-apresentacao .underwater-container svg {
+.cenario-submarino__camada,
+.secao-apresentacao .underwater-container svg,
+.secao-apresentacao .underwater-container img,
+.secao-apresentacao .underwater-container .underwater-camada {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Modificadores de profundidade e ordenação das camadas (Atomic Design) */
+.cenario-submarino__camada--fundo {
+  z-index: 1;
+}
+
+.cenario-submarino__camada--algas {
+  z-index: 2;
+}
+
+.cenario-submarino__camada--tubarao {
+  z-index: 3;
+}
+
+.cenario-submarino__camada--cardume {
+  z-index: 4;
+}
+
+.cenario-submarino__camada--peixe {
+  z-index: 5;
 }
 
 .secao-apresentacao .livro-3d {
   position: relative;
   z-index: 10;
-}
-
-/* Camadas de cor subaquáticas com paleta Atlântida */
-.underwater-container .UNDERWATER-6 {
-  fill: var(--cor-casco);
-  transform-origin: center;
-}
-
-.underwater-container .UNDERWATER-7 {
-  fill: var(--cor-painel);
-}
-
-.underwater-container .UNDERWATER-8 {
-  opacity: 0.3;
-  transform-origin: center;
-}
-
-.underwater-container .UNDERWATER-9 {
-  fill: var(--cor-painel);
-}
-
-.underwater-container .UNDERWATER-10 {
-  fill: var(--cor-casco);
-  transform-origin: center;
-}
-
-.underwater-container .UNDERWATER-11 {
-  fill: var(--cor-jade);
-  transform-origin: center;
-  height: 100vh;
 }
 
 

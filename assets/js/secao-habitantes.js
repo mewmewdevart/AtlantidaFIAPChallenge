@@ -177,7 +177,9 @@
         return;
       }
 
-      const svgContainer = document.querySelector(".underwater-container");
+      const svgContainer =
+        document.querySelector(".cenario-submarino") ||
+        document.querySelector(".underwater-container");
       if (!svgContainer) return;
 
       const animacoes = [];
@@ -199,12 +201,15 @@
         );
       }
 
-      // Cardumes
-      const school1 = document.getElementById("School-1");
-      if (school1) {
+      // Cardumes (cardume-1 a cardume-3)
+      const cardume1 =
+        document.getElementById("cardume-1") ||
+        document.getElementById("cardume1") ||
+        document.getElementById("School-1");
+      if (cardume1) {
         animacoes.push(
           window.gsap.fromTo(
-            school1,
+            cardume1,
             { x: -200 },
             {
               x: 500,
@@ -216,11 +221,14 @@
         );
       }
 
-      const school2 = document.getElementById("School-2");
-      if (school2) {
+      const cardume2 =
+        document.getElementById("cardume-2") ||
+        document.getElementById("cardume2") ||
+        document.getElementById("School-2");
+      if (cardume2) {
         animacoes.push(
           window.gsap.fromTo(
-            school2,
+            cardume2,
             { x: -200 },
             {
               x: 500,
@@ -232,11 +240,14 @@
         );
       }
 
-      const school3 = document.getElementById("School-3");
-      if (school3) {
+      const cardume3 =
+        document.getElementById("cardume-3") ||
+        document.getElementById("cardume3") ||
+        document.getElementById("School-3");
+      if (cardume3) {
         animacoes.push(
           window.gsap.fromTo(
-            school3,
+            cardume3,
             { x: -200 },
             {
               x: 500,
@@ -248,9 +259,12 @@
         );
       }
 
-      // Peixes individuais (Fish-1 a Fish-12)
+      // Peixes individuais (peixe-1 a peixe-12)
       for (let i = 1; i <= 12; i++) {
-        const peixe = document.getElementById(`Fish-${i}`);
+        const peixe =
+          document.getElementById(`peixe-${i}`) ||
+          document.getElementById(`peixe${i}`) ||
+          document.getElementById(`Fish-${i}`);
         if (peixe) {
           animacoes.push(
             window.gsap.fromTo(
@@ -268,11 +282,13 @@
       }
 
       // Tubarão navegando na direção contrária
-      const shark = document.getElementById("Shark");
-      if (shark) {
+      const tubarao =
+        document.getElementById("tubarao") ||
+        document.getElementById("Shark");
+      if (tubarao) {
         animacoes.push(
           window.gsap.fromTo(
-            shark,
+            tubarao,
             { x: 400 },
             {
               x: -500,
