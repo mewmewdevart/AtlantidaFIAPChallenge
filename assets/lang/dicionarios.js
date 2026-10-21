@@ -119,7 +119,24 @@ window.I18N_DICIONARIOS = {
     "footer.channel_radio": "Rádio Comunal — notícias e avisos na frequência 12.",
     "footer.channel_emergency": "Coração do Sol — suporte e rodas de conversa da comunidade.",
     "footer.channel_assembly": "Assembleia dos Bairros — reuniões comunitárias a cada ciclo.",
-    "footer.copyright": "© 2026 Grupo Ctrl + People — NEXT FIAP / VR Code Arena."
+    "footer.copyright": "© 2026 Grupo Ctrl + People — NEXT FIAP / VR Code Arena.",
+    /* ---- Rádio Comunal ---- */
+    "radio.title": "Rádio Comunal",
+    "radio.subtitle": "Notícias e avisos na frequência 12",
+    "radio.tag": "FREQ 12.0",
+    "radio.live": "NO AR",
+    "radio.offline": "STANDBY",
+    "radio.station1_name": "Sinfonia das Cúpulas",
+    "radio.station1_desc": "Música ambiente oceânica",
+    "radio.station2_name": "Boletim do Domo",
+    "radio.station2_desc": "Notícias da comunidade",
+    "radio.station3_name": "Bioluminescência Lo-Fi",
+    "radio.station3_desc": "Batidas suaves abissais",
+    "radio.sonar_toggle": "Sonar",
+    "radio.minimize": "Minimizar rádio",
+    "radio.maximize": "Expandir rádio",
+    "radio.play": "Tocar",
+    "radio.pause": "Pausar"
   },
 
   ptBrAtlantida: {
@@ -226,6 +243,23 @@ window.I18N_DICIONARIOS = {
     "footer.channel_radio": "Calpulli radio — willaykuna rimay 12.",
     "footer.channel_emergency": "Inti Sonqo — willaykuna ayllupaq yanapay.",
     "footer.channel_assembly": "Ayllukunap kawiñnin — sapa muyuy kawiñ.",
-    "footer.copyright": "© 2026 Calpulli Ctrl + People — NEXT FIAP / VR Code Arena."
+    "footer.copyright": "© 2026 Calpulli Ctrl + People — NEXT FIAP / VR Code Arena.",
+    /* ---- Rádio Comunal ---- */
+    "radio.title": "Calpulli Radio",
+    "radio.subtitle": "Willaykuna rimay 12",
+    "radio.tag": "RIMAY 12.0",
+    "radio.live": "KAWSACHKAN",
+    "radio.offline": "SAMAY",
+    "radio.station1_name": "Cúpulas Huacaylli",
+    "radio.station1_desc": "Mamaquchap takin",
+    "radio.station2_name": "Calpulli Willay",
+    "radio.station2_desc": "Altepetl willakuy",
+    "radio.station3_name": "Acan Khipu Beats",
+    "radio.station3_desc": "Abismo sumaq taki",
+    "radio.sonar_toggle": "Sonar",
+    "radio.minimize": "Huch'uychay",
+    "radio.maximize": "Hatunyachiy",
+    "radio.play": "Tukay",
+    "radio.pause": "Sayay"
   }
 };

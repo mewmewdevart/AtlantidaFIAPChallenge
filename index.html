@@ -44,6 +44,7 @@
   <link rel="stylesheet" href="./assets/css/secao-mural.css">
   <link rel="stylesheet" href="./assets/css/secao-contato.css">
   <link rel="stylesheet" href="./assets/css/rodape.css">
+  <link rel="stylesheet" href="./assets/css/radio-comunal.css">
 
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
@@ -55,6 +56,7 @@
   <script src="./assets/js/chasqui-motor.js" defer></script>
   <script src="./assets/js/secao-mundo.js" defer></script>
   <script src="./assets/js/secao-habitantes.js" defer></script>
+  <script src="./assets/js/radio-comunal.js" defer></script>
 
   <link rel="apple-touch-icon" sizes="180x180" href="./assets/media/favicon_io/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/media/favicon_io/favicon-32x32.png">
@@ -1306,7 +1308,7 @@
         <ul class="rodape__lista rodape__lista--canais">
           <li>
             <i class="fa-solid fa-radio rodape__icone-canal rodape__icone-canal--radio" aria-hidden="true"></i>
-            <a href="#mural" data-i18n="footer.channel_radio">Rádio Comunal — notícias e avisos na frequência 12.</a>
+            <a href="#radio-comunal" data-i18n="footer.channel_radio" title="Sintonizar Rádio Comunal — Frequência 12">Rádio Comunal — notícias e avisos na frequência 12.</a>
           </li>
           <li>
             <i class="fa-solid fa-circle-exclamation rodape__icone-canal rodape__icone-canal--alerta"
@@ -1329,6 +1331,53 @@
       <p data-i18n="footer.copyright">© 2026 Grupo Ctrl + People — NEXT FIAP / VR Code Arena.</p>
     </div>
   </footer>
+  <!-- ========================================================================
+       RÁDIO COMUNAL — PLAYER FIXO NO CANTO INFERIOR DIREITO (FREQUÊNCIA 12)
+       ======================================================================== -->
+  <aside id="radio-comunal" class="radio-comunal" aria-label="Rádio Comunal — Frequência 12">
+    <!-- Áudio em loop: adicione seu arquivo de áudio no caminho src abaixo -->
+    <audio id="radioAudio" loop preload="metadata" src="./assets/media/radio-comunal.mp3"></audio>
+
+    <div class="radio-comunal__card">
+      <div class="radio-comunal__topo">
+        <div class="radio-comunal__identificacao">
+          <div class="radio-comunal__icone-caixa">
+            <i class="fa-solid fa-radio radio-comunal__icone" aria-hidden="true"></i>
+            <span class="radio-comunal__led" id="radioLed" aria-hidden="true"></span>
+          </div>
+          <div class="radio-comunal__texto">
+            <span class="radio-comunal__titulo" data-i18n="radio.title">Rádio Comunal</span>
+            <span class="radio-comunal__frequencia">FREQ. 12</span>
+          </div>
+        </div>
+
+        <!-- Botão Play / Pause Principal -->
+        <button type="button" class="radio-comunal__btn-play" id="radioBtnPlay" aria-label="Tocar ou pausar Rádio Comunal" title="Tocar / Pausar">
+          <i class="fa-solid fa-play" id="radioIconePlay" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <!-- Barra de Notícias e Ondas Sonoras -->
+      <div class="radio-comunal__rodape-card">
+        <span class="radio-comunal__aviso" data-i18n="footer.channel_radio">Rádio Comunal — notícias e avisos na frequência 12.</span>
+
+        <div class="radio-comunal__acoes">
+          <!-- Ondas de áudio animadas quando estiver tocando -->
+          <div class="radio-comunal__ondas" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <!-- Botão Mute / Desmute -->
+          <button type="button" class="radio-comunal__btn-mute" id="radioBtnMute" aria-label="Mutar ou desmutar som" title="Mudo">
+            <i class="fa-solid fa-volume-high" id="radioIconeMute" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </aside>
 </body>
 
 </html>

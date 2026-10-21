@@ -1,0 +1,331 @@
+/* ==========================================================================
+   RÁDIO COMUNAL — FREQUÊNCIA 12 (DESIGN SYSTEM DO PORTAL DE ATLÂNTIDA)
+   Padronizado para alto contraste e acessibilidade (WCAG 2.1 AA/AAA) sobre pergaminho.
+   ========================================================================== */
+
+.radio-comunal {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 995;
+  font-family: var(--fonte-texto);
+  user-select: none;
+}
+
+/* ==========================================================================
+   1. CARD PRINCIPAL (ESTILO PERGAMINHO / DOSSIÊ SUBMARINO)
+   ========================================================================== */
+.radio-comunal__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  width: 300px;
+  max-width: calc(100vw - 2.5rem);
+  padding: 0.85rem 1.1rem;
+  background-color: var(--cor-pergaminho);
+  color: var(--cor-tinta);
+  border: 1px solid var(--cor-pergaminho-borda);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 3, 5, 0.28),
+              0 2px 6px rgba(0, 3, 5, 0.12);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s ease,
+              background-color 0.3s ease;
+}
+
+.radio-comunal__card:hover {
+  background-color: #f7e8ce;
+  box-shadow: 0 12px 30px rgba(0, 3, 5, 0.35);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   2. CABEÇALHO DO CARD (ÍCONE, TÍTULO, FREQUÊNCIA E PLAY)
+   ========================================================================== */
+.radio-comunal__topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.radio-comunal__identificacao {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+/* Caixa do Ícone com LED de status */
+.radio-comunal__icone-caixa {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background-color: rgba(50, 27, 11, 0.08);
+  border: 1px solid var(--cor-pergaminho-borda);
+  border-radius: 50%;
+  color: var(--cor-tinta-suave-acessivel);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.radio-comunal.tocando .radio-comunal__icone-caixa {
+  background-color: rgba(160, 55, 25, 0.12);
+  border-color: var(--cor-ferrugem-acessivel);
+  color: var(--cor-ferrugem-acessivel);
+}
+
+/* LED de transmissão */
+.radio-comunal__led {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--cor-tinta-suave);
+  opacity: 0.45;
+  transition: all 0.3s ease;
+}
+
+.radio-comunal.tocando .radio-comunal__led {
+  background-color: var(--cor-ferrugem-acessivel);
+  box-shadow: 0 0 6px rgba(160, 55, 25, 0.7);
+  opacity: 1;
+  animation: radio-led-pisca 1.4s infinite alternate;
+}
+
+@keyframes radio-led-pisca {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Textos de identificação */
+.radio-comunal__texto {
+  display: flex;
+  flex-direction: column;
+}
+
+.radio-comunal__titulo {
+  font-family: var(--fonte-titulo);
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-bold);
+  letter-spacing: 0.04em;
+  color: var(--cor-tinta);
+  line-height: var(--linha-compacta);
+}
+
+.radio-comunal__frequencia {
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-bold);
+  color: var(--cor-ambar-acessivel);
+  letter-spacing: 0.05em;
+}
+
+/* ==========================================================================
+   3. BOTÃO PLAY / PAUSE (ESTILO BOTÃO SECUNDÁRIO / "SAIBA MAIS")
+   ========================================================================== */
+.radio-comunal__btn-play {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: var(--cor-ferrugem-acessivel);
+  border: 1.5px solid var(--cor-ferrugem-acessivel);
+  border-radius: 50%;
+  color: var(--cor-espuma);
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(128, 42, 18, 0.32);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.25s ease,
+              border-color 0.25s ease,
+              box-shadow 0.25s ease;
+}
+
+.radio-comunal__btn-play:hover {
+  background-color: var(--cor-ferrugem-profunda);
+  border-color: var(--cor-ferrugem-profunda);
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(128, 42, 18, 0.45);
+}
+
+.radio-comunal.tocando .radio-comunal__btn-play {
+  background-color: var(--cor-ferrugem-profunda);
+  border-color: var(--cor-ferrugem-profunda);
+  box-shadow: 0 0 10px rgba(193, 75, 44, 0.45);
+}
+
+.radio-comunal.tocando .radio-comunal__btn-play:hover {
+  background-color: var(--cor-ferrugem-acessivel);
+  border-color: var(--cor-ferrugem-acessivel);
+}
+
+/* ==========================================================================
+   4. RODAPÉ DO CARD (AVISO, ONDAS E CONTROLE DE VOLUME)
+   ========================================================================== */
+.radio-comunal__rodape-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-top: 0.45rem;
+  border-top: 1px dotted rgba(100, 73, 56, 0.35);
+}
+
+.radio-comunal__aviso {
+  font-size: var(--texto-xs);
+  color: var(--cor-tinta-suave-acessivel);
+  line-height: var(--linha-curta);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.radio-comunal__acoes {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Ondas sonoras animadas */
+.radio-comunal__ondas {
+  display: flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 14px;
+}
+
+.radio-comunal__ondas span {
+  width: 2.5px;
+  height: 3px;
+  background-color: var(--cor-pergaminho-borda);
+  border-radius: 1px;
+  opacity: 0.6;
+  transition: height 0.2s ease, background-color 0.2s ease;
+}
+
+.radio-comunal.tocando .radio-comunal__ondas span {
+  background-color: var(--cor-ferrugem-acessivel);
+  opacity: 1;
+  animation: radio-onda-som 1s infinite ease-in-out alternate;
+}
+
+.radio-comunal.tocando .radio-comunal__ondas span:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.radio-comunal.tocando .radio-comunal__ondas span:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.radio-comunal.tocando .radio-comunal__ondas span:nth-child(3) {
+  animation-delay: 0.15s;
+}
+
+.radio-comunal.tocando .radio-comunal__ondas span:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+@keyframes radio-onda-som {
+  0% {
+    height: 3px;
+  }
+  100% {
+    height: 14px;
+  }
+}
+
+/* Botão Mudo / Desmudo */
+.radio-comunal__btn-mute {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--cor-tinta-suave-acessivel);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0.3rem;
+  border-radius: 6px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.radio-comunal__btn-mute:hover {
+  color: var(--cor-tinta);
+  background-color: rgba(50, 27, 11, 0.08);
+}
+
+/* Foco Visível para Navegação por Teclado (WCAG) */
+.radio-comunal__btn-play:focus-visible,
+.radio-comunal__btn-mute:focus-visible {
+  outline: 2px solid var(--cor-casco);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px var(--cor-ferrugem-acessivel);
+}
+
+/* Destaque suave quando acionado por links da página */
+.radio-comunal.destaque .radio-comunal__card {
+  animation: radio-destaque-pulso 1.2s ease-in-out;
+}
+
+@keyframes radio-destaque-pulso {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+    border-color: var(--cor-ferrugem-acessivel);
+    box-shadow: 0 0 20px rgba(160, 55, 25, 0.35);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ==========================================================================
+   5. ACESSIBILIDADE: PREFERÊNCIA DE MOVIMENTO REDUZIDO (WCAG 2.2.2 / 2.3.3)
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .radio-comunal__card,
+  .radio-comunal__btn-play {
+    transition: none;
+  }
+
+  .radio-comunal.tocando .radio-comunal__ondas span,
+  .radio-comunal.tocando .radio-comunal__led,
+  .radio-comunal.destaque .radio-comunal__card {
+    animation: none;
+  }
+
+  .radio-comunal.tocando .radio-comunal__ondas span {
+    height: 10px;
+  }
+}
+
+/* ==========================================================================
+   6. RESPONSIVIDADE MOBILE
+   ========================================================================== */
+@media (max-width: 480px) {
+  .radio-comunal {
+    bottom: 0.85rem;
+    right: 0.85rem;
+  }
+
+  .radio-comunal__card {
+    width: 270px;
+    padding: 0.75rem 0.9rem;
+  }
+
+  .radio-comunal__aviso {
+    max-width: 175px;
+  }
+}
