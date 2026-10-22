@@ -1,9 +1,66 @@
 
+/* ==========================================================================
+   FONTES LOCAIS (assets/fonts)
+   ========================================================================== */
+
 @font-face {
   font-family: 'MexicanKnappett';
   src: url('../fonts/mexican_knappett.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
+}
+
+/* Asimovian — Fonte dos títulos e logotipo */
+@font-face {
+  font-family: 'Asimovian';
+  src: url('../fonts/asimovian-latin.woff2') format('woff2'),
+       url('../fonts/asimovian-regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Asimovian';
+  src: url('../fonts/asimovian-regular.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Outfit — Fonte de texto e interface */
+@font-face {
+  font-family: 'Outfit';
+  src: url('../fonts/outfit-variable-latin.woff2') format('woff2-variations'),
+       url('../fonts/outfit-regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Outfit';
+  src: url('../fonts/outfit-medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Outfit';
+  src: url('../fonts/outfit-semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Outfit';
+  src: url('../fonts/outfit-bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 
 :root {

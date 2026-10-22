@@ -60,6 +60,15 @@
   line-height: var(--linha-compacta);
 }
 
+.rodape__nome > span:first-child {
+  font-family: var(--fonte-titulo);
+  font-size: 1.55rem;
+  font-weight: bold;
+  letter-spacing: 0.04em;
+  color: var(--cor-espuma);
+  line-height: 1.05;
+}
+
 .rodape__assinatura {
   font-size: var(--texto-micro);
   font-weight: var(--peso-semibold);

@@ -165,8 +165,6 @@
 .contato__campo select:hover,
 .contato__campo textarea:hover {
   border-color: var(--cor-ferrugem);
-  outline: 2px solid var(--cor-ferrugem);
-  outline-offset: 2px;
 }
 
 .contato__campo select:invalid {

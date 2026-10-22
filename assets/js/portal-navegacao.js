@@ -397,10 +397,8 @@ function inicializarMenuLateral() {
     if (logoCentralizado) {
       if (scrollY >= limiarSegundaSecao) {
         logoCentralizado.classList.add("logo-centralizado--visivel");
-        logoCentralizado.setAttribute("aria-hidden", "false");
       } else {
         logoCentralizado.classList.remove("logo-centralizado--visivel");
-        logoCentralizado.setAttribute("aria-hidden", "true");
       }
     }
 
@@ -510,7 +508,17 @@ function inicializarMenuLateral() {
     });
   }
 
-  window.addEventListener("scroll", atualizarEstadoMenu, { passive: true });
+  let scrollTicking = false;
+  window.addEventListener("scroll", () => {
+    if (!scrollTicking) {
+      window.requestAnimationFrame(() => {
+        atualizarEstadoMenu();
+        scrollTicking = false;
+      });
+      scrollTicking = true;
+    }
+  }, { passive: true });
+
   window.addEventListener("resize", () => {
     calcularPosicoesItens();
     atualizarEstadoMenu();
@@ -521,6 +529,55 @@ function inicializarMenuLateral() {
   });
   calcularPosicoesItens();
   atualizarEstadoMenu();
+  inicializarModalLogin();
+}
+
+function inicializarModalLogin() {
+  const modalLogin = document.getElementById("login");
+  const btnFecharLogin = document.getElementById("btnFecharLogin");
+  if (!modalLogin) return;
+
+  let ultimoElementoFocado = null;
+
+  document.querySelectorAll('a[href="#login"], a[data-secao="login"]').forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      ultimoElementoFocado = link;
+      if (typeof modalLogin.showModal === "function") {
+        modalLogin.showModal();
+      } else {
+        modalLogin.setAttribute("open", "true");
+      }
+    });
+  });
+
+  const fecharModal = () => {
+    if (typeof modalLogin.close === "function") {
+      modalLogin.close();
+    } else {
+      modalLogin.removeAttribute("open");
+    }
+    ultimoElementoFocado?.focus();
+  };
+
+  btnFecharLogin?.addEventListener("click", fecharModal);
+
+  modalLogin.addEventListener("click", (e) => {
+    const rect = modalLogin.getBoundingClientRect();
+    const clicouFora = (
+      e.clientX < rect.left ||
+      e.clientX > rect.right ||
+      e.clientY < rect.top ||
+      e.clientY > rect.bottom
+    );
+    if (clicouFora) {
+      fecharModal();
+    }
+  });
+
+  modalLogin.addEventListener("close", () => {
+    ultimoElementoFocado?.focus();
+  });
 }
 
 function inicializarControleAnimacoes() {

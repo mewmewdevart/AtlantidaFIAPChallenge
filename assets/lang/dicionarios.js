@@ -17,7 +17,7 @@ window.I18N_DICIONARIOS = {
 
   ptBr: {
     /* ---- Menu e seletor de idioma ---- */
-    "nav.menu": "MENU",
+    "nav.menu": "AJUSTES",
     "nav.lang_pt": "PT-BR",
     "nav.lang_atlantida": "Atlântida",
     "nav.animations": "Animações",
@@ -136,7 +136,10 @@ window.I18N_DICIONARIOS = {
     "radio.minimize": "Minimizar rádio",
     "radio.maximize": "Expandir rádio",
     "radio.play": "Tocar",
-    "radio.pause": "Pausar"
+    "radio.pause": "Pausar",
+    "login.title": "Terminal de Atlântida",
+    "login.desc": "Acesso restrito ao conselho de sábios e tripulação autorizada. Em breve disponível para cidadãos.",
+    "login.btn_close": "Entendido"
   },
 
   ptBrAtlantida: {
@@ -256,10 +259,13 @@ window.I18N_DICIONARIOS = {
     "radio.station2_desc": "Altepetl willakuy",
     "radio.station3_name": "Acan Khipu Beats",
     "radio.station3_desc": "Abismo sumaq taki",
-    "radio.sonar_toggle": "Sonar",
+    "radio.sonar_toggle": "Taki-maskaq",
     "radio.minimize": "Huch'uychay",
     "radio.maximize": "Hatunyachiy",
     "radio.play": "Tukay",
-    "radio.pause": "Sayay"
+    "radio.pause": "Sayay",
+    "login.title": "Khipup Yaykuna",
+    "login.desc": "Amawtakunap hatun kancha. Chayllaraq llapa llaqtapaq kichasqa kanqa.",
+    "login.btn_close": "Chaskini"
   }
 };

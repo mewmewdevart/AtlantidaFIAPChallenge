@@ -1400,7 +1400,7 @@ body>section,
   }
 
   .cabecalho-topo__brand-titulo {
-    font-family: 'MexicanKnappett', sans-serif;
+    font-family: var(--fonte-titulo);
     font-size: 1.85rem;
     font-weight: bold;
     color: var(--cor-fundo);
@@ -1694,4 +1694,93 @@ body.sem-animacoes .livro-3d {
 
 body.sem-animacoes .livro-3d__imagem-ilustracao {
   opacity: 1 !important;
+}
+
+/* ==========================================================================
+   MODAL DE DIÁLOGO ACESSÍVEL (TERMINAL DE LOGIN / ACH-10)
+   ========================================================================== */
+.modal-dialogo {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  padding: 0;
+  max-width: 440px;
+  width: calc(100% - 2rem);
+  background-color: var(--cor-painel);
+  color: var(--cor-espuma);
+  border: 1px solid var(--cor-sinal-claro);
+  border-radius: var(--raio-lg, 1rem);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75);
+  z-index: 10000;
+  overflow: hidden;
+}
+
+.modal-dialogo::backdrop {
+  background: rgba(0, 3, 5, 0.75);
+  backdrop-filter: blur(4px);
+}
+
+.modal-dialogo__conteudo {
+  position: relative;
+  padding: 2.25rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.25rem;
+}
+
+.modal-dialogo__fechar {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: none;
+  color: var(--cor-nevoa-acessivel);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.modal-dialogo__fechar:hover,
+.modal-dialogo__fechar:focus-visible {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--cor-menta-neon);
+  outline: 2px solid var(--cor-menta-neon);
+}
+
+.modal-dialogo__icone {
+  font-size: 2.5rem;
+  color: var(--cor-menta-neon);
+  margin-bottom: 0.25rem;
+}
+
+.modal-dialogo__titulo {
+  font-family: var(--fonte-titulo);
+  font-size: var(--titulo-md, 1.5rem);
+  color: var(--cor-espuma);
+  margin: 0;
+}
+
+.modal-dialogo__mensagem {
+  font-family: var(--fonte-texto);
+  font-size: var(--texto-base, 1rem);
+  color: var(--cor-nevoa-acessivel);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.modal-dialogo__form {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.modal-dialogo__form .botao {
+  width: 100%;
 }
