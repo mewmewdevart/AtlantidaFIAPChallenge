@@ -257,51 +257,7 @@ function iniciarAnimacoesSubmarinas() {
     }
   });
 
-  // Camada de refração da água (movimento sereno)
-  const camadaAgua = svgContainer.querySelector(".UNDERWATER-8");
-  if (camadaAgua) {
-    animacoesSubmarinas.push(
-      gsap.fromTo(
-        camadaAgua,
-        { y: 25 },
-        {
-          y: -25,
-          duration: 10,
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut"
-        }
-      )
-    );
-  }
-
-  // Ondulação suave nas algas marinhas
-  const algas1 = document.getElementById("algas-1") || document.getElementById("Seaweed");
-  if (algas1) {
-    animacoesSubmarinas.push(
-      gsap.to(algas1, {
-        rotation: 1.5,
-        transformOrigin: "bottom center",
-        duration: 8,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
-      })
-    );
-  }
-  const algas2 = document.getElementById("algas-2") || document.getElementById("Seaweed-2");
-  if (algas2) {
-    animacoesSubmarinas.push(
-      gsap.to(algas2, {
-        rotation: -1.8,
-        transformOrigin: "bottom center",
-        duration: 9.5,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
-      })
-    );
-  }
+  // Algas e cenário do recife permanecem estáticos (apenas os peixes são animados)
 
   // Verifica preferências de acessibilidade
   const prefereReduzido =
