@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>🐟 Portal Khipu</h1>
+  <h1>🐟 Khipu- Os laços que conectam Guaraci.</h1>
 
   <p>
     <b>VR Code Arena - NEXT FIAP/2026</b>
@@ -24,7 +24,7 @@
 
 ## 📌 Resumo do Projeto
 
-O **Portal Khipu** é uma solução digital concebida para o desafio **VR Code Arena (NEXT FIAP/2026)**. O objetivo é integrar e fornecer informações vitais para a população da mítica cidade de Atlântida(que seus moradores chamam de Ñandeyaku: nossa água), localizada no fundo do oceano. Através do portal, os moradores das diversas cúpulas e módulos subaquáticos têm acesso a dados de pressão, rotas de navegação submarina, relatórios operacionais e canal de comunicação entre os setores habitacionais.
+O **Portal Khipu - Os laços que conectam Guaraci.** é uma solução digital concebida para o desafio **VR Code Arena (NEXT FIAP/2026)**. O objetivo é integrar e fornecer informações vitais para a população da mítica cidade de Guaraci(que seus moradores chamam de Ñandeyaku: nossa água), localizada no fundo do oceano. Através do portal, os moradores das diversas cúpulas e módulos subaquáticos têm acesso a dados de pressão, rotas de navegação submarina, relatórios operacionais e canal de comunicação entre os setores habitacionais.
 
 ---
 
