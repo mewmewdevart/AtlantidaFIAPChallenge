@@ -423,7 +423,6 @@ function inicializarMenuLateral() {
           const yAtual = posicoes[i]?.targetY ?? posicoes[0].targetY;
           const yProximo = posicoes[i + 1]?.targetY ?? yAtual;
           targetSubmarinoY = yAtual + (progresso * (yProximo - yAtual));
-          secaoAtivaId = progresso >= 0.5 ? posicoes[i + 1]?.id || posicoes[i].id : posicoes[i].id;
           break;
         }
       } else {
@@ -432,6 +431,14 @@ function inicializarMenuLateral() {
           secaoAtivaId = secaoAtual.id;
         }
       }
+    }
+
+    // Seção ativa = a que está sob uma linha de leitura a ~35% da altura da tela.
+    // (Antes trocava na metade da seção; em "O Mundo", que é muito alta, o menu
+    // já marcava "Habitantes" quando a pessoa ainda estava no pulso da cidade.)
+    const linhaLeitura = scrollY + window.innerHeight * 0.35;
+    for (let i = 0; i < secoes.length; i++) {
+      if (secoes[i].offsetTop <= linhaLeitura) secaoAtivaId = secoes[i].id;
     }
 
     if (window.innerHeight + scrollY >= document.documentElement.scrollHeight - 60) {
