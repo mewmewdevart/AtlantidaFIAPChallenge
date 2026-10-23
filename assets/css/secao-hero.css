@@ -3,6 +3,10 @@
    Estrutura e interações da capa do portal com o livro 3D imersivo.
    ========================================================================== */
 
+.conteudo-principal {
+  position: relative;
+}
+
 /* ---- Área Principal do Hero ---- */
 .secao-apresentacao {
   position: relative;
@@ -13,6 +17,7 @@
   min-height: 100vh;
   /* perspective: calc(160 * var(--livro-unidade)); */
   overflow: hidden;
+  background: var(--cor-jade);
 }
 
 /* Background Submarino Animado atrás do Livro 3D (Atomic Design BEM) */
@@ -237,12 +242,14 @@
   padding: calc(0.9 * var(--livro-unidade));
   line-height: 1.6;
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .livro-3d__face--frente {
   background-color: var(--cor-pergaminho);
   background-image: linear-gradient(to right, var(--cor-pergaminho-borda) 0%, var(--cor-pergaminho) 90%, var(--cor-pergaminho-borda) 100%);
   border-radius: 0 calc(0.3 * var(--livro-unidade)) calc(0.3 * var(--livro-unidade)) 0;
+  transform: rotateY(0deg) translateZ(1px);
 }
 
 .livro-3d__face--verso {
@@ -255,9 +262,9 @@
   background-image: linear-gradient(to left, var(--cor-pergaminho-borda) 0%, var(--cor-pergaminho) 90%, var(--cor-pergaminho-borda) 100%);
   border-radius: calc(0.3 * var(--livro-unidade)) 0 0 calc(0.3 * var(--livro-unidade));
   box-shadow: inset 2px 0 8px rgba(0, 0, 0, 0.08);
-  transform: rotateY(180deg);
-  backface-visibility: visible !important;
-  -webkit-backface-visibility: visible !important;
+  transform: rotateY(180deg) translateZ(1px);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .livro-3d__conteudo-texto {
@@ -368,6 +375,7 @@
   padding: calc(1.2 * var(--livro-unidade));
   text-align: center;
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .livro-3d__face-capa--frente {
@@ -378,6 +386,7 @@
   border-left: none;
   border-radius: 0 calc(0.35 * var(--livro-unidade)) calc(0.35 * var(--livro-unidade)) 0;
   box-shadow: inset -4px 0 20px rgba(0, 0, 0, 0.4);
+  transform: rotateY(0deg) translateZ(1px);
 }
 
 .livro-3d__face-capa--verso {
@@ -388,7 +397,7 @@
   border-right: none;
   border-radius: calc(0.35 * var(--livro-unidade)) 0 0 calc(0.35 * var(--livro-unidade));
   box-shadow: inset 4px 0 15px rgba(0, 0, 0, 0.35);
-  transform: rotateY(180deg);
+  transform: rotateY(180deg) translateZ(1px);
 }
 
 .livro-3d__emblema {
@@ -398,6 +407,12 @@
 
 .livro-3d__emblema img {
   width: 75%;
+}
+
+.livro-3d__logo {
+  font-size: var(--texto-4xl);
+  font-family: var(--fonte-titulo);
+  color: var(--cor-espuma)
 }
 
 /* ==========================================================================

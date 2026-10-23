@@ -376,6 +376,18 @@ function inicializarMenuLateral() {
   }
 
   function atualizarEstadoMenu() {
+    const abertura = document.getElementById("aberturaCarregamento");
+    if (document.body.classList.contains("em-abertura") || abertura) {
+      menuLateral.classList.remove("menu-lateral--visivel");
+      menuLateral.setAttribute("aria-hidden", "true");
+      menuLateral.inert = true;
+      const logoCentralizado = document.querySelector(".logo-centralizado");
+      if (logoCentralizado) {
+        logoCentralizado.classList.remove("logo-centralizado--visivel");
+      }
+      return;
+    }
+
     const scrollY = window.scrollY || window.pageYOffset;
     const secaoMundo = document.getElementById("o-mundo");
     const limiarSegundaSecao = secaoMundo
@@ -395,7 +407,7 @@ function inicializarMenuLateral() {
 
     const logoCentralizado = document.querySelector(".logo-centralizado");
     if (logoCentralizado) {
-      if (scrollY >= limiarSegundaSecao) {
+      if (window.livroAbertoConcluido || scrollY >= limiarSegundaSecao) {
         logoCentralizado.classList.add("logo-centralizado--visivel");
       } else {
         logoCentralizado.classList.remove("logo-centralizado--visivel");

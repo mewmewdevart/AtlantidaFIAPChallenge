@@ -195,7 +195,7 @@ body>section,
 /* ==========================================================================
    2. ONDULAÇÕES OCEÂNICAS FLUIDAS (WAVES PARALLAX)
    ========================================================================== */
-.waves {
+.ondas-decorativas {
   position: absolute;
   top: 0;
   left: 0;
@@ -203,6 +203,17 @@ body>section,
   height: 15vh;
   min-height: 100px;
   max-height: 150px;
+  z-index: 5;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.waves {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-color: var(--cor-jade-claro);
 }
 
@@ -1123,8 +1134,8 @@ body>section,
   clip: rect(0 0 0 0);
 }
 
-/* Indicador de foco por teclado acessível e de alto contraste */
-:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+/* Indicador de foco por teclado acessível e de alto contraste (exclui containers com tabindex="-1") */
+:where(a, button, input, select, textarea, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
   outline: 2px solid var(--cor-casco);
   outline-offset: 2px;
   box-shadow: 0 0 0 4px var(--cor-menta-neon);
@@ -1156,8 +1167,12 @@ body>section,
   white-space: nowrap;
 }
 
-#inicio:focus {
-  outline: none;
+#inicio:focus,
+#inicio:focus-visible,
+.secao-apresentacao:focus,
+.secao-apresentacao:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .fundo-decoracao-right,
@@ -1694,6 +1709,99 @@ body.sem-animacoes .livro-3d {
 
 body.sem-animacoes .livro-3d__imagem-ilustracao {
   opacity: 1 !important;
+}
+
+/* ==========================================================================
+   TELA DE ABERTURA E CARREGAMENTO INICIAL
+   80vh da abertura + 20vh da seção abaixo visíveis na carga inicial
+   ========================================================================== */
+body.em-abertura {
+  height: 100vh;
+  overflow: hidden;
+}
+
+body.em-abertura #livro3D,
+body.em-abertura #cabecalhoTopo,
+body.em-abertura #menuLateral,
+body.em-abertura .logo-centralizado,
+body.em-abertura #radio-comunal,
+body.em-abertura .cenario-submarino__peixe,
+body.em-abertura .cenario-submarino__tubarao,
+body.em-abertura .cenario-submarino__cardume,
+body.em-abertura #tubarao,
+body.em-abertura [id^="peixe-"],
+body.em-abertura [id^="cardume-"],
+body.aguardando-hero #livro3D,
+body.aguardando-hero .cenario-submarino__peixe,
+body.aguardando-hero .cenario-submarino__tubarao,
+body.aguardando-hero .cenario-submarino__cardume,
+body.aguardando-hero #tubarao,
+body.aguardando-hero [id^="peixe-"],
+body.aguardando-hero [id^="cardume-"] {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+#cabecalhoTopo,
+#radio-comunal,
+#livro3D,
+.cenario-submarino__peixe,
+.cenario-submarino__tubarao,
+.cenario-submarino__cardume,
+#tubarao,
+[id^="peixe-"],
+[id^="cardume-"] {
+  transition: opacity 0.6s ease;
+}
+
+.abertura-carregamento {
+  background: linear-gradient(to bottom, #F7C33C 0%, #63B6AF 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  height: 80vh;
+  position: relative;
+  z-index: 100;
+}
+
+.abertura-carregamento.abertura-carregamento--oculta {
+  display: none !important;
+}
+
+
+.abertura-carregamento h1 {
+  margin: 0;
+  font-family: var(--fonte-titulo);
+  font-size: 4rem;
+  font-weight: bold;
+  color: var(--cor-fundo);
+}
+
+.abertura-carregamento .btn-pular {
+  padding: 0.6rem 1.8rem;
+  background-color: var(--cor-pergaminho);
+  color: var(--cor-tinta);
+  border: 1px solid var(--cor-pergaminho-borda);
+  border-radius: 2rem;
+  font-family: var(--fonte-texto);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.abertura-carregamento .btn-pular:hover {
+  background-color: #ffffff;
+  transform: translateY(2px);
+}
+
+.abertura-carregamento .btn-pular:focus-visible {
+  outline: 3px solid var(--cor-menta-neon);
+  outline-offset: 3px;
+  box-shadow: 0 0 12px rgba(15, 244, 204, 0.6);
 }
 
 /* ==========================================================================

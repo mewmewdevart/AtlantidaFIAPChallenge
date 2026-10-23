@@ -5,7 +5,7 @@ let timelineLivro = null;
 // Abaixo desta largura o livro vira uma coluna simples (mesmo valor do @media em style.css)
 const MAX_LARGURA_LIVRO_PLANO = 1100;
 
-function definirLivroAbertoSemAnimacao() {
+function definirLivroAbertoSemAnimacao(callbackConclusao) {
   const livro = document.getElementById("livro3D");
   const capaFrontal = document.getElementById("capaFrontal");
   const folhaEsquerda = document.getElementById("folhaEsquerda");
@@ -13,6 +13,7 @@ function definirLivroAbertoSemAnimacao() {
   const imagensIlustracao = document.querySelectorAll(".livro-3d__imagem-ilustracao");
 
   if (!livro || !capaFrontal || !folhaEsquerda || typeof gsap === "undefined") {
+    if (typeof callbackConclusao === "function") callbackConclusao();
     return;
   }
 
@@ -29,6 +30,7 @@ function definirLivroAbertoSemAnimacao() {
     gsap.set([livro, capaFrontal, folhaEsquerda, folhaDireita, imagensIlustracao], { clearProps: "all" });
     const paginaConteudoContainer = document.getElementById("paginaConteudoContainer");
     if (paginaConteudoContainer) gsap.set(paginaConteudoContainer, { clearProps: "all" });
+    if (typeof callbackConclusao === "function") callbackConclusao();
     return;
   }
 
@@ -37,11 +39,22 @@ function definirLivroAbertoSemAnimacao() {
   gsap.set(folhaEsquerda, { rotateY: -180, zIndex: 35 });
   if (folhaDireita) gsap.set(folhaDireita, { zIndex: 20 });
   if (imagensIlustracao.length > 0) gsap.set(imagensIlustracao, { opacity: 1 });
+
+  window.livroAbertoConcluido = true;
+  const logoCentralizado = document.querySelector(".logo-centralizado");
+  if (logoCentralizado) {
+    logoCentralizado.classList.add("logo-centralizado--visivel");
+  }
+
+  if (typeof callbackConclusao === "function") {
+    callbackConclusao();
+  }
 }
 
 window.definirLivroAberto = definirLivroAbertoSemAnimacao;
+window.executarAnimacaoAberturaLivro = executarAnimacaoAberturaLivro;
 
-function executarAnimacaoAberturaLivro() {
+function executarAnimacaoAberturaLivro(callbackConclusao) {
   const livro = document.getElementById("livro3D");
   const capaFrontal = document.getElementById("capaFrontal");
   const folhaEsquerda = document.getElementById("folhaEsquerda");
@@ -49,6 +62,7 @@ function executarAnimacaoAberturaLivro() {
   const imagensIlustracao = document.querySelectorAll(".livro-3d__imagem-ilustracao");
 
   if (!livro || !capaFrontal || !folhaEsquerda || typeof gsap === "undefined") {
+    if (typeof callbackConclusao === "function") callbackConclusao();
     return;
   }
 
@@ -61,6 +75,7 @@ function executarAnimacaoAberturaLivro() {
     }
     gsap.killTweensOf([livro, capaFrontal, folhaEsquerda, folhaDireita, imagensIlustracao]);
     gsap.set([livro, capaFrontal, folhaEsquerda, folhaDireita, imagensIlustracao], { clearProps: "all" });
+    if (typeof callbackConclusao === "function") callbackConclusao();
     return;
   }
 
@@ -68,7 +83,7 @@ function executarAnimacaoAberturaLivro() {
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   if (semAnimacoes) {
-    definirLivroAbertoSemAnimacao();
+    definirLivroAbertoSemAnimacao(callbackConclusao);
     return;
   }
 
@@ -85,6 +100,17 @@ function executarAnimacaoAberturaLivro() {
       gsap.set(folhaEsquerda, { rotateY: -180, zIndex: 35 });
       if (folhaDireita) gsap.set(folhaDireita, { zIndex: 20 });
       if (imagensIlustracao.length > 0) gsap.set(imagensIlustracao, { opacity: 1 });
+
+      // Revela o logo centralizado no topo após o livro ter a animação concluída/estar aberto
+      window.livroAbertoConcluido = true;
+      const logoCentralizado = document.querySelector(".logo-centralizado");
+      if (logoCentralizado) {
+        logoCentralizado.classList.add("logo-centralizado--visivel");
+      }
+
+      if (typeof callbackConclusao === "function") {
+        callbackConclusao();
+      }
     }
   });
 
@@ -108,11 +134,6 @@ function executarAnimacaoAberturaLivro() {
         gsap.set(capaFrontal, { rotateY: -180, zIndex: 2 });
       }
     }, 0.2)
-    .to(imagensIlustracao, {
-      opacity: 1,
-      duration: 1.8,
-      ease: "sine.inOut"
-    }, 1.8)
     .to(folhaEsquerda, {
       rotateY: -180,
       duration: 2.4,
@@ -127,11 +148,13 @@ function executarAnimacaoAberturaLivro() {
         if (folhaEsquerda) {
           gsap.set(folhaEsquerda, { zIndex: 35 });
         }
-        if (imagensIlustracao.length > 0) {
-          gsap.set(imagensIlustracao, { opacity: 1 });
-        }
       }
-    }, 1.7);
+    }, 1.7)
+    .to(imagensIlustracao, {
+      opacity: 1,
+      duration: 0.9,
+      ease: "power2.out"
+    }, ">");
 }
 
 const mediaQueryLivroPlano = window.matchMedia(`(max-width: ${MAX_LARGURA_LIVRO_PLANO}px)`);
@@ -286,17 +309,23 @@ window.addEventListener("animacoes:alteradas", (evento) => {
 });
 
 const mediaQueryMobileSubmarino = window.matchMedia("(max-width: 768px)");
-mediaQueryMobileSubmarino.addEventListener("change", () => {
-  iniciarAnimacoesSubmarinas();
-});
+window.iniciarAnimacoesSubmarinas = iniciarAnimacoesSubmarinas;
+window.pausarAnimacoesSubmarinas = pausarAnimacoesSubmarinas;
 
 // Inicialização segura ao carregar a página
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", () => {
+function inicializarHero() {
+  const estaEmAbertura =
+    document.body.classList.contains("em-abertura") &&
+    document.getElementById("aberturaCarregamento");
+
+  if (!estaEmAbertura) {
     executarAnimacaoAberturaLivro();
     iniciarAnimacoesSubmarinas();
-  });
+  }
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", inicializarHero);
 } else {
-  executarAnimacaoAberturaLivro();
-  iniciarAnimacoesSubmarinas();
+  inicializarHero();
 }
