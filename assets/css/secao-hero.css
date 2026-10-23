@@ -433,8 +433,9 @@
   .secao-apresentacao {
     perspective: none !important;
     min-height: 100vh;
+    min-height: 100dvh;
     height: auto;
-    padding: clamp(5.5rem, 12vh, 7rem) 1.5rem 5.5rem 1.5rem;
+    padding: clamp(4.5rem, 8vh, 6rem) 1.5rem clamp(2.5rem, 5vh, 4rem) 1.5rem;
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -574,9 +575,76 @@
     font-size: var(--texto-sm);
     border-radius: var(--btn-raio);
   }
+
+  /* Variação Terciária para o botão "Explorar Guaraci" no modo responsivo */
+  .livro-3d__acoes .botao--primario {
+    color: var(--cor-fundo);
+    background-color: var(--cor-jade-claro);
+    border-color: var(--cor-jade-claro);
+    font-weight: var(--peso-bold);
+  }
+
+  .livro-3d__acoes .botao--primario:hover {
+    color: var(--cor-espuma);
+    background-color: var(--cor-oceano-acessivel);
+    border-color: var(--cor-oceano-acessivel);
+  }
+
+  .livro-3d__acoes .botao--primario:focus-visible {
+    outline: 2px solid var(--cor-oceano-acessivel);
+    outline-offset: 2px;
+  }
+}
+
+/* Em resoluções menores que 820px, o conteúdo do hero fica centralizado considerando o height da página */
+@media (max-width: 820px) {
+  .secao-apresentacao {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: clamp(4.5rem, 8vh, 6rem) 1.5rem clamp(2rem, 5vh, 3.5rem) 1.5rem !important;
+    box-sizing: border-box !important;
+  }
+
+  .livro-3d {
+    order: 1;
+    margin: 0 auto !important;
+    width: 100% !important;
+    max-width: 520px !important;
+  }
+
+  .livro-3d__descricao {
+    margin-bottom: clamp(1rem, 2.5vh, 1.5rem);
+  }
+
+  .livro-3d__painel-status {
+    padding: 0.75rem 0;
+    margin-bottom: clamp(1.2rem, 3vh, 1.75rem);
+  }
+
+  .secao-scroll-btn {
+    position: static !important;
+    order: 2;
+    transform: none !important;
+    margin-top: clamp(1.2rem, 2.8vh, 1.8rem);
+    margin-bottom: 0.5rem;
+    align-self: center;
+    width: auto;
+  }
+
+  .secao-scroll-btn:hover {
+    transform: translateY(4px) !important;
+  }
 }
 
 @media (max-width: 480px) {
+  .secao-apresentacao {
+    padding: clamp(4.2rem, 7vh, 5.2rem) 1.25rem clamp(1.5rem, 4vh, 2.5rem) 1.25rem !important;
+  }
+
   .livro-3d__painel-status {
     justify-content: space-between;
     gap: 0.75rem;

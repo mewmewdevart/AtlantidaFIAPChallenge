@@ -66,15 +66,33 @@
     const btnPular = document.getElementById("btnPularAbertura");
     const linkPular = document.getElementById("linkPularConteudo");
     const mediaQueryReduzido = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const salvoDesativado = (() => {
+      try {
+        return localStorage.getItem("atlantida_animacoes_desativadas") === "true";
+      } catch (_) {
+        return false;
+      }
+    })();
     const semAnimacoes =
+      salvoDesativado ||
       document.body.classList.contains("sem-animacoes") ||
+      document.documentElement.classList.contains("sem-animacoes") ||
       mediaQueryReduzido.matches;
 
-    // Se o usuário prefere movimento reduzido, finaliza sem atrasos
+    // Se o usuário pausou as animações ou prefere movimento reduzido, finaliza imediatamente sem exibir abertura
     if (semAnimacoes) {
+      document.body.classList.add("sem-animacoes");
       finalizarAbertura(true);
       return;
     }
+
+    // Ouvinte dinâmico para quando o usuário pausar as animações a qualquer momento
+    window.addEventListener("animacoes:alteradas", (evento) => {
+      const pausadas = evento.detail ? evento.detail.pausadas : false;
+      if (pausadas && !finalizado) {
+        finalizarAbertura(true);
+      }
+    });
 
     // Ouvinte para botão Pular da abertura
     if (btnPular) {
@@ -193,6 +211,10 @@
 
     // Transição imediata (modo sem animações, skip acessível ou erro de nós)
     if (imediato || !abertura || !hero) {
+      if (animacaoFlutuacaoLogo) {
+        animacaoFlutuacaoLogo.kill();
+        animacaoFlutuacaoLogo = null;
+      }
       if (logoAbertura && typeof window.gsap !== "undefined") {
         gsap.killTweensOf(logoAbertura);
       }

@@ -335,23 +335,65 @@ function inicializarMenuLateral() {
     img.src = src;
   });
 
-  if (submarinoImg && !prefereMovimentoReduzido) {
-    setInterval(() => {
-      frameAtual = (frameAtual + 1) % framesSubmarino.length;
-      submarinoImg.src = framesSubmarino[frameAtual];
-    }, 740);
+  let timerFramesSubmarino = null;
+  let animacaoSubmarinoGsap = null;
+
+  function iniciarAnimacaoSubmarino() {
+    if (document.body.classList.contains("sem-animacoes")) return;
+    if (submarinoImg && !timerFramesSubmarino) {
+      timerFramesSubmarino = setInterval(() => {
+        frameAtual = (frameAtual + 1) % framesSubmarino.length;
+        submarinoImg.src = framesSubmarino[frameAtual];
+      }, 740);
+    }
+    if (submarinoImg && typeof gsap !== "undefined") {
+      if (!animacaoSubmarinoGsap) {
+        animacaoSubmarinoGsap = gsap.to(submarinoImg, {
+          y: 3,
+          rotation: 1.2,
+          duration: 1.8,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut"
+        });
+      } else {
+        animacaoSubmarinoGsap.play();
+      }
+    }
   }
 
-  if (submarinoImg && typeof gsap !== "undefined" && !prefereMovimentoReduzido) {
-    gsap.to(submarinoImg, {
-      y: 3,
-      rotation: 1.2,
-      duration: 1.8,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut"
-    });
+  function pausarAnimacaoSubmarino() {
+    if (timerFramesSubmarino) {
+      clearInterval(timerFramesSubmarino);
+      timerFramesSubmarino = null;
+    }
+    if (animacaoSubmarinoGsap) {
+      animacaoSubmarinoGsap.pause();
+    }
+    if (submarinoImg && framesSubmarino[0]) {
+      submarinoImg.src = framesSubmarino[0];
+    }
   }
+
+  if (submarinoImg) {
+    const estaPausado =
+      document.body.classList.contains("sem-animacoes") ||
+      prefereMovimentoReduzido;
+    if (estaPausado) {
+      pausarAnimacaoSubmarino();
+    } else {
+      iniciarAnimacaoSubmarino();
+    }
+  }
+
+  window.addEventListener("animacoes:alteradas", (evento) => {
+    const pausadas = evento.detail ? evento.detail.pausadas : false;
+    if (pausadas) {
+      pausarAnimacaoSubmarino();
+    } else {
+      iniciarAnimacaoSubmarino();
+    }
+  });
 
   function calcularPosicoesItens() {
     
@@ -620,8 +662,16 @@ function inicializarControleAnimacoes() {
     botaoAnimacoes.setAttribute("aria-label", ehAtlante ? labelAtl : labelPt);
     botaoAnimacoes.setAttribute("data-atl-aria-label", labelAtl);
 
-    if (pausadas && typeof window.definirLivroAberto === "function") {
-      window.definirLivroAberto();
+    if (pausadas) {
+      if (typeof window.concluirAbertura === "function") {
+        window.concluirAbertura(true);
+      }
+      const abertura = document.getElementById("aberturaCarregamento");
+      if (abertura) abertura.remove();
+      document.body.classList.remove("em-abertura", "aguardando-hero");
+      if (typeof window.definirLivroAberto === "function") {
+        window.definirLivroAberto();
+      }
     }
     window.dispatchEvent(new CustomEvent("animacoes:alteradas", { detail: { pausadas } }));
   };
