@@ -194,12 +194,22 @@ body>section,
 
 .predios-decorativos {
   position: absolute;
-  bottom: -40px;
+  bottom: var(--predios-posicao-y, -30px);
   left: 0;
   width: 100%;
-  height: clamp(240px, 34vh, 360px);
+  /* ==========================================================================
+     TAMANHO / ESCALA RESPONSIVA NA TELA (SEM ESTICAR A IMAGEM):
+     - A largura é sempre 100% de ponta a ponta da tela.
+     - As proporções do desenho são 100% preservadas (não estica).
+     - Ajuste o tamanho visual na tela simplesmente alterando --predios-altura (ex: 200px, 24vh).
+     - Se quiser aumentar/diminuir o zoom dos prédios: altere --predios-escala (ex: 0.9, 1, 1.15).
+     - Ajuste o alinhamento vertical com --predios-posicao-y (ex: -30px, 0).
+     ========================================================================== */
+
   z-index: 2;
+  width: 75%;
   pointer-events: none;
+  overflow: hidden;
 
   /* ==========================================================================
      CONTROLE DE CORES DA CIDADE (CSS VARIABLES)
@@ -213,6 +223,20 @@ body>section,
   --cidade-opacidade-fundo: 0.35;
   --cidade-opacidade-meio: 0.65;
   --cidade-opacidade-frente: 1;
+}
+
+@media (max-width: 768px) {
+  .predios-decorativos {
+    --predios-altura: clamp(120px, 18vh, 180px);
+    --predios-posicao-y: -15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .predios-decorativos {
+    --predios-altura: clamp(90px, 15vh, 130px);
+    --predios-posicao-y: -8px;
+  }
 }
 
 .cidade-camada--fundo {
@@ -233,8 +257,12 @@ body>section,
 .predios-decorativos img,
 .predios-decorativos svg {
   display: block;
-  width: 40%;
+  width: 100%;
   height: 100%;
+  object-fit: cover;
+  object-position: bottom center;
+  transform: scale(var(--predios-escala, 1));
+  transform-origin: bottom center;
 }
 
 /* ==========================================================================
