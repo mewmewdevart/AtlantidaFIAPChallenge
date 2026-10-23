@@ -5,7 +5,7 @@
    com data-i18n="chave" no index.html, edite a chave AQUI, nos dois blocos.
 
    - ptBr          : português
-   - ptBrAtlantida : Atlante (o idioma inventado de Atlântida)
+   - ptBrAtlantida : Atlante (o idioma inventado de Guaraci)
    - As duas listas precisam ter as MESMAS chaves.  Para conferir:  node docs/verificar-idiomas.js
    - Textos do index.html que usam data-atl="..." (O Mundo e Habitantes) NÃO ficam aqui:
      o Atlante deles está no próprio HTML ou em dados-mundo-habitantes.js.
@@ -19,7 +19,7 @@ window.I18N_DICIONARIOS = {
     /* ---- Menu e seletor de idioma ---- */
     "nav.menu": "AJUSTES",
     "nav.lang_pt": "PT-BR",
-    "nav.lang_atlantida": "Atlântida",
+    "nav.lang_atlantida": "Atlante",
     "nav.animations": "Animações",
     /* ---- Menu lateral ---- */
     "nav_lateral.inicio": "Início",
@@ -101,14 +101,14 @@ window.I18N_DICIONARIOS = {
     "mural.empty": "Não há mensagens ativas no mural neste momento.",
     /* ---- Hero (livro) ---- */
     "hero.cover_title": "KHIPU",
-    "hero.cover_subtitle": "O PORTAL DE ATLÂNTIDA",
+    "hero.cover_subtitle": "OS LAÇOS QUE CONECTAM GUARACI.",
     "hero.livro_titulo_linha1": "Explore",
-    "hero.livro_titulo_linha2": "Atlântida.",
+    "hero.livro_titulo_linha2": "Guaraci.",
     "hero.livro_descricao": "Conecte-se à cidade submarina, descubra seus espaços e explore um novo mundo abaixo da superfície.",
-    "hero.btn_explorar": "Explorar Atlântida",
+    "hero.btn_explorar": "Explorar Guaraci",
     "hero.btn_saiba_mais": "Saiba mais",
     /* ---- Rodapé ---- */
-    "footer.brand_subtitle": "O PORTAL DE ATLÂNTIDA",
+    "footer.brand_subtitle": "OS LAÇOS QUE CONECTAM GUARACI.",
     "footer.description": "O Khipu é o portal que mantém a cidade conectada. Aqui os habitantes das cúpulas se conhecem, se comunicam, pedem e oferecem ajuda. Ninguém se afoga sozinho.",
     "footer.depth": "PROFUNDIDADE 3.400 m",
     "footer.community": "COMUNIDADE ABERTA",
@@ -137,7 +137,7 @@ window.I18N_DICIONARIOS = {
     "radio.maximize": "Expandir rádio",
     "radio.play": "Tocar",
     "radio.pause": "Pausar",
-    "login.title": "Terminal de Atlântida",
+    "login.title": "Terminal de Guaraci",
     "login.desc": "Acesso restrito ao conselho de sábios e tripulação autorizada. Em breve disponível para cidadãos.",
     "login.btn_close": "Entendido"
   },
@@ -146,7 +146,7 @@ window.I18N_DICIONARIOS = {
     /* ---- Menu e seletor de idioma ---- */
     "nav.menu": "KALPULLI",
     "nav.lang_pt": "PT-BR",
-    "nav.lang_atlantida": "Atlântida",
+    "nav.lang_atlantida": "Atlante",
     "nav.animations": "Kuyuy",
     /* ---- Menu lateral ---- */
     "nav_lateral.inicio": "Ipepe",
@@ -228,14 +228,14 @@ window.I18N_DICIONARIOS = {
     "mural.empty": "Amo onca tlanonotzaliztli axcan.",
     /* ---- Hero (livro) ---- */
     "hero.cover_title": "KHIPU — TLALOC",
-    "hero.cover_subtitle": "ATLÂNTIDAP KHIPUN",
+    "hero.cover_subtitle": "GUARACITA TINKICHIQ WATAKUNA.",
     "hero.livro_titulo_linha1": "Ixtlamati",
-    "hero.livro_titulo_linha2": "Atlântida.",
+    "hero.livro_titulo_linha2": "Guaraci.",
     "hero.livro_descricao": "Tlazocamati atl altepetl, ximomachti ihuan xitlachia yancuic tlalpan ameyalli.",
-    "hero.btn_explorar": "Xitlachia Atlântida",
+    "hero.btn_explorar": "Xitlachia Guaraci",
     "hero.btn_saiba_mais": "Miac tlamatiliztli",
     /* ---- Rodapé ---- */
-    "footer.brand_subtitle": "ATLÂNTIDAP KHIPUN",
+    "footer.brand_subtitle": "GUARACITA TINKICHIQ WATAKUNA.",
     "footer.description": "Khipu altepetl quimopalehuia. Nican macehualtin tlen cúpulas moiximatih, mononotzah, motlatlauhtiah ihuan mopalehuiah. Ayacmo aquin atl mictia.",
     "footer.depth": "HUECATLAN 3.400 m",
     "footer.community": "CALPULLI TLAPOHTLI",

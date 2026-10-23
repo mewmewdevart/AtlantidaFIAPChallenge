@@ -1,118 +1,30 @@
 /* ==========================================================================
-   ABERTURA E TELA DE CARREGAMENTO (PORTAL KHIPU)
-   - Exibe 80vh da abertura e 20vh da seção hero abaixo na carga inicial.
-   - Coordenador de Prontidão Real: aguarda fontes tipográficas (document.fonts)
-     e decodificação de imagem crítica da Hero com teto máximo seguro (timeout cap).
-   - Animações dos peixes e fauna permanecem pausadas durante a abertura
-     para não consumir CPU desnecessariamente.
-   - Encerramento acessível: tecla Esc, botão Pular e skip-link transferem foco
-     de forma estável para a seção Hero (WCAG 2.4.3 / 2.4.7).
-   - Anúncio sonoro acessível para leitores de tela via aria-live (WCAG 4.1.3).
-   - Transição suave acelerada por GPU, sem quebra de scroll nem saltos de layout (CLS = 0).
+   PASSAGEM DA ABERTURA PARA A HERO (PORTAL KHIPU)
+   - A abertura visível é a de mergulho (abertura.js + abertura.css), a cada carregamento.
+   - Aqui fica só a passagem: libera o scroll, foca a hero (WCAG 2.4.3), inicia as animações
+     submarinas e abre o livro. Sem o mergulho (?pular, movimento reduzido, animações
+     pausadas), a passagem é imediata.
    ========================================================================== */
 
 (function () {
   "use strict";
 
   let finalizado = false;
-  let timerMinimo = null;
-  let timerTetoMaximo = null;
 
   function inicializarAbertura() {
-    const abertura = document.getElementById("aberturaCarregamento");
-    if (!abertura) return;
-
     if ("scrollRestoration" in history) {
       history.scrollRestoration = "manual";
     }
     window.scrollTo(0, 0);
 
-    const btnPular = document.getElementById("btnPularAbertura");
-    const linkPular = document.getElementById("linkPularConteudo");
-    const mediaQueryReduzido = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const semAnimacoes =
-      document.body.classList.contains("sem-animacoes") ||
-      mediaQueryReduzido.matches;
-
-    // Se o usuário prefere movimento reduzido, finaliza sem atrasos
-    if (semAnimacoes) {
-      finalizarAbertura(true);
+    // A tela de abertura é a de mergulho (abertura.js, 10 s), que cobre a página. Este arquivo cuida só da
+    // passagem: ao fim do mergulho libera o scroll, foca a hero e abre o livro. Sem o mergulho
+    // (?pular, movimento reduzido ou animações pausadas), a passagem é imediata.
+    if (document.documentElement.classList.contains("abertura-ativa")) {
+      window.addEventListener("abertura:fim", () => finalizarAbertura(true), { once: true });
       return;
     }
-
-    // Ouvinte para botão Pular da abertura
-    if (btnPular) {
-      btnPular.addEventListener("click", () => {
-        finalizarAbertura(false);
-      });
-    }
-
-    // Integrar com o skip-link nativo da página
-    if (linkPular) {
-      linkPular.addEventListener("click", (evento) => {
-        if (!finalizado) {
-          evento.preventDefault();
-          finalizarAbertura(false);
-        }
-      });
-    }
-
-    // Tecla Escape para pular a abertura a qualquer momento
-    document.addEventListener("keydown", (evento) => {
-      if (evento.key === "Escape" && !finalizado) {
-        finalizarAbertura(false);
-      }
-    });
-
-    // Ouvir alterações dinâmicas na preferência de movimento reduzido
-    if (mediaQueryReduzido.addEventListener) {
-      mediaQueryReduzido.addEventListener("change", (e) => {
-        if (e.matches && !finalizado) {
-          finalizarAbertura(true);
-        }
-      });
-    }
-
-    // ========================================================================
-    // COORDENADOR DE PRONTIDÃO DE ASSETS REAIS
-    // Aguarda fontes prontas + imagem crítica da hero, com tempo mínimo estético
-    // de 5s (5000ms) e teto máximo de segurança de 5s
-    // ========================================================================
-    const promessaFontes =
-      document.fonts && typeof document.fonts.ready === "object"
-        ? document.fonts.ready.catch(() => {})
-        : Promise.resolve();
-
-    const imgHero = document.querySelector(".livro-3d__imagem-ilustracao");
-    const promessaImagem =
-      imgHero && typeof imgHero.decode === "function"
-        ? imgHero.decode().catch(() => {})
-        : Promise.resolve();
-
-    let tempoMinimoConcluido = false;
-    timerMinimo = setTimeout(() => {
-      tempoMinimoConcluido = true;
-      verificarProntidao();
-    }, 5000);
-
-    let assetsProntos = false;
-    Promise.all([promessaFontes, promessaImagem]).then(() => {
-      assetsProntos = true;
-      verificarProntidao();
-    });
-
-    function verificarProntidao() {
-      if (tempoMinimoConcluido && assetsProntos && !finalizado) {
-        finalizarAbertura(false);
-      }
-    }
-
-    // Teto máximo de segurança (5s) para conexões lentas ou assets travados
-    timerTetoMaximo = setTimeout(() => {
-      if (!finalizado) {
-        finalizarAbertura(false);
-      }
-    }, 5000);
+    finalizarAbertura(true);
   }
 
   function finalizarAbertura(imediato = false) {
@@ -124,8 +36,6 @@
       clearTimeout(window.__timeoutSegurancaAbertura);
       window.__timeoutSegurancaAbertura = null;
     }
-    if (timerMinimo) clearTimeout(timerMinimo);
-    if (timerTetoMaximo) clearTimeout(timerTetoMaximo);
 
     const abertura = document.getElementById("aberturaCarregamento");
     const hero = document.getElementById("inicio");
@@ -226,7 +136,7 @@
 
   // Pausar/retomar de forma inteligente caso a aba seja alternada durante a abertura
   document.addEventListener("visibilitychange", () => {
-    if (document.hidden && !finalizado) {
+    if (document.hidden && !finalizado && !document.documentElement.classList.contains("abertura-ativa")) {
       // Se a aba foi escondida durante a abertura, finaliza de forma silenciosa para não prender o usuário
       finalizarAbertura(true);
     }

@@ -329,3 +329,24 @@
     max-width: 175px;
   }
 }
+/* Legenda da notícia narrada: texto visível para quem não pode ou não quer ouvir. */
+.radio-comunal__legenda {
+  margin: 0.5rem 0 0.2rem;
+  padding: 0.5rem 0.6rem;
+  max-height: 7.5em;
+  overflow-y: auto;
+  border-left: 3px solid var(--cor-tinta-suave-acessivel);
+  background: rgba(255, 255, 255, 0.35);
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: inherit;
+}
+
+.radio-comunal__legenda::before {
+  content: attr(data-rotulo);
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}

@@ -134,13 +134,13 @@
             </button>
             ${aberto ? `
               <div class="lugar__info">
-                <div>
+                <div class="lugar__info-coluna">
                   <p class="lugar__info-titulo">${esc(rotulo("fazer"))}</p>
-                  ${lista(ponto, "fazer").map((f) => `<p>${esc(f)}</p>`).join("")}
+                  <ul class="lugar__info-lista">${lista(ponto, "fazer").map((f) => `<li>${esc(f)}</li>`).join("")}</ul>
                 </div>
-                <div>
+                <div class="lugar__info-coluna">
                   <p class="lugar__info-titulo">${esc(rotulo("tem"))}</p>
-                  ${lista(ponto, "tem").map((x) => `<p>${esc(x)}</p>`).join("")}
+                  <ul class="lugar__info-lista">${lista(ponto, "tem").map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
                 </div>
               </div>` : ""}
           </li>`;

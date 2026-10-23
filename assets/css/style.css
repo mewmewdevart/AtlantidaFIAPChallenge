@@ -38,18 +38,41 @@ body {
   width: 100%;
   margin: 0;
   font-family: var(--fonte-texto);
-  background-color: var(--cor-abismo);
-  background-image: linear-gradient(180deg,
-      var(--cor-jade) 9%,
-      var(--cor-jade) clamp(100px, 15vh, 150px),
-      var(--cor-fundo) 50%,
-      var(--cor-abismo) 100%);
-  background-repeat: no-repeat;
+  background-color: var(--prof-0);   /* o hero é transparente e mostra este jade */
 }
 
 body>section,
 .secao-oceano {
   min-height: 100vh;
+}
+
+/* Mergulho: o fundo escurece nas quebras de seção, junto da faixa de profundidade que abre cada uma.
+   --de = cor da zona de cima, --para = cor desta zona (veja --prof-* em variables.css). */
+.secao-oceano {
+  /* 1) no pé da seção a cor já vai escurecendo até o tom de passagem (--fim);
+     2) a próxima seção começa nesse mesmo tom (--de) e termina de escurecer na faixa de profundidade.
+     Assim a quebra não tem degrau: a mescla acontece dos dois lados da faixa. */
+  background:
+    linear-gradient(180deg, transparent calc(100% - var(--mescla-profundidade)), var(--fim) 100%),
+    linear-gradient(180deg, var(--de) 0, var(--para) var(--faixa-profundidade)),
+    var(--para);
+}
+
+#o-mundo    { --de: var(--prof-0);  --para: var(--prof-1); --fim: var(--passa-1); }
+#habitantes { --de: var(--passa-1); --para: var(--prof-2); --fim: var(--passa-2); }
+#mural      { --de: var(--passa-2); --para: var(--prof-3); --fim: var(--passa-3); }
+#contato    { --de: var(--passa-3); --para: var(--prof-4); --fim: var(--passa-4); }
+
+/* Última faixa (fundo abissal) fecha a descida e leva ao rodapé */
+.conteudo-principal > .linha-divisoria {
+  background: linear-gradient(180deg, var(--passa-4), var(--prof-5));
+}
+
+/* Silhuetas de alga/coral no pé das seções somem no fundo, sem corte seco */
+.habitantes__decoracao-algas,
+.montanha-front-rodape {
+  -webkit-mask-image: linear-gradient(180deg, #000 45%, transparent 100%);
+          mask-image: linear-gradient(180deg, #000 45%, transparent 100%);
 }
 
 .svg-filters {

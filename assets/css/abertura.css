@@ -1,0 +1,287 @@
+/* ============================================================================
+   ABERTURA (10 s): superfície → mergulho → livro flutuando → o livro abre
+   - Só CSS anima; abertura.js liga a classe .ab--rodando, mostra a profundidade e avisa o fim.
+   - Para mudar a duração de uma etapa, mude o "delay" (segundos) da animação correspondente.
+   - Linha do tempo:  0 superfície · 2,6 mergulho (4 s) · 6,0 livro surge · 8,0 capa abre · 9,2 sai
+   ============================================================================ */
+
+.abertura { display: none; }
+
+html.abertura-ativa .abertura {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  overflow: hidden;
+  background: var(--cor-abismo);
+  color: var(--cor-espuma);
+  perspective: 900px;
+}
+
+html.abertura-ativa body { overflow: hidden; }
+
+/* Tudo parado até o JS dar a largada (assim o relógio do JS e o da animação batem) */
+.abertura, .abertura * { animation-play-state: paused !important; }
+.abertura.ab--rodando, .abertura.ab--rodando * { animation-play-state: running !important; }
+
+/* ---------- Mundo: céu + água numa coluna alta que sobe (a "câmera" desce) ---------- */
+.ab__mundo {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 300%;
+  animation: ab-mergulho 4s cubic-bezier(0.6, 0, 0.4, 1) 2.6s both;
+}
+
+.ab__ceu {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 33.3334%;
+  background: linear-gradient(180deg, #2a7f86 0%, #7fc4bd 52%, #f3c98b 86%, #e09028 100%);
+}
+
+.ab__sol {
+  position: absolute;
+  left: 50%;
+  bottom: -9vmin;
+  width: 30vmin; height: 30vmin;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 0 4vmin rgba(255, 190, 90, 0.8));
+  animation: ab-sol-sobe 2.6s ease-out 0.2s both;
+}
+
+.ab__sol img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+.ab__agua {
+  position: absolute;
+  top: 33.3334%; left: 0; width: 100%; height: 66.6666%;
+  background: linear-gradient(180deg, #63b6af 0%, #10544f 22%, #01383c 50%, #000a10 80%, #000305 100%);
+}
+
+.ab__ondas {
+  position: absolute;
+  top: calc(33.3334% - 3.5vh); left: 0;
+  width: 200%; height: 7vh;
+  animation: ab-onda 3.2s linear infinite;
+}
+
+.ab__ondas--tras { opacity: 0.55; top: calc(33.3334% - 5vh); animation-duration: 5s; animation-direction: reverse; }
+.ab__ondas svg { display: block; width: 100%; height: 100%; }
+
+/* ---------- Efeitos fixos na tela ---------- */
+.ab__raios {
+  position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(100deg, transparent 0 9vw, rgba(190, 255, 240, 0.16) 10vw 12vw, transparent 14vw 22vw);
+  -webkit-mask-image: linear-gradient(180deg, #000, transparent 85%);
+          mask-image: linear-gradient(180deg, #000, transparent 85%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  animation: ab-raios 5.2s ease-in-out 2.8s both;
+}
+
+.ab__bolhas { position: absolute; inset: 0; opacity: 0; animation: ab-aparece 1s linear 2.4s both; pointer-events: none; }
+
+.ab__bolha {
+  position: absolute;
+  bottom: -6vh;
+  border-radius: 50%;
+  border: 1px solid rgba(220, 255, 250, 0.55);
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.04) 60%);
+  animation: ab-bolha linear infinite;
+}
+
+.ab__baleia { position: absolute; left: 0; opacity: 0; fill: #1a6f76; filter: drop-shadow(0 0 1.2vmin rgba(15, 244, 204, 0.35)); pointer-events: none; }
+.ab__baleia--a { top: 24%; width: clamp(220px, 46vmax, 620px); animation: ab-baleia-a 6s linear 3.6s both; }
+.ab__baleia--b { top: 60%; width: clamp(130px, 26vmax, 340px); animation: ab-baleia-b 5.4s linear 4.6s both; }
+
+/* Peixes da pasta assets/media (nadam sempre de frente: os desenhos olham para a direita, exceto o tubarão).
+   Ficam atrás dos textos e do livro; só aparecem depois que o título some (3,4 s). */
+.ab__peixes { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+
+.ab__peixe {
+  position: absolute;
+  left: 0;
+  top: var(--y);
+  width: max(var(--w), 44px);
+  opacity: 0;
+  animation: var(--anim) var(--dur) linear var(--t) both;
+}
+
+.ab__peixe img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 0.8vmin var(--brilho, rgba(255, 255, 255, 0.35)));
+  animation: ab-balanca 1.3s ease-in-out infinite alternate;
+}
+
+.ab__peixe--vira img { scale: -1 1; }
+
+/* ---------- Textos ---------- */
+.ab__nome {
+  position: absolute;
+  top: 24%; left: 0; width: 100%;
+  margin: 0;
+  text-align: center;
+  font-family: var(--fonte-titulo);
+  font-size: clamp(2.2rem, 9vw, 5.5rem);
+  font-weight: var(--peso-bold);
+  letter-spacing: 0.18em;
+  text-shadow: 0 2px 18px rgba(0, 40, 40, 0.65);
+  opacity: 0;
+  animation: ab-nome 3s ease-in-out 0.3s both;
+}
+
+.ab__nome small {
+  display: block;
+  margin-top: 0.6rem;
+  font-family: var(--fonte-texto);
+  font-size: clamp(0.9rem, 2.6vw, 1.25rem);
+  font-weight: var(--peso-regular);
+  letter-spacing: 0.08em;
+}
+
+.ab__profundidade {
+  position: absolute;
+  left: 0; bottom: 8%; width: 100%;
+  margin: 0;
+  text-align: center;
+  font-family: var(--fonte-texto);
+  font-size: clamp(0.85rem, 2.4vw, 1.1rem);
+  font-weight: var(--peso-semibold);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cor-menta-neon);
+  opacity: 0;
+  animation: ab-prof 4.6s ease-in-out 3s both;
+}
+
+.ab__profundidade span { display: block; margin-bottom: 0.3rem; color: var(--cor-espuma); }
+.ab__profundidade b { font-variant-numeric: tabular-nums; font-weight: var(--peso-bold); }
+
+/* ---------- Livro ---------- */
+.ab__livro {
+  --lv: clamp(14px, 4.4vmin, 26px);
+  position: absolute;
+  top: 50%; left: 50%;
+  width: calc(9.25 * var(--lv)); height: calc(12.5 * var(--lv));
+  margin: calc(-6.25 * var(--lv)) 0 0 calc(-4.625 * var(--lv));
+  opacity: 0;
+  animation: ab-livro-entra 1.3s ease-out 6s both;
+}
+
+.ab__livro-zoom { position: absolute; inset: 0; transform-style: preserve-3d; animation: ab-livro-zoom 1s ease-in 8.9s both; }
+.ab__livro-flutua { position: absolute; inset: 0; transform-style: preserve-3d; animation: ab-flutua 2.8s ease-in-out 6s infinite alternate; }
+.ab__livro-inclina { position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateX(8deg) rotateY(-16deg); }
+
+.ab__brilho {
+  position: absolute;
+  inset: -45%;
+  background: radial-gradient(circle, rgba(224, 144, 40, 0.55) 0%, rgba(224, 144, 40, 0.12) 45%, transparent 70%);
+  opacity: 0;
+  animation: ab-aparece 1.6s ease-out 6.3s both;
+}
+
+.ab__paginas {
+  position: absolute; inset: 0;
+  border-radius: 2px calc(0.35 * var(--lv)) calc(0.35 * var(--lv)) 2px;
+  background:
+    repeating-linear-gradient(180deg, transparent 0 calc(0.55 * var(--lv)), rgba(120, 80, 30, 0.14) calc(0.55 * var(--lv)) calc(0.6 * var(--lv))),
+    linear-gradient(90deg, #d8c08c, #efdcb5 14%, #f6e8c8);
+  box-shadow: 0 0 calc(2 * var(--lv)) rgba(224, 144, 40, 0.45);
+}
+
+.ab__luz {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: calc(9 * var(--lv)); height: calc(9 * var(--lv));
+  margin: calc(-4.5 * var(--lv)) 0 0 calc(-4.5 * var(--lv));
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, rgba(255, 226, 170, 0.9) 35%, transparent 70%);
+  opacity: 0;
+  animation: ab-luz 1.2s ease-in 8.5s both;
+}
+
+.ab__capa {
+  position: absolute; inset: 0;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  animation: ab-capa-abre 1.4s cubic-bezier(0.5, 0, 0.3, 1) 8s both;
+}
+
+.ab__capa-face {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.ab__capa-face--frente {
+  padding: calc(0.9 * var(--lv));
+  background: linear-gradient(135deg, var(--cor-casco), var(--cor-agua-profunda));
+  border: 2px solid var(--cor-ambar);
+  border-left: none;
+  border-radius: 0 calc(0.35 * var(--lv)) calc(0.35 * var(--lv)) 0;
+  box-shadow: inset -4px 0 20px rgba(0, 0, 0, 0.4);
+}
+
+.ab__capa-face--frente img { width: 78%; height: auto; display: block; }
+
+.ab__capa-face--verso {
+  transform: rotateY(180deg);
+  background: linear-gradient(135deg, var(--cor-agua-profunda), var(--cor-casco));
+  border: 2px solid var(--cor-ambar);
+  border-right: none;
+  border-radius: calc(0.35 * var(--lv)) 0 0 calc(0.35 * var(--lv));
+}
+
+/* ---------- Pular ---------- */
+.ab__pular {
+  position: absolute;
+  top: max(1rem, env(safe-area-inset-top)); right: 1rem;
+  min-height: 44px;
+  padding: 0.55rem 1.1rem;
+  font-family: var(--fonte-texto);
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-semibold);
+  color: var(--cor-espuma);
+  background: rgba(0, 20, 22, 0.55);
+  border: 1px solid rgba(238, 246, 245, 0.6);
+  border-radius: 999px;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.ab__pular:hover { background: rgba(0, 20, 22, 0.8); }
+.ab__pular:focus-visible { outline: 3px solid var(--cor-menta-neon); outline-offset: 3px; }
+
+/* ---------- Saída ---------- */
+.abertura { animation: ab-sair 0.9s ease-in 9.2s both; }
+.abertura.ab--saindo { animation: ab-sair-rapido 0.35s ease-out both !important; animation-play-state: running !important; }
+
+/* ---------- Keyframes ---------- */
+@keyframes ab-mergulho { from { transform: translateY(0); } to { transform: translateY(-66.6667%); } }
+@keyframes ab-sol-sobe { from { transform: translate(-50%, 8vmin); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
+@keyframes ab-onda { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes ab-cruza-dir { from { transform: translateX(-30vw); opacity: 1; } to { transform: translateX(110vw); opacity: 1; } }
+@keyframes ab-cruza-esq { from { transform: translateX(110vw); opacity: 1; } to { transform: translateX(-30vw); opacity: 1; } }
+@keyframes ab-balanca { from { transform: translateY(-0.8vh) rotate(-2deg); } to { transform: translateY(0.8vh) rotate(2deg); } }
+@keyframes ab-aparece { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ab-raios { 0% { opacity: 0; } 35% { opacity: 0.7; } 80% { opacity: 0.18; } 100% { opacity: 0; } }
+@keyframes ab-bolha { from { transform: translateY(0) translateX(0); opacity: 0.9; } to { transform: translateY(-115vh) translateX(2.5vw); opacity: 0.2; } }
+/* A baleia do SVG olha para a ESQUERDA. Indo para a direita ela é espelhada (scaleX(-1)), assim nada nada de ré. */
+@keyframes ab-baleia-a { 0% { transform: translateX(-35vw) translateY(2vh) scaleX(-1); opacity: 0; } 20% { opacity: 0.85; } 80% { opacity: 0.85; } 100% { transform: translateX(105vw) translateY(-3vh) scaleX(-1); opacity: 0; } }
+@keyframes ab-baleia-b { 0% { transform: translateX(105vw) translateY(0); opacity: 0; } 20% { opacity: 0.6; } 80% { opacity: 0.6; } 100% { transform: translateX(-35vw) translateY(-2vh); opacity: 0; } }
+@keyframes ab-nome { 0% { opacity: 0; transform: translateY(14px); } 25% { opacity: 1; transform: none; } 65% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes ab-prof { 0% { opacity: 0; } 10% { opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes ab-livro-entra { from { opacity: 0; transform: translateY(40px) scale(0.8); } to { opacity: 1; transform: none; } }
+@keyframes ab-flutua { from { transform: translateY(-0.5vmin) rotateZ(-1.5deg); } to { transform: translateY(0.9vmin) rotateZ(1.5deg); } }
+@keyframes ab-capa-abre { from { transform: rotateY(0deg); } to { transform: rotateY(-168deg); } }
+@keyframes ab-luz { 0% { opacity: 0; transform: scale(0.3); } 60% { opacity: 1; } 100% { opacity: 1; transform: scale(7); } }
+@keyframes ab-livro-zoom { from { transform: scale(1); } to { transform: scale(2.6); } }
+@keyframes ab-sair { from { opacity: 1; } to { opacity: 0; } }
+@keyframes ab-sair-rapido { from { opacity: 1; } to { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  html.abertura-ativa .abertura { display: none; }
+}

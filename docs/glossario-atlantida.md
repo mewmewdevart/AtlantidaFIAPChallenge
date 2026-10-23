@@ -1,6 +1,6 @@
 # O Atlante: regras e vocabulário
 
-O idioma "Atlantida" do site é inventado. Ele mistura línguas e dialetos da América Latina para formar um dialeto novo, o **Atlante**, que não pertence a nenhum povo em particular. Este arquivo diz **como ele funciona** e **de onde vem cada palavra**, para o time continuar traduzindo sem se contradizer.
+O idioma "Atlante" do site é inventado. Ele mistura línguas e dialetos da América Latina para formar um dialeto novo, o **Atlante**, que não pertence a nenhum povo em particular. Este arquivo diz **como ele funciona** e **de onde vem cada palavra**, para o time continuar traduzindo sem se contradizer.
 
 > **Importante:** é uma criação artística. As raízes foram escolhidas de memória, a escrita varia entre os dialetos de cada língua e algumas palavras foram inventadas por analogia (marcadas com ★). Antes de publicar fora do desafio, vale conferir com dicionários ou falantes.
 
@@ -46,7 +46,7 @@ Números seguem o quéchua: `kimsa` 3, `suqta` 6, `iskay chunka hukniyuq` 21.
 
 | Português | Atlante | Como se formou |
 |---|---|---|
-| Atlântida (a cidade, para quem vive nela) | **Ñandeyaku** | `ñande` guarani "nosso" + `yaku` quéchua "água" |
+| Guaraci (a cidade, para quem vive nela) | **Ñandeyaku** | `ñande` guarani "nosso" + `yaku` quéchua "água" |
 | Coração do Sol | **Inti Sonqo** | `inti` sol + `sonqo` coração (quéchua) |
 | Jardins de Alga | **Cochayuyo Chakra** | alga + horta (quéchua) |
 | Casa das Vozes | **Ñe'ẽ Wasi** | `ñe'ẽ` guarani "voz" + `wasi` casa |

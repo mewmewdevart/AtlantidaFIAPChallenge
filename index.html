@@ -5,22 +5,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
-    content="Khipu — O Portal de Guaraci. Plataforma de comunicação, exploração e suporte mútuo para a comunidade submersa da cidade abissal de Atlântida (NEXT FIAP / VR Code Arena). Conectando cúpulas, moradores e recursos vitais sob a luz do sol que brilha embaixo d'água.">
-  <title>Khipu — O Portal de Guaraci | VR Code Arena</title>
+    content="Khipu, o portal de Guaraci. Plataforma de comunicação, exploração e suporte mútuo para a comunidade submersa da cidade abissal (NEXT FIAP / VR Code Arena). Conectando cúpulas, moradores e recursos vitais no fundo do oceano.">
+  <title>Khipu — Os laços que conectam Guaraci | VR Code Arena</title>
 
   <!-- Metatags de SEO e Redes Sociais (Open Graph & Twitter) -->
   <meta property="og:locale" content="pt_BR">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Khipu — O Portal de Guaraci | VR Code Arena">
+  <meta property="og:title" content="Khipu — Os laços que conectam Guaraci | VR Code Arena">
   <meta property="og:description"
-    content="Khipu — Conecte-se a Guaraci, a cidade submarina de Atlântida onde o sol brilha sob o oceano com seus detalhes e feixes azuis. Desafio NEXT FIAP 2026.">
+    content="Khipu — Conecte-se à cidade submarina de Guaraci, descubra seus espaços e explore um novo mundo abaixo da superfície. Desafio NEXT FIAP 2026.">
   <meta property="og:url" content="https://mewmewdevart.github.io/AtlantidaFIAPChallenge/">
   <meta property="og:image" content="./assets/media/image-hero-section.webp">
-  <meta property="og:image:alt" content="Submarino explorando Atlântida">
+  <meta property="og:image:alt" content="Submarino explorando Guaraci">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Khipu — O Portal de Guaraci | VR Code Arena">
+  <meta name="twitter:title" content="Khipu — Os laços que conectam Guaraci | VR Code Arena">
   <meta name="twitter:description"
-    content="Khipu — Conecte-se a Guaraci, o portal da cidade submarina de Atlântida onde o sol brilha embaixo d'água.">
+    content="Khipu — Conecte-se à cidade submarina de Guaraci e acompanhe o pulso da comunidade subaquática.">
   <meta name="twitter:image" content="./assets/media/image-hero-section.webp">
 
   <link rel="canonical" href="https://mewmewdevart.github.io/AtlantidaFIAPChallenge/">
@@ -31,7 +31,7 @@
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Khipu — O Portal de Guaraci",
-    "description": "Portal imersivo de Guaraci (Atlântida), a cidade submarina onde o sol brilha embaixo d'água com dialeto próprio, ecossistemas e cultura viva.",
+    "description": "Portal imersivo de Guaraci, a cidade submarina onde o sol brilha embaixo d'água com dialeto próprio, ecossistemas e cultura viva.",
     "url": "https://mewmewdevart.github.io/AtlantidaFIAPChallenge/",
     "inLanguage": ["pt-BR", "qu"]
   }
@@ -54,6 +54,26 @@
   <link rel="stylesheet" href="./assets/css/secao-contato.css">
   <link rel="stylesheet" href="./assets/css/rodape.css">
   <link rel="stylesheet" href="./assets/css/radio-comunal.css">
+  <link rel="stylesheet" href="./assets/css/abertura.css">
+
+  <!-- Decide cedo (antes de pintar) se a abertura roda: a cada carregamento, nunca com animações pausadas ou movimento reduzido.
+       ?abertura força a abertura; ?pular a desliga. -->
+  <script>
+    (function () {
+      try {
+        var q = location.search, forcar = /[?&]abertura/.test(q), pular = /[?&]pular/.test(q);
+        var pausadas = null, visto = null;
+        try { pausadas = localStorage.getItem("atlantida_animacoes_desativadas"); } catch (e) {}
+        try { visto = sessionStorage.getItem("abertura-vista"); } catch (e) {}
+        var reduzido = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var semAnim = pausadas === "true" || (pausadas === null && reduzido);
+        if (!pular && (forcar || !semAnim)) {
+          document.documentElement.classList.add("abertura-ativa");
+          setTimeout(function () { document.documentElement.classList.remove("abertura-ativa"); }, 12000);
+        }
+      } catch (e) {}
+    })();
+  </script>
 
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
@@ -68,6 +88,7 @@
   <script src="./assets/js/secao-mundo.js" defer></script>
   <script src="./assets/js/secao-habitantes.js" defer></script>
   <script src="./assets/js/radio-comunal.js" defer></script>
+  <script src="./assets/js/abertura.js" defer></script>
   <script src="./assets/js/abertura-carregamento.js" defer></script>
 
   <link rel="apple-touch-icon" sizes="180x180" href="./assets/media/favicon_io/apple-touch-icon.png">
@@ -77,6 +98,35 @@
 </head>
 
 <body class="em-abertura">
+  <!-- Abertura (10 s). Para trocar o nome ou o slogan, edite os textos abaixo. Roda a cada carregamento (F5); para pular: ?pular -->
+  <div class="abertura" id="abertura" role="status" aria-label="Carregando o portal">
+    <div class="ab__mundo" aria-hidden="true">
+      <div class="ab__ceu"><div class="ab__sol"><img src="./assets/media/atlantida-emblema-1.png" alt=""></div></div>
+      <div class="ab__agua"></div>
+      <div class="ab__ondas ab__ondas--tras"><svg viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true"><path fill="#63b6af" d="M0,20 C100,0 200,40 300,20 C400,0 500,40 600,20 C700,0 800,40 900,20 C1000,0 1100,40 1200,20 L1200,40 L0,40 Z"/></svg><svg viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true"><path fill="#63b6af" d="M0,20 C100,0 200,40 300,20 C400,0 500,40 600,20 C700,0 800,40 900,20 C1000,0 1100,40 1200,20 L1200,40 L0,40 Z"/></svg></div>
+      <div class="ab__ondas"><svg viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true"><path fill="#63b6af" d="M0,20 C100,0 200,40 300,20 C400,0 500,40 600,20 C700,0 800,40 900,20 C1000,0 1100,40 1200,20 L1200,40 L0,40 Z"/></svg><svg viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true"><path fill="#63b6af" d="M0,20 C100,0 200,40 300,20 C400,0 500,40 600,20 C700,0 800,40 900,20 C1000,0 1100,40 1200,20 L1200,40 L0,40 Z"/></svg></div>
+    </div>
+    <div class="ab__raios" aria-hidden="true"></div>
+    <div class="ab__bolhas" id="abBolhas" aria-hidden="true"></div>
+    <div class="ab__peixes" id="abPeixes" aria-hidden="true"></div>
+    <svg class="ab__baleia ab__baleia--a" viewBox="0 0 400 170" aria-hidden="true"><path d="M8,86 C30,52 120,34 210,44 C275,52 315,74 346,86 L392,62 L378,92 L394,124 L346,100 C300,118 250,132 190,134 C110,138 40,124 8,86 Z"/><path d="M120,118 C140,152 175,164 205,150 C178,140 162,128 150,120 Z"/></svg>
+    <svg class="ab__baleia ab__baleia--b" viewBox="0 0 400 170" aria-hidden="true"><path d="M8,86 C30,52 120,34 210,44 C275,52 315,74 346,86 L392,62 L378,92 L394,124 L346,100 C300,118 250,132 190,134 C110,138 40,124 8,86 Z"/><path d="M120,118 C140,152 175,164 205,150 C178,140 162,128 150,120 Z"/></svg>
+    <p class="ab__nome" aria-hidden="true">GUARACI<small>O sol mora no fundo</small></p>
+    <p class="ab__profundidade" aria-hidden="true"><span id="abZona">Zona Fótica</span><br>Profundidade <b id="abProf">0</b> m</p>
+    <div class="ab__livro" aria-hidden="true">
+      <div class="ab__livro-zoom"><div class="ab__livro-flutua"><div class="ab__livro-inclina">
+        <div class="ab__brilho"></div>
+        <div class="ab__paginas"></div>
+        <div class="ab__luz"></div>
+        <div class="ab__capa">
+          <div class="ab__capa-face ab__capa-face--frente"><img src="./assets/media/atlantida-emblema-1.png" alt=""></div>
+          <div class="ab__capa-face ab__capa-face--verso"></div>
+        </div>
+      </div></div></div>
+    </div>
+    <button type="button" class="ab__pular" id="abPular">Pular abertura</button>
+  </div>
+
   <a class="pular-link" href="#inicio" id="linkPularConteudo" data-atl="Willayman riy">Pular para o conteúdo</a>
 
   <!-- Filtro SVG Gooey (Estilo Animal Crossing) -->
@@ -100,17 +150,8 @@
 
     <div class="logo-text">
       <h1>Khipu</h1>
-      <p>O portal de Atlântida</p>
+      <p data-atl="Guaracita tinkichiq watakuna.">Os laços que conectam Guaraci.</p>
     </div>
-  </div>
-
-  <div class="abertura-carregamento" id="aberturaCarregamento" role="status" aria-live="polite">
-    <h1>Khipu</h1>
-    <span id="aberturaStatusTexto" class="sr-only">Carregando o portal de Atlântida...</span>
-    <button type="button" class="btn-pular" id="btnPularAbertura" aria-label="Pular abertura e ir para o conteúdo"
-      data-atl-aria-label="Paway">
-      <span data-atl="Paway">Pular</span>
-    </button>
   </div>
 
   <!-- Cabeçalho Superior Flutuante: ferramentas e menu de navegação -->
@@ -133,14 +174,14 @@
             data-i18n="nav.lang_pt">PT-BR</span>
           <label class="seletor-idioma__interruptor" for="seletorIdiomaSwitch">
             <input type="checkbox" class="seletor-idioma__campo" id="seletorIdiomaSwitch" role="switch"
-              aria-label="Alternar idioma entre português e Atlântida"
-              data-atl-aria-label="Simita tikray: portugues icha Atlântida">
+              aria-label="Alternar idioma entre português e Atlante"
+              data-atl-aria-label="Simita tikray: portugues icha Atlante">
             <span class="seletor-idioma__trilho">
               <i class="fa-solid fa-feather-pointed seletor-idioma__icone-deslizante" aria-hidden="true"></i>
             </span>
           </label>
           <span class="seletor-idioma__rotulo seletor-idioma__rotulo--atlantida"
-            data-i18n="nav.lang_atlantida">Atlântida</span>
+            data-i18n="nav.lang_atlantida">Atlante</span>
         </div>
 
         <span class="cabecalho-topo__divisor" aria-hidden="true"></span>
@@ -166,7 +207,7 @@
         <img src="./assets/media/atlantida-logo.png" alt="" class="cabecalho-topo__brand-logo" />
         <div class="cabecalho-topo__brand-text">
           <span class="cabecalho-topo__brand-titulo">Khipu</span>
-          <span class="cabecalho-topo__brand-subtitulo">O portal de Atlântida</span>
+          <span class="cabecalho-topo__brand-subtitulo" data-atl="Guaracita tinkichiq watakuna.">Os laços que conectam Guaraci.</span>
         </div>
       </div>
 
@@ -263,11 +304,11 @@
     </ul>
   </nav>
 
-  <!-- Conteúdo Principal do Documento (engloba todas as seções primárias de Atlântida) -->
+  <!-- Conteúdo Principal do Documento (engloba todas as seções primárias de Guaraci) -->
   <main id="conteudo" class="conteudo-principal">
     <!-- Seção 0 - Hero Section: Apresentação -->
-    <section class="secao-apresentacao" id="inicio" tabindex="-1" aria-label="Apresentação de Atlântida"
-      data-atl-aria-label="Atlântidap qallariynin">
+    <section class="secao-apresentacao" id="inicio" tabindex="-1" aria-label="Apresentação de Guaraci"
+      data-atl-aria-label="Guaracip qallariynin">
       <div class="ondas-decorativas" aria-hidden="true">
         <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
           viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
@@ -287,14 +328,14 @@
         <span aria-hidden="true">scroll</span>
       </button>
 
-      <div class="livro-3d" id="livro3D" role="region" aria-label="Livro interativo de Atlântida"
-        data-atl-aria-label="Atlântidap liwrun, makiwan kuyuchina">
+      <div class="livro-3d" id="livro3D" role="region" aria-label="Livro interativo de Guaraci"
+        data-atl-aria-label="Guaracip liwrun, makiwan kuyuchina">
         <div class="livro-3d__capa livro-3d__capa--base" id="capaBase" aria-hidden="true"></div>
 
         <div class="livro-3d__folha livro-3d__folha--direita" id="folhaDireita">
           <div class="livro-3d__face livro-3d__face--frente livro-3d__face--ilustracao">
             <img class="livro-3d__imagem-ilustracao" src="./assets/media/image-hero-section.webp"
-              alt="Submarino explorando Atlântida" data-atl-alt="Submarino Atlântidata maskashan" fetchpriority="high"
+              alt="Submarino explorando Guaraci" data-atl-alt="Submarino Guaracita maskashan" fetchpriority="high"
               loading="eager">
           </div>
 
@@ -315,7 +356,7 @@
               <header class="livro-3d__cabecalho">
                 <h2 class="livro-3d__titulo-principal">
                   <span class="livro-3d__titulo-linha" data-i18n="hero.livro_titulo_linha1">Explore</span>
-                  <span class="livro-3d__titulo-linha" data-i18n="hero.livro_titulo_linha2">Atlântida.</span>
+                  <span class="livro-3d__titulo-linha" data-i18n="hero.livro_titulo_linha2">Guaraci.</span>
                 </h2>
 
                 <p class="livro-3d__descricao" data-i18n="hero.livro_descricao">
@@ -340,7 +381,7 @@
 
               <div class="livro-3d__acoes">
                 <a class="botao botao--primario botao--md" href="#o-mundo" data-i18n="hero.btn_explorar">Explorar
-                  Atlântida</a>
+                  Guaraci</a>
                 <a class="botao botao--secundario botao--md" href="#habitantes" data-i18n="hero.btn_saiba_mais">Saiba
                   mais</a>
               </div>
@@ -354,7 +395,7 @@
           <div class="livro-3d__face-capa livro-3d__face-capa--frente">
             <div class="livro-3d__emblema" aria-hidden="true">
               <img src="./assets/media/atlantida-logo.png" alt="">
-              <h1 class="livro-3d__logo">Khipu</h1>
+              <p class="livro-3d__logo">Khipu</p>
             </div>
           </div>
           <div class="livro-3d__face-capa livro-3d__face-capa--verso" aria-hidden="true"></div>
@@ -725,20 +766,20 @@
 
           <figure class="foto-impressa mundo__banner">
             <img src="./assets/media/mundo/corte-cidade.webp"
-              alt="Corte transversal de Atlântida com cúpulas e fogo-fundo"
+              alt="Corte transversal de Guaraci com cúpulas e fogo-fundo"
               data-atl-alt="Ukhu llaqta kuchusqa: hanaqpi cúpulakuna, chakrakuna, hatun wasikuna, tepan wasi, ukhupi k'anchaq kütralwan"
               width="1500" height="844" loading="lazy">
-            <figcaption data-atl="Atlântida kuchusqa: hanaqpi cúpulakuna, ukhupi ukhu kütral.">Corte de Atlântida: as
+            <figcaption data-atl="Guaraci kuchusqa: hanaqpi cúpulakuna, ukhupi ukhu kütral.">Corte de Guaraci: as
               cúpulas no alto, o fogo-fundo lá embaixo.</figcaption>
           </figure>
 
           <div class="mundo__grade">
             <div class="mundo__texto">
               <p class="mundo__capitular"
-                data-atl="Kay pachaqa mana kawsanapaq tukukuptin, Abya Yala suyukunamanta runakuna ukhu quchaman uraykurqanku. Allpa qhawaypa ñawpaq yachayninta apaspa, llasaq ukhupi wasichayta yacharqanku. Chaymantam Atlântida paqarirqa; paykunaqa Ñandeyaku sutichanku: ñuqanchik yaku.">
-                Quando a superfície ficou inabitável, gente das periferias e dos povos originários da América Latina
-                desceu para o fundo do mar. Levaram o saber antigo de cuidar da terra e aprenderam a construir sob
-                pressão. Dessa mistura nasceu Atlântida, que seus moradores chamam de Ñandeyaku: nossa água.</p>
+                data-atl="Kay pachaqa mana kawsanapaq tukukuptin, Abya Yala kuchu ayllukunamanta ñawpaq runakunamantawan runakuna ukhu quchaman uraykurqanku. Allpa qhawaypa ñawpaq yachayninta apaspa, llasaq ukhupi wasichayta yacharqanku. Chaymantam Guaraci paqarirqa; paykunaqa Ñandeyaku sutichanku: ñuqanchik yaku.">
+                Quando a superfície ficou inabitável, pessoas das periferias e dos povos indígenas da América Latina
+                desceram para o fundo do mar. Levaram o saber antigo de cuidar da terra e aprenderam a construir sob
+                pressão. Dessa mistura nasceu Guaraci, que seus moradores chamam de Ñandeyaku: nossa água.</p>
               <p
                 data-atl="Iskay chunka hukniyuq wata qhipamanta, wayrapas yakupas tukukuyman chayanña. Mana kamachiqniyuq mina-llank&#x27;aqkuna qucha pampata ñut&#x27;unku, cúpulakunatapas manchachinku. Kay portalqa t&#x27;aqasqa ayllukunata tinkichin, yanapata waqyan, Pachamamata harkaqkunata huñun.">
                 Vinte e um anos depois, o ar e a água estão no limite. Mineradoras sem dono rasgam o leito do oceano e
@@ -773,9 +814,10 @@
                     aria-labelledby="faqBotao2154">
                     <div class="faq__resposta">
                       <p
-                        data-atl="2154 watapi qhipa yaku punkukuna wichqakurqa. Hawa pachapi manañam kawsayta atirqankuchu; kuchu ayllukunapas ñawpaq runakunapas ukhu quchapi pakakunata maskayta qallarirqanku.">
-                        Em 2154 os últimos portos fecharam. Ninguém mais podia viver na superfície, e as comunidades das
-                        periferias e dos povos originários começaram a procurar abrigo no fundo do mar.</p>
+                        data-atl="2154 watapi qhipa yaku punkukuna wichqakurqa: qucha wichariptinmi hawa pachaqa mana kawsanapaqña karqa. Kamachiqkunaqa qullqiyuq runakunatam ñawpaqta qhispichirqanku; kuchu ayllukunapas ñawpaq runakunapas qhipaman qhipasqa karqanku. Mana maymanpas rinankupaq kaptin, ukhu quchapi pakakunata maskayta qallarirqanku.">
+                        Em 2154 os últimos portos fecharam: o mar subiu e a superfície ficou inabitável. Os governos
+                        socorreram primeiro quem podia pagar, e as periferias e os povos indígenas ficaram no fim da
+                        fila. Sem ter para onde ir, essas comunidades começaram a procurar abrigo no fundo do mar.</p>
                     </div>
                   </div>
                 </div>
@@ -790,10 +832,13 @@
                     aria-labelledby="faqBotao2161">
                     <div class="faq__resposta" inert>
                       <p
-                        data-atl="2161 watapi tukuy ayllukuna huñuspa uraykurqanku, muhukunata llank&#x27;ana ruwaykunatawan allpa qhawaypa yachayninta apaspa. Uraykuyta kawiñpi akllarqanku, ayllu ayllumanta.">
-                        Em 2161 famílias inteiras desceram juntas, com sementes, ferramentas e o saber de cuidar da
-                        terra.
-                        A descida foi decidida em assembleia, bairro por bairro.</p>
+                        data-atl="2161 watapi yaku punkukuna wichqakuptin saqisqa astillerokunapi llank&#x27;aqkunaqa, mana pipas munasqan casco-kunawan makinakunawan ñawpaq cúpulakunata hatarichirqanku. Kamachiqkunaqa yacharqankum, ichaqa qullqiyuq runakunallatam qhawarqanku. Tukuy ayllukuna huñuspa uraykurqanku, muhukunata llank&#x27;ana ruwaykunatawan allpa qhawaypa yachayninta apaspa. Pitaq uraykunanta mana pipas akllarqachu: sapa ayllu kawiñpi akllarqa, ñawpaq tiyanakunatam mana huk ñanniyuq runakuna hap&#x27;irqanku. Tiyanata rantiyta munaqkunaqa «Manam» nisqata uyarirqanku: cúpulaqa manam rantikunchu.">
+                        Em 2161 os trabalhadores dos estaleiros, abandonados quando os portos fecharam, usaram cascos e
+                        máquinas que ninguém mais queria para erguer as primeiras cúpulas. Os governos sabiam, mas só
+                        olhavam para quem podia pagar. Famílias inteiras desceram juntas, com sementes, ferramentas e o
+                        saber de cuidar da terra. Ninguém escolheu de cima quem ia descer: cada bairro decidiu em
+                        assembleia, e as primeiras vagas foram de quem não tinha outra saída. Quem tentou comprar uma vaga
+                        ouviu um não: a cúpula não se vende.</p>
                     </div>
                   </div>
                 </div>
@@ -827,8 +872,9 @@
                     aria-labelledby="faqBotao2189">
                     <div class="faq__resposta" inert>
                       <p
-                        data-atl="2189 watapi mana kamachiqniyuq mina-llank&#x27;aqkuna qucha pampata ñut&#x27;uyta qallarirqanku. Ñe&#x27;ẽ Wasipi radioqa ayllukunata willanapaq ñanta kichararqa, chaymantam Pachamama harkay paqarirqa.">
-                        Em 2189 as mineradoras sem dono começaram a rasgar o leito do oceano. A rádio da Casa das Vozes
+                        data-atl="2189 watapi hawa pachamanta mina-llank&#x27;aqkuna, mana kamachiqniyuq kaspa, qucha pampata ñut&#x27;uyta qallarirqanku. Ñe&#x27;ẽ Wasipi radioqa ayllukunata willanapaq ñanta kichararqa, chaymantam Pachamama harkay paqarirqa.">
+                        Em 2189 mineradoras da superfície, que já não respondem a governo nenhum, começaram a rasgar o leito do
+                        oceano. A rádio da Casa das Vozes
                         abriu um canal para avisar os bairros, e dali nasceu a resistência ecológica.</p>
                     </div>
                   </div>
@@ -851,11 +897,11 @@
                 <div class="mapa-impresso__area" id="mapaCidade" role="group" aria-label="Lugares da cidade"
                   data-atl-aria-label="Llaqtap tiyanakuna">
                   <img src="./assets/media/mundo/mapa-cidade.webp"
-                    alt="Mapa aéreo de Atlântida com anel central e bairros ao redor"
+                    alt="Mapa aéreo de Guaraci com anel central e bairros ao redor"
                     data-atl-alt="Llaqta hanaqmanta qhawasqa mapa: muyu intiwan chawpipi, cochayuyo chakrakuna, tepan wasi, ruinakunapas muyuypi"
                     width="1100" height="1100" loading="lazy">
                 </div>
-                <figcaption data-atl="Atlântida hanaqmanta qhawasqa.">Atlântida vista de cima.</figcaption>
+                <figcaption data-atl="Guaraci hanaqmanta qhawasqa.">Guaraci vista de cima.</figcaption>
               </figure>
 
               <div class="lugar papel" id="painelLugar" aria-live="polite"></div>
@@ -986,9 +1032,7 @@
             <span class="secao__sobretitulo mural__sobretitulo" aria-hidden="true" data-i18n="mural.frequency">VOZES DA
               COMUNA</span>
             <h2 data-i18n="mural.title">MURAL DA COMUNIDADE</h2>
-            <span class="secao__subtitulo mural__subtitulo" aria-hidden="true" data-i18n="mural.subtitle">RECADOS,
-              AVISOS
-              E NOVIDADES DE ATLÂNTIDA.</span>
+            <span class="secao__subtitulo mural__subtitulo" aria-hidden="true" data-i18n="mural.subtitle">MENSAGENS FIXADAS NA CHAPA CENTRAL</span>
           </div>
         </header>
 
@@ -1138,8 +1182,7 @@
             <span class="secao__sobretitulo contato__sobretitulo" aria-hidden="true"
               data-i18n="contact.channel">CONTATO</span>
             <h2 id="contatoTitulo" data-i18n="contact.title">FALE COM O PORTAL</h2>
-            <span class="secao__subtitulo contato__subtitulo" aria-hidden="true" data-i18n="contact.subtitle">CENTRAL DE
-              INTEGRAÇÃO DE ATLÂNTIDA</span>
+            <span class="secao__subtitulo contato__subtitulo" aria-hidden="true" data-i18n="contact.subtitle">TERMINAL CRT DE ALISTAMENTO</span>
           </div>
         </header>
 
@@ -1287,17 +1330,15 @@
         <a class="rodape__marca" href="#inicio" aria-label="Khipu — voltar ao início"
           data-atl-aria-label="Khipu — qallariyman kutiy">
           <span class="rodape__simbolo" aria-hidden="true">
-            <img src="./assets/media/atlantida-logo.png" alt="Símbolo de Khipu">
+            <img src="./assets/media/atlantida-logo.png" alt="">
           </span>
           <span class="rodape__nome">
             <span>KHIPU</span>
-            <span class="rodape__assinatura" data-i18n="footer.brand_subtitle">O PORTAL DE ATLÂNTIDA</span>
+            <span class="rodape__assinatura" data-i18n="footer.brand_subtitle">OS LAÇOS QUE CONECTAM GUARACI.</span>
           </span>
         </a>
         <p class="rodape__descricao" data-i18n="footer.description">
-          A vida acontece em cada cúpula. O Khipu é o portal que mantém a comunidade conectada: descubra o que acontece
-          pela cidade, conheça os habitantes, compartilhe novidades e encontre ajuda no dia a dia. Ninguém se afoga
-          sozinho.
+          O Khipu é o portal que mantém a cidade conectada. Aqui os habitantes das cúpulas se conhecem, se comunicam, pedem e oferecem ajuda. Ninguém se afoga sozinho.
         </p>
         <div class="rodape__indicadores" role="group" aria-label="Informações da comunidade"
           data-atl-aria-label="Ayllup willaykuna">
@@ -1360,7 +1401,14 @@
        ======================================================================== -->
   <aside id="radio-comunal" class="radio-comunal" aria-label="Rádio Comunal — Frequência 12">
     <!-- Áudio em loop: adicione seu arquivo de áudio no caminho src abaixo -->
-    <audio id="radioAudio" loop preload="metadata" src="./assets/media/radio-comunal.mp3"></audio>
+    <audio id="radioAudio" preload="metadata" src="./assets/media/radio-comunal.mp3" data-noticia-embutida="7"></audio>
+
+    <!-- Notícias narradas após o jingle (lidas em voz alta pelo navegador e mostradas como legenda). -->
+    <ol id="radioNoticias" hidden>
+      <li data-atl="Guaraci ayllukuna, uyariychis. Kay muyuypi yaku-sachakuna aswan allin wayrata qurqa.">Atenção, Guaraci. A colheita de algas deste ciclo rendeu quinze por cento a mais de oxigênio. O ar vai ficar mais limpo nos bairros baixos.</li>
+      <li data-atl="Kunan tutapi, Inti Sonqopi willakuy-kuna kanqa. Hamuy, uyariy, llaqtanchikpa yuyaykunata rakiy.">Hoje à noite, roda de histórias no Coração do Sol. Venha ouvir e compartilhar as memórias da nossa cidade.</li>
+      <li data-atl="Ayllukunap Huñunakuyninqa kay muyuypi huñunakunqa. Llapa rimaykuna chaninniyuq. Qanpata apamuy.">A Assembleia dos Bairros se reúne neste ciclo. Todas as vozes contam. Traga a sua.</li>
+    </ol>
 
     <div class="radio-comunal__card">
       <div class="radio-comunal__topo">
@@ -1381,6 +1429,9 @@
           <i class="fa-solid fa-play" id="radioIconePlay" aria-hidden="true"></i>
         </button>
       </div>
+
+      <!-- Legenda da notícia narrada (aparece só enquanto a notícia está no ar). -->
+      <p id="radioLegenda" class="radio-comunal__legenda" hidden></p>
 
       <!-- Barra de Notícias e Ondas Sonoras -->
       <div class="radio-comunal__rodape-card">
@@ -1407,7 +1458,7 @@
     </div>
   </aside>
 
-  <!-- Modal Acessível: Terminal de Login de Atlântida (ACH-10) -->
+  <!-- Modal Acessível: Terminal de Login de Guaraci (ACH-10) -->
   <dialog id="login" class="modal-dialogo" aria-labelledby="tituloModalLogin">
     <div class="modal-dialogo__conteudo">
       <button type="button" class="modal-dialogo__fechar" id="btnFecharLogin" aria-label="Fechar terminal">
@@ -1416,7 +1467,7 @@
       <div class="modal-dialogo__icone" aria-hidden="true">
         <i class="fa-solid fa-terminal"></i>
       </div>
-      <h2 id="tituloModalLogin" class="modal-dialogo__titulo" data-i18n="login.title">Terminal de Atlântida</h2>
+      <h2 id="tituloModalLogin" class="modal-dialogo__titulo" data-i18n="login.title">Terminal de Guaraci</h2>
       <p class="modal-dialogo__mensagem" data-i18n="login.desc">
         Acesso restrito ao conselho de sábios e tripulação autorizada. Em breve disponível para cidadãos.
       </p>
