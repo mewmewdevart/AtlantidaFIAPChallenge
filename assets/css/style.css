@@ -194,21 +194,48 @@ body>section,
 
 .predios-decorativos {
   position: absolute;
-  bottom: 0;
+  bottom: -40px;
   left: 0;
   width: 100%;
+  height: clamp(240px, 34vh, 360px);
   z-index: 2;
   pointer-events: none;
+
+  /* ==========================================================================
+     CONTROLE DE CORES DA CIDADE (CSS VARIABLES)
+     - Altere --cidade-cor para mudar toda a cidade de uma vez.
+     - Ou altere cada camada individualmente (--cidade-cor-fundo, -meio, -frente).
+     ========================================================================== */
+  --cidade-cor: var(--cor-jade-claro);
+  --cidade-cor-fundo: var(--cor-jade);
+  --cidade-cor-meio: var(--cidade-cor);
+  --cidade-cor-frente: var(--cidade-cor);
+  --cidade-opacidade-fundo: 0.35;
+  --cidade-opacidade-meio: 0.65;
+  --cidade-opacidade-frente: 1;
 }
 
-.predios-decorativos img {
+.cidade-camada--fundo {
+  fill: var(--cidade-cor-fundo, var(--cidade-cor, #58AAA3));
+  opacity: var(--cidade-opacidade-fundo, 0.35);
+}
+
+.cidade-camada--meio {
+  fill: var(--cidade-cor-meio, var(--cidade-cor, #58AAA3));
+  opacity: var(--cidade-opacidade-meio, 0.65);
+}
+
+.cidade-camada--frente {
+  fill: var(--cidade-cor-frente, var(--cidade-cor, #58AAA3));
+  opacity: var(--cidade-opacidade-frente, 1);
+}
+
+.predios-decorativos img,
+.predios-decorativos svg {
   display: block;
   width: 40%;
-  height: auto;
-  object-fit: cover;
-  object-position: bottom center;
+  height: 100%;
 }
-
 
 /* ==========================================================================
    2. ONDULAÇÕES OCEÂNICAS FLUIDAS (WAVES PARALLAX)
@@ -1842,7 +1869,6 @@ body.aguardando-hero [id^="cardume-"] {
   gap: 1.25rem;
   height: 80vh;
   position: relative;
-  z-index: 1;
 }
 
 .abertura-carregamento.abertura-carregamento--oculta {
@@ -1857,7 +1883,7 @@ body.aguardando-hero [id^="cardume-"] {
   font-weight: bold;
   color: var(--cor-fundo);
   position: relative;
-  z-index: 2;
+  z-index: 4;
 }
 
 .abertura-carregamento .btn-pular {
@@ -1866,7 +1892,7 @@ body.aguardando-hero [id^="cardume-"] {
   color: var(--cor-tinta);
   border: 1px solid var(--cor-pergaminho-borda);
   position: relative;
-  z-index: 2;
+  z-index: 4;
   border-radius: 2rem;
   font-family: var(--fonte-texto);
   font-size: 1rem;
