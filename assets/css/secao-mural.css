@@ -102,6 +102,11 @@
   color: var(--cor-tinta-suave-acessivel);
 }
 
+.mural__autor {
+  font-weight: var(--peso-bold);
+  letter-spacing: 0.05em;
+}
+
 /* Etiquetas de categoria dos avisos */
 .mural__categoria {
   flex: 0 0 auto;

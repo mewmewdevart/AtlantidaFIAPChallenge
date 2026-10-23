@@ -17,6 +17,42 @@
   let finalizado = false;
   let timerMinimo = null;
   let timerTetoMaximo = null;
+  let timerDescidaLogo = null;
+  let animacaoFlutuacaoLogo = null;
+  let descidaConcluida = false;
+
+  function animarDescidaLogo(onConcluido) {
+    if (descidaConcluida) {
+      if (typeof onConcluido === "function") onConcluido();
+      return;
+    }
+
+    if (animacaoFlutuacaoLogo) {
+      animacaoFlutuacaoLogo.kill();
+      animacaoFlutuacaoLogo = null;
+    }
+
+    const abertura = document.getElementById("aberturaCarregamento");
+    const logo = document.getElementById("aberturaLogo") || (abertura ? abertura.querySelector("img") : null);
+
+    if (!logo || typeof window.gsap === "undefined") {
+      descidaConcluida = true;
+      if (typeof onConcluido === "function") onConcluido();
+      return;
+    }
+
+    // Desliza suavemente para baixo passando por trás do Khipu, do slogan e dos prédios
+    gsap.to(logo, {
+      y: 280,
+      opacity: 0,
+      duration: 1.2,
+      ease: "power2.inOut",
+      onComplete: () => {
+        descidaConcluida = true;
+        if (typeof onConcluido === "function") onConcluido();
+      }
+    });
+  }
 
   function inicializarAbertura() {
     const abertura = document.getElementById("aberturaCarregamento");
@@ -73,9 +109,26 @@
       });
     }
 
+    const logoAbertura = document.getElementById("aberturaLogo") || abertura.querySelector("img");
+    if (logoAbertura && typeof window.gsap !== "undefined") {
+      gsap.set(logoAbertura, { y: 0, opacity: 1 });
+      animacaoFlutuacaoLogo = gsap.to(logoAbertura, {
+        y: -6,
+        duration: 1.6,
+        yoyo: true,
+        repeat: -1,
+        ease: "sine.inOut"
+      });
+    }
+
+    // Inicia a descida suave do logo antes do término estético da abertura (a 3.6s dos 5s)
+    timerDescidaLogo = setTimeout(() => {
+      animarDescidaLogo();
+    }, 3600);
+
     // ========================================================================
     // COORDENADOR DE PRONTIDÃO DE ASSETS REAIS
-    // Aguarda fontes prontas + imagem crítica da hero, com tempo mínimo estético
+    // Aguarda fontes prontas + imagem crítica da Hero, com tempo mínimo estético
     // de 5s (5000ms) e teto máximo de segurança de 5s
     // ========================================================================
     const promessaFontes =
@@ -126,18 +179,23 @@
     }
     if (timerMinimo) clearTimeout(timerMinimo);
     if (timerTetoMaximo) clearTimeout(timerTetoMaximo);
+    if (timerDescidaLogo) clearTimeout(timerDescidaLogo);
 
     const abertura = document.getElementById("aberturaCarregamento");
     const hero = document.getElementById("inicio");
     const statusTexto = document.getElementById("aberturaStatusTexto");
+    const logoAbertura = document.getElementById("aberturaLogo") || (abertura ? abertura.querySelector("img") : null);
 
     // Atualiza anúncio acessível para tecnologias assistivas
     if (statusTexto) {
       statusTexto.textContent = "Portal pronto para navegação.";
     }
 
-    // Transição imediata (modo sem animações ou erro de nós)
+    // Transição imediata (modo sem animações, skip acessível ou erro de nós)
     if (imediato || !abertura || !hero) {
+      if (logoAbertura && typeof window.gsap !== "undefined") {
+        gsap.killTweensOf(logoAbertura);
+      }
       if (abertura) {
         abertura.classList.add("abertura-carregamento--oculta");
         abertura.remove();
@@ -160,65 +218,74 @@
       return;
     }
 
-    // Transição fluida: libera o scroll e desliza suavemente para baixo até a hero
-    document.body.classList.remove("em-abertura");
-    document.body.classList.add("aguardando-hero");
+    const executarTransicaoHero = () => {
+      // Transição fluida: libera o scroll e desliza suavemente para baixo até a hero
+      document.body.classList.remove("em-abertura");
+      document.body.classList.add("aguardando-hero");
 
-    // Rola suavemente até o topo da hero section
-    hero.scrollIntoView({ behavior: "smooth", block: "start" });
+      // Rola suavemente até o topo da hero section
+      hero.scrollIntoView({ behavior: "smooth", block: "start" });
 
-    let heroEnquadrada = false;
-    let timerScroll = null;
+      let heroEnquadrada = false;
+      let timerScroll = null;
 
-    const onHeroChegouNaPosicao = () => {
-      if (heroEnquadrada) return;
-      heroEnquadrada = true;
-      window.removeEventListener("scroll", monitorarChegadaHero);
+      const onHeroChegouNaPosicao = () => {
+        if (heroEnquadrada) return;
+        heroEnquadrada = true;
+        window.removeEventListener("scroll", monitorarChegadaHero);
 
-      // 1. O livro surge na tela ao remover aguardando-hero
-      document.body.classList.remove("aguardando-hero");
+        // 1. O livro surge na tela ao remover aguardando-hero
+        document.body.classList.remove("aguardando-hero");
 
-      // 2. Quando o livro surgir, a abertura é deletada
-      if (abertura && abertura.parentNode) {
-        abertura.classList.add("abertura-carregamento--oculta");
-        abertura.remove();
-      }
+        // 2. Quando o livro surgir, a abertura é deletada
+        if (abertura && abertura.parentNode) {
+          abertura.classList.add("abertura-carregamento--oculta");
+          abertura.remove();
+        }
 
-      window.scrollTo({ top: 0, behavior: "instant" });
-      window.dispatchEvent(new Event("scroll"));
+        window.scrollTo({ top: 0, behavior: "instant" });
+        window.dispatchEvent(new Event("scroll"));
 
-      // Transfere foco acessível para a Hero section (WCAG 2.4.3)
-      if (hero) {
-        hero.focus({ preventScroll: true });
-      }
+        // Transfere foco acessível para a Hero section (WCAG 2.4.3)
+        if (hero) {
+          hero.focus({ preventScroll: true });
+        }
 
-      // 3. Inicia animações submarinas e animação de abertura do livro
-      if (typeof window.iniciarAnimacoesSubmarinas === "function") {
-        window.iniciarAnimacoesSubmarinas();
-      }
-      if (typeof window.executarAnimacaoAberturaLivro === "function") {
-        window.executarAnimacaoAberturaLivro();
-      }
+        // 3. Inicia animações submarinas e animação de abertura do livro
+        if (typeof window.iniciarAnimacoesSubmarinas === "function") {
+          window.iniciarAnimacoesSubmarinas();
+        }
+        if (typeof window.executarAnimacaoAberturaLivro === "function") {
+          window.executarAnimacaoAberturaLivro();
+        }
+      };
+
+      const monitorarChegadaHero = () => {
+        clearTimeout(timerScroll);
+        const rect = hero.getBoundingClientRect();
+        if (Math.abs(rect.top) <= 8) {
+          onHeroChegouNaPosicao();
+          return;
+        }
+        timerScroll = setTimeout(onHeroChegouNaPosicao, 180);
+      };
+
+      window.addEventListener("scroll", monitorarChegadaHero, { passive: true });
+
+      // Fallback de segurança para garantir a execução caso o navegador termine o scroll suave
+      setTimeout(() => {
+        if (!heroEnquadrada) {
+          onHeroChegouNaPosicao();
+        }
+      }, 1400);
     };
 
-    const monitorarChegadaHero = () => {
-      clearTimeout(timerScroll);
-      const rect = hero.getBoundingClientRect();
-      if (Math.abs(rect.top) <= 8) {
-        onHeroChegouNaPosicao();
-        return;
-      }
-      timerScroll = setTimeout(onHeroChegouNaPosicao, 180);
-    };
-
-    window.addEventListener("scroll", monitorarChegadaHero, { passive: true });
-
-    // Fallback de segurança para garantir a execução caso o navegador termine o scroll suave
-    setTimeout(() => {
-      if (!heroEnquadrada) {
-        onHeroChegouNaPosicao();
-      }
-    }, 1400);
+    // Garante que o logo termine a descida antes de iniciar a transição para a hero
+    if (!descidaConcluida && logoAbertura && typeof window.gsap !== "undefined") {
+      animarDescidaLogo(executarTransicaoHero);
+    } else {
+      executarTransicaoHero();
+    }
   }
 
   // API global para encerramento programático seguro
@@ -238,3 +305,4 @@
     inicializarAbertura();
   }
 })();
+
