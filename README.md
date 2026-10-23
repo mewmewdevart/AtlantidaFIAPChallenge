@@ -102,7 +102,7 @@ AtlantidaFIAPChallenge/
 
 ## 🌐 Idiomas e conferências
 
-O site tem dois idiomas: português e **Atlante**, um dialeto inventado de Atlântida (regras e vocabulário em `docs/glossario-atlantida.md`). Guia de edição para a arena: `docs/como-editar.md`. Com Node.js instalado, três comandos conferem o projeto:
+O site tem dois idiomas: português e **Atlante**, um dialeto inventado de Guaraci (regras e vocabulário em `docs/glossario-atlantida.md`). Guia de edição para a arena: `docs/como-editar.md`. Com Node.js instalado, três comandos conferem o projeto:
 
 ```bash
 node assets/js/tests/verificar-atlante.js        # O Mundo e Habitantes: tudo tem Atlante?

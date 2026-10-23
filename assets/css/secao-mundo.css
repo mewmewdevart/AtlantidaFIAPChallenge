@@ -478,6 +478,23 @@ h3.lei-da-casa__titulo {
 
 .lugar__info {
   border-left-color: var(--cor-oceano);
+  /* colunas lado a lado só quando cabem; senão uma embaixo da outra */
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 0.9rem 1.8rem;
+}
+
+.lugar__info-lista {
+  margin: 0.2rem 0 0;
+  padding-left: 1.1rem;
+  list-style: disc;
+}
+
+.lugar__info-lista li {
+  margin-bottom: 0.25rem;
+}
+
+.lugar__info-lista li::marker {
+  color: var(--cor-oceano);
 }
 
 .lugar__info-titulo {
@@ -697,9 +714,6 @@ h3.lei-da-casa__titulo {
     border-bottom: 0;
   }
 
-  .lugar__info {
-    grid-template-columns: 1fr 1fr;
-  }
 }
 
 @media (min-width: 1360px) {

@@ -11,9 +11,6 @@
   justify-content: center;
   min-height: 100vh;
   padding: 0;
-  background-image: linear-gradient(0deg,
-      var(--cor-abismo) 0%,
-      var(--cor-jade) 100%);
 }
 
 .contato__conteudo {

@@ -77,6 +77,22 @@
   --cor-jade: rgb(16, 84, 79);             /* Verde jade oceânico base */
   --cor-jade-claro: rgb(99, 182, 175);     /* Realce de cristas e ondas */
 
+  /* --- Mergulho: cor de fundo de cada zona de profundidade ---
+     A cor muda nas quebras de seção (onde ficam as faixas "0–200 M", "200–1000 M"...).
+     Regra: cada zona é MAIS ESCURA que a anterior; nunca ponha uma cor mais clara que a anterior. */
+  --prof-0: var(--cor-jade);               /* Início (superfície) */
+  --prof-1: rgb(10, 66, 64);               /* O Mundo        0–200 m */
+  --prof-2: rgb(5, 46, 46);                /* Habitantes     200–1000 m */
+  --prof-3: rgb(2, 30, 32);                /* Mural          1000–2000 m */
+  --prof-4: rgb(0, 16, 21);                /* Contato        2000–3400 m */
+  --prof-5: rgb(0, 6, 9);                  /* Fundo abissal  3400+ m e rodapé */
+  --passa-1: color-mix(in srgb, var(--prof-1), var(--prof-2));  /* tons de passagem entre zonas */
+  --passa-2: color-mix(in srgb, var(--prof-2), var(--prof-3));
+  --passa-3: color-mix(in srgb, var(--prof-3), var(--prof-4));
+  --passa-4: color-mix(in srgb, var(--prof-4), var(--prof-5));
+  --mescla-profundidade: 14rem;            /* altura da mescla no pé de cada seção */
+  --faixa-profundidade: 9rem;              /* altura da transição de cor, a partir da faixa de profundidade */
+
   /* --- Interface, Iluminação & Tipografia em Fundo Escuro --- */
   --cor-menta-neon: rgb(15, 244, 204);     /* Realces luminosos bioluminescentes */
   --cor-espuma: rgb(238, 246, 245);        /* Branco marítimo suave para leitura em fundos escuros */

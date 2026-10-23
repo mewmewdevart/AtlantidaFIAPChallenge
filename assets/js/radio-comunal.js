@@ -13,6 +13,127 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!radio || !btnPlay) return;
 
+  // Notícias narradas: jingle -> notícia -> pausa -> jingle -> próxima notícia...
+  if (audio) audio.loop = false;
+  const listaNoticias = document.querySelectorAll('#radioNoticias li');
+  const legenda = document.getElementById('radioLegenda');
+  const PAUSA_ENTRE_BLOCOS_MS = 3500;
+  let indiceNoticia = 0;
+  let timerNoticia = null;
+  let noticiaNoAr = false;
+
+  function emAtlante() {
+    return document.body.getAttribute('data-lang') === 'atlantida';
+  }
+
+  function encerrarNoticia() {
+    noticiaNoAr = false;
+    clearTimeout(timerNoticia);
+    timerNoticia = null;
+    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    if (legenda) legenda.hidden = true;
+  }
+
+  function proximoBloco() {
+    // Depois da pausa, volta o jingle (o próximo "ended" dispara a notícia seguinte).
+    timerNoticia = setTimeout(() => {
+      if (!radio.classList.contains('tocando')) return;
+      if (audio) {
+        audio.currentTime = 0;
+        audio.play().catch(() => falarNoticia());
+      } else {
+        falarNoticia();
+      }
+    }, PAUSA_ENTRE_BLOCOS_MS);
+  }
+
+  function falarNoticia() {
+    if (!listaNoticias.length || noticiaNoAr || !radio.classList.contains('tocando')) return;
+    noticiaNoAr = true;
+    const item = listaNoticias[indiceNoticia % listaNoticias.length];
+    indiceNoticia += 1;
+    const texto = item.textContent.replace(/\s+/g, ' ').trim();
+
+    if (legenda) {
+      legenda.textContent = texto;
+      legenda.setAttribute('data-rotulo', emAtlante() ? 'Willakuy' : 'Notícia da rádio');
+      legenda.hidden = false;
+    }
+
+    let concluida = false;
+    const concluir = () => {
+      if (concluida) return;
+      concluida = true;
+      clearTimeout(timerNoticia);
+      noticiaNoAr = false;
+      if (legenda) legenda.hidden = true;
+      if (radio.classList.contains('tocando')) proximoBloco();
+    };
+
+    // Sem voz disponível (ou mudo): a legenda fica na tela pelo tempo de uma leitura calma.
+    const tempoLeituraMs = Math.max(5000, texto.length * 75);
+    const mudo = !!(audio && audio.muted);
+
+    let vozNavegadorUsada = false;
+    // Se a notícia tiver um arquivo gravado (data-audio / data-audio-atl), ele tem prioridade sobre a voz do navegador.
+    const arquivo = emAtlante() ? (item.dataset.audioAtl || item.dataset.audio) : item.dataset.audio;
+    if (arquivo && !mudo) {
+      const gravada = new Audio(arquivo);
+      gravada.onended = concluir;
+      gravada.onerror = () => { falarComVozDoNavegador(); };
+      gravada.play().catch(() => { falarComVozDoNavegador(); });
+      timerNoticia = setTimeout(concluir, 60000);
+      return;
+    }
+    falarComVozDoNavegador();
+
+    function falarComVozDoNavegador() {
+    if (concluida || vozNavegadorUsada) return;
+    vozNavegadorUsada = true;
+    if ('speechSynthesis' in window && !mudo) {
+      try {
+        window.speechSynthesis.cancel();
+        const fala = new SpeechSynthesisUtterance(texto);
+        // Não existe voz em Atlante: a voz em espanhol é a que mais se aproxima da fonética quéchua.
+        fala.lang = emAtlante() ? 'es-ES' : 'pt-BR';
+        fala.rate = 0.95;
+        fala.pitch = 0.9;
+        fala.onend = concluir;
+        fala.onerror = concluir;
+        window.speechSynthesis.speak(fala);
+        // Rede de segurança caso o navegador nunca dispare "onend".
+        timerNoticia = setTimeout(concluir, tempoLeituraMs * 2 + 4000);
+        return;
+      } catch (_) {}
+    }
+    timerNoticia = setTimeout(concluir, tempoLeituraMs);
+    }
+  }
+
+  // Faixa única (jingle + notícia gravada): a legenda da notícia 1 aparece quando a voz entra
+  // (segundo indicado em data-noticia-embutida) e, no fim, a faixa recomeça depois de uma pausa.
+  const inicioVozEmbutida = audio ? parseFloat(audio.dataset.noticiaEmbutida) : NaN;
+  if (audio && !Number.isNaN(inicioVozEmbutida)) {
+    const textoEmbutido = listaNoticias[0] ? listaNoticias[0].textContent.replace(/\s+/g, ' ').trim() : '';
+    audio.addEventListener('timeupdate', () => {
+      if (!legenda || !textoEmbutido) return;
+      const naVoz = audio.currentTime >= inicioVozEmbutida && !audio.paused;
+      if (naVoz && legenda.hidden) {
+        legenda.textContent = textoEmbutido;
+        legenda.setAttribute('data-rotulo', emAtlante() ? 'Willakuy' : 'Notícia da rádio');
+        legenda.hidden = false;
+      } else if (!naVoz && !legenda.hidden) {
+        legenda.hidden = true;
+      }
+    });
+    audio.addEventListener('ended', () => {
+      if (legenda) legenda.hidden = true;
+      if (radio.classList.contains('tocando')) proximoBloco();
+    });
+  } else {
+    audio?.addEventListener('ended', falarNoticia);
+  }
+
   // Fallback com Web Audio API para simular ambiente oceânico/sonar caso o arquivo falhe
   let audioCtx = null;
   let synthGain = null;
@@ -71,6 +192,8 @@ document.addEventListener('DOMContentLoaded', () => {
             sonarOsc.stop(audioCtx.currentTime + 1.2);
           } catch (_) {}
         }, 6000);
+        // Sem arquivo de áudio, a primeira notícia entra depois de alguns segundos de ambiente.
+        setTimeout(falarNoticia, 6000);
       } else if (synthGain) {
         synthGain.gain.setValueAtTime(audio?.muted ? 0 : 0.04, audioCtx.currentTime);
       }
@@ -105,6 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (iconePlay) iconePlay.className = 'fa-solid fa-play';
       anunciarStatus('Rádio Comunal pausada.');
       pararSintetizadorOceano();
+      encerrarNoticia();
     }
   }
 

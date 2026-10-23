@@ -296,7 +296,8 @@
 }
 
 .livro-3d__descricao {
-  max-width: 100%;
+  /* a ilustração começa em ~5,8 unidades da página: o texto fica antes dela, sem sobreposição */
+  max-width: calc(5.2 * var(--livro-unidade));
   margin-bottom: calc(0.45 * var(--livro-unidade));
   font-family: var(--fonte-texto);
   font-size: max(0.875rem, calc(0.32 * var(--livro-unidade)));
@@ -308,10 +309,10 @@
 
 .livro-3d__painel-status {
   display: flex;
-  gap: calc(0.55 * var(--livro-unidade));
+  gap: calc(0.45 * var(--livro-unidade));
   align-items: center;
   width: 100%;
-  max-width: 100%;
+  max-width: calc(6.2 * var(--livro-unidade));
   flex-wrap: wrap;
   padding: calc(0.22 * var(--livro-unidade)) 0;
   margin-bottom: calc(0.55 * var(--livro-unidade));
