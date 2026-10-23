@@ -30,6 +30,13 @@ function definirLivroAbertoSemAnimacao(callbackConclusao) {
     gsap.set([livro, capaFrontal, folhaEsquerda, folhaDireita, imagensIlustracao], { clearProps: "all" });
     const paginaConteudoContainer = document.getElementById("paginaConteudoContainer");
     if (paginaConteudoContainer) gsap.set(paginaConteudoContainer, { clearProps: "all" });
+
+    window.livroAbertoConcluido = true;
+    const logoCentralizado = document.querySelector(".logo-centralizado");
+    if (logoCentralizado) {
+      logoCentralizado.classList.add("logo-centralizado--visivel");
+    }
+
     if (typeof callbackConclusao === "function") callbackConclusao();
     return;
   }
@@ -75,6 +82,13 @@ function executarAnimacaoAberturaLivro(callbackConclusao) {
     }
     gsap.killTweensOf([livro, capaFrontal, folhaEsquerda, folhaDireita, imagensIlustracao]);
     gsap.set([livro, capaFrontal, folhaEsquerda, folhaDireita, imagensIlustracao], { clearProps: "all" });
+
+    window.livroAbertoConcluido = true;
+    const logoCentralizado = document.querySelector(".logo-centralizado");
+    if (logoCentralizado) {
+      logoCentralizado.classList.add("logo-centralizado--visivel");
+    }
+
     if (typeof callbackConclusao === "function") callbackConclusao();
     return;
   }
