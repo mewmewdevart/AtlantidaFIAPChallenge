@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>🐟 Portal Web - Atlântida</h1>
+  <h1>🐟 Khipu- Os laços que conectam Guaraci.</h1>
 
   <p>
     <b>VR Code Arena - NEXT FIAP/2026</b>
@@ -24,7 +24,7 @@
 
 ## 📌 Resumo do Projeto
 
-O **Portal Web - Atlântida** é uma solução digital concebida para o desafio **VR Code Arena (NEXT FIAP/2026)**. O objetivo é integrar e fornecer informações vitais para a população da mítica cidade de Atlântida, localizada no fundo do oceano. Através do portal, os moradores das diversas cúpulas e módulos subaquáticos têm acesso a dados de pressão, rotas de navegação submarina, relatórios operacionais e canal de comunicação entre os setores habitacionais.
+O **Portal Khipu - Os laços que conectam Guaraci** é uma solução digital concebida para o desafio **VR Code Arena (NEXT FIAP/2026)**. O objetivo é integrar e fornecer informações vitais para a população da mítica cidade de Guaraci(que seus moradores chamam de Ñandeyaku: nossa água), localizada no fundo do oceano. Através do portal, os moradores das diversas cúpulas e módulos subaquáticos têm acesso a dados de pressão, rotas de navegação submarina, relatórios operacionais e canal de comunicação entre os setores habitacionais.
 
 ---
 
@@ -33,28 +33,53 @@ O **Portal Web - Atlântida** é uma solução digital concebida para o desafio 
 ```text
 AtlantidaFIAPChallenge/
 ├── assets/
-│   ├── css/
-│   │   ├── variables.css          # Cores, tipografia e medidas (tokens)
-│   │   ├── style.css              # Estilo principal: hero, menu, Mural, Contato, rodapé
-│   │   ├── secao-mundo.css        # Seção 02 · O Mundo
-│   │   └── secao-habitantes.css   # Seção 03 · Habitantes
-│   ├── js/
-│   │   ├── atlantida-book-anim.js # Animação do livro interativo (GSAP)
-│   │   ├── i18n.js                # Troca de idioma (português ⇄ Atlante)
-│   │   ├── main.js                # Menu, Mural e formulário de contato
-│   │   ├── idioma-secoes.js       # Troca de idioma das seções 02 e 03 (data-atl)
-│   │   ├── dados-mundo-habitantes.js # Conteúdo editável de O Mundo e Habitantes
-│   │   ├── chasqui-palavras.js    # Palavras-chave, passos e busca do Chasqui
-│   │   ├── secao-mundo.js         # Mapa, indicadores e FAQ
-│   │   └── secao-habitantes.js    # Crachás e Chasqui
+│   ├── css/                       # Estilos globais e estilos por seção
+│   │   ├── variables.css          # Tokens de cores, tipografia e medidas
+│   │   ├── style.css              # Estilos compartilhados e estrutura geral
+│   │   ├── secao-hero.css
+│   │   ├── secao-mundo.css
+│   │   ├── secao-habitantes.css
+│   │   ├── secao-mural.css
+│   │   ├── secao-contato.css
+│   │   ├── rodape.css
+│   │   └── radio-comunal.css
+│   ├── fonts/                     # Fontes locais
+│   ├── js/                        # Comportamentos e conteúdo do site
+│   │   ├── secao-hero.js
+│   │   ├── idioma-geral.js        # Troca de idioma global
+│   │   ├── idioma-conteudo.js     # Tradução de conteúdo das seções
+│   │   ├── portal-navegacao.js    # Navegação, Mural e Contato
+│   │   ├── dados-secoes.js        # Dados de O Mundo e Habitantes
+│   │   ├── chasqui-motor.js       # Busca e recomendações do Chasqui
+│   │   ├── secao-mundo.js
+│   │   ├── secao-habitantes.js
+│   │   ├── radio-comunal.js
+│   │   └── tests/                 # Conferências automatizadas com Node.js
 │   ├── lang/
-│   │   └── dicionarios.js         # Textos data-i18n nos dois idiomas
-│   └── media/                     # Imagens, ícones e mídias
-├── docs/                          # Guia de edição, glossário do Atlante e conferências (node)
-├── index.html                     # Página única (HTML5 semântico)
+│   │   └── dicionarios.js         # Textos da interface em português e Atlante
+│   └── media/
+│       ├── habitantes/            # Retratos dos habitantes
+│       ├── mundo/                 # Mapa e imagens dos lugares
+│       ├── favicon_io/            # Ícones e manifesto do site
+│       └── ...                    # Ilustrações, cenários e elementos visuais
+├── docs/
+│   ├── como-editar.md             # Guia para editar conteúdo e estilos
+│   └── glossario-atlantida.md     # Vocabulário e regras do Atlante
+├── index.html                     # Página principal e conteúdo das seções
+├── VR CODE ARENA - Atlantida.pptx # Apresentação do projeto
 ├── LICENSE
 └── README.md
 ```
+
+### Como o projeto se organiza
+
+- **`index.html`** reúne a estrutura da página e carrega os estilos e scripts na ordem necessária.
+- **`assets/css/`** separa os estilos compartilhados dos estilos específicos de cada seção.
+- **`assets/js/`** contém a navegação, as interações, a troca de idioma e a renderização das seções; os dados de O Mundo e Habitantes ficam em `dados-secoes.js`.
+- **`assets/lang/`** mantém os dicionários dos textos da interface. Textos associados diretamente a elementos da página também podem estar no HTML.
+- **`assets/media/`** agrupa imagens e ilustrações por contexto, como habitantes e lugares do mundo.
+- **`assets/js/tests/`** contém verificações executáveis com Node.js para traduções e comportamento do Chasqui.
+- **`docs/`** reúne instruções de edição e referência do idioma Atlante.
 
 ---
 

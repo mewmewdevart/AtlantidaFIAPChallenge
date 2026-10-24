@@ -64,7 +64,7 @@ window.I18N_DICIONARIOS = {
     "contact.reply_placeholder": "Ex.: Frequência 12 ou mare@comuna.abissal",
     "contact.message_label": "06 // MENSAGEM DE TRANSMISSÃO",
     "contact.message_placeholder": "> Digite sua mensagem para a central…",
-    "contact.demo_notice": "O terminal registra a mensagem nesta demonstração; ainda não está conectado à central.",
+    /*"contact.demo_notice": "O terminal registra a mensagem nesta demonstração; ainda não está conectado à central.", */
     "contact.submit": "ENVIAR TRANSMISSÃO",
     "contact.success": "Sinal recebido! Em breve, entraremos em contato pelo canal informado.",
     "contact.error_name": "Informe seu nome ou codinome.",
