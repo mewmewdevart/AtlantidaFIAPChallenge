@@ -139,15 +139,15 @@
       });
     }
 
-    // Inicia a descida suave do logo antes do término estético da abertura (a 3.6s dos 5s)
+    // Inicia a descida suave do logo antes do término estético da abertura (a 8.6s dos 10s)
     timerDescidaLogo = setTimeout(() => {
       animarDescidaLogo();
-    }, 3600);
+    }, 8600);
 
     // ========================================================================
     // COORDENADOR DE PRONTIDÃO DE ASSETS REAIS
     // Aguarda fontes prontas + imagem crítica da Hero, com tempo mínimo estético
-    // de 5s (5000ms) e teto máximo de segurança de 5s
+    // de 10s (10000ms) e teto máximo de segurança de 10s
     // ========================================================================
     const promessaFontes =
       document.fonts && typeof document.fonts.ready === "object"
@@ -164,7 +164,7 @@
     timerMinimo = setTimeout(() => {
       tempoMinimoConcluido = true;
       verificarProntidao();
-    }, 5000);
+    }, 10000);
 
     let assetsProntos = false;
     Promise.all([promessaFontes, promessaImagem]).then(() => {
@@ -178,12 +178,12 @@
       }
     }
 
-    // Teto máximo de segurança (5s) para conexões lentas ou assets travados
+    // Teto máximo de segurança (10s) para conexões lentas ou assets travados
     timerTetoMaximo = setTimeout(() => {
       if (!finalizado) {
         finalizarAbertura(false);
       }
-    }, 5000);
+    }, 10000);
   }
 
   function finalizarAbertura(imediato = false) {

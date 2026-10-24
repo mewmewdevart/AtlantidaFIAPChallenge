@@ -24,9 +24,7 @@
 
 ## 📌 Resumo do Projeto
 
-O **Portal Khipu - Os laços que conectam Guaraci.** é uma solução digital concebida para o desafio **VR Code Arena (NEXT FIAP/2026)**. O objetivo é integrar e fornecer informações vitais para a população da mítica cidade de Guaraci(que seus moradores chamam de Ñandeyaku: nossa água), localizada no fundo do oceano. Através do portal, os moradores das diversas cúpulas e módulos subaquáticos têm acesso a dados de pressão, rotas de navegação submarina, relatórios operacionais e canal de comunicação entre os setores habitacionais.
-
----
+O **Portal Khipu - Os laços que conectam Guaraci** é uma solução digital concebida para o desafio **VR Code Arena (NEXT FIAP/2026)**. O objetivo é integrar e fornecer informações vitais para a população da mítica cidade de Guaraci, localizada no fundo do oceano. Através do portal, os moradores das diversas cúpulas e módulos subaquáticos têm acesso a dados de pressão, rotas de navegação submarina, relatórios operacionais e canal de comunicação entre os setores habitacionais.
 
 ## 📂 Estrutura do Projeto
 
@@ -71,6 +69,16 @@ AtlantidaFIAPChallenge/
 ├── LICENSE
 └── README.md
 ```
+
+### Como o projeto se organiza
+
+- **`index.html`** reúne a estrutura da página e carrega os estilos e scripts na ordem necessária.
+- **`assets/css/`** separa os estilos compartilhados dos estilos específicos de cada seção.
+- **`assets/js/`** contém a navegação, as interações, a troca de idioma e a renderização das seções; os dados de O Mundo e Habitantes ficam em `dados-secoes.js`.
+- **`assets/lang/`** mantém os dicionários dos textos da interface. Textos associados diretamente a elementos da página também podem estar no HTML.
+- **`assets/media/`** agrupa imagens e ilustrações por contexto, como habitantes e lugares do mundo.
+- **`assets/js/tests/`** contém verificações executáveis com Node.js para traduções e comportamento do Chasqui.
+- **`docs/`** reúne instruções de edição e referência do idioma Atlante.
 
 ---
 
