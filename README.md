@@ -24,7 +24,11 @@
 
 ## 📌 Resumo do Projeto
 
+<<<<<<< HEAD
 O **Portal Khipu - Os laços que conectam Guaraci** é uma solução digital concebida para o desafio **VR Code Arena (NEXT FIAP/2026)**. O objetivo é integrar e fornecer informações vitais para a população da mítica cidade de Guaraci(que seus moradores chamam de Ñandeyaku: nossa água), localizada no fundo do oceano. Através do portal, os moradores das diversas cúpulas e módulos subaquáticos têm acesso a dados de pressão, rotas de navegação submarina, relatórios operacionais e canal de comunicação entre os setores habitacionais.
+=======
+O **Portal Khipu - Os laços que conectam Guaraci.** é uma solução digital concebida para o desafio **VR Code Arena (NEXT FIAP/2026)**. O objetivo é integrar e fornecer informações vitais para a população da mítica cidade de Guaraci(que seus moradores chamam de Ñandeyaku: nossa água), localizada no fundo do oceano. Através do portal, os moradores das diversas cúpulas e módulos subaquáticos têm acesso a dados de pressão, rotas de navegação submarina, relatórios operacionais e canal de comunicação entre os setores habitacionais.
+>>>>>>> 2d2a07eba0a3a16058526ae0c34e2c0479d8e31d
 
 ---
 
@@ -112,7 +116,7 @@ AtlantidaFIAPChallenge/
 
 ## 🌐 Idiomas e conferências
 
-O site tem dois idiomas: português e **Atlante**, um dialeto inventado de Atlântida (regras e vocabulário em `docs/glossario-atlantida.md`). Guia de edição para a arena: `docs/como-editar.md`. Com Node.js instalado, três comandos conferem o projeto:
+O site tem dois idiomas: português e **Atlante**, um dialeto inventado de Guaraci (regras e vocabulário em `docs/glossario-atlantida.md`). Guia de edição para a arena: `docs/como-editar.md`. Com Node.js instalado, três comandos conferem o projeto:
 
 ```bash
 node assets/js/tests/verificar-atlante.js        # O Mundo e Habitantes: tudo tem Atlante?

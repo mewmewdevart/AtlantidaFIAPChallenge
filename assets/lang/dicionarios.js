@@ -5,7 +5,7 @@
    com data-i18n="chave" no index.html, edite a chave AQUI, nos dois blocos.
 
    - ptBr          : português
-   - ptBrAtlantida : Atlante (o idioma inventado de Atlântida)
+   - ptBrAtlantida : Atlante (o idioma inventado de Guaraci)
    - As duas listas precisam ter as MESMAS chaves.  Para conferir:  node docs/verificar-idiomas.js
    - Textos do index.html que usam data-atl="..." (O Mundo e Habitantes) NÃO ficam aqui:
      o Atlante deles está no próprio HTML ou em dados-mundo-habitantes.js.
@@ -17,10 +17,13 @@ window.I18N_DICIONARIOS = {
 
   ptBr: {
     /* ---- Menu e seletor de idioma ---- */
-    "nav.menu": "MENU",
+    "nav.menu": "AJUSTES",
     "nav.lang_pt": "PT-BR",
-    "nav.lang_atlantida": "Atlântida",
+    "nav.lang_atlantida": "Atlante",
     "nav.animations": "Animações",
+    /* ---- Abertura ---- */
+    "abertura.slogan": "Os laços que conectam Guaraci",
+    "abertura.quote": "“O sol mora no fundo.”",
     /* ---- Menu lateral ---- */
     "nav_lateral.inicio": "Início",
     "nav_lateral.mundo": "O Mundo",
@@ -64,7 +67,7 @@ window.I18N_DICIONARIOS = {
     "contact.reply_placeholder": "Ex.: Frequência 12 ou mare@comuna.abissal",
     "contact.message_label": "06 // MENSAGEM DE TRANSMISSÃO",
     "contact.message_placeholder": "> Digite sua mensagem para a central…",
-    /*"contact.demo_notice": "O terminal registra a mensagem nesta demonstração; ainda não está conectado à central.", */
+    "contact.demo_notice": "O terminal registra a mensagem nesta demonstração; ainda não está conectado à central.",
     "contact.submit": "ENVIAR TRANSMISSÃO",
     "contact.success": "Sinal recebido! Em breve, entraremos em contato pelo canal informado.",
     "contact.error_name": "Informe seu nome ou codinome.",
@@ -82,7 +85,11 @@ window.I18N_DICIONARIOS = {
     "mural.frequency": "FREQUÊNCIA COMUNITÁRIA",
     "mural.title": "MURAL DA COMUNIDADE",
     "mural.subtitle": "MENSAGENS FIXADAS NA CHAPA CENTRAL",
-    "mural.transmission": "TRANSMISSÃO",
+    "mural.title_kora": "Manutenção no Setor 4",
+    "mural.title_tito": "Cabos Coaxiais",
+    "mural.title_zilda": "Roda de Histórias",
+    "mural.title_yara": "Nova Safra de Algas",
+    "mural.title_sueli": "Alerta de Pressão",
     "mural.tag_maintenance": "MANUTENÇÃO",
     "mural.tag_exchange": "TROCA",
     "mural.tag_memory": "MEMÓRIA",
@@ -101,14 +108,14 @@ window.I18N_DICIONARIOS = {
     "mural.empty": "Não há mensagens ativas no mural neste momento.",
     /* ---- Hero (livro) ---- */
     "hero.cover_title": "KHIPU",
-    "hero.cover_subtitle": "O PORTAL DE ATLÂNTIDA",
+    "hero.cover_subtitle": "OS LAÇOS QUE CONECTAM GUARACI.",
     "hero.livro_titulo_linha1": "Explore",
-    "hero.livro_titulo_linha2": "Atlântida.",
+    "hero.livro_titulo_linha2": "Guaraci.",
     "hero.livro_descricao": "Conecte-se à cidade submarina, descubra seus espaços e explore um novo mundo abaixo da superfície.",
-    "hero.btn_explorar": "Explorar Atlântida",
+    "hero.btn_explorar": "Explorar Guaraci",
     "hero.btn_saiba_mais": "Saiba mais",
     /* ---- Rodapé ---- */
-    "footer.brand_subtitle": "O PORTAL DE ATLÂNTIDA",
+    "footer.brand_subtitle": "OS LAÇOS QUE CONECTAM GUARACI.",
     "footer.description": "O Khipu é o portal que mantém a cidade conectada. Aqui os habitantes das cúpulas se conhecem, se comunicam, pedem e oferecem ajuda. Ninguém se afoga sozinho.",
     "footer.depth": "PROFUNDIDADE 3.400 m",
     "footer.community": "COMUNIDADE ABERTA",
@@ -136,15 +143,21 @@ window.I18N_DICIONARIOS = {
     "radio.minimize": "Minimizar rádio",
     "radio.maximize": "Expandir rádio",
     "radio.play": "Tocar",
-    "radio.pause": "Pausar"
+    "radio.pause": "Pausar",
+    "login.title": "Terminal de Guaraci",
+    "login.desc": "Acesso restrito ao conselho de sábios e tripulação autorizada. Em breve disponível para cidadãos.",
+    "login.btn_close": "Entendido"
   },
 
   ptBrAtlantida: {
     /* ---- Menu e seletor de idioma ---- */
     "nav.menu": "KALPULLI",
     "nav.lang_pt": "PT-BR",
-    "nav.lang_atlantida": "Atlântida",
+    "nav.lang_atlantida": "Atlante",
     "nav.animations": "Kuyuy",
+    /* ---- Abertura ---- */
+    "abertura.slogan": "Guaracita tinkichiq watakuna.",
+    "abertura.quote": "“Intiqa ukhupi tiyan.”",
     /* ---- Menu lateral ---- */
     "nav_lateral.inicio": "Ipepe",
     "nav_lateral.mundo": "Cemanahuatl",
@@ -188,7 +201,7 @@ window.I18N_DICIONARIOS = {
     "contact.reply_placeholder": "Hina: Rimay 12 noso atl@calpulli",
     "contact.message_label": "06 // TLANONOTZALIZTLI",
     "contact.message_placeholder": "> Xicihcuilo motlanonotzaliz chawpi wasipaq…",
-    "contact.demo_notice": "In terminal quicelia in tlanonotzaliz nican; ayamo mopohua ihuan chawpi wasi.",
+    "contact.demo_notice": "Khipupi willaykunaqa manam huñusqachu kachkan. Pakasqa kayniykitam chaninchayku!",
     "contact.submit": "XITITLANI TLANONOTZALIZTLI",
     "contact.success": "Tlanonotzaliztli cualtitoc! Ximochiya in mocuepiliz ipan in ñan ticihcuiloc. (Nican demo: amo quititlania motlahtol.)",
     "contact.error_name": "Xicihcuilo motocaitl noso occe tocaitl.",
@@ -206,7 +219,11 @@ window.I18N_DICIONARIOS = {
     "mural.frequency": "CALPULLI RIMAY",
     "mural.title": "CALPULLI TLACUILOLLI",
     "mural.subtitle": "TLANONOTZALIZTLI TLALILIZTLI",
-    "mural.transmission": "TLANONOTZALIZTLI",
+    "mural.title_kora": "Ayllu 4pi allichay",
+    "mural.title_tito": "Cablekuna",
+    "mural.title_zilda": "Willakuy muyu",
+    "mural.title_yara": "Musuq cochayuyo",
+    "mural.title_sueli": "Ñit'iy willay",
     "mural.tag_maintenance": "TLAPATILIZTLI",
     "mural.tag_exchange": "PATLALIZTLI",
     "mural.tag_memory": "TLAHCUILOLLI",
@@ -225,14 +242,14 @@ window.I18N_DICIONARIOS = {
     "mural.empty": "Amo onca tlanonotzaliztli axcan.",
     /* ---- Hero (livro) ---- */
     "hero.cover_title": "KHIPU — TLALOC",
-    "hero.cover_subtitle": "ATLÂNTIDAP KHIPUN",
+    "hero.cover_subtitle": "GUARACITA TINKICHIQ WATAKUNA.",
     "hero.livro_titulo_linha1": "Ixtlamati",
-    "hero.livro_titulo_linha2": "Atlântida.",
+    "hero.livro_titulo_linha2": "Guaraci.",
     "hero.livro_descricao": "Tlazocamati atl altepetl, ximomachti ihuan xitlachia yancuic tlalpan ameyalli.",
-    "hero.btn_explorar": "Xitlachia Atlântida",
+    "hero.btn_explorar": "Xitlachia Guaraci",
     "hero.btn_saiba_mais": "Miac tlamatiliztli",
     /* ---- Rodapé ---- */
-    "footer.brand_subtitle": "ATLÂNTIDAP KHIPUN",
+    "footer.brand_subtitle": "GUARACITA TINKICHIQ WATAKUNA.",
     "footer.description": "Khipu altepetl quimopalehuia. Nican macehualtin tlen cúpulas moiximatih, mononotzah, motlatlauhtiah ihuan mopalehuiah. Ayacmo aquin atl mictia.",
     "footer.depth": "HUECATLAN 3.400 m",
     "footer.community": "CALPULLI TLAPOHTLI",
@@ -256,10 +273,13 @@ window.I18N_DICIONARIOS = {
     "radio.station2_desc": "Altepetl willakuy",
     "radio.station3_name": "Acan Khipu Beats",
     "radio.station3_desc": "Abismo sumaq taki",
-    "radio.sonar_toggle": "Sonar",
+    "radio.sonar_toggle": "Taki-maskaq",
     "radio.minimize": "Huch'uychay",
     "radio.maximize": "Hatunyachiy",
     "radio.play": "Tukay",
-    "radio.pause": "Sayay"
+    "radio.pause": "Sayay",
+    "login.title": "Khipup Yaykuna",
+    "login.desc": "Amawtakunap hatun kancha. Chayllaraq llapa llaqtapaq kichasqa kanqa.",
+    "login.btn_close": "Chaskini"
   }
 };

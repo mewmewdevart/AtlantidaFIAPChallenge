@@ -38,18 +38,61 @@ body {
   width: 100%;
   margin: 0;
   font-family: var(--fonte-texto);
-  background-color: var(--cor-abismo);
-  background-image: linear-gradient(180deg,
-      var(--cor-jade) 9%,
-      var(--cor-jade) clamp(100px, 15vh, 150px),
-      var(--cor-fundo) 50%,
-      var(--cor-abismo) 100%);
-  background-repeat: no-repeat;
+  background-color: var(--prof-0);
+  /* o hero é transparente e mostra este jade */
 }
 
 body>section,
 .secao-oceano {
   min-height: 100vh;
+}
+
+/* Mergulho: o fundo escurece nas quebras de seção, junto da faixa de profundidade que abre cada uma.
+   --de = cor da zona de cima, --para = cor desta zona (veja --prof-* em variables.css). */
+.secao-oceano {
+  /* 1) no pé da seção a cor já vai escurecendo até o tom de passagem (--fim);
+     2) a próxima seção começa nesse mesmo tom (--de) e termina de escurecer na faixa de profundidade.
+     Assim a quebra não tem degrau: a mescla acontece dos dois lados da faixa. */
+  background:
+    linear-gradient(180deg, transparent calc(100% - var(--mescla-profundidade)), var(--fim) 100%),
+    linear-gradient(180deg, var(--de) 0, var(--para) var(--faixa-profundidade)),
+    var(--para);
+}
+
+#o-mundo {
+  --de: var(--prof-0);
+  --para: var(--prof-1);
+  --fim: var(--passa-1);
+}
+
+#habitantes {
+  --de: var(--passa-1);
+  --para: var(--prof-2);
+  --fim: var(--passa-2);
+}
+
+#mural {
+  --de: var(--passa-2);
+  --para: var(--prof-3);
+  --fim: var(--passa-3);
+}
+
+#contato {
+  --de: var(--passa-3);
+  --para: var(--prof-4);
+  --fim: var(--passa-4);
+}
+
+/* Última faixa (fundo abissal) fecha a descida e leva ao rodapé */
+.conteudo-principal>.linha-divisoria {
+  background: linear-gradient(180deg, var(--passa-4), var(--prof-5));
+}
+
+/* Silhuetas de alga/coral no pé das seções somem no fundo, sem corte seco */
+.habitantes__decoracao-algas,
+.montanha-front-rodape {
+  -webkit-mask-image: linear-gradient(180deg, #000 45%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 45%, transparent 100%);
 }
 
 .svg-filters {
@@ -192,10 +235,87 @@ body>section,
   }
 }
 
+.abertura-slogan {
+  z-index: 10;
+}
+
+.predios-decorativos {
+  position: absolute;
+  bottom: var(--predios-posicao-y, -30px);
+  left: 0;
+  width: 100%;
+  /* ==========================================================================
+     TAMANHO / ESCALA RESPONSIVA NA TELA (SEM ESTICAR A IMAGEM):
+     - A largura é sempre 100% de ponta a ponta da tela.
+     - As proporções do desenho são 100% preservadas (não estica).
+     - Ajuste o tamanho visual na tela simplesmente alterando --predios-altura (ex: 200px, 24vh).
+     - Se quiser aumentar/diminuir o zoom dos prédios: altere --predios-escala (ex: 0.9, 1, 1.15).
+     - Ajuste o alinhamento vertical com --predios-posicao-y (ex: -30px, 0).
+     ========================================================================== */
+
+  z-index: 5;
+  width: 75%;
+  pointer-events: none;
+  overflow: hidden;
+
+  /* ==========================================================================
+     CONTROLE DE CORES DA CIDADE (CSS VARIABLES)
+     - Altere --cidade-cor para mudar toda a cidade de uma vez.
+     - Ou altere cada camada individualmente (--cidade-cor-fundo, -meio, -frente).
+     ========================================================================== */
+  --cidade-cor: var(--cor-jade-claro);
+  --cidade-cor-fundo: var(--cor-jade);
+  --cidade-cor-meio: var(--cidade-cor);
+  --cidade-cor-frente: var(--cidade-cor);
+  --cidade-opacidade-fundo: 0.35;
+  --cidade-opacidade-meio: 0.65;
+  --cidade-opacidade-frente: 1;
+}
+
+@media (max-width: 768px) {
+  .predios-decorativos {
+    --predios-altura: clamp(120px, 18vh, 180px);
+    --predios-posicao-y: -15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .predios-decorativos {
+    --predios-altura: clamp(90px, 15vh, 130px);
+    --predios-posicao-y: -8px;
+  }
+}
+
+.cidade-camada--fundo {
+  fill: var(--cidade-cor-fundo, var(--cidade-cor, #58AAA3));
+  opacity: var(--cidade-opacidade-fundo, 0.35);
+}
+
+.cidade-camada--meio {
+  fill: var(--cidade-cor-meio, var(--cidade-cor, #58AAA3));
+  opacity: var(--cidade-opacidade-meio, 0.65);
+}
+
+.cidade-camada--frente {
+  fill: var(--cidade-cor-frente, var(--cidade-cor, #58AAA3));
+  opacity: var(--cidade-opacidade-frente, 1);
+}
+
+.predios-decorativos img,
+.predios-decorativos svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom center;
+  transform: scale(var(--predios-escala, 1));
+  transform-origin: bottom center;
+}
+
 /* ==========================================================================
    2. ONDULAÇÕES OCEÂNICAS FLUIDAS (WAVES PARALLAX)
    ========================================================================== */
-.waves {
+.ondas-decorativas {
   position: absolute;
   top: 0;
   left: 0;
@@ -203,6 +323,17 @@ body>section,
   height: 15vh;
   min-height: 100px;
   max-height: 150px;
+  z-index: 5;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.waves {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-color: var(--cor-jade-claro);
 }
 
@@ -256,8 +387,8 @@ body>section,
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
-  width: 80px;
-  height: 80px;
+  width: 86px;
+  height: 86px;
   padding: 0;
   overflow: hidden;
   color: var(--cor-abismo);
@@ -274,16 +405,20 @@ body>section,
     box-shadow 0.3s ease;
 }
 
-.cabecalho-topo:hover,
 .cabecalho-topo--expandido,
-.menu-navegacao:hover,
 .menu-navegacao--expandido {
   justify-content: space-between;
   width: 440px;
   max-width: calc(100vw - 2rem);
-  height: 80px;
+  height: 86px;
   border-radius: 1rem;
   box-shadow: 0 10px 28px rgba(0, 3, 5, 0.32);
+}
+
+.cabecalho-topo:not(.cabecalho-topo--expandido):hover,
+.menu-navegacao:not(.menu-navegacao--expandido):hover {
+  box-shadow: 0 8px 24px rgba(0, 3, 5, 0.3);
+  transform: scale(1.03);
 }
 
 .cabecalho-topo__barra-topo,
@@ -308,9 +443,7 @@ body>section,
   transition: opacity 0.3s ease 0.05s, transform 0.3s ease 0.05s, visibility 0.3s ease, width 0.3s ease;
 }
 
-.cabecalho-topo:hover .cabecalho-topo__conteudo,
 .cabecalho-topo--expandido .cabecalho-topo__conteudo,
-.menu-navegacao:hover .menu-navegacao__conteudo,
 .menu-navegacao--expandido .menu-navegacao__conteudo {
   width: auto;
   padding-right: 1.25rem;
@@ -591,8 +724,8 @@ body>section,
   gap: 5px;
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 80px;
+  width: 86px;
+  height: 86px;
   color: var(--cor-abismo);
   background-color: transparent;
   border: none;
@@ -604,10 +737,12 @@ body>section,
 
 .cabecalho-topo__rotulo,
 .menu-navegacao__rotulo {
-  font-size: var(--texto-micro);
+  font-size: 0.725rem;
   font-weight: var(--peso-bold);
   letter-spacing: 0.5px;
   line-height: 1;
+  white-space: nowrap;
+  text-align: center;
   color: var(--cor-abismo);
   transition: opacity 0.2s ease;
 }
@@ -619,15 +754,15 @@ body>section,
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  width: 26px;
-  height: 18px;
+  width: 22px;
+  height: 14px;
 }
 
 .cabecalho-topo__linha,
 .menu-navegacao__linha {
   display: block;
   width: 100%;
-  height: 2.5px;
+  height: 2px;
   background-color: var(--cor-abismo);
   border-radius: 3px;
   transform-origin: center;
@@ -636,24 +771,18 @@ body>section,
     width 0.3s ease;
 }
 
-.cabecalho-topo:hover .cabecalho-topo__linha--superior,
 .cabecalho-topo--expandido .cabecalho-topo__linha--superior,
-.menu-navegacao:hover .menu-navegacao__linha--superior,
 .menu-navegacao--expandido .menu-navegacao__linha--superior {
   transform: translateY(7.75px) rotate(45deg);
 }
 
-.cabecalho-topo:hover .cabecalho-topo__linha--meio,
 .cabecalho-topo--expandido .cabecalho-topo__linha--meio,
-.menu-navegacao:hover .menu-navegacao__linha--meio,
 .menu-navegacao--expandido .menu-navegacao__linha--meio {
   opacity: 0;
   transform: scaleX(0);
 }
 
-.cabecalho-topo:hover .cabecalho-topo__linha--inferior,
 .cabecalho-topo--expandido .cabecalho-topo__linha--inferior,
-.menu-navegacao:hover .menu-navegacao__linha--inferior,
 .menu-navegacao--expandido .menu-navegacao__linha--inferior {
   transform: translateY(-7.75px) rotate(-45deg);
 }
@@ -1022,6 +1151,31 @@ body>section,
   border-color: var(--cor-ferrugem-profunda);
 }
 
+/* Modificador Terciário (Terceiro padrão de botão inspirado no sistema, sem estilizar demais) */
+.botao--terciario,
+.botao--terceriano,
+.botao--jade {
+  color: var(--cor-fundo);
+  background-color: var(--cor-jade-claro);
+  border-color: var(--cor-jade-claro);
+  font-weight: var(--peso-bold);
+}
+
+.botao--terciario:hover,
+.botao--terceriano:hover,
+.botao--jade:hover {
+  color: var(--cor-espuma);
+  background-color: var(--cor-oceano-acessivel);
+  border-color: var(--cor-oceano-acessivel);
+}
+
+.botao--terciario:focus-visible,
+.botao--terceriano:focus-visible,
+.botao--jade:focus-visible {
+  outline: 2px solid var(--cor-oceano-acessivel);
+  outline-offset: 2px;
+}
+
 /* --- Sticker / Fita Adesiva Decorativa Compartilhada --- */
 .mural__fita,
 .adesivo-fita {
@@ -1123,8 +1277,8 @@ body>section,
   clip: rect(0 0 0 0);
 }
 
-/* Indicador de foco por teclado acessível e de alto contraste */
-:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+/* Indicador de foco por teclado acessível e de alto contraste (exclui containers com tabindex="-1") */
+:where(a, button, input, select, textarea, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
   outline: 2px solid var(--cor-casco);
   outline-offset: 2px;
   box-shadow: 0 0 0 4px var(--cor-menta-neon);
@@ -1156,8 +1310,12 @@ body>section,
   white-space: nowrap;
 }
 
-#inicio:focus {
-  outline: none;
+#inicio:focus,
+#inicio:focus-visible,
+.secao-apresentacao:focus,
+.secao-apresentacao:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .fundo-decoracao-right,
@@ -1190,32 +1348,35 @@ body>section,
     display: none !important;
   }
 
-  /* Logo centralizado mais compacto no mobile */
+  /* Logo centralizado com melhor tamanho e legibilidade no tablet/mobile */
   .logo-centralizado {
-    padding: 0.35rem 1.1rem 0.55rem;
-    gap: 0.55rem;
-    max-width: 88vw;
+    padding: 0.55rem 1.5rem 0.75rem;
+    gap: 0.85rem;
+    max-width: 90vw;
   }
 
   .logo-centralizado .logo {
-    width: 48px;
+    width: 66px;
   }
 
   .logo-centralizado .logo-text h1 {
-    font-size: 2rem;
+    font-size: 2.65rem;
     line-height: 1;
   }
 
   .logo-centralizado .logo-text p {
-    font-size: 0.72rem;
-    margin-top: 0.1rem;
+    font-size: 1.05rem;
+    font-weight: var(--peso-semibold);
+    margin-top: 0.15rem;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
   }
 
   .logo-blobs {
-    top: -8px;
-    left: -10px;
-    right: -10px;
-    bottom: -4px;
+    top: -11px;
+    left: -14px;
+    right: -14px;
+    bottom: -6px;
   }
 
   /* Apenas no formato de responsividade (mobile/tablet): oculta o logo centralizado do topo quando o menu abrir */
@@ -1235,18 +1396,15 @@ body>section,
 
   .cabecalho-topo,
   .menu-navegacao {
-    width: 76px;
-    height: 76px;
+    width: 86px;
+    height: 86px;
     flex-direction: column;
     align-items: stretch;
   }
 
-  .cabecalho-topo:hover:not(.cabecalho-topo--expandido),
-  .menu-navegacao:hover:not(.menu-navegacao--expandido) {
-    width: 76px;
-    height: 76px;
-    border-radius: 100%;
-    padding: 0;
+  .cabecalho-topo:not(.cabecalho-topo--expandido):hover,
+  .menu-navegacao:not(.menu-navegacao--expandido):hover {
+    transform: scale(1.02);
   }
 
   .cabecalho-topo--expandido,
@@ -1270,7 +1428,7 @@ body>section,
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    min-height: 76px;
+    min-height: 86px;
     transition: min-height 0.3s ease, padding 0.3s ease, border-color 0.3s ease;
   }
 
@@ -1284,8 +1442,24 @@ body>section,
 
   .cabecalho-topo__gatilho,
   .menu-navegacao__gatilho {
-    width: 76px;
-    height: 76px;
+    width: 86px;
+    height: 86px;
+    gap: 4px;
+    padding: 0;
+  }
+
+  .cabecalho-topo__hamburguer,
+  .menu-navegacao__hamburguer {
+    width: 22px;
+    height: 14px;
+  }
+
+  .cabecalho-topo__rotulo,
+  .menu-navegacao__rotulo {
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    line-height: 1;
+    white-space: nowrap;
   }
 
   .cabecalho-topo--expandido .cabecalho-topo__gatilho,
@@ -1400,7 +1574,7 @@ body>section,
   }
 
   .cabecalho-topo__brand-titulo {
-    font-family: 'MexicanKnappett', sans-serif;
+    font-family: var(--fonte-titulo);
     font-size: 1.85rem;
     font-weight: bold;
     color: var(--cor-fundo);
@@ -1580,12 +1754,20 @@ body>section,
   }
 }
 
+/* Posicionamento do botão de ajustes abaixo do centralizado em telas de 700px para baixo */
+@media (max-width: 700px) {
+
+  .cabecalho-topo,
+  .menu-navegacao {
+    top: 6.25rem;
+    left: 1rem;
+  }
+}
+
 /* Ajuste responsivo compacto do cabeçalho superior */
 @media (max-width: 480px) {
 
-  .cabecalho-topo:hover,
   .cabecalho-topo--expandido,
-  .menu-navegacao:hover,
   .menu-navegacao--expandido {
     width: calc(100vw - 2rem);
   }
@@ -1600,22 +1782,70 @@ body>section,
     padding: 0.35rem 0.5rem;
   }
 
+  .cabecalho-topo,
+  .menu-navegacao {
+    width: 72px;
+    height: 72px;
+    top: 5.65rem;
+    left: 0.65rem;
+  }
+
+
+  .cabecalho-topo__barra-topo,
+  .menu-navegacao__barra-topo {
+    min-height: 72px;
+  }
+
+  .cabecalho-topo__gatilho,
+  .menu-navegacao__gatilho {
+    width: 72px;
+    height: 72px;
+    gap: 3px;
+    padding: 0;
+  }
+
+  .cabecalho-topo__hamburguer,
+  .menu-navegacao__hamburguer {
+    width: 20px;
+    height: 13px;
+  }
+
+  .cabecalho-topo__rotulo,
+  .menu-navegacao__rotulo {
+    font-size: 0.7rem;
+    letter-spacing: 0.4px;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
   .logo-centralizado {
-    padding: 0.28rem 0.85rem 0.45rem;
-    gap: 0.45rem;
-    max-width: 85vw;
+    padding: 0.45rem 1.25rem 0.62rem;
+    gap: 0.7rem;
+    max-width: 88vw;
   }
 
   .logo-centralizado .logo {
-    width: 38px;
+    width: 54px;
   }
 
   .logo-centralizado .logo-text h1 {
-    font-size: 1.65rem;
+    font-size: 2.3rem;
+    line-height: 1;
   }
 
   .logo-centralizado .logo-text p {
-    font-size: 0.65rem;
+    font-size: 0.95rem;
+    font-weight: var(--peso-semibold);
+    margin-top: 0.15rem;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+  }
+
+  .logo-blobs {
+    top: -9px;
+    left: -12px;
+    right: -12px;
+    bottom: -5px;
   }
 }
 
@@ -1658,6 +1888,31 @@ body.sem-animacoes .menu-lateral__link--ativo .menu-lateral__marcador::after {
   animation: none !important;
 }
 
+/* Quando as animações estão desativadas, a abertura inicial e seu logo sequer são exibidos */
+body.sem-animacoes .abertura-carregamento,
+html.sem-animacoes .abertura-carregamento {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+body.sem-animacoes.em-abertura,
+html.sem-animacoes body.em-abertura {
+  height: auto !important;
+  overflow: visible !important;
+}
+
+body.sem-animacoes.em-abertura #livro3D,
+body.sem-animacoes.em-abertura #cabecalhoTopo,
+body.sem-animacoes.em-abertura #menuLateral,
+body.sem-animacoes.em-abertura .logo-centralizado,
+body.sem-animacoes.em-abertura #radio-comunal {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
 /* Quando as animações estão desativadas, o Livro 3D fica completamente aberto exibindo todas as informações */
 body.sem-animacoes .livro-3d {
   opacity: 1 !important;
@@ -1694,4 +1949,201 @@ body.sem-animacoes .livro-3d {
 
 body.sem-animacoes .livro-3d__imagem-ilustracao {
   opacity: 1 !important;
+}
+
+/* ==========================================================================
+   TELA DE ABERTURA E CARREGAMENTO INICIAL
+   80vh da abertura + 20vh da seção abaixo visíveis na carga inicial
+   ========================================================================== */
+body.em-abertura {
+  height: 100vh;
+  overflow: hidden;
+}
+
+body.em-abertura #livro3D,
+body.em-abertura #cabecalhoTopo,
+body.em-abertura #menuLateral,
+body.em-abertura .logo-centralizado,
+body.em-abertura #radio-comunal,
+body.em-abertura .cenario-submarino__peixe,
+body.em-abertura .cenario-submarino__tubarao,
+body.em-abertura .cenario-submarino__cardume,
+body.em-abertura #tubarao,
+body.em-abertura [id^="peixe-"],
+body.em-abertura [id^="cardume-"],
+body.aguardando-hero #livro3D,
+body.aguardando-hero .cenario-submarino__peixe,
+body.aguardando-hero .cenario-submarino__tubarao,
+body.aguardando-hero .cenario-submarino__cardume,
+body.aguardando-hero #tubarao,
+body.aguardando-hero [id^="peixe-"],
+body.aguardando-hero [id^="cardume-"] {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+#cabecalhoTopo,
+#radio-comunal,
+#livro3D,
+.cenario-submarino__peixe,
+.cenario-submarino__tubarao,
+.cenario-submarino__cardume,
+#tubarao,
+[id^="peixe-"],
+[id^="cardume-"] {
+  transition: opacity 0.6s ease;
+}
+
+.abertura-carregamento {
+  background: linear-gradient(to bottom, #F7C33C 0%, #63B6AF 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  height: 80vh;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.abertura-carregamento p {
+  color: var(--cor-fundo);
+  text-align: center;
+  font-family: var(--fonte-texto);
+  font-size: 1rem;
+  font-weight: 600;
+  position: relative;
+  z-index: 10;
+}
+
+.abertura-carregamento img,
+.abertura-carregamento img.abertura-logo {
+  width: 150px;
+  position: relative;
+  z-index: 1;
+  display: block;
+  will-change: transform, opacity;
+}
+
+.abertura-carregamento.abertura-carregamento--oculta {
+  display: none !important;
+}
+
+
+.abertura-carregamento h1 {
+  margin: 0;
+  font-family: var(--fonte-titulo);
+  font-size: 5rem;
+  font-weight: bold;
+  color: var(--cor-fundo);
+  position: relative;
+  z-index: 4;
+}
+
+.abertura-carregamento .btn-pular {
+  position: relative;
+  z-index: 4;
+  margin-top: 0.5rem;
+  z-index: 10;
+}
+
+.abertura-carregamento .btn-pular:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+.abertura-carregamento .btn-pular:focus-visible {
+  outline: 3px solid var(--cor-menta-neon);
+  outline-offset: 3px;
+  box-shadow: 0 0 12px rgba(15, 244, 204, 0.6);
+}
+
+/* ==========================================================================
+   MODAL DE DIÁLOGO ACESSÍVEL (TERMINAL DE LOGIN / ACH-10)
+   ========================================================================== */
+.modal-dialogo {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  padding: 0;
+  max-width: 440px;
+  width: calc(100% - 2rem);
+  background-color: var(--cor-painel);
+  color: var(--cor-espuma);
+  border: 1px solid var(--cor-sinal-claro);
+  border-radius: var(--raio-lg, 1rem);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75);
+  z-index: 10000;
+  overflow: hidden;
+}
+
+.modal-dialogo::backdrop {
+  background: rgba(0, 3, 5, 0.75);
+  backdrop-filter: blur(4px);
+}
+
+.modal-dialogo__conteudo {
+  position: relative;
+  padding: 2.25rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.25rem;
+}
+
+.modal-dialogo__fechar {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: none;
+  color: var(--cor-nevoa-acessivel);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.modal-dialogo__fechar:hover,
+.modal-dialogo__fechar:focus-visible {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--cor-menta-neon);
+  outline: 2px solid var(--cor-menta-neon);
+}
+
+.modal-dialogo__icone {
+  font-size: 2.5rem;
+  color: var(--cor-menta-neon);
+  margin-bottom: 0.25rem;
+}
+
+.modal-dialogo__titulo {
+  font-family: var(--fonte-titulo);
+  font-size: var(--titulo-md, 1.5rem);
+  color: var(--cor-espuma);
+  margin: 0;
+}
+
+.modal-dialogo__mensagem {
+  font-family: var(--fonte-texto);
+  font-size: var(--texto-base, 1rem);
+  color: var(--cor-nevoa-acessivel);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.modal-dialogo__form {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.modal-dialogo__form .botao {
+  width: 100%;
 }

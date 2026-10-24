@@ -6,7 +6,7 @@
 #rodape {
   position: relative;
   font-family: var(--fonte-texto);
-  background-color: var(--cor-abismo);
+  background-color: var(--prof-5);
   min-height: auto;
   padding: 2.2rem 2rem 1rem;
 }
@@ -58,6 +58,15 @@
   font-size: var(--texto-sm);
   font-weight: var(--peso-semibold);
   line-height: var(--linha-compacta);
+}
+
+.rodape__nome > span:first-child {
+  font-family: var(--fonte-titulo);
+  font-size: 1.55rem;
+  font-weight: bold;
+  letter-spacing: 0.04em;
+  color: var(--cor-espuma);
+  line-height: 1.05;
 }
 
 .rodape__assinatura {
@@ -205,5 +214,15 @@
 
   .rodape__identidade {
     grid-column: auto;
+  }
+}
+/* Reserva espaço no fim do rodapé para o widget fixo da Rádio Comunal não cobrir os créditos. */
+.rodape__base {
+  padding-bottom: 6.5rem;
+}
+
+@media (min-width: 1100px) {
+  .rodape__base {
+    padding-bottom: 0.5rem;
   }
 }

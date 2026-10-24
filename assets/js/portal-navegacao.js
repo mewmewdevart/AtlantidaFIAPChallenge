@@ -335,23 +335,65 @@ function inicializarMenuLateral() {
     img.src = src;
   });
 
-  if (submarinoImg && !prefereMovimentoReduzido) {
-    setInterval(() => {
-      frameAtual = (frameAtual + 1) % framesSubmarino.length;
-      submarinoImg.src = framesSubmarino[frameAtual];
-    }, 740);
+  let timerFramesSubmarino = null;
+  let animacaoSubmarinoGsap = null;
+
+  function iniciarAnimacaoSubmarino() {
+    if (document.body.classList.contains("sem-animacoes")) return;
+    if (submarinoImg && !timerFramesSubmarino) {
+      timerFramesSubmarino = setInterval(() => {
+        frameAtual = (frameAtual + 1) % framesSubmarino.length;
+        submarinoImg.src = framesSubmarino[frameAtual];
+      }, 740);
+    }
+    if (submarinoImg && typeof gsap !== "undefined") {
+      if (!animacaoSubmarinoGsap) {
+        animacaoSubmarinoGsap = gsap.to(submarinoImg, {
+          y: 3,
+          rotation: 1.2,
+          duration: 1.8,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut"
+        });
+      } else {
+        animacaoSubmarinoGsap.play();
+      }
+    }
   }
 
-  if (submarinoImg && typeof gsap !== "undefined" && !prefereMovimentoReduzido) {
-    gsap.to(submarinoImg, {
-      y: 3,
-      rotation: 1.2,
-      duration: 1.8,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut"
-    });
+  function pausarAnimacaoSubmarino() {
+    if (timerFramesSubmarino) {
+      clearInterval(timerFramesSubmarino);
+      timerFramesSubmarino = null;
+    }
+    if (animacaoSubmarinoGsap) {
+      animacaoSubmarinoGsap.pause();
+    }
+    if (submarinoImg && framesSubmarino[0]) {
+      submarinoImg.src = framesSubmarino[0];
+    }
   }
+
+  if (submarinoImg) {
+    const estaPausado =
+      document.body.classList.contains("sem-animacoes") ||
+      prefereMovimentoReduzido;
+    if (estaPausado) {
+      pausarAnimacaoSubmarino();
+    } else {
+      iniciarAnimacaoSubmarino();
+    }
+  }
+
+  window.addEventListener("animacoes:alteradas", (evento) => {
+    const pausadas = evento.detail ? evento.detail.pausadas : false;
+    if (pausadas) {
+      pausarAnimacaoSubmarino();
+    } else {
+      iniciarAnimacaoSubmarino();
+    }
+  });
 
   function calcularPosicoesItens() {
     
@@ -376,6 +418,18 @@ function inicializarMenuLateral() {
   }
 
   function atualizarEstadoMenu() {
+    const abertura = document.getElementById("aberturaCarregamento");
+    if (document.body.classList.contains("em-abertura") || abertura) {
+      menuLateral.classList.remove("menu-lateral--visivel");
+      menuLateral.setAttribute("aria-hidden", "true");
+      menuLateral.inert = true;
+      const logoCentralizado = document.querySelector(".logo-centralizado");
+      if (logoCentralizado) {
+        logoCentralizado.classList.remove("logo-centralizado--visivel");
+      }
+      return;
+    }
+
     const scrollY = window.scrollY || window.pageYOffset;
     const secaoMundo = document.getElementById("o-mundo");
     const limiarSegundaSecao = secaoMundo
@@ -395,12 +449,10 @@ function inicializarMenuLateral() {
 
     const logoCentralizado = document.querySelector(".logo-centralizado");
     if (logoCentralizado) {
-      if (scrollY >= limiarSegundaSecao) {
+      if (window.livroAbertoConcluido || scrollY >= limiarSegundaSecao) {
         logoCentralizado.classList.add("logo-centralizado--visivel");
-        logoCentralizado.setAttribute("aria-hidden", "false");
       } else {
         logoCentralizado.classList.remove("logo-centralizado--visivel");
-        logoCentralizado.setAttribute("aria-hidden", "true");
       }
     }
 
@@ -423,7 +475,6 @@ function inicializarMenuLateral() {
           const yAtual = posicoes[i]?.targetY ?? posicoes[0].targetY;
           const yProximo = posicoes[i + 1]?.targetY ?? yAtual;
           targetSubmarinoY = yAtual + (progresso * (yProximo - yAtual));
-          secaoAtivaId = progresso >= 0.5 ? posicoes[i + 1]?.id || posicoes[i].id : posicoes[i].id;
           break;
         }
       } else {
@@ -432,6 +483,14 @@ function inicializarMenuLateral() {
           secaoAtivaId = secaoAtual.id;
         }
       }
+    }
+
+    // Seção ativa = a que está sob uma linha de leitura a ~35% da altura da tela.
+    // (Antes trocava na metade da seção; em "O Mundo", que é muito alta, o menu
+    // já marcava "Habitantes" quando a pessoa ainda estava no pulso da cidade.)
+    const linhaLeitura = scrollY + window.innerHeight * 0.35;
+    for (let i = 0; i < secoes.length; i++) {
+      if (secoes[i].offsetTop <= linhaLeitura) secaoAtivaId = secoes[i].id;
     }
 
     if (window.innerHeight + scrollY >= document.documentElement.scrollHeight - 60) {
@@ -503,7 +562,17 @@ function inicializarMenuLateral() {
     });
   }
 
-  window.addEventListener("scroll", atualizarEstadoMenu, { passive: true });
+  let scrollTicking = false;
+  window.addEventListener("scroll", () => {
+    if (!scrollTicking) {
+      window.requestAnimationFrame(() => {
+        atualizarEstadoMenu();
+        scrollTicking = false;
+      });
+      scrollTicking = true;
+    }
+  }, { passive: true });
+
   window.addEventListener("resize", () => {
     calcularPosicoesItens();
     atualizarEstadoMenu();
@@ -514,6 +583,55 @@ function inicializarMenuLateral() {
   });
   calcularPosicoesItens();
   atualizarEstadoMenu();
+  inicializarModalLogin();
+}
+
+function inicializarModalLogin() {
+  const modalLogin = document.getElementById("login");
+  const btnFecharLogin = document.getElementById("btnFecharLogin");
+  if (!modalLogin) return;
+
+  let ultimoElementoFocado = null;
+
+  document.querySelectorAll('a[href="#login"], a[data-secao="login"]').forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      ultimoElementoFocado = link;
+      if (typeof modalLogin.showModal === "function") {
+        modalLogin.showModal();
+      } else {
+        modalLogin.setAttribute("open", "true");
+      }
+    });
+  });
+
+  const fecharModal = () => {
+    if (typeof modalLogin.close === "function") {
+      modalLogin.close();
+    } else {
+      modalLogin.removeAttribute("open");
+    }
+    ultimoElementoFocado?.focus();
+  };
+
+  btnFecharLogin?.addEventListener("click", fecharModal);
+
+  modalLogin.addEventListener("click", (e) => {
+    const rect = modalLogin.getBoundingClientRect();
+    const clicouFora = (
+      e.clientX < rect.left ||
+      e.clientX > rect.right ||
+      e.clientY < rect.top ||
+      e.clientY > rect.bottom
+    );
+    if (clicouFora) {
+      fecharModal();
+    }
+  });
+
+  modalLogin.addEventListener("close", () => {
+    ultimoElementoFocado?.focus();
+  });
 }
 
 function inicializarControleAnimacoes() {
@@ -544,8 +662,16 @@ function inicializarControleAnimacoes() {
     botaoAnimacoes.setAttribute("aria-label", ehAtlante ? labelAtl : labelPt);
     botaoAnimacoes.setAttribute("data-atl-aria-label", labelAtl);
 
-    if (pausadas && typeof window.definirLivroAberto === "function") {
-      window.definirLivroAberto();
+    if (pausadas) {
+      if (typeof window.concluirAbertura === "function") {
+        window.concluirAbertura(true);
+      }
+      const abertura = document.getElementById("aberturaCarregamento");
+      if (abertura) abertura.remove();
+      document.body.classList.remove("em-abertura", "aguardando-hero");
+      if (typeof window.definirLivroAberto === "function") {
+        window.definirLivroAberto();
+      }
     }
     window.dispatchEvent(new CustomEvent("animacoes:alteradas", { detail: { pausadas } }));
   };

@@ -7,7 +7,7 @@
    COMO FUNCIONA O IDIOMA
    Todo texto tem dois campos lado a lado:
        nome:     "Coração do Sol"     <- português
-       nome_atl: "Inti Sonqo"         <- Atlante (o idioma inventado de Atlântida)
+       nome_atl: "Inti Sonqo"         <- Atlante (o idioma inventado de Guaraci)
    Se faltar o campo _atl, o site mostra o português. Para conferir o que ficou sem
    tradução, rode no terminal:   node docs/verificar-atlante.js
 
