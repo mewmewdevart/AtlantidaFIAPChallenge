@@ -1,0 +1,557 @@
+/* ==========================================================================
+   CHASQUIBOT — O MENSAGEIRO DE GUARACI
+   Botão de chatbot acessível com a identidade de cor da Rádio Comunal
+   (pergaminho e ferrugem), e ações internas no tom de botão primário
+   (oceânico acessível: tags de missões, botão enviar e balão de envio).
+   ========================================================================== */
+
+/* 1. Ocultar completamente durante a abertura do site */
+body.em-abertura .chasqui-assistente {
+  display: none !important;
+}
+
+/* 2. Container e Posicionamento: Ao lado esquerdo da Rádio Comunal com gap */
+.chasqui-assistente {
+  position: fixed;
+  bottom: 1.25rem;
+  right: calc(1.25rem + 300px + 1.25rem);
+  /* Respeita o gap de 1.25rem (20px) em relação à rádio */
+  left: auto;
+  z-index: 996;
+  font-family: var(--fonte-texto);
+  user-select: none;
+}
+
+/* Quando aberto, o chatbot tem o z-index maior do que os demais elementos da página (menu 9999, modais 10000) */
+.chasqui-assistente.chasqui-assistente--aberto,
+.chasqui-assistente:has(.chasqui-assistente__painel:not([hidden])) {
+  z-index: 10050;
+}
+
+/* ==========================================================================
+   3. BOTÃO DE CHATBOT FLUTUANTE (MESMO DESIGN DE COR DA RÁDIO COMUNAL)
+   ========================================================================== */
+.chasqui-assistente__botao-chatbot {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 48px;
+  height: 48px;
+  padding: 0.4rem 1.15rem 0.4rem 0.55rem;
+  background-color: var(--cor-pergaminho);
+  color: var(--cor-tinta);
+  border: 1.5px solid var(--cor-pergaminho-borda);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 3, 5, 0.28),
+    0 2px 6px rgba(0, 3, 5, 0.12);
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.chasqui-assistente__botao-chatbot:hover {
+  background-color: #f7e8ce;
+  border-color: var(--cor-ferrugem-acessivel);
+  box-shadow: 0 12px 30px rgba(0, 3, 5, 0.35);
+  transform: translateY(-2px);
+}
+
+.chasqui-assistente--aberto .chasqui-assistente__botao-chatbot {
+  background-color: #f2e0c0;
+  border-color: var(--cor-ferrugem-acessivel);
+  box-shadow: 0 0 12px rgba(160, 55, 25, 0.35);
+}
+
+.chasqui-assistente__botao-chatbot:focus-visible {
+  outline: 3px solid var(--cor-ferrugem-acessivel);
+  outline-offset: 3px;
+}
+
+/* Avatar / Ícone da pena com estilo do play da rádio (ferrugem acessível) */
+.chasqui-assistente__avatar-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  border-radius: 50%;
+  background-color: var(--cor-ferrugem-acessivel);
+  color: var(--cor-espuma);
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(128, 42, 18, 0.35);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.chasqui-assistente__botao-chatbot:hover .chasqui-assistente__avatar-btn {
+  transform: scale(1.06);
+  background-color: var(--cor-ferrugem-profunda);
+}
+
+/* Ponto / LED no avatar do botão */
+.chasqui-assistente__led-status {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: #10b981;
+  border: 1.5px solid var(--cor-pergaminho);
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.8);
+  animation: chasqui-led-pulso 2s infinite ease-in-out alternate;
+}
+
+@keyframes chasqui-led-pulso {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+/* Rótulo do botão (cor de tinta sobre pergaminho, como na rádio) */
+.chasqui-assistente__rotulo-btn {
+  font-family: var(--fonte-texto);
+  font-size: 0.95rem;
+  font-weight: var(--peso-bold);
+  letter-spacing: 0.02em;
+  color: var(--cor-tinta);
+  line-height: 1;
+}
+
+/* ==========================================================================
+   4. PAINEL DE CONVERSA DO CHATBOT (CHASQUIBOT)
+   ========================================================================== */
+.chasqui-assistente__painel {
+  position: absolute;
+  bottom: calc(100% + 0.85rem);
+  right: 0;
+  width: 380px;
+  max-width: calc(100vw - 2.5rem);
+  height: 540px;
+  max-height: calc(100vh - 8rem);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--cor-pergaminho);
+  border: 1px solid var(--cor-pergaminho-borda);
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(0, 5, 10, 0.4),
+    0 4px 12px rgba(0, 5, 10, 0.2);
+  overflow: hidden;
+  z-index: 10051;
+  animation: chasqui-painel-surgir 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.chasqui-assistente__painel[hidden] {
+  display: none !important;
+}
+
+@keyframes chasqui-painel-surgir {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Cabeçalho do Chatbot */
+.chasqui-assistente__cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1rem;
+  background-color: rgba(235, 207, 173, 0.55);
+  border-bottom: 1px solid var(--cor-pergaminho-borda);
+}
+
+.chasqui-assistente__identificacao-painel {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.chasqui-assistente__avatar-painel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--cor-oceano-acessivel);
+  color: var(--cor-espuma);
+  font-size: 1rem;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(10, 88, 84, 0.3);
+}
+
+.chasqui-assistente__titulo-painel {
+  font-family: var(--fonte-texto);
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-bold);
+  color: var(--cor-tinta);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.chasqui-assistente__subtitulo-painel {
+  display: block;
+  font-size: var(--texto-micro);
+  font-weight: var(--peso-bold);
+  color: var(--cor-oceano-acessivel);
+  letter-spacing: 0.05em;
+}
+
+/* Botão Fechar Painel */
+.chasqui-assistente__botao-fechar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  min-height: 34px;
+  background: transparent;
+  border: 1px solid rgba(100, 73, 56, 0.3);
+  border-radius: 6px;
+  color: var(--cor-tinta-suave-acessivel);
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.chasqui-assistente__botao-fechar:hover {
+  background-color: rgba(50, 27, 11, 0.08);
+  color: var(--cor-tinta);
+  border-color: var(--cor-tinta-suave);
+}
+
+.chasqui-assistente__botao-fechar:focus-visible {
+  outline: 2px solid var(--cor-oceano-acessivel);
+  outline-offset: 1px;
+}
+
+/* Área de Conversa (Chat Log) */
+.chasqui-assistente__conversa {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  scroll-behavior: smooth;
+  user-select: text;
+}
+
+.chasqui-assistente__conversa::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chasqui-assistente__conversa::-webkit-scrollbar-thumb {
+  background-color: rgba(50, 27, 11, 0.2);
+  border-radius: 4px;
+}
+
+/* Balões de Mensagem */
+.chasqui-mensagem {
+  display: flex;
+  flex-direction: column;
+  max-width: 88%;
+  animation: chasqui-mensagem-surgir 0.25s ease;
+}
+
+@keyframes chasqui-mensagem-surgir {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chasqui-mensagem--chasqui {
+  align-self: flex-start;
+}
+
+.chasqui-mensagem--usuario {
+  align-self: flex-end;
+}
+
+.chasqui-mensagem__balao {
+  padding: 0.75rem 0.9rem;
+  font-size: var(--texto-sm);
+  line-height: var(--linha-base);
+  box-shadow: 0 2px 8px rgba(0, 3, 5, 0.08);
+}
+
+.chasqui-mensagem--chasqui .chasqui-mensagem__balao {
+  background-color: rgba(255, 255, 255, 0.88);
+  border: 1px solid var(--cor-pergaminho-borda);
+  color: var(--cor-tinta);
+  border-radius: 12px 12px 12px 2px;
+}
+
+/* Balão do Usuário (tom de botão primário oceânico) */
+.chasqui-mensagem--usuario .chasqui-mensagem__balao {
+  background-color: var(--cor-oceano-acessivel);
+  color: var(--cor-espuma);
+  border-radius: 12px 12px 2px 12px;
+  box-shadow: 0 2px 8px rgba(10, 88, 84, 0.25);
+  word-break: break-word;
+}
+
+.chasqui-mensagem--erro .chasqui-mensagem__balao {
+  background-color: rgba(160, 55, 25, 0.08);
+  border: 1px solid rgba(160, 55, 25, 0.4);
+  color: var(--cor-ferrugem-acessivel);
+  font-weight: var(--peso-medio);
+}
+
+/* ==========================================================================
+   5. CHIPS / TAGS DE MISSÕES FREQUENTES (DESIGN DE BOTÃO PRIMÁRIO OCEÂNICO)
+   ========================================================================== */
+.chasqui-assistente__tags-bloco {
+  margin-top: 0.65rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.chasqui-assistente__tags-titulo {
+  font-size: var(--texto-micro);
+  font-weight: var(--peso-bold);
+  color: var(--cor-oceano-acessivel);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.chasqui-assistente__tags-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+/* Chips com a tonalidade do botão primário */
+.chasqui-tag-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.75rem;
+  font-family: var(--fonte-texto);
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-semibold);
+  color: var(--cor-oceano-acessivel);
+  background-color: rgba(10, 88, 84, 0.08);
+  border: 1px solid rgba(10, 88, 84, 0.35);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1.3;
+}
+
+.chasqui-tag-btn:hover {
+  background-color: var(--cor-oceano-acessivel);
+  color: var(--cor-espuma);
+  border-color: var(--cor-oceano-acessivel);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(10, 88, 84, 0.25);
+}
+
+.chasqui-tag-btn:focus-visible {
+  outline: 2px solid var(--cor-oceano-acessivel);
+  outline-offset: 2px;
+}
+
+/* Adaptação Compacta do Card de Resultado dentro do Balão */
+.chasqui-mensagem .chasqui__resultado {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 0.75rem;
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+  animation: none;
+}
+
+.chasqui-mensagem .chasqui__foto {
+  width: 72px;
+  height: 72px;
+  border: 3px solid var(--cor-pergaminho);
+  border-radius: 6px;
+  box-shadow: 0 3px 8px rgba(50, 27, 11, 0.3);
+}
+
+.chasqui-mensagem .chasqui__chame {
+  font-size: var(--texto-xs);
+  margin-bottom: 0.15rem;
+  color: var(--cor-ferrugem-acessivel);
+}
+
+.chasqui-mensagem .chasqui__nome {
+  font-size: var(--texto-md);
+  line-height: var(--linha-curta);
+  color: var(--cor-tinta);
+}
+
+.chasqui-mensagem .chasqui__motivo {
+  margin-top: 0.35rem;
+  font-size: var(--texto-xs);
+  line-height: var(--linha-base);
+  color: var(--cor-tinta);
+}
+
+.chasqui-mensagem .chasqui__subtitulo {
+  margin-top: 0.55rem;
+  font-size: var(--texto-xs);
+  color: var(--cor-oceano-acessivel);
+}
+
+.chasqui-mensagem .chasqui__passos {
+  margin-top: 0.2rem;
+  padding-left: 1.1rem;
+  font-size: var(--texto-xs);
+  gap: 0.15rem;
+  color: var(--cor-tinta-suave-acessivel);
+}
+
+.chasqui-mensagem .chasqui__reforco {
+  margin-top: 0.5rem;
+  font-size: var(--texto-xs);
+  color: var(--cor-tinta-suave-acessivel);
+}
+
+/* ==========================================================================
+   6. RODAPÉ E FORMULÁRIO (BOTÃO ENVIAR MISSÃO ESTILO PRIMÁRIO)
+   ========================================================================== */
+.chasqui-assistente__form {
+  padding: 0.75rem;
+  background-color: rgba(235, 207, 173, 0.35);
+  border-top: 1px dotted rgba(100, 73, 56, 0.35);
+}
+
+.chasqui-assistente__campo-envoltorio {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.chasqui-assistente__input {
+  width: 100%;
+  min-height: 48px;
+  max-height: 96px;
+  padding: 0.55rem 0.7rem;
+  font-family: var(--fonte-texto);
+  font-size: var(--texto-sm);
+  line-height: var(--linha-base);
+  color: var(--cor-tinta);
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--cor-pergaminho-borda);
+  border-radius: 8px;
+  resize: none;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.chasqui-assistente__input:focus {
+  outline: none;
+  border-color: var(--cor-oceano-acessivel);
+  box-shadow: 0 0 0 3px rgba(10, 88, 84, 0.2);
+}
+
+.chasqui-assistente__rodape-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chasqui-assistente__contador {
+  font-size: var(--texto-micro);
+  color: var(--cor-tinta-suave-acessivel);
+}
+
+/* Botão "Enviar missão" com estilo do botão primário (.botao--primario) */
+.chasqui-assistente__botao-enviar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 38px;
+  padding: 0 1.15rem;
+  background-color: var(--cor-oceano-acessivel);
+  border: 1.5px solid var(--cor-oceano-acessivel);
+  color: var(--cor-espuma);
+  border-radius: 8px;
+  font-family: var(--fonte-texto);
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-semibold);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(10, 88, 84, 0.3);
+  transition: background-color 0.2s ease, transform 0.15s ease, border-color 0.2s ease;
+}
+
+.chasqui-assistente__botao-enviar:hover {
+  background-color: var(--cor-oceano-acessivel-hover);
+  border-color: var(--cor-oceano-acessivel-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(10, 88, 84, 0.4);
+}
+
+.chasqui-assistente__botao-enviar:active {
+  transform: translateY(0);
+}
+
+.chasqui-assistente__botao-enviar:focus-visible {
+  outline: 2px solid var(--cor-oceano-acessivel);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   7. RESPONSIVIDADE (TABLET & MOBILE)
+   ========================================================================== */
+@media (max-width: 680px) {
+  .chasqui-assistente {
+    bottom: calc(0.85rem + 95px + 0.85rem);
+    /* Respeita gap acima da rádio */
+    right: 0.85rem;
+    left: auto;
+  }
+
+  .chasqui-assistente__painel {
+    position: fixed;
+    bottom: 0.85rem;
+    left: 0.85rem;
+    right: 0.85rem;
+    width: auto;
+    max-width: none;
+    height: 82vh;
+    max-height: 85vh;
+  }
+}
+
+/* 8. Preferência por Movimento Reduzido */
+@media (prefers-reduced-motion: reduce) {
+
+  .chasqui-assistente__botao-chatbot,
+  .chasqui-assistente__avatar-btn,
+  .chasqui-assistente__painel,
+  .chasqui-mensagem,
+  .chasqui-assistente__led-status {
+    animation: none !important;
+    transition: none !important;
+  }
+}

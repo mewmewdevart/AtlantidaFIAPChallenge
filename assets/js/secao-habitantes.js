@@ -111,23 +111,37 @@
       return { habitante: achar(r.id), palavras: r.palavras, reforco: r.reforco ? achar(r.reforco) : null };
     }
 
-    function mostrarResultado(r) {
+    /* Expõe funções de interface do Chasqui para uso compartilhado pelo assistente flutuante */
+    window.CHASQUI_UI = window.CHASQUI_UI || {};
+    window.CHASQUI_UI.consultar = consultar;
+    window.CHASQUI_UI.htmlResultado = function (r, helpers) {
       const h = r.habitante;
-      const motivo = `${rotulo("voceFalou")} ${r.palavras.join(", ")}. ${t(h, "nome")} (${t(h, "funcao")}) ${rotulo("sabeFazer")} ${lista(h, "sabe").slice(0, 2).join(", ")}.`;
-      const passos = lista(CHASQUI.habitantes[h.id], "passos");
+      const hlp = helpers || {};
+      const escFn = hlp.esc || esc;
+      const tFn = hlp.t || t;
+      const rotuloFn = hlp.rotulo || rotulo;
+      const listaFn = hlp.lista || lista;
+      const motor = window.CHASQUI;
 
-      resultado.innerHTML = `
+      const motivo = `${rotuloFn("voceFalou")} ${r.palavras.join(", ")}. ${tFn(h, "nome")} (${tFn(h, "funcao")}) ${rotuloFn("sabeFazer")} ${listaFn(h, "sabe").slice(0, 2).join(", ")}.`;
+      const passos = (motor && motor.habitantes && motor.habitantes[h.id]) ? listaFn(motor.habitantes[h.id], "passos") : [];
+
+      return `
         <div class="chasqui__resultado">
-          <img class="chasqui__foto" src="${esc(h.retrato)}" alt="${esc(t(h, "nome"))}" width="144" height="144">
+          <img class="chasqui__foto" src="${escFn(h.retrato)}" alt="${escFn(tFn(h, "nome"))}" width="144" height="144">
           <div>
-            <p class="chasqui__chame">${esc(rotulo("chame"))} ${esc(t(h, "nome"))}</p>
-            <h4 class="chasqui__nome">${esc(t(h, "nome"))}, ${esc(t(h, "funcao"))}</h4>
-            <p class="chasqui__motivo">${esc(motivo)}</p>
-            <p class="chasqui__subtitulo">${esc(rotulo("comecar"))}</p>
-            <ol class="chasqui__passos">${passos.map((p) => `<li>${esc(p)}</li>`).join("")}</ol>
-            ${r.reforco ? `<p class="chasqui__reforco">${esc(rotulo("maisMaos"))} ${esc(t(r.reforco, "nome"))} (${esc(t(r.reforco, "funcao"))}).</p>` : ""}
+            <p class="chasqui__chame">${escFn(rotuloFn("chame"))} ${escFn(tFn(h, "nome"))}</p>
+            <h4 class="chasqui__nome">${escFn(tFn(h, "nome"))}, ${escFn(tFn(h, "funcao"))}</h4>
+            <p class="chasqui__motivo">${escFn(motivo)}</p>
+            <p class="chasqui__subtitulo">${escFn(rotuloFn("comecar"))}</p>
+            <ol class="chasqui__passos">${passos.map((p) => `<li>${escFn(p)}</li>`).join("")}</ol>
+            ${r.reforco ? `<p class="chasqui__reforco">${escFn(rotuloFn("maisMaos"))} ${escFn(tFn(r.reforco, "nome"))} (${escFn(tFn(r.reforco, "funcao"))}).</p>` : ""}
           </div>
         </div>`;
+    };
+
+    function mostrarResultado(r) {
+      resultado.innerHTML = window.CHASQUI_UI.htmlResultado(r, { esc, t, rotulo, lista });
     }
 
     // Desenha o que o Chasqui deve mostrar agora: o resultado, uma mensagem de erro ou nada

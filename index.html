@@ -6,21 +6,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
     content="Khipu, o portal de Guaraci. Plataforma de comunicação, exploração e suporte mútuo para a comunidade submersa da cidade abissal (NEXT FIAP / VR Code Arena). Conectando cúpulas, moradores e recursos vitais no fundo do oceano.">
-  <title>Khipu — Os laços que conectam Guaraci | VR Code Arena</title>
+  <title>Khipu - Os laços que conectam Guaraci | VR Code Arena</title>
 
   <!-- Metatags de SEO e Redes Sociais (Open Graph & Twitter) -->
   <meta property="og:locale" content="pt_BR">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Khipu — Os laços que conectam Guaraci | VR Code Arena">
+  <meta property="og:title" content="Khipu - Os laços que conectam Guaraci | VR Code Arena">
   <meta property="og:description"
-    content="Khipu — Conecte-se à cidade submarina de Guaraci, descubra seus espaços e explore um novo mundo abaixo da superfície. Desafio NEXT FIAP 2026.">
+    content="Khipu - Conecte-se à cidade submarina de Guaraci, descubra seus espaços e explore um novo mundo abaixo da superfície. Desafio NEXT FIAP 2026.">
   <meta property="og:url" content="https://mewmewdevart.github.io/AtlantidaFIAPChallenge/">
   <meta property="og:image" content="./assets/media/image-hero-section.webp">
   <meta property="og:image:alt" content="Submarino explorando Guaraci">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Khipu — Os laços que conectam Guaraci | VR Code Arena">
+  <meta name="twitter:title" content="Khipu - Os laços que conectam Guaraci | VR Code Arena">
   <meta name="twitter:description"
-    content="Khipu — Conecte-se à cidade submarina de Guaraci e acompanhe o pulso da comunidade subaquática.">
+    content="Khipu - Conecte-se à cidade submarina de Guaraci e acompanhe o pulso da comunidade subaquática.">
   <meta name="twitter:image" content="./assets/media/image-hero-section.webp">
 
   <link rel="canonical" href="https://mewmewdevart.github.io/AtlantidaFIAPChallenge/">
@@ -46,7 +46,7 @@
 
   <!-- Estilos -->
   <link rel="stylesheet" href="./assets/css/variables.css">
-  <link rel="stylesheet" href="./assets/css/style.css?v=7">
+  <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="stylesheet" href="./assets/css/secao-hero.css">
   <link rel="stylesheet" href="./assets/css/secao-mundo.css">
   <link rel="stylesheet" href="./assets/css/secao-habitantes.css">
@@ -54,6 +54,7 @@
   <link rel="stylesheet" href="./assets/css/secao-contato.css">
   <link rel="stylesheet" href="./assets/css/rodape.css">
   <link rel="stylesheet" href="./assets/css/radio-comunal.css">
+  <link rel="stylesheet" href="./assets/css/chasqui-assistente.css">
 
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
@@ -67,6 +68,7 @@
   <script src="./assets/js/chasqui-motor.js" defer></script>
   <script src="./assets/js/secao-mundo.js" defer></script>
   <script src="./assets/js/secao-habitantes.js" defer></script>
+  <script src="./assets/js/chasqui-assistente.js" defer></script>
   <script src="./assets/js/radio-comunal.js" defer></script>
   <script src="./assets/js/abertura-carregamento.js" defer></script>
 
@@ -192,7 +194,10 @@
           <span class="cabecalho-topo__linha cabecalho-topo__linha--meio"></span>
           <span class="cabecalho-topo__linha cabecalho-topo__linha--inferior"></span>
         </div>
-        <span class="cabecalho-topo__rotulo" data-i18n="nav.menu" aria-hidden="true">AJUSTES</span>
+        <span class="cabecalho-topo__rotulo" aria-hidden="true">
+          <span class="cabecalho-topo__rotulo-desktop" data-i18n="nav.menu">AJUSTES</span>
+          <span class="cabecalho-topo__rotulo-mobile" data-i18n="nav.menu_mobile">MENU</span>
+        </span>
       </button>
 
       <div class="cabecalho-topo__conteudo">
@@ -411,8 +416,7 @@
               <div class="livro-3d__acoes">
                 <a class="botao botao--primario botao--md" href="#o-mundo" data-i18n="hero.btn_explorar">Explorar
                   Guaraci</a>
-                <a class="botao botao--secundario botao--md" href="#habitantes" data-i18n="hero.btn_saiba_mais">Saiba
-                  mais</a>
+                <a class="botao botao--secundario botao--md" href="#contato" data-i18n="hero.btn_saiba_mais">Contato</a>
               </div>
 
             </div>
@@ -805,13 +809,13 @@
           <div class="mundo__grade">
             <div class="mundo__texto">
               <p class="mundo__capitular"
-                data-atl="Kay pachaqa mana kawsanapaq tukukuptin, Abya Yala kuchu ayllukunamanta ñawpaq runakunamantawan runakuna ukhu quchaman uraykurqanku. Allpa qhawaypa ñawpaq yachayninta apaspa, llasaq ukhupi wasichayta yacharqanku. Ñawpaq kawsaypa, sayaypa, yachakuypawan huñunakuyninmanta Atlántida paqarirqa; kay llaqtata tiyaqninkuna Guaraci sutichanku, tupi simipi “Inti” nispan ninayan. Ayllunkunap sonqonta apaq suti: quchap aswan yana ukhunpipas, k&#x27;anchay k&#x27;ancharinanpaq ñanta tarin.">
+                data-atl="Kay pachaqa mana kawsanapaq tukukuptin, Abya Yala kuchu ayllukunamanta ñawpaq runakunamantawan runakuna ukhu quchaman uraykurqanku. Allpa qhawaypa ñawpaq yachayninta apaspa, llasaq ukhupi wasichayta yacharqanku. Ñawpaq kawsaypa, sayaypa, yachakuypawan huñunakuyninmanta Guaraci paqarirqa, tupi simipi “Inti” nispan ninayan. Ayllunkunap sonqonta apaq suti: quchap aswan yana ukhunpipas, k&#x27;anchay k&#x27;ancharinanpaq ñanta tarin.">
                 Quando a superfície ficou inabitável, pessoas das periferias e dos povos indígenas da América Latina
                 desceram para o fundo do mar. Levaram o saber antigo de cuidar da terra e aprenderam a construir sob
-                pressão. Da união entre ancestralidade, resistência e adaptação nasceu Atlântida, uma cidade que seus
-                habitantes chamam de Guaraci, palavra de origem tupi que significa “Sol”. Um nome que carrega a essência
-                de seu povo: a prova de que, mesmo nas profundezas mais escuras do oceano, a luz encontra um caminho
-                para brilhar.
+                pressão. Da união entre ancestralidade, resistência e adaptação nasceu Guaraci, palavra de origem tupi
+                que
+                significa “Sol”. Um nome que carrega a essência de seu povo: a prova de que, mesmo nas profundezas mais
+                escuras do oceano, a luz encontra um caminho para brilhar.
               </p>
               <p
                 data-atl="Iskay chunka hukniyuq wata qhipamanta, wayrapas yakupas tukukuyman chayanña. Mana kamachiqniyuq mina-llank&#x27;aqkuna qucha pampata ñut&#x27;unku, cúpulakunatapas manchachinku. Kay portalqa t&#x27;aqasqa ayllukunata tinkichin, yanapata waqyan, Pachamamata harkaqkunata huñun.">
@@ -889,9 +893,9 @@
                     aria-labelledby="faqBotao2168">
                     <div class="faq__resposta" inert>
                       <p
-                        data-atl="2168 watapi ñawpaq cochayuyokuna cúpulakunata wichqanapaq tupuq wayrata qurqa. Chay punchawmi llaqtaqa suti hap&#x27;irqa: Ñandeyaku, ñuqanchik yaku.">
+                        data-atl="2168 watapi ñawpaq cochayuyokuna cúpulakunata wichqanapaq tupuq wayrata qurqa. Chay punchawmi llaqtaqa suti hap&#x27;irqa: Guaraci, ukhupi tiyaq inti.">
                         Em 2168 as primeiras algas deram ar suficiente para selar as cúpulas. Nesse dia a cidade ganhou
-                        nome: Ñandeyaku, nossa água.</p>
+                        nome: Guaraci, o sol que mora no fundo.</p>
                     </div>
                   </div>
                 </div>
@@ -1498,6 +1502,61 @@
         </div>
       </div>
     </div>
+  </aside>
+
+  <!-- ChasquiBOT: O Mensageiro de Guaraci (ACH-11) -->
+  <aside id="chasquiAssistente" class="chasqui-assistente" aria-label="Assistente ChasquiBOT">
+    <!-- Botão de Chatbot Flutuante -->
+    <button type="button" id="chasquiGatilho" class="chasqui-assistente__botao-chatbot" aria-expanded="false"
+      aria-controls="chasquiPainel" aria-haspopup="dialog" title="ChasquiBot — O mensageiro de Guaraci"
+      aria-label="ChasquiBot — O mensageiro de Guaraci" data-rotulo-aria="chasquiBotaoAbrir">
+      <span class="chasqui-assistente__avatar-btn" aria-hidden="true">
+        <i class="fa-solid fa-feather-pointed"></i>
+        <span class="chasqui-assistente__led-status"></span>
+      </span>
+      <span class="chasqui-assistente__rotulo-btn" data-rotulo="chasquiBotaoAbrir">ChasquiBot</span>
+    </button>
+
+    <!-- Painel de Conversa -->
+    <section id="chasquiPainel" class="chasqui-assistente__painel" role="dialog" aria-modal="false"
+      aria-labelledby="chasquiPainelTitulo" hidden>
+      <header class="chasqui-assistente__cabecalho">
+        <div class="chasqui-assistente__identificacao-painel">
+          <div class="chasqui-assistente__avatar-painel" aria-hidden="true">
+            <i class="fa-solid fa-feather-pointed"></i>
+          </div>
+          <div>
+            <h2 id="chasquiPainelTitulo" class="chasqui-assistente__titulo-painel"
+              data-rotulo="chasquiAssistenteTitulo">ChasquiBOT — O mensageiro de Guaraci</h2>
+            <span class="chasqui-assistente__subtitulo-painel">ONLINE • SUPORTE COMUNAL</span>
+          </div>
+        </div>
+        <button type="button" id="chasquiFechar" class="chasqui-assistente__botao-fechar"
+          aria-label="Fechar painel do ChasquiBOT" data-rotulo-aria="chasquiFechar">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+      </header>
+
+      <div id="chasquiLog" class="chasqui-assistente__conversa" role="log" aria-live="polite"
+        aria-relevant="additions text">
+      </div>
+
+      <form id="chasquiAssistenteForm" class="chasqui-assistente__form">
+        <div class="chasqui-assistente__campo-envoltorio">
+          <textarea id="chasquiAssistenteInput" class="chasqui-assistente__input" rows="2" maxlength="800"
+            placeholder="Ex: A bomba da estufa quebrou e as algas estão secando..."
+            data-rotulo-placeholder="chasquiPlaceholder" aria-label="Conte sua missão ao Chasqui"></textarea>
+          <div class="chasqui-assistente__rodape-input">
+            <span id="chasquiAssistenteContador" class="chasqui-assistente__contador" aria-hidden="true">0/800</span>
+            <button type="submit" id="chasquiAssistenteEnviar" class="chasqui-assistente__botao-enviar"
+              aria-label="Enviar missão" data-rotulo-aria="chasquiEnviar">
+              <span class="chasqui-assistente__enviar-texto" data-rotulo="chasquiEnviar">Enviar missão</span>
+              <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </section>
   </aside>
 
   <!-- Modal Acessível: Terminal de Login de Guaraci (ACH-10) -->

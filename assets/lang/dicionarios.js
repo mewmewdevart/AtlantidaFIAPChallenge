@@ -18,6 +18,7 @@ window.I18N_DICIONARIOS = {
   ptBr: {
     /* ---- Menu e seletor de idioma ---- */
     "nav.menu": "AJUSTES",
+    "nav.menu_mobile": "MENU",
     "nav.lang_pt": "PT-BR",
     "nav.lang_atlantida": "Atlante",
     "nav.animations": "Animações",
@@ -107,13 +108,11 @@ window.I18N_DICIONARIOS = {
     "mural.expiration_duration": "36–48 h",
     "mural.empty": "Não há mensagens ativas no mural neste momento.",
     /* ---- Hero (livro) ---- */
-    "hero.cover_title": "KHIPU",
-    "hero.cover_subtitle": "OS LAÇOS QUE CONECTAM GUARACI.",
     "hero.livro_titulo_linha1": "Explore",
     "hero.livro_titulo_linha2": "Guaraci.",
     "hero.livro_descricao": "Conecte-se à cidade submarina, descubra seus espaços e explore um novo mundo abaixo da superfície.",
     "hero.btn_explorar": "Explorar Guaraci",
-    "hero.btn_saiba_mais": "Saiba mais",
+    "hero.btn_saiba_mais": "Contato",
     /* ---- Rodapé ---- */
     "footer.brand_subtitle": "OS LAÇOS QUE CONECTAM GUARACI.",
     "footer.description": "O Khipu é o portal que mantém a cidade conectada. Aqui os habitantes das cúpulas se conhecem, se comunicam, pedem e oferecem ajuda. Ninguém se afoga sozinho.",
@@ -129,21 +128,6 @@ window.I18N_DICIONARIOS = {
     "footer.copyright": "© 2026 Grupo Ctrl + People — NEXT FIAP / VR Code Arena.",
     /* ---- Rádio Comunal ---- */
     "radio.title": "Rádio Comunal",
-    "radio.subtitle": "Notícias e avisos na frequência 12",
-    "radio.tag": "FREQ 12.0",
-    "radio.live": "NO AR",
-    "radio.offline": "STANDBY",
-    "radio.station1_name": "Sinfonia das Cúpulas",
-    "radio.station1_desc": "Música ambiente oceânica",
-    "radio.station2_name": "Boletim do Domo",
-    "radio.station2_desc": "Notícias da comunidade",
-    "radio.station3_name": "Bioluminescência Lo-Fi",
-    "radio.station3_desc": "Batidas suaves abissais",
-    "radio.sonar_toggle": "Sonar",
-    "radio.minimize": "Minimizar rádio",
-    "radio.maximize": "Expandir rádio",
-    "radio.play": "Tocar",
-    "radio.pause": "Pausar",
     "login.title": "Terminal de Guaraci",
     "login.desc": "Acesso restrito ao conselho de sábios e tripulação autorizada. Em breve disponível para cidadãos.",
     "login.btn_close": "Entendido"
@@ -152,6 +136,7 @@ window.I18N_DICIONARIOS = {
   ptBrAtlantida: {
     /* ---- Menu e seletor de idioma ---- */
     "nav.menu": "KALPULLI",
+    "nav.menu_mobile": "KALPULLI",
     "nav.lang_pt": "PT-BR",
     "nav.lang_atlantida": "Atlante",
     "nav.animations": "Kuyuy",
@@ -241,13 +226,11 @@ window.I18N_DICIONARIOS = {
     "mural.expiration_duration": "36–48 h",
     "mural.empty": "Amo onca tlanonotzaliztli axcan.",
     /* ---- Hero (livro) ---- */
-    "hero.cover_title": "KHIPU — TLALOC",
-    "hero.cover_subtitle": "GUARACITA TINKICHIQ WATAKUNA.",
     "hero.livro_titulo_linha1": "Ixtlamati",
     "hero.livro_titulo_linha2": "Guaraci.",
     "hero.livro_descricao": "Tlazocamati atl altepetl, ximomachti ihuan xitlachia yancuic tlalpan ameyalli.",
     "hero.btn_explorar": "Xitlachia Guaraci",
-    "hero.btn_saiba_mais": "Miac tlamatiliztli",
+    "hero.btn_saiba_mais": "Nahuatilli",
     /* ---- Rodapé ---- */
     "footer.brand_subtitle": "GUARACITA TINKICHIQ WATAKUNA.",
     "footer.description": "Khipu altepetl quimopalehuia. Nican macehualtin tlen cúpulas moiximatih, mononotzah, motlatlauhtiah ihuan mopalehuiah. Ayacmo aquin atl mictia.",
@@ -263,21 +246,6 @@ window.I18N_DICIONARIOS = {
     "footer.copyright": "© 2026 Calpulli Ctrl + People — NEXT FIAP / VR Code Arena.",
     /* ---- Rádio Comunal ---- */
     "radio.title": "Calpulli Radio",
-    "radio.subtitle": "Willaykuna rimay 12",
-    "radio.tag": "RIMAY 12.0",
-    "radio.live": "KAWSACHKAN",
-    "radio.offline": "SAMAY",
-    "radio.station1_name": "Cúpulas Huacaylli",
-    "radio.station1_desc": "Mamaquchap takin",
-    "radio.station2_name": "Calpulli Willay",
-    "radio.station2_desc": "Altepetl willakuy",
-    "radio.station3_name": "Acan Khipu Beats",
-    "radio.station3_desc": "Abismo sumaq taki",
-    "radio.sonar_toggle": "Taki-maskaq",
-    "radio.minimize": "Huch'uychay",
-    "radio.maximize": "Hatunyachiy",
-    "radio.play": "Tukay",
-    "radio.pause": "Sayay",
     "login.title": "Khipup Yaykuna",
     "login.desc": "Amawtakunap hatun kancha. Chayllaraq llapa llaqtapaq kichasqa kanqa.",
     "login.btn_close": "Chaskini"

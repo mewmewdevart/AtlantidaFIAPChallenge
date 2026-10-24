@@ -113,7 +113,7 @@
 }
 
 .radio-comunal__titulo {
-  font-family: var(--fonte-titulo);
+  font-family: var(--fonte-texto);
   font-size: var(--texto-sm);
   font-weight: var(--peso-bold);
   letter-spacing: 0.04em;

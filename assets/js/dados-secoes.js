@@ -523,6 +523,52 @@ window.DADOS_MUNDO_HABITANTES = {
     erroCurto:    { pt: "Conte a missão com um pouco mais de detalhe (pelo menos 10 letras).",
                     atl: "Aswan allinta willay (aswan pisimanta 10 qillqa)." },
     erroNinguem:  { pt: "O Chasqui não achou ninguém para esse caso. Diga qual é o problema (por exemplo: parede, rádio, algas, mergulho, calor).",
-                    atl: "Chaskiqa kay ruwaypaq pitapas mana tarirqachu. Imachus sasachakuyta willay (hina: tepantli, radio, cochayuyo, uraykuy, q'oñiy)." }
+                    atl: "Chaskiqa kay ruwaypaq pitapas mana tarirqachu. Imachus sasachakuyta willay (hina: tepantli, radio, cochayuyo, uraykuy, q'oñiy)." },
+
+    /* Chasqui Flutuante */
+    chasquiBotaoAbrir: { 
+      pt: "ChasquiBot", 
+      atl: "ChasquiBot" 
+    },
+    chasquiAssistenteTitulo: { 
+      pt: "ChasquiBOT — O mensageiro de Guaraci", 
+      atl: "ChasquiBOT — Guaracipa willakuqnin" 
+    },
+    chasquiBoasVindas: { 
+      pt: "Olá! Eu sou o ChasquiBOT, mensageiro de Guaraci. Conte sua missão ou escolha uma das perguntas rápidas abaixo para saber quem pode ajudar.", 
+      atl: "Allillanchu! Ñuqaqa ChasquiBOT kani, Guaracipa willakuqnin. Ruwayniykita willay utaq urapi tapuykunata akllay." 
+    },
+    chasquiTagsTitulo: {
+      pt: "Missões frequentes:",
+      atl: "Tukuy ruwaykuna:"
+    },
+    chasquiTagAlgas: {
+      pt: "A estufa de algas parou",
+      atl: "Cochayuyo estufa sayakurqan"
+    },
+    chasquiTagRadio: {
+      pt: "Consertar a antena da rádio",
+      atl: "Radiopa antenanta allichay"
+    },
+    chasquiTagEnergia: {
+      pt: "Falha na energia e gerador",
+      atl: "Kallpa newen sasachakuy"
+    },
+    chasquiTagMergulho: {
+      pt: "Mergulho de exploração profunda",
+      atl: "Uraykuy ukhu yaku riqsiy"
+    },
+    chasquiPlaceholder: { 
+      pt: "Ex: A bomba da estufa quebrou e as algas estão secando...", 
+      atl: "Hina: Cochayuyo estufapi bomba p'akikurqan..." 
+    },
+    chasquiEnviar: { 
+      pt: "Enviar missão", 
+      atl: "Ruwayta kachay" 
+    },
+    chasquiFechar: { 
+      pt: "Fechar painel do ChasquiBOT", 
+      atl: "ChasquiBOT qawanta wichqay" 
+    }
   }
 };

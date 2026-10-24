@@ -42,15 +42,17 @@ AtlantidaFIAPChallenge/
 │   │   ├── secao-mural.css
 │   │   ├── secao-contato.css
 │   │   ├── rodape.css
-│   │   └── radio-comunal.css
+│   │   ├── radio-comunal.css
+│   │   └── chasqui-assistente.css # Botão flutuante e painel ChasquiBOT
 │   ├── fonts/                     # Fontes locais
 │   ├── js/                        # Comportamentos e conteúdo do site
+│   │   ├── abertura-carregamento.js
 │   │   ├── secao-hero.js
 │   │   ├── idioma-geral.js        # Troca de idioma global
-│   │   ├── idioma-conteudo.js     # Tradução de conteúdo das seções
 │   │   ├── portal-navegacao.js    # Navegação, Mural e Contato
 │   │   ├── dados-secoes.js        # Dados de O Mundo e Habitantes
 │   │   ├── chasqui-motor.js       # Busca e recomendações do Chasqui
+│   │   ├── chasqui-assistente.js  # Assistente de mensagens ChasquiBOT
 │   │   ├── secao-mundo.js
 │   │   ├── secao-habitantes.js
 │   │   ├── radio-comunal.js
@@ -66,7 +68,6 @@ AtlantidaFIAPChallenge/
 │   ├── como-editar.md             # Guia para editar conteúdo e estilos
 │   └── glossario-atlantida.md     # Vocabulário e regras do Atlante
 ├── index.html                     # Página principal e conteúdo das seções
-├── VR CODE ARENA - Atlantida.pptx # Apresentação do projeto
 ├── LICENSE
 └── README.md
 ```

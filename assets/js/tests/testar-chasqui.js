@@ -28,6 +28,6 @@ const acertos = casos.length - erros.length;
 console.log(`Chasqui: ${acertos} de ${casos.length} frases certas (${Math.round((100 * acertos) / casos.length)}%)`);
 if (erros.length) {
   console.log("\nErrou:\n" + erros.join("\n"));
-  console.log('\nPara ver por quê:  node docs/testar-chasqui.js "<a frase>"');
+  console.log('\nPara ver por quê:  node assets/js/tests/testar-chasqui.js "<a frase>"');
   process.exit(1);
 }

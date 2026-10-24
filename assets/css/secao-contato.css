@@ -62,13 +62,19 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  flex-wrap: wrap;
+  row-gap: 0.45rem;
+  column-gap: 1rem;
   padding-bottom: 0.8rem;
   font-size: var(--texto-sm);
   font-weight: var(--peso-semibold);
   letter-spacing: 0.08em;
   color: var(--cor-ferrugem-acessivel);
   border-bottom: 1px dotted rgba(100, 73, 56, 0.45);
+}
+
+.contato__terminal-nome {
+  min-width: 0;
 }
 
 .contato__terminal-status {
@@ -301,6 +307,17 @@
     padding: 1.6rem 1.25rem;
   }
 
+  .contato__terminal {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .contato__terminal-status {
+    white-space: normal;
+    word-break: break-word;
+  }
+
   .contato__campos {
     grid-template-columns: 1fr;
   }
@@ -314,5 +331,10 @@
 @media (max-width: 480px) {
   #contato {
     padding: 3rem 0.85rem;
+  }
+
+  .contato__terminal {
+    font-size: var(--texto-xs);
+    gap: 0.35rem;
   }
 }

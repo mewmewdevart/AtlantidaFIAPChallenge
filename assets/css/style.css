@@ -747,6 +747,14 @@ body>section,
   transition: opacity 0.2s ease;
 }
 
+.cabecalho-topo__rotulo-desktop {
+  display: inline;
+}
+
+.cabecalho-topo__rotulo-mobile {
+  display: none;
+}
+
 .cabecalho-topo__hamburguer,
 .menu-navegacao__hamburguer {
   position: relative;
@@ -1460,6 +1468,14 @@ body>section,
     letter-spacing: 0.5px;
     line-height: 1;
     white-space: nowrap;
+  }
+
+  .cabecalho-topo__rotulo-desktop {
+    display: none !important;
+  }
+
+  .cabecalho-topo__rotulo-mobile {
+    display: inline !important;
   }
 
   .cabecalho-topo--expandido .cabecalho-topo__gatilho,
