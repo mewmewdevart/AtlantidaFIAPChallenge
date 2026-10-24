@@ -1,5 +1,7 @@
 <div align="center">
-  <h1>🐟 Khipu- Os laços que conectam Guaraci.</h1>
+   <img src="https://github.com/user-attachments/assets/127f89de-f284-480c-b16a-de4e82782361" width="200" alt="Guaraci e Khipu logo" />
+  
+  <h1>  Khipu - Os laços que conectam Guaraci.</h1>
 
   <p>
     <b>VR Code Arena - NEXT FIAP/2026</b>
@@ -10,13 +12,13 @@
   </p>
 
   <p align="center">
-    <a href="https://github.com/mewmewdevart/AtlantidaFIAPChallenge">🔗 Acessar o Projeto</a>
+    <a href="https://khipu-ctrl-people.vercel.app/">🔗 Acessar o Projeto</a>
   </p>
 
   <p align="center">
-    <img src="https://img.shields.io/badge/Desafio-VR%20Code%20Arena-538CFF?style=for-the-badge&logo=fiap&logoColor=white" alt="Desafio VR Code Arena" />
-    <img src="https://img.shields.io/badge/Status-Em%20Desenvolvimento-538CFF?style=for-the-badge&logo=github&logoColor=white" alt="Status Em Desenvolvimento" />
-    <img src="https://img.shields.io/badge/Projeto-Acad%C3%AAmico-538CFF?style=for-the-badge&logo=bookstack&logoColor=white" alt="Projeto Acadêmico" />
+    <img src="https://img.shields.io/badge/Desafio-VR%20Code%20Arena-0193A2?style=for-the-badge&logo=fiap&logoColor=white" alt="Desafio VR Code Arena" />
+    <img src="https://img.shields.io/badge/Status-Em%20Desenvolvimento-0193A2?style=for-the-badge&logo=github&logoColor=white" alt="Status Em Desenvolvimento" />
+    <img src="https://img.shields.io/badge/Projeto-Acad%C3%AAmico-0193A2?style=for-the-badge&logo=bookstack&logoColor=white" alt="Projeto Acadêmico" />
   </p>
 </div>
 
@@ -25,6 +27,9 @@
 ## 📌 Resumo do Projeto
 
 O **Portal Khipu - Os laços que conectam Guaraci** é uma solução digital concebida para o desafio **VR Code Arena (NEXT FIAP/2026)**. O objetivo é integrar e fornecer informações vitais para a população da mítica cidade de Guaraci, localizada no fundo do oceano. Através do portal, os moradores das diversas cúpulas e módulos subaquáticos têm acesso a dados de pressão, rotas de navegação submarina, relatórios operacionais e canal de comunicação entre os setores habitacionais.
+
+<img width="1896" height="862" alt="image" src="https://github.com/user-attachments/assets/41f8260a-39c5-4d08-aed8-bf9a6f3930f8" />
+
 
 ## 📂 Estrutura do Projeto
 
