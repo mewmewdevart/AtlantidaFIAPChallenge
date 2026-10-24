@@ -133,8 +133,9 @@ body>section,
   pointer-events: auto;
 }
 
-/* Por padrão (desktop), a logo dentro do menu fica oculta */
-.cabecalho-topo__brand {
+/* Por padrão (desktop), a logo dentro do menu e na pílula fica oculta */
+.cabecalho-topo__brand,
+.cabecalho-topo__pilula-logo {
   display: none !important;
 }
 
@@ -1356,45 +1357,9 @@ body>section,
     display: none !important;
   }
 
-  /* Logo centralizado com melhor tamanho e legibilidade no tablet/mobile */
+  /* Em mídias menores de 768px, o logo centralizado que surge não é mais exibido */
   .logo-centralizado {
-    padding: 0.55rem 1.5rem 0.75rem;
-    gap: 0.85rem;
-    max-width: 90vw;
-  }
-
-  .logo-centralizado .logo {
-    width: 66px;
-  }
-
-  .logo-centralizado .logo-text h1 {
-    font-size: 2.65rem;
-    line-height: 1;
-  }
-
-  .logo-centralizado .logo-text p {
-    font-size: 1.05rem;
-    font-weight: var(--peso-semibold);
-    margin-top: 0.15rem;
-    letter-spacing: 0.2px;
-    white-space: nowrap;
-  }
-
-  .logo-blobs {
-    top: -11px;
-    left: -14px;
-    right: -14px;
-    bottom: -6px;
-  }
-
-  /* Apenas no formato de responsividade (mobile/tablet): oculta o logo centralizado do topo quando o menu abrir */
-  body.menu-aberto .logo-centralizado,
-  body:has(.cabecalho-topo--expandido) .logo-centralizado,
-  body:has(.menu-navegacao--expandido) .logo-centralizado {
-    transform: translate(-50%, -120%) !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
+    display: none !important;
   }
 
   .container-secao {
@@ -1402,22 +1367,120 @@ body>section,
     padding-right: 1.5rem;
   }
 
+  /* Barra Superior Unificada (Menu + Logo em Pílula Única) */
   .cabecalho-topo,
   .menu-navegacao {
-    width: 86px;
-    height: 86px;
+    top: 1rem;
+    left: 1rem;
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .cabecalho-topo:not(.cabecalho-topo--expandido),
+  .menu-navegacao:not(.menu-navegacao--expandido) {
+    width: auto;
+    height: 72px;
+    border-radius: 9999px;
+    padding: 0 1.35rem 0 0.75rem;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(0, 3, 5, 0.28);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.25s ease,
+      background-color 0.25s ease;
   }
 
   .cabecalho-topo:not(.cabecalho-topo--expandido):hover,
   .menu-navegacao:not(.menu-navegacao--expandido):hover {
     transform: scale(1.02);
+    box-shadow: 0 10px 28px rgba(0, 3, 5, 0.35);
+  }
+
+  .cabecalho-topo:not(.cabecalho-topo--expandido) .cabecalho-topo__barra-topo,
+  .menu-navegacao:not(.menu-navegacao--expandido) .menu-navegacao__barra-topo {
+    min-height: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+  }
+
+  .cabecalho-topo:not(.cabecalho-topo--expandido) .cabecalho-topo__gatilho,
+  .menu-navegacao:not(.menu-navegacao--expandido) .menu-navegacao__gatilho {
+    width: auto;
+    height: 100%;
+    padding: 0 0.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.55rem;
+    background: transparent;
+  }
+
+  .cabecalho-topo__pilula-logo {
+    display: none;
+  }
+
+  .cabecalho-topo:not(.cabecalho-topo--expandido) .cabecalho-topo__pilula-logo {
+    display: flex !important;
+    align-items: center;
+    height: 100%;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .cabecalho-topo__pilula-divisor {
+    display: block;
+    width: 1.5px;
+    height: 40px;
+    background-color: var(--cor-pergaminho-borda);
+    opacity: 0.7;
+    margin: 0 0.25rem;
+  }
+
+  .cabecalho-topo__pilula-img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .cabecalho-topo__pilula-texto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    line-height: 1;
+  }
+
+  .cabecalho-topo__pilula-nome {
+    font-family: var(--fonte-titulo);
+    font-size: 1.85rem;
+    font-weight: bold;
+    color: var(--cor-fundo);
+    line-height: 1;
+    letter-spacing: 0.5px;
+    margin-top: -2px;
+    white-space: nowrap;
+  }
+
+  .cabecalho-topo__pilula-slogan {
+    font-family: var(--fonte-texto);
+    font-size: 0.75rem;
+    font-weight: var(--peso-semibold);
+    color: var(--cor-tinta-suave-acessivel);
+    line-height: 1.15;
+    letter-spacing: 0.25px;
+    margin-top: 3px;
+    white-space: nowrap;
+  }
+
+  .cabecalho-topo--expandido .cabecalho-topo__pilula-logo {
+    display: none !important;
   }
 
   .cabecalho-topo--expandido,
   .menu-navegacao--expandido {
-    width: min(340px, calc(100vw - 2rem)) !important;
+    width: min(420px, calc(100vw - 2rem)) !important;
     height: auto !important;
     max-height: calc(100vh - 2rem) !important;
     border-radius: 1.25rem !important;
@@ -1444,6 +1507,8 @@ body>section,
   .menu-navegacao--expandido .menu-navegacao__barra-topo {
     min-height: 48px;
     justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--cor-pergaminho-borda);
   }
@@ -1480,8 +1545,10 @@ body>section,
 
   .cabecalho-topo--expandido .cabecalho-topo__gatilho,
   .menu-navegacao--expandido .menu-navegacao__gatilho {
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    flex-shrink: 0;
     border-radius: 50%;
     background-color: rgba(50, 27, 11, 0.08);
   }
@@ -1502,13 +1569,20 @@ body>section,
   .menu-navegacao--expandido .menu-navegacao__conteudo {
     display: flex;
     align-items: center;
-    gap: 0.55rem;
+    gap: 0.65rem;
     opacity: 1;
     visibility: visible;
     width: auto;
     overflow: visible;
     transform: none;
     padding: 0;
+    flex-shrink: 0;
+  }
+
+  .cabecalho-topo__rotulo-animacoes,
+  .menu-navegacao__rotulo-animacoes {
+    display: inline !important;
+    white-space: nowrap;
   }
 
   /* Opções do menu organizadas verticalmente (somente no responsivo) */
@@ -1598,7 +1672,7 @@ body>section,
   }
 
   .cabecalho-topo__brand-subtitulo {
-    font-size: 0.72rem;
+    font-size: 1rem;
     color: var(--cor-fundo);
     margin-top: 0.15rem;
     opacity: 0.85;
@@ -1770,16 +1844,6 @@ body>section,
   }
 }
 
-/* Posicionamento do botão de ajustes abaixo do centralizado em telas de 700px para baixo */
-@media (max-width: 700px) {
-
-  .cabecalho-topo,
-  .menu-navegacao {
-    top: 6.25rem;
-    left: 1rem;
-  }
-}
-
 /* Ajuste responsivo compacto do cabeçalho superior */
 @media (max-width: 480px) {
 
@@ -1790,78 +1854,81 @@ body>section,
 
   .cabecalho-topo__rotulo-animacoes,
   .menu-navegacao__rotulo-animacoes {
-    display: none;
+    display: inline !important;
+    white-space: nowrap;
+    font-size: 0.72rem;
   }
 
   .cabecalho-topo__botao-animacoes,
   .menu-navegacao__botao-animacoes {
-    padding: 0.35rem 0.5rem;
+    padding: 0.3rem 0.55rem;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
-  .cabecalho-topo,
-  .menu-navegacao {
-    width: 72px;
+  .cabecalho-topo--expandido .cabecalho-topo__barra-topo,
+  .menu-navegacao--expandido .menu-navegacao__barra-topo {
+    gap: 0.5rem;
+  }
+
+  .cabecalho-topo--expandido .cabecalho-topo__conteudo,
+  .menu-navegacao--expandido .menu-navegacao__conteudo {
+    gap: 0.45rem;
+  }
+
+  .cabecalho-topo:not(.cabecalho-topo--expandido),
+  .menu-navegacao:not(.menu-navegacao--expandido) {
     height: 72px;
-    top: 5.65rem;
-    left: 0.65rem;
+    padding: 0 1rem 0 0.55rem;
   }
 
-
-  .cabecalho-topo__barra-topo,
-  .menu-navegacao__barra-topo {
+  .cabecalho-topo:not(.cabecalho-topo--expandido) .cabecalho-topo__barra-topo,
+  .menu-navegacao:not(.menu-navegacao--expandido) .menu-navegacao__barra-topo {
     min-height: 72px;
+    height: 72px;
+    gap: 0.5rem;
   }
 
-  .cabecalho-topo__gatilho,
-  .menu-navegacao__gatilho {
-    width: 72px;
-    height: 72px;
-    gap: 3px;
-    padding: 0;
+  .cabecalho-topo:not(.cabecalho-topo--expandido) .cabecalho-topo__gatilho,
+  .menu-navegacao:not(.menu-navegacao--expandido) .menu-navegacao__gatilho {
+    width: auto;
+    height: 100%;
+    gap: 0.45rem;
+    padding: 0 0.4rem;
   }
 
   .cabecalho-topo__hamburguer,
   .menu-navegacao__hamburguer {
-    width: 20px;
-    height: 13px;
+    width: 21px;
+    height: 14px;
   }
 
-  .cabecalho-topo__rotulo,
-  .menu-navegacao__rotulo {
-    font-size: 0.7rem;
+  .cabecalho-topo:not(.cabecalho-topo--expandido) .cabecalho-topo__rotulo,
+  .menu-navegacao:not(.menu-navegacao--expandido) .menu-navegacao__rotulo {
+    font-size: 0.88rem;
     letter-spacing: 0.4px;
     line-height: 1;
     white-space: nowrap;
   }
 
-  .logo-centralizado {
-    padding: 0.45rem 1.25rem 0.62rem;
-    gap: 0.7rem;
-    max-width: 88vw;
+  .cabecalho-topo__pilula-divisor {
+    height: 36px;
+    margin: 0 0.15rem;
   }
 
-  .logo-centralizado .logo {
-    width: 54px;
+  .cabecalho-topo__pilula-img {
+    width: 38px;
+    height: 38px;
   }
 
-  .logo-centralizado .logo-text h1 {
-    font-size: 2.3rem;
-    line-height: 1;
+  .cabecalho-topo__pilula-nome {
+    font-size: 1.6rem;
   }
 
-  .logo-centralizado .logo-text p {
-    font-size: 0.95rem;
-    font-weight: var(--peso-semibold);
-    margin-top: 0.15rem;
-    letter-spacing: 0.2px;
-    white-space: nowrap;
-  }
-
-  .logo-blobs {
-    top: -9px;
-    left: -12px;
-    right: -12px;
-    bottom: -5px;
+  .cabecalho-topo__pilula-slogan {
+    font-size: 0.64rem;
+    letter-spacing: 0.15px;
+    margin-top: 2px;
   }
 }
 

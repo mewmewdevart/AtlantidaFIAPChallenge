@@ -4,9 +4,7 @@
    ========================================================================== */
 
 .radio-comunal {
-  position: fixed;
-  bottom: 1.25rem;
-  right: 1.25rem;
+  position: relative;
   z-index: 995;
   font-family: var(--fonte-texto);
   user-select: none;
@@ -312,16 +310,12 @@
 }
 
 /* ==========================================================================
-   6. RESPONSIVIDADE MOBILE
+   6. RESPONSIVIDADE (TABLET & MOBILE)
    ========================================================================== */
 @media (max-width: 480px) {
-  .radio-comunal {
-    bottom: 0.85rem;
-    right: 0.85rem;
-  }
-
   .radio-comunal__card {
     width: 270px;
+    max-width: calc(100vw - 1.7rem);
     padding: 0.75rem 0.9rem;
   }
 

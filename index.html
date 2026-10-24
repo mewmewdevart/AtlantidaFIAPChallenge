@@ -200,6 +200,16 @@
         </span>
       </button>
 
+      <!-- Logo integrado na Pílula Unificada (visível no mobile/tablet quando fechado) -->
+      <div class="cabecalho-topo__pilula-logo" aria-hidden="true">
+        <span class="cabecalho-topo__pilula-divisor"></span>
+        <img src="./assets/media/atlantida-logo.png" alt="" class="cabecalho-topo__pilula-img" />
+        <div class="cabecalho-topo__pilula-texto">
+          <span class="cabecalho-topo__pilula-nome">Khipu</span>
+          <span class="cabecalho-topo__pilula-slogan" data-i18n="abertura.slogan" data-atl="Guaracita tinkichiq watakuna.">Os laços que conectam Guaraci</span>
+        </div>
+      </div>
+
       <div class="cabecalho-topo__conteudo">
         <div class="seletor-idioma">
           <span class="seletor-idioma__rotulo seletor-idioma__rotulo--pt seletor-idioma__rotulo--ativo"
@@ -275,12 +285,12 @@
             <span class="cabecalho-topo__rotulo-link" data-i18n="nav_lateral.contato">Contato</span>
           </a>
         </li>
-        <li class="cabecalho-topo__item cabecalho-topo__item--login">
+        <!-- <li class="cabecalho-topo__item cabecalho-topo__item--login">
           <a href="#login" class="cabecalho-topo__link cabecalho-topo__link--login" data-secao="login"
             aria-label="Ir para Login" data-atl-aria-label="Riy: Yaykuy">
             <span class="cabecalho-topo__rotulo-link" data-i18n="nav_lateral.login">Login</span>
           </a>
-        </li>
+        </li> -->
       </ul>
     </nav>
   </header>
@@ -1439,6 +1449,7 @@
   <!-- ========================================================================
        RÁDIO COMUNAL — PLAYER FIXO NO CANTO INFERIOR DIREITO (FREQUÊNCIA 12)
        ======================================================================== -->
+  <div class="controles-flutuantes" id="controlesFlutuantes">
   <aside id="radio-comunal" class="radio-comunal" aria-label="Rádio Comunal — Frequência 12">
     <!-- Áudio em loop: adicione seu arquivo de áudio no caminho src abaixo -->
     <audio id="radioAudio" preload="metadata" src="./assets/media/radio-comunal.mp3" data-noticia-embutida="7"></audio>
@@ -1556,6 +1567,7 @@
       </form>
     </section>
   </aside>
+  </div>
 
   <!-- Modal Acessível: Terminal de Login de Guaraci (ACH-10) -->
   <dialog id="login" class="modal-dialogo" aria-labelledby="tituloModalLogin">
