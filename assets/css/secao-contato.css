@@ -303,10 +303,6 @@
     padding: 4rem 1rem;
   }
 
-  .contato__formulario {
-    padding: 1.6rem 1.25rem;
-  }
-
   .contato__terminal {
     flex-direction: column;
     align-items: flex-start;
